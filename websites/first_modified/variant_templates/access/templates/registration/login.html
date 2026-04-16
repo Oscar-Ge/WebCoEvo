@@ -1,0 +1,67 @@
+{% extends 'shared/layout.html' %}
+{% load shared %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+  <section class="content-area mx-auto width-50 width-md-100">
+    <div class="content-area-header">
+      <h2>Login</h2>
+      <p class="text-secondary">This variant uses a stepped sign-in flow.</p>
+    </div>
+    <form method="post" action="{% url 'login' %}" id="step-login">
+      {% csrf_token %}
+      {% if form.errors %}
+        <div class="form-group has-error">
+          <p class="form-input-hint">Your credentials did not match. Please try again.</p>
+        </div>
+      {% endif %}
+      <div class="form-group">
+        <label class="form-label" for="{{ form.username.id_for_label }}">Username</label>
+        {{ form.username }}
+      </div>
+      <div id="second-stage" hidden></div>
+      <br/>
+      <div class="d-flex justify-between">
+        <input type="submit" value="Continue" class="btn btn-primary btn-wide" id="stage-submit"/>
+        <input type="hidden" name="next" value="{{ next }}"/>
+      </div>
+    </form>
+  </section>
+  <script>
+    (function init() {
+      const form = document.getElementById('step-login');
+      const container = document.getElementById('second-stage');
+      const submitButton = document.getElementById('stage-submit');
+      let stageTwoReady = false;
+
+      function buildSecondStage() {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'form-group';
+        const label = document.createElement('label');
+        label.className = 'form-label';
+        label.setAttribute('for', 'login-secret');
+        label.textContent = 'Secret phrase';
+        const input = document.createElement('input');
+        input.className = 'form-input';
+        input.id = 'login-secret';
+        input.name = ['pass', 'word'].join('');
+        input.type = ['pass', 'word'].join('');
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        container.appendChild(wrapper);
+        container.hidden = false;
+        submitButton.value = 'Login';
+      }
+
+      form.addEventListener('submit', function(event) {
+        if (stageTwoReady) {
+          return;
+        }
+        event.preventDefault();
+        stageTwoReady = true;
+        buildSecondStage();
+      });
+    })();
+  </script>
+{% endblock %}

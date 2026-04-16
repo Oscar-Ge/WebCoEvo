@@ -1,0 +1,76 @@
+{# hardv3-release-grounded; source markers: PR #1253, PR #1248, PR #1269, PR #1257, PR #1241 #}
+<style>
+  .hardv3-release-panel {
+    margin: 0 auto 1rem auto;
+    padding: 0.8rem 1rem;
+    border: 1px solid #61735f;
+    background: #f4f7ef;
+    color: #243423;
+  }
+  .hardv3-release-kicker {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #52634e;
+  }
+  .hardv3-release-panel p {
+    margin: 0.25rem 0 0 0;
+  }
+  .hardv3-variant-cue {
+    display: none;
+  }
+  body[data-hardv3-variant="access"] .hardv3-variant-cue[data-hardv3-for~="access"],
+  body[data-hardv3-variant="surface"] .hardv3-variant-cue[data-hardv3-for~="surface"],
+  body[data-hardv3-variant="content"] .hardv3-variant-cue[data-hardv3-for~="content"],
+  body[data-hardv3-variant="runtime"] .hardv3-variant-cue[data-hardv3-for~="runtime"],
+  body[data-hardv3-variant="process"] .hardv3-variant-cue[data-hardv3-for~="process"],
+  body[data-hardv3-variant="structural"] .hardv3-variant-cue[data-hardv3-for~="structural"],
+  body[data-hardv3-variant="functional"] .hardv3-variant-cue[data-hardv3-for~="functional"] {
+    display: block;
+  }
+  .hardv3-stage-card {
+    margin: 1rem 0;
+    padding: 1.25rem;
+    border: 1px solid #8a7a4c;
+    background: #fffaf0;
+    box-shadow: 0 0.5rem 1.5rem rgba(60, 49, 27, 0.12);
+  }
+  .hardv3-stage-card h1,
+  .hardv3-stage-card h2 {
+    margin: 0.25rem 0 0.5rem 0;
+  }
+  .hardv3-stage-card p {
+    color: #5d4e2c;
+  }
+  .hardv3-stage-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+  .hardv3-muted-action {
+    opacity: 0.72;
+  }
+  .hardv3-hidden-original {
+    display: none;
+  }
+  .hardv3-login-form-hidden {
+    display: none;
+  }
+  .hardv3-runtime-pending .content,
+  .hardv3-runtime-pending header {
+    opacity: 0.72;
+  }
+  .hardv3-runtime-note {
+    display: none;
+    margin: 0 0 1rem 0;
+    padding: 0.75rem 1rem;
+    border: 1px solid #6e8aa6;
+    background: #eef6ff;
+    color: #23384f;
+  }
+  .hardv3-runtime-pending .hardv3-runtime-note {
+    display: block;
+  }
+</style>

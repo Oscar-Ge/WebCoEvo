@@ -12,6 +12,7 @@ WebCoEvo 是一个自包含的 Linkding XVR 评测 runner，用来在 hardv3 dri
 - `configs/`: Focus20 smoke/full 和 TaskBank36 full 的 hardv3 task JSON。
 - `rulebooks/`: V2.4/V2.5/V2.6 cross-version reflection rulebooks，以及 `expel_official_v2.json`。
 - `scripts/singularity/`: Linkding drift runtime helper 和 hardv3 variant 模板文件。
+- `websites/`: Linkding 三代网页资产：原版 control 快照、第一次修改网页、hardv3 release-grounded 网页。
 - `scripts/verify_trace_rules.py`: trace 审计脚本，用来确认 XVR 和 ExpeL rules 真的进入 trace。
 - `slurm/`: smoke、full、hardv3 matrix submitter。
 - `skills/`: 给 Codex/agent 使用的本仓库运行、监控、分析技能。
@@ -29,6 +30,16 @@ WebCoEvo 是一个自包含的 Linkding XVR 评测 runner，用来在 hardv3 dri
 4. Export/audit 层：`export.py` 输出 legacy eval/trace JSONL，把 preflight rule IDs 回填到 reset-error rows；`verify_trace_rules.py` 检查 trace 里是否有 rule 注入字段。
 
 Singularity 脚本会启动本地 Linkding drift variant，把 task 的 start URL 改成本 job 的 localhost 端口，reset 数据，创建 baseline 用户，运行 Python runner，并做 trace audit。
+
+## 网页资产
+
+仓库里保留了三代 Linkding 网页：
+
+- `websites/original/`: 干净 Linkding `1.45.0` control 的 HTML/PNG 快照。运行时 `control` variant 不挂载任何模板。
+- `websites/first_modified/`: 第一版 vibe-coded drift 网页，从旧 commit `9879707` 恢复模板，并带上 4 月 3 日 before/after 截图。
+- `websites/hardv3/`: 当前使用的 release-grounded hardv3 网页，包含模板覆盖、验证 HTML、截图和设计说明。
+
+hardv3 运行时真正读取的路径仍然是 `scripts/singularity/linkding_drift/variants/`；`websites/hardv3/variant_templates/` 是一份便于 review 和迁移的归档副本。
 
 ## 环境准备
 

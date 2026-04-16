@@ -1,0 +1,626 @@
+
+<!DOCTYPE html>
+
+<html lang="en"
+      data-api-base-url="/api/"
+      data-hardv3-profile="hardv3-release-grounded">
+  
+    
+<head><base href="http://127.0.0.1:29106/">
+  <meta charset="UTF-8">
+  <link rel="icon" href="/static/favicon.ico" sizes="48x48">
+  <link rel="icon"
+        href="/static/favicon.svg"
+        sizes="any"
+        type="image/svg+xml">
+  <link rel="apple-touch-icon"
+        sizes="180x180"
+        href="/static/apple-touch-icon.png">
+  <link rel="mask-icon"
+        href="/static/safari-pinned-tab.svg"
+        color="#5856e0">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="search"
+        type="application/opensearchdescription+xml"
+        title="Linkding"
+        href="/opensearch.xml" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimal-ui">
+  <meta name="description" content="Self-hosted bookmark service">
+  <meta name="robots" content="index,follow">
+  <meta name="author" content="Sascha Ißbrücker">
+  <title>Bookmarks - Linkding</title>
+  
+  
+    
+    <link href="/static/theme-dark.css?v=1.45.0"
+          rel="stylesheet"
+          type="text/css"
+          media="(prefers-color-scheme: dark)" />
+    <link href="/static/theme-light.css?v=1.45.0"
+          rel="stylesheet"
+          type="text/css"
+          media="(prefers-color-scheme: light)" />
+    <meta name="theme-color"
+          media="(prefers-color-scheme: dark)"
+          content="#161822">
+    <meta name="theme-color"
+          media="(prefers-color-scheme: light)"
+          content="#5856e0">
+  
+  
+  <meta name="turbo-cache-control" content="no-preview">
+  <meta name="turbo-prefetch" content="false">
+  
+  <script src="/static/bundle.js?v=1.45.0"></script>
+  
+</head>
+
+    <meta name="linkding-drift-profile" content="hardv3-release-grounded">
+    <meta name="linkding-hardv3-variant" content="runtime">
+    
+<style>
+  .hardv3-release-panel {
+    margin: 0 auto 1rem auto;
+    padding: 0.8rem 1rem;
+    border: 1px solid #61735f;
+    background: #f4f7ef;
+    color: #243423;
+  }
+  .hardv3-release-kicker {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #52634e;
+  }
+  .hardv3-release-panel p {
+    margin: 0.25rem 0 0 0;
+  }
+  .hardv3-variant-cue {
+    display: none;
+  }
+  body[data-hardv3-variant="access"] .hardv3-variant-cue[data-hardv3-for~="access"],
+  body[data-hardv3-variant="surface"] .hardv3-variant-cue[data-hardv3-for~="surface"],
+  body[data-hardv3-variant="content"] .hardv3-variant-cue[data-hardv3-for~="content"],
+  body[data-hardv3-variant="runtime"] .hardv3-variant-cue[data-hardv3-for~="runtime"],
+  body[data-hardv3-variant="process"] .hardv3-variant-cue[data-hardv3-for~="process"],
+  body[data-hardv3-variant="structural"] .hardv3-variant-cue[data-hardv3-for~="structural"],
+  body[data-hardv3-variant="functional"] .hardv3-variant-cue[data-hardv3-for~="functional"] {
+    display: block;
+  }
+  .hardv3-stage-card {
+    margin: 1rem 0;
+    padding: 1.25rem;
+    border: 1px solid #8a7a4c;
+    background: #fffaf0;
+    box-shadow: 0 0.5rem 1.5rem rgba(60, 49, 27, 0.12);
+  }
+  .hardv3-stage-card h1,
+  .hardv3-stage-card h2 {
+    margin: 0.25rem 0 0.5rem 0;
+  }
+  .hardv3-stage-card p {
+    color: #5d4e2c;
+  }
+  .hardv3-stage-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+  .hardv3-muted-action {
+    opacity: 0.72;
+  }
+  .hardv3-hidden-original {
+    display: none;
+  }
+  .hardv3-login-form-hidden {
+    display: none;
+  }
+  .hardv3-runtime-pending .content,
+  .hardv3-runtime-pending header {
+    opacity: 0.72;
+  }
+  .hardv3-runtime-note {
+    display: none;
+    margin: 0 0 1rem 0;
+    padding: 0.75rem 1rem;
+    border: 1px solid #6e8aa6;
+    background: #eef6ff;
+    color: #23384f;
+  }
+  .hardv3-runtime-pending .hardv3-runtime-note {
+    display: block;
+  }
+</style>
+
+  
+  <body data-hardv3-profile="hardv3-release-grounded" data-hardv3-variant="runtime">
+    <header class="container">
+      
+      <div class="d-flex justify-between">
+        <a href="/" class="app-link d-flex align-center">
+          <img class="app-logo" src="/static/logo.png" alt="Application logo">
+          <span class="app-name">LINKDING</span>
+        </a>
+        <nav>
+          
+            
+ <div class="hide-md"> <a href="/bookmarks/new" class="btn btn-primary mr-2">Add bookmark</a> <ld-dropdown class="dropdown"> <button class="btn btn-link dropdown-toggle" tabindex="0">Bookmarks</button> <ul class="menu" role="list" tabindex="-1"> <li class="menu-item"> <a href="/bookmarks" class="menu-link">Active</a> </li> <li class="menu-item"> <a href="/bookmarks/archived" class="menu-link">Archived</a> </li> <li class="menu-item"> <a href="/bookmarks?unread=yes" class="menu-link">Unread</a> </li> <li class="menu-item"> <a href="/bookmarks?q=!untagged" class="menu-link">Untagged</a> </li> </ul> </ld-dropdown> <ld-dropdown class="dropdown"> <button class="btn btn-link dropdown-toggle" tabindex="0">Settings</button> <ul class="menu" role="list" tabindex="-1"> <li class="menu-item"> <a href="/settings/general" class="menu-link">General</a> </li> <li class="menu-item"> <a href="/settings/integrations" class="menu-link">Integrations</a> </li> <li class="menu-item"> <a href="/admin/" class="menu-link" data-turbo="false">Admin</a> </li> </ul> </ld-dropdown> <form class="d-inline" action="/logout/" method="post" data-turbo="false"> <input type="hidden" name="csrfmiddlewaretoken" value="SANITIZED_CSRF_TOKEN"> <button type="submit" class="btn btn-link">Logout</button> </form> </div> <div class="show-md"> <a href="/bookmarks/new" aria-label="Add bookmark" class="btn btn-primary"> <svg width="24" height="24"> <use href="/static/icons.svg?v=1.45.0#plus"></use> </svg> </a> <ld-dropdown class="dropdown dropdown-right"> <button class="btn btn-link dropdown-toggle" aria-label="Navigation menu" tabindex="0"> <svg width="24" height="24"> <use href="/static/icons.svg?v=1.45.0#menu"></use> </svg> </button> <!-- menu component --> <ul class="menu" role="list" tabindex="-1"> <li class="menu-item"> <a href="/bookmarks" class="menu-link">Bookmarks</a> </li> <li class="menu-item"> <a href="/bookmarks/archived" class="menu-link">Archived bookmarks</a> </li> <li class="menu-item"> <a href="/bookmarks?unread=yes" class="menu-link">Unread</a> </li> <li class="menu-item"> <a href="/bookmarks?q=!untagged" class="menu-link">Untagged</a> </li> <div class="divider"></div> <li class="menu-item"> <a href="/settings/general" class="menu-link">Settings</a> </li> <li class="menu-item"> <a href="/settings/integrations" class="menu-link">Integrations</a> </li> <li class="menu-item"> <a href="/admin/" class="menu-link" data-turbo="false">Admin</a> </li> <div class="divider"></div> <li class="menu-item"> <form class="d-inline" action="/logout/" method="post" data-turbo="false"> <input type="hidden" name="csrfmiddlewaretoken" value="SANITIZED_CSRF_TOKEN"> <button type="submit" class="btn btn-link menu-link">Logout</button> </form> </li> </ul> </ld-dropdown> </div> 
+
+          
+        </nav>
+      </div>
+    </header>
+    <div class="content container">
+      <div class="hardv3-runtime-note">Workspace controls are syncing.</div>
+      
+  <ld-bookmark-page 
+                    class="bookmarks-page grid columns-md-1 ">
+    
+    <main class="main col-2" aria-labelledby="main-heading">
+      <div class="section-header mb-0">
+        <h1 id="main-heading">Bookmarks</h1>
+        <div class="header-controls">
+          
+<div class="search-container">
+  <form id="search" action="" method="get" role="search">
+    <ld-search-autocomplete input-name="q"
+                            input-placeholder="Search for words or #tags"
+                            input-value=""
+                            target="_blank"
+                            mode=""
+                            user=""
+                            shared="off"
+                            unread="off">
+    </ld-search-autocomplete>
+    <input type="submit" value="Search" class="d-none">
+    
+  </form>
+  <ld-dropdown class="search-options dropdown dropdown-right">
+    <button type="button"
+            aria-label="Search preferences"
+            class="btn dropdown-toggle">
+      <svg width="20" height="20">
+        <use href="/static/icons.svg?v=1.45.0#preferences"></use>
+      </svg>
+    </button>
+    <div class="menu" tabindex="0">
+      <form id="search_preferences" action="" method="post">
+        <input type="hidden" name="csrfmiddlewaretoken" value="SANITIZED_CSRF_TOKEN">
+        
+          <div class="form-group">
+            <label for="id_sort"
+                   class="form-label">Sort by</label>
+            <select name="sort" class="form-select select-sm" aria-invalid="false" id="id_sort">
+  <option value="added_asc">Added ↑</option>
+
+  <option value="added_desc" selected>Added ↓</option>
+
+  <option value="title_asc">Title ↑</option>
+
+  <option value="title_desc">Title ↓</option>
+
+</select>
+          </div>
+        
+        
+          <div class="form-group radio-group"
+               role="radiogroup"
+               aria-labelledby="search-shared-label">
+            <label id="search-shared-label"
+                   class="form-label">
+              Shared filter
+            </label>
+            
+              <label for="id_shared_0" class="form-radio form-inline">
+                <input type="radio" name="shared" value="off" id="id_shared_0" required checked>
+                <i class="form-icon"></i>
+                Off
+              </label>
+            
+              <label for="id_shared_1" class="form-radio form-inline">
+                <input type="radio" name="shared" value="yes" id="id_shared_1" required>
+                <i class="form-icon"></i>
+                Shared
+              </label>
+            
+              <label for="id_shared_2" class="form-radio form-inline">
+                <input type="radio" name="shared" value="no" id="id_shared_2" required>
+                <i class="form-icon"></i>
+                Unshared
+              </label>
+            
+          </div>
+        
+        
+          <div class="form-group radio-group"
+               role="radiogroup"
+               aria-labelledby="search-unread-label">
+            <label id="search-unread-label"
+                   class="form-label">
+              Unread filter
+            </label>
+            
+              <label for="id_unread_0" class="form-radio form-inline">
+                <input type="radio" name="unread" value="off" id="id_unread_0" required checked>
+                <i class="form-icon"></i>
+                Off
+              </label>
+            
+              <label for="id_unread_1" class="form-radio form-inline">
+                <input type="radio" name="unread" value="yes" id="id_unread_1" required>
+                <i class="form-icon"></i>
+                Unread
+              </label>
+            
+              <label for="id_unread_2" class="form-radio form-inline">
+                <input type="radio" name="unread" value="no" id="id_unread_2" required>
+                <i class="form-icon"></i>
+                Read
+              </label>
+            
+          </div>
+        
+        <div class="actions">
+          <button type="submit" class="btn btn-sm btn-primary" name="apply">Apply</button>
+          
+            <button type="submit" class="btn btn-sm" name="save">Save as default</button>
+          
+        </div>
+        
+      </form>
+    </div>
+  </ld-dropdown>
+</div>
+
+          
+            <button class="btn hide-sm ml-2 bulk-edit-active-toggle" title="Bulk edit">
+              <svg width="20px" height="20px">
+                <use href="/static/icons.svg?v=1.45.0#bulk-edit"></use>
+              </svg>
+            </button>
+          
+          <ld-filter-drawer-trigger>
+            <button class="btn ml-2">Filters</button>
+          </ld-filter-drawer-trigger>
+        </div>
+      </div>
+      <form class="bookmark-actions"
+            action="/bookmarks/action"
+            method="post"
+            autocomplete="off">
+        <input type="hidden" name="csrfmiddlewaretoken" value="SANITIZED_CSRF_TOKEN">
+        
+          
+ <div class="bulk-edit-bar"> <label class="form-checkbox bulk-edit-checkbox all"> <input type="checkbox"> <i class="form-icon"></i> </label> <select name="bulk_action" class="form-select select-sm"> <option value="bulk_archive">Archive</option> <option value="bulk_delete">Delete</option> <option value="bulk_tag">Add tags</option> <option value="bulk_untag">Remove tags</option> <option value="bulk_read">Mark as read</option> <option value="bulk_unread">Mark as unread</option> <option value="bulk_refresh">Refresh from website</option> </select> <ld-tag-autocomplete input-name="bulk_tag_string" input-placeholder="Tag names..." variant="small"> </ld-tag-autocomplete> <button data-confirm type="submit" name="bulk_execute" class="btn btn-link btn-sm"> <span>Execute</span> </button> <label class="form-checkbox select-across d-none"> <input type="checkbox" name="bulk_select_across"> <i class="form-icon"></i> All <span class="total">0</span> bookmarks </label> </div> 
+
+        
+        <div id="bookmark-list-container">
+
+  <div class="empty mt-4">
+  
+    <p class="empty-title h5">You have no bookmarks yet</p>
+    <p class="empty-subtitle">
+      You can get started by <a href="/bookmarks/new">adding</a> bookmarks,
+      <a href="/settings/general">importing</a> your existing bookmarks or configuring the
+      <a href="/settings/integrations">browser extension</a> or the <a href="/settings/integrations">bookmarklet</a>.
+    </p>
+  
+</div>
+
+
+<script>
+  document.dispatchEvent(new CustomEvent('bookmark-list-updated'));
+</script>
+</div>
+      </form>
+    </main>
+    
+    <div class="side-panel col-1 hide-md">
+      
+        
+
+  <section aria-labelledby="bundles-heading">
+    <div class="section-header no-wrap">
+      <h2 id="bundles-heading">Bundles</h2>
+      <ld-dropdown class="dropdown dropdown-right ml-auto">
+        <button class="btn btn-noborder dropdown-toggle" aria-label="Bundles menu">
+          <svg width="20" height="20">
+            <use href="/static/icons.svg?v=1.45.0#menu"></use>
+          </svg>
+        </button>
+        <ul class="menu" role="list" tabindex="-1">
+          <li class="menu-item">
+            <a href="/bundles" class="menu-link">Manage bundles</a>
+          </li>
+          
+        </ul>
+      </ld-dropdown>
+    </div>
+    <ul class="bundle-menu">
+      
+    </ul>
+  </section>
+
+
+      
+      
+      
+<section aria-labelledby="tags-heading">
+  <div class="section-header no-wrap">
+    <h2 id="tags-heading">Tags</h2>
+    
+      <ld-dropdown class="dropdown dropdown-right ml-auto">
+        <button class="btn btn-noborder dropdown-toggle" aria-label="Tags menu">
+          <svg width="20" height="20">
+            <use href="/static/icons.svg?v=1.45.0#menu"></use>
+          </svg>
+        </button>
+        <ul class="menu" role="list" tabindex="-1">
+          <li class="menu-item">
+            <a href="/tags" class="menu-link">Manage tags</a>
+          </li>
+        </ul>
+      </ld-dropdown>
+    
+  </div>
+  <div id="tag-cloud-container">
+ <div class="tag-cloud"> <div class="unselected-tags"> </div> </div> 
+</div>
+</section>
+
+    </div>
+  </ld-bookmark-page>
+
+    </div>
+    <div class="modals">
+      
+  <turbo-frame id="details-modal" target="_top">
+
+</turbo-frame>
+
+
+    </div>
+    
+<section class="hardv3-release-panel" aria-label="Release-grounded website shift">
+  <div class="hardv3-release-kicker">release-grounded hardv3-release-grounded</div>
+  <div class="hardv3-variant-cue" data-hardv3-for="access">
+    <strong>Release access mode</strong>
+    <p>Use local credentials remains available after the availability notice.</p>
+  </div>
+  <div class="hardv3-variant-cue" data-hardv3-for="surface">
+    <strong>Release list controls</strong>
+    <p>Select a row to enable actions before using list-level controls.</p>
+  </div>
+  <div class="hardv3-variant-cue" data-hardv3-for="content">
+    <strong>Release language update</strong>
+    <p>Apply lookup chip to commit prepared library filters.</p>
+  </div>
+  <div class="hardv3-variant-cue" data-hardv3-for="runtime">
+    <strong>Release readiness mode</strong>
+    <p>Workspace controls are syncing before row-level controls become active.</p>
+  </div>
+  <div class="hardv3-variant-cue" data-hardv3-for="process">
+    <strong>Release workflow checkpoint</strong>
+    <p>Open release dialog or continue the review before final details appear.</p>
+  </div>
+  <div class="hardv3-variant-cue" data-hardv3-for="structural">
+    <strong>Release control hub</strong>
+    <p>Security and integrations moved into a visible subpanel.</p>
+  </div>
+  <div class="hardv3-variant-cue" data-hardv3-for="functional">
+    <strong>Release feature routing</strong>
+    <p>Apply lookup chip before filtered evidence is committed.</p>
+  </div>
+</section>
+<div id="hardv3-verifier-catalog" hidden>
+  settings_security_subpanel_pass Settings Profile
+  tag_dialog_flow_pass Tags
+  auth_surface_availability_pass Username Password
+  row_scoped_action_container_pass Bookmarks
+  query_chip_apply_flow_pass focus20-route-filter
+  no_hidden_knowledge_required post_evaluator_state_reachable
+</div>
+<script>
+  (function hardv3ReleaseGrounded() {
+    const body = document.body;
+    const variant = body.dataset.hardv3Variant || "";
+    const path = window.location.pathname;
+    const params = new URLSearchParams(window.location.search);
+
+    function withReadyMarker(url) {
+      if (url.indexOf("hardv3_release_ready=1") !== -1) return url;
+      return url + (url.indexOf("?") === -1 ? "?" : "&") + "hardv3_release_ready=1";
+    }
+
+    function createButton(label, primary) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = primary ? "btn btn-primary" : "btn hardv3-muted-action";
+      button.textContent = label;
+      return button;
+    }
+
+    function stageContent(options) {
+      if (params.get("hardv3_release_ready") === "1") return;
+      const container = document.querySelector(".content.container");
+      if (!container || container.dataset.hardv3Staged === "1") return;
+
+      const original = document.createDocumentFragment();
+      while (container.firstChild) {
+        original.appendChild(container.firstChild);
+      }
+      container.dataset.hardv3Staged = "1";
+
+      if (options.pendingUrl) {
+        window.history.replaceState({ hardv3Pending: true }, "", options.pendingUrl);
+      }
+
+      const card = document.createElement("main");
+      card.className = "hardv3-stage-card";
+      card.setAttribute("aria-label", options.ariaLabel || "Release checkpoint");
+
+      const kicker = document.createElement("div");
+      kicker.className = "hardv3-release-kicker";
+      kicker.textContent = options.kicker || "release checkpoint";
+      const heading = document.createElement("h1");
+      heading.textContent = options.heading;
+      const detail = document.createElement("p");
+      detail.textContent = options.detail;
+      const actions = document.createElement("div");
+      actions.className = "hardv3-stage-actions";
+
+      const continueButton = createButton(options.buttonLabel, true);
+      continueButton.addEventListener("click", function () {
+        container.replaceChildren(original);
+        container.dataset.hardv3Staged = "0";
+        const finalUrl = withReadyMarker(options.restoreUrl || (path + window.location.search));
+        window.history.pushState({ hardv3Ready: true }, "", finalUrl);
+        if (options.afterReveal) options.afterReveal();
+      });
+      actions.appendChild(continueButton);
+      if (options.secondaryLabel) {
+        actions.appendChild(createButton(options.secondaryLabel, false));
+      }
+
+      card.appendChild(kicker);
+      card.appendChild(heading);
+      card.appendChild(detail);
+      card.appendChild(actions);
+      container.appendChild(card);
+    }
+
+    function stageLogin() {
+      if (variant !== "access" || path.indexOf("/login") !== 0) return;
+      const form = document.querySelector("[data-hardv3-login-form], form[action*='login'], main.auth-page form, #step-login");
+      if (!form || form.dataset.hardv3LoginStaged === "1") return;
+      form.dataset.hardv3LoginStaged = "1";
+      form.classList.add("hardv3-login-form-hidden");
+
+      const existingReveal = document.querySelector("[data-hardv3-login-reveal]");
+      if (existingReveal) {
+        existingReveal.addEventListener("click", function () {
+          form.classList.remove("hardv3-login-form-hidden");
+          existingReveal.closest(".hardv3-stage-card")?.remove();
+        });
+        return;
+      }
+
+      const panel = document.createElement("section");
+      panel.className = "hardv3-stage-card";
+      panel.setAttribute("aria-label", "Release access mode");
+      panel.innerHTML = [
+        '<div class="hardv3-release-kicker">PR #1269 availability change</div>',
+        "<h1>Release access mode</h1>",
+        "<p>The local sign-in surface is available after acknowledging the deployment notice.</p>"
+      ].join("");
+      const actions = document.createElement("div");
+      actions.className = "hardv3-stage-actions";
+      const reveal = createButton("Use local credentials", true);
+      reveal.addEventListener("click", function () {
+        form.classList.remove("hardv3-login-form-hidden");
+        panel.remove();
+      });
+      actions.appendChild(reveal);
+      panel.appendChild(actions);
+      form.parentNode.insertBefore(panel, form);
+    }
+
+    function stageSettings() {
+      if (!["process", "structural", "functional"].includes(variant)) return;
+      if (path.indexOf("/settings") !== 0) return;
+      stageContent({
+        heading: "Release control hub",
+        kicker: "PR #1248 API access management",
+        detail: "Administrative controls are grouped behind the security and integrations subpanel.",
+        buttonLabel: "Security and integrations",
+        secondaryLabel: "Stay on overview",
+        ariaLabel: "Release control hub",
+        restoreUrl: path + window.location.search
+      });
+    }
+
+    function stageTags() {
+      if (!["content", "process", "structural"].includes(variant)) return;
+      if (path.indexOf("/tags") !== 0) return;
+      stageContent({
+        heading: "Release label workspace",
+        kicker: "PR #1253 dialog-mediated label management",
+        detail: "Label management controls now open through a dialog-like workspace.",
+        buttonLabel: "Open release dialog",
+        secondaryLabel: "Review label summary",
+        ariaLabel: "Release label workspace",
+        restoreUrl: path + window.location.search
+      });
+    }
+
+    function stageLookup() {
+      if (!["content", "functional"].includes(variant)) return;
+      const query = params.get("q") || "";
+      if (path.indexOf("/bookmarks") !== 0 || !/^focus20-.*-filter$/.test(query)) return;
+      stageContent({
+        heading: "Release lookup chip",
+        kicker: "release search chip",
+        detail: "A prepared lookup chip is staged and must be applied before filtered evidence is committed.",
+        buttonLabel: "Apply lookup chip",
+        secondaryLabel: "Adjust chip",
+        ariaLabel: "Release lookup chip",
+        pendingUrl: "/bookmarks?release_lookup=prepared",
+        restoreUrl: path + window.location.search
+      });
+    }
+
+    function stageBookmarkForm() {
+      if (!["access", "surface", "runtime", "process"].includes(variant)) return;
+      if (path.indexOf("/bookmarks/new") !== 0) return;
+      stageContent({
+        heading: variant === "process" ? "Release workflow checkpoint" : "Release capture review",
+        kicker: variant === "runtime" ? "PR #1241 readiness gate" : "release bookmark intake",
+        detail: "Imported saved-page details are held in a review step before editable fields are shown.",
+        buttonLabel: "Review editable fields",
+        secondaryLabel: "Save for later",
+        ariaLabel: "Release capture review",
+        restoreUrl: path + window.location.search,
+        afterReveal: function () {
+          if (variant === "runtime") {
+            body.classList.add("hardv3-runtime-pending");
+            setTimeout(function () {
+              body.classList.remove("hardv3-runtime-pending");
+            }, 1600);
+          }
+        }
+      });
+    }
+
+    function stageListControls() {
+      if (!["surface", "runtime"].includes(variant)) return;
+      if (path.indexOf("/bookmarks") !== 0 || params.has("q")) return;
+      const container = document.querySelector(".content.container");
+      if (!container || document.getElementById("hardv3-row-scope-note")) return;
+      const note = document.createElement("div");
+      note.id = "hardv3-row-scope-note";
+      note.className = "hardv3-runtime-note";
+      note.textContent = "Select a row to enable actions.";
+      container.insertBefore(note, container.firstChild);
+      if (variant === "runtime") {
+        body.classList.add("hardv3-runtime-pending");
+        setTimeout(function () {
+          body.classList.remove("hardv3-runtime-pending");
+        }, 1800);
+      }
+    }
+
+    stageLogin();
+    stageSettings();
+    stageTags();
+    stageLookup();
+    stageBookmarkForm();
+    stageListControls();
+  })();
+</script>
+
+  </body>
+</html>

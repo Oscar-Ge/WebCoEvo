@@ -1,0 +1,48 @@
+{% extends 'shared/layout.html' %}
+{% block head %}
+  {% with page_title="Preparing destination - Linkding" %}{{ block.super }}{% endwith %}
+  <style>
+    .runtime-hidden { visibility: hidden; }
+  </style>
+{% endblock %}
+{% block content %}
+  <div class="bookmarks-form-page">
+    <main aria-labelledby="main-heading">
+      <div class="section-header">
+        <p class="text-secondary text-small">Preparing destination</p>
+        <h1 id="main-heading">Bookmark intake</h1>
+        <p id="runtime-destination-status" class="text-secondary m-0">Loading the post-login bookmark destination in stages.</p>
+      </div>
+      <div id="runtime-destination-shell" class="runtime-hidden">
+        <ld-form data-submit-on-ctrl-enter>
+          <form action="{% url 'linkding:bookmarks.new' %}" method="post" novalidate>
+            {% include 'bookmarks/form.html' %}
+          </form>
+        </ld-form>
+      </div>
+      <p id="runtime-destination-ready" class="runtime-hidden text-secondary text-small mb-0">Destination is ready.</p>
+    </main>
+  </div>
+  <script>
+    (function init() {
+      const shell = document.getElementById('runtime-destination-shell');
+      const ready = document.getElementById('runtime-destination-ready');
+      const status = document.getElementById('runtime-destination-status');
+      const submitControls = Array.from(
+        document.querySelectorAll(
+          '#runtime-destination-shell button[type="submit"], #runtime-destination-shell input[type="submit"]'
+        )
+      );
+      submitControls.forEach((control) => control.setAttribute('disabled', 'disabled'));
+      setTimeout(() => {
+        shell.classList.remove('runtime-hidden');
+        status.textContent = 'Bookmark destination loaded.';
+      }, 600);
+      setTimeout(() => {
+        ready.classList.remove('runtime-hidden');
+        status.textContent = 'Destination is ready.';
+        submitControls.forEach((control) => control.removeAttribute('disabled'));
+      }, 1200);
+    })();
+  </script>
+{% endblock %}

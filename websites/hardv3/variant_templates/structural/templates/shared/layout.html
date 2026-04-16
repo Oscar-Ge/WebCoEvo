@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+{# hardv3-release-grounded layout derived from clean Linkding v1.45.0 shared/layout.html #}
+<html lang="en"
+      data-api-base-url="{% url 'linkding:api-root' %}"
+      data-hardv3-profile="hardv3-release-grounded">
+  {% block head %}
+    {% include 'shared/head.html' %}
+    <meta name="linkding-drift-profile" content="hardv3-release-grounded">
+    <meta name="linkding-hardv3-variant" content="structural">
+    {% include 'shared/hardv3_release_grounded_head.html' %}
+  {% endblock %}
+  <body data-hardv3-profile="hardv3-release-grounded" data-hardv3-variant="structural">
+    <header class="container">
+      {% if has_toasts %}
+        <div class="message-list">
+          <form action="{% url 'linkding:toasts.acknowledge' %}?return_url={{ request.path | urlencode }}"
+                method="post">
+            {% csrf_token %}
+            {% for toast in toast_messages %}
+              <div class="toast d-flex">
+                {{ toast.message }}
+                <button type="submit"
+                        name="toast"
+                        value="{{ toast.id }}"
+                        class="btn btn-clear"></button>
+              </div>
+            {% endfor %}
+          </form>
+        </div>
+      {% endif %}
+      <div class="d-flex justify-between">
+        <a href="{% url 'linkding:root' %}" class="app-link d-flex align-center">
+          <img class="app-logo" src="{% static 'logo.png' %}" alt="Application logo">
+          <span class="app-name">LINKDING</span>
+        </a>
+        <nav>
+          {% if request.user.is_authenticated %}
+            {% include 'shared/nav_menu.html' %}
+          {% else %}
+            <a href="{% url 'login' %}" class="btn btn-link">Login</a>
+          {% endif %}
+        </nav>
+      </div>
+    </header>
+    <div class="content container">
+      {% block content %}{% endblock %}
+    </div>
+    <div class="modals">
+      {% block overlays %}{% endblock %}
+    </div>
+    {% include 'shared/hardv3_release_grounded_body.html' %}
+  </body>
+</html>

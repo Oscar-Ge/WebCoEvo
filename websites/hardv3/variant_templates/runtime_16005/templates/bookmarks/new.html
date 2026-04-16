@@ -1,0 +1,55 @@
+{% extends 'shared/layout.html' %}
+{% block head %}
+  {% with page_title="Preparing saved view - Linkding" %}{{ block.super }}{% endwith %}
+  <style>
+    .runtime-hidden { visibility: hidden; }
+  </style>
+{% endblock %}
+{% block content %}
+  <div class="bookmarks-form-page">
+    <main aria-labelledby="main-heading">
+      <div class="section-header">
+        <p class="text-secondary text-small">Preparing saved view</p>
+        <h1 id="main-heading">Review details before saving</h1>
+        <p id="runtime-prefill-status" class="text-secondary m-0">
+          Loading saved details and filing hints in stages.
+        </p>
+      </div>
+      <div id="runtime-prefill-shell" class="runtime-hidden">
+        <ld-form data-submit-on-ctrl-enter>
+          <form action="{% url 'linkding:bookmarks.new' %}" method="post" novalidate>
+            {% include 'bookmarks/form.html' %}
+          </form>
+        </ld-form>
+      </div>
+      <p id="runtime-prefill-ready" class="runtime-hidden text-secondary text-small mb-0">
+        The action area becomes available after the saved view finishes preparing.
+      </p>
+    </main>
+  </div>
+  <script>
+    (function init() {
+      const shell = document.getElementById('runtime-prefill-shell');
+      const ready = document.getElementById('runtime-prefill-ready');
+      const status = document.getElementById('runtime-prefill-status');
+      const submitControls = Array.from(
+        document.querySelectorAll(
+          '#runtime-prefill-shell button[type="submit"], #runtime-prefill-shell input[type="submit"]'
+        )
+      );
+
+      submitControls.forEach((control) => control.setAttribute('disabled', 'disabled'));
+
+      setTimeout(() => {
+        shell.classList.remove('runtime-hidden');
+        status.textContent = 'Saved details are ready for review.';
+      }, 600);
+
+      setTimeout(() => {
+        ready.classList.remove('runtime-hidden');
+        status.textContent = 'Action area is now ready.';
+        submitControls.forEach((control) => control.removeAttribute('disabled'));
+      }, 1200);
+    })();
+  </script>
+{% endblock %}

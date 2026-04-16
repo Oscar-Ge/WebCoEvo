@@ -1,0 +1,313 @@
+
+<!DOCTYPE html>
+
+<html lang="en" data-api-base-url="/api/">
+  
+    
+<head><base href="http://127.0.0.1:29045/">
+  <meta charset="UTF-8">
+  <link rel="icon" href="/static/favicon.ico" sizes="48x48">
+  <link rel="icon"
+        href="/static/favicon.svg"
+        sizes="any"
+        type="image/svg+xml">
+  <link rel="apple-touch-icon"
+        sizes="180x180"
+        href="/static/apple-touch-icon.png">
+  <link rel="mask-icon"
+        href="/static/safari-pinned-tab.svg"
+        color="#5856e0">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="search"
+        type="application/opensearchdescription+xml"
+        title="Linkding"
+        href="/opensearch.xml" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimal-ui">
+  <meta name="description" content="Self-hosted bookmark service">
+  <meta name="robots" content="index,follow">
+  <meta name="author" content="Sascha Ißbrücker">
+  <title>Bookmarks - Linkding</title>
+  
+  
+    
+    <link href="/static/theme-dark.css?v=1.45.0"
+          rel="stylesheet"
+          type="text/css"
+          media="(prefers-color-scheme: dark)" />
+    <link href="/static/theme-light.css?v=1.45.0"
+          rel="stylesheet"
+          type="text/css"
+          media="(prefers-color-scheme: light)" />
+    <meta name="theme-color"
+          media="(prefers-color-scheme: dark)"
+          content="#161822">
+    <meta name="theme-color"
+          media="(prefers-color-scheme: light)"
+          content="#5856e0">
+  
+  
+  <meta name="turbo-cache-control" content="no-preview">
+  <meta name="turbo-prefetch" content="false">
+  
+  <script src="/static/bundle.js?v=1.45.0"></script>
+  
+</head>
+
+  
+  <body>
+    <header class="container">
+      
+      <div class="d-flex justify-between">
+        <a href="/" class="app-link d-flex align-center">
+          <img class="app-logo" src="/static/logo.png" alt="Application logo">
+          <span class="app-name">LINKDING</span>
+        </a>
+        <nav>
+          
+            
+            
+ <div class="hide-md"> <a href="/bookmarks/new" class="btn btn-primary mr-2">Add bookmark</a> <ld-dropdown class="dropdown"> <button class="btn btn-link dropdown-toggle" tabindex="0">Bookmarks</button> <ul class="menu" role="list" tabindex="-1"> <li class="menu-item"> <a href="/bookmarks" class="menu-link">Active</a> </li> <li class="menu-item"> <a href="/bookmarks/archived" class="menu-link">Archived</a> </li> <li class="menu-item"> <a href="/bookmarks?unread=yes" class="menu-link">Unread</a> </li> <li class="menu-item"> <a href="/bookmarks?q=!untagged" class="menu-link">Untagged</a> </li> </ul> </ld-dropdown> <ld-dropdown class="dropdown"> <button class="btn btn-link dropdown-toggle" tabindex="0">Settings</button> <ul class="menu" role="list" tabindex="-1"> <li class="menu-item"> <a href="/settings/general" class="menu-link">General</a> </li> <li class="menu-item"> <a href="/settings/integrations" class="menu-link">Integrations</a> </li> <li class="menu-item"> <a href="/admin/" class="menu-link" data-turbo="false">Admin</a> </li> </ul> </ld-dropdown> <form class="d-inline" action="/logout/" method="post" data-turbo="false"> <input type="hidden" name="csrfmiddlewaretoken" value="SANITIZED_CSRF_TOKEN"> <button type="submit" class="btn btn-link">Logout</button> </form> </div> <div class="show-md"> <a href="/bookmarks/new" aria-label="Add bookmark" class="btn btn-primary"> <svg width="24" height="24"> <use href="/static/icons.svg?v=1.45.0#plus"></use> </svg> </a> <ld-dropdown class="dropdown dropdown-right"> <button class="btn btn-link dropdown-toggle" aria-label="Navigation menu" tabindex="0"> <svg width="24" height="24"> <use href="/static/icons.svg?v=1.45.0#menu"></use> </svg> </button> <!-- menu component --> <ul class="menu" role="list" tabindex="-1"> <li class="menu-item"> <a href="/bookmarks" class="menu-link">Bookmarks</a> </li> <li class="menu-item"> <a href="/bookmarks/archived" class="menu-link">Archived bookmarks</a> </li> <li class="menu-item"> <a href="/bookmarks?unread=yes" class="menu-link">Unread</a> </li> <li class="menu-item"> <a href="/bookmarks?q=!untagged" class="menu-link">Untagged</a> </li> <div class="divider"></div> <li class="menu-item"> <a href="/settings/general" class="menu-link">Settings</a> </li> <li class="menu-item"> <a href="/settings/integrations" class="menu-link">Integrations</a> </li> <li class="menu-item"> <a href="/admin/" class="menu-link" data-turbo="false">Admin</a> </li> <div class="divider"></div> <li class="menu-item"> <form class="d-inline" action="/logout/" method="post" data-turbo="false"> <input type="hidden" name="csrfmiddlewaretoken" value="SANITIZED_CSRF_TOKEN"> <button type="submit" class="btn btn-link menu-link">Logout</button> </form> </li> </ul> </ld-dropdown> </div> 
+
+          
+        </nav>
+      </div>
+    </header>
+    <div class="content container">
+      
+  <ld-bookmark-page 
+                    class="bookmarks-page grid columns-md-1 ">
+    
+    <main class="main col-2" aria-labelledby="main-heading">
+      <div class="section-header mb-0">
+        <h1 id="main-heading">Bookmarks</h1>
+        <div class="header-controls">
+          
+<div class="search-container">
+  <form id="search" action="" method="get" role="search">
+    <ld-search-autocomplete input-name="q"
+                            input-placeholder="Search for words or #tags"
+                            input-value="focus20-route-filter"
+                            target="_blank"
+                            mode=""
+                            user=""
+                            shared="off"
+                            unread="off">
+    </ld-search-autocomplete>
+    <input type="submit" value="Search" class="d-none">
+    
+  </form>
+  <ld-dropdown class="search-options dropdown dropdown-right">
+    <button type="button"
+            aria-label="Search preferences"
+            class="btn dropdown-toggle">
+      <svg width="20" height="20">
+        <use href="/static/icons.svg?v=1.45.0#preferences"></use>
+      </svg>
+    </button>
+    <div class="menu" tabindex="0">
+      <form id="search_preferences" action="" method="post">
+        <input type="hidden" name="csrfmiddlewaretoken" value="SANITIZED_CSRF_TOKEN">
+        
+          <div class="form-group">
+            <label for="id_sort"
+                   class="form-label">Sort by</label>
+            <select name="sort" class="form-select select-sm" aria-invalid="false" id="id_sort">
+  <option value="added_asc">Added ↑</option>
+
+  <option value="added_desc" selected>Added ↓</option>
+
+  <option value="title_asc">Title ↑</option>
+
+  <option value="title_desc">Title ↓</option>
+
+</select>
+          </div>
+        
+        
+          <div class="form-group radio-group"
+               role="radiogroup"
+               aria-labelledby="search-shared-label">
+            <label id="search-shared-label"
+                   class="form-label">
+              Shared filter
+            </label>
+            
+              <label for="id_shared_0" class="form-radio form-inline">
+                <input type="radio" name="shared" value="off" id="id_shared_0" required checked>
+                <i class="form-icon"></i>
+                Off
+              </label>
+            
+              <label for="id_shared_1" class="form-radio form-inline">
+                <input type="radio" name="shared" value="yes" id="id_shared_1" required>
+                <i class="form-icon"></i>
+                Shared
+              </label>
+            
+              <label for="id_shared_2" class="form-radio form-inline">
+                <input type="radio" name="shared" value="no" id="id_shared_2" required>
+                <i class="form-icon"></i>
+                Unshared
+              </label>
+            
+          </div>
+        
+        
+          <div class="form-group radio-group"
+               role="radiogroup"
+               aria-labelledby="search-unread-label">
+            <label id="search-unread-label"
+                   class="form-label">
+              Unread filter
+            </label>
+            
+              <label for="id_unread_0" class="form-radio form-inline">
+                <input type="radio" name="unread" value="off" id="id_unread_0" required checked>
+                <i class="form-icon"></i>
+                Off
+              </label>
+            
+              <label for="id_unread_1" class="form-radio form-inline">
+                <input type="radio" name="unread" value="yes" id="id_unread_1" required>
+                <i class="form-icon"></i>
+                Unread
+              </label>
+            
+              <label for="id_unread_2" class="form-radio form-inline">
+                <input type="radio" name="unread" value="no" id="id_unread_2" required>
+                <i class="form-icon"></i>
+                Read
+              </label>
+            
+          </div>
+        
+        <div class="actions">
+          <button type="submit" class="btn btn-sm btn-primary" name="apply">Apply</button>
+          
+            <button type="submit" class="btn btn-sm" name="save">Save as default</button>
+          
+        </div>
+        <input type="hidden" name="q" value="focus20-route-filter" id="id_q">
+      </form>
+    </div>
+  </ld-dropdown>
+</div>
+
+          
+            <button class="btn hide-sm ml-2 bulk-edit-active-toggle" title="Bulk edit">
+              <svg width="20px" height="20px">
+                <use href="/static/icons.svg?v=1.45.0#bulk-edit"></use>
+              </svg>
+            </button>
+          
+          <ld-filter-drawer-trigger>
+            <button class="btn ml-2">Filters</button>
+          </ld-filter-drawer-trigger>
+        </div>
+      </div>
+      <form class="bookmark-actions"
+            action="/bookmarks/action?q=focus20-route-filter"
+            method="post"
+            autocomplete="off">
+        <input type="hidden" name="csrfmiddlewaretoken" value="SANITIZED_CSRF_TOKEN">
+        
+          
+ <div class="bulk-edit-bar"> <label class="form-checkbox bulk-edit-checkbox all"> <input type="checkbox"> <i class="form-icon"></i> </label> <select name="bulk_action" class="form-select select-sm"> <option value="bulk_archive">Archive</option> <option value="bulk_delete">Delete</option> <option value="bulk_tag">Add tags</option> <option value="bulk_untag">Remove tags</option> <option value="bulk_read">Mark as read</option> <option value="bulk_unread">Mark as unread</option> <option value="bulk_refresh">Refresh from website</option> </select> <ld-tag-autocomplete input-name="bulk_tag_string" input-placeholder="Tag names..." variant="small"> </ld-tag-autocomplete> <button data-confirm type="submit" name="bulk_execute" class="btn btn-link btn-sm"> <span>Execute</span> </button> <label class="form-checkbox select-across d-none"> <input type="checkbox" name="bulk_select_across"> <i class="form-icon"></i> All <span class="total">0</span> bookmarks </label> </div> 
+
+        
+        <div id="bookmark-list-container">
+
+  <div class="empty mt-4">
+  
+    <p class="empty-title h5">You have no bookmarks yet</p>
+    <p class="empty-subtitle">
+      You can get started by <a href="/bookmarks/new">adding</a> bookmarks,
+      <a href="/settings/general">importing</a> your existing bookmarks or configuring the
+      <a href="/settings/integrations">browser extension</a> or the <a href="/settings/integrations">bookmarklet</a>.
+    </p>
+  
+</div>
+
+
+<script>
+  document.dispatchEvent(new CustomEvent('bookmark-list-updated'));
+</script>
+</div>
+      </form>
+    </main>
+    
+    <div class="side-panel col-1 hide-md">
+      
+        
+
+  <section aria-labelledby="bundles-heading">
+    <div class="section-header no-wrap">
+      <h2 id="bundles-heading">Bundles</h2>
+      <ld-dropdown class="dropdown dropdown-right ml-auto">
+        <button class="btn btn-noborder dropdown-toggle" aria-label="Bundles menu">
+          <svg width="20" height="20">
+            <use href="/static/icons.svg?v=1.45.0#menu"></use>
+          </svg>
+        </button>
+        <ul class="menu" role="list" tabindex="-1">
+          <li class="menu-item">
+            <a href="/bundles" class="menu-link">Manage bundles</a>
+          </li>
+          
+            <li class="menu-item">
+              <a href="/bundles/new?q=focus20-route-filter"
+                 class="menu-link">Create
+              bundle from search</a>
+            </li>
+          
+        </ul>
+      </ld-dropdown>
+    </div>
+    <ul class="bundle-menu">
+      
+    </ul>
+  </section>
+
+
+      
+      
+      
+<section aria-labelledby="tags-heading">
+  <div class="section-header no-wrap">
+    <h2 id="tags-heading">Tags</h2>
+    
+      <ld-dropdown class="dropdown dropdown-right ml-auto">
+        <button class="btn btn-noborder dropdown-toggle" aria-label="Tags menu">
+          <svg width="20" height="20">
+            <use href="/static/icons.svg?v=1.45.0#menu"></use>
+          </svg>
+        </button>
+        <ul class="menu" role="list" tabindex="-1">
+          <li class="menu-item">
+            <a href="/tags" class="menu-link">Manage tags</a>
+          </li>
+        </ul>
+      </ld-dropdown>
+    
+  </div>
+  <div id="tag-cloud-container">
+ <div class="tag-cloud"> <div class="unselected-tags"> </div> </div> 
+</div>
+</section>
+
+    </div>
+  </ld-bookmark-page>
+
+    </div>
+    <div class="modals">
+      
+  <turbo-frame id="details-modal" target="_top">
+
+</turbo-frame>
+
+
+    </div>
+  </body>
+</html>

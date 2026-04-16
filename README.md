@@ -12,6 +12,7 @@ Chinese documentation is available in [README-cn.md](README-cn.md).
 - `configs/`: bundled hardv3 task JSON files for Focus20 smoke/full and TaskBank36 full.
 - `rulebooks/`: bundled V2.4/V2.5/V2.6 cross-version reflection rulebooks plus `expel_official_v2.json`.
 - `scripts/singularity/`: self-contained Linkding drift runtime helpers and hardv3 variant template assets.
+- `websites/`: bundled Linkding website-generation assets: original control snapshots, the first modified website generation, and the hardv3 release-grounded website.
 - `scripts/verify_trace_rules.py`: trace audit gate for XVR and ExpeL rule injection.
 - `slurm/`: smoke, full, and hardv3 matrix submitters.
 - `skills/`: repo-local Codex skills for running, monitoring, and analyzing WebCoEvo experiments.
@@ -29,6 +30,16 @@ The runner has four layers:
 4. Export/audit layer: `export.py` writes legacy eval/trace JSONL, backfills preflight rule IDs into reset-error rows, and `verify_trace_rules.py` checks that rule injection is visible in traces.
 
 The Singularity scripts start local Linkding drift variants, rewrite task start URLs to per-job localhost ports, reset variant data, create the baseline user, run the Python runner, and audit traces.
+
+## Website Assets
+
+The repo carries three Linkding website generations:
+
+- `websites/original/`: clean Linkding `1.45.0` control HTML/PNG snapshots. The runtime `control` variant has no template bind mounts.
+- `websites/first_modified/`: the first vibe-coded drift generation restored from old commit `9879707`, plus the April 3 before/after screenshots.
+- `websites/hardv3/`: the release-grounded hardv3 website, including template overrides, validation HTML, screenshots, and design notes.
+
+The runtime source of truth for hardv3 remains `scripts/singularity/linkding_drift/variants/`; `websites/hardv3/variant_templates/` is an archive copy for review and repo portability.
 
 ## Setup
 

@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-api-base-url="{% url 'linkding:api-root' %}">
+  {% block head %}
+    {% include 'shared/head.html' %}
+    <style>
+      .runtime-banner {
+        margin: 0 auto 1rem auto;
+        padding: 0.75rem 1rem;
+        border: 1px solid #2a6f8f;
+        background: #e7f5fb;
+        color: #18465b;
+      }
+      .runtime-hidden { visibility: hidden; }
+    </style>
+  {% endblock %}
+  <body>
+    <header class="container runtime-hidden" id="runtime-header">
+      <div class="runtime-banner">Delayed rendering active</div>
+      <div class="d-flex justify-between">
+        <a href="{% url 'linkding:root' %}" class="app-link d-flex align-center">
+          <img class="app-logo" src="{% static 'logo.png' %}" alt="Application logo">
+          <span class="app-name">LINKDING</span>
+        </a>
+        <nav>
+          {% if request.user.is_authenticated %}
+            {% include 'shared/nav_menu.html' %}
+          {% else %}
+            <a href="{% url 'login' %}" class="btn btn-link">Login</a>
+          {% endif %}
+        </nav>
+      </div>
+    </header>
+    <div class="content container runtime-hidden" id="runtime-content">
+      {% block content %}{% endblock %}
+    </div>
+    <div class="modals">
+      {% block overlays %}{% endblock %}
+    </div>
+    <script>
+      (function init() {
+        const header = document.getElementById('runtime-header');
+        const content = document.getElementById('runtime-content');
+        setTimeout(() => {
+          header.classList.remove('runtime-hidden');
+          content.classList.remove('runtime-hidden');
+        }, 1200);
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+{% extends "shared/layout.html" %}
+{% load static shared bookmarks %}
+{% block content %}
+  <ld-bookmark-page no-bulk-edit
+                    class="bookmarks-page grid columns-md-1 {% if bookmark_list.collapse_side_panel %}collapse-side-panel{% endif %}">
+    <main class="main col-2" aria-labelledby="main-heading">
+      <div class="form-input-hint mb-2" style="display: block;">
+        Feature-limited mode: bulk edit is unavailable in this drift profile.
+      </div>
+      <div class="section-header mb-0">
+        <h1 id="main-heading">{{ bookmark_list.list_title }}</h1>
+        <div class="header-controls">
+          {% bookmark_search bookmark_list.search mode=bookmark_list.search_mode %}
+          <ld-filter-drawer-trigger>
+            <button class="btn ml-2">Filters</button>
+          </ld-filter-drawer-trigger>
+        </div>
+      </div>
+      <form class="bookmark-actions"
+            action="{{ bookmark_list.action_url|safe }}"
+            method="post"
+            autocomplete="off">
+        {% csrf_token %}
+        <div id="bookmark-list-container">{% include 'bookmarks/bookmark_list.html' %}</div>
+      </form>
+    </main>
+    <div class="side-panel col-1 hide-md">
+      {% if bundles %}
+        {% include 'bookmarks/bundle_section.html' %}
+      {% endif %}
+      {% if user_list %}
+        {% include 'bookmarks/user_section.html' %}
+      {% endif %}
+      {% include 'bookmarks/tag_section.html' %}
+    </div>
+  </ld-bookmark-page>
+{% endblock %}
+{% block overlays %}
+  {% include 'bookmarks/details/modal.html' %}
+{% endblock %}

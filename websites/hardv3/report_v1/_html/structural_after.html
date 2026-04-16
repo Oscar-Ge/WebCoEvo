@@ -1,0 +1,827 @@
+
+<!DOCTYPE html>
+
+<html lang="en"
+      data-api-base-url="/api/"
+      data-hardv3-profile="hardv3-release-grounded">
+  
+  
+    
+<head><base href="http://127.0.0.1:29101/">
+  <meta charset="UTF-8">
+  <link rel="icon" href="/static/favicon.ico" sizes="48x48">
+  <link rel="icon"
+        href="/static/favicon.svg"
+        sizes="any"
+        type="image/svg+xml">
+  <link rel="apple-touch-icon"
+        sizes="180x180"
+        href="/static/apple-touch-icon.png">
+  <link rel="mask-icon"
+        href="/static/safari-pinned-tab.svg"
+        color="#5856e0">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="search"
+        type="application/opensearchdescription+xml"
+        title="Linkding"
+        href="/opensearch.xml" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimal-ui">
+  <meta name="description" content="Self-hosted bookmark service">
+  <meta name="robots" content="index,follow">
+  <meta name="author" content="Sascha Ißbrücker">
+  <title>Settings - Linkding</title>
+  
+  
+    
+    <link href="/static/theme-dark.css?v=1.45.0"
+          rel="stylesheet"
+          type="text/css"
+          media="(prefers-color-scheme: dark)" />
+    <link href="/static/theme-light.css?v=1.45.0"
+          rel="stylesheet"
+          type="text/css"
+          media="(prefers-color-scheme: light)" />
+    <meta name="theme-color"
+          media="(prefers-color-scheme: dark)"
+          content="#161822">
+    <meta name="theme-color"
+          media="(prefers-color-scheme: light)"
+          content="#5856e0">
+  
+  
+  <meta name="turbo-cache-control" content="no-preview">
+  <meta name="turbo-prefetch" content="false">
+  
+  <script src="/static/bundle.js?v=1.45.0"></script>
+  
+</head>
+
+    <meta name="linkding-drift-profile" content="hardv3-release-grounded">
+    <meta name="linkding-hardv3-variant" content="structural">
+    
+<style>
+  .hardv3-release-panel {
+    margin: 0 auto 1rem auto;
+    padding: 0.8rem 1rem;
+    border: 1px solid #61735f;
+    background: #f4f7ef;
+    color: #243423;
+  }
+  .hardv3-release-kicker {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #52634e;
+  }
+  .hardv3-release-panel p {
+    margin: 0.25rem 0 0 0;
+  }
+  .hardv3-variant-cue {
+    display: none;
+  }
+  body[data-hardv3-variant="access"] .hardv3-variant-cue[data-hardv3-for~="access"],
+  body[data-hardv3-variant="surface"] .hardv3-variant-cue[data-hardv3-for~="surface"],
+  body[data-hardv3-variant="content"] .hardv3-variant-cue[data-hardv3-for~="content"],
+  body[data-hardv3-variant="runtime"] .hardv3-variant-cue[data-hardv3-for~="runtime"],
+  body[data-hardv3-variant="process"] .hardv3-variant-cue[data-hardv3-for~="process"],
+  body[data-hardv3-variant="structural"] .hardv3-variant-cue[data-hardv3-for~="structural"],
+  body[data-hardv3-variant="functional"] .hardv3-variant-cue[data-hardv3-for~="functional"] {
+    display: block;
+  }
+  .hardv3-stage-card {
+    margin: 1rem 0;
+    padding: 1.25rem;
+    border: 1px solid #8a7a4c;
+    background: #fffaf0;
+    box-shadow: 0 0.5rem 1.5rem rgba(60, 49, 27, 0.12);
+  }
+  .hardv3-stage-card h1,
+  .hardv3-stage-card h2 {
+    margin: 0.25rem 0 0.5rem 0;
+  }
+  .hardv3-stage-card p {
+    color: #5d4e2c;
+  }
+  .hardv3-stage-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+  .hardv3-muted-action {
+    opacity: 0.72;
+  }
+  .hardv3-hidden-original {
+    display: none;
+  }
+  .hardv3-login-form-hidden {
+    display: none;
+  }
+  .hardv3-runtime-pending .content,
+  .hardv3-runtime-pending header {
+    opacity: 0.72;
+  }
+  .hardv3-runtime-note {
+    display: none;
+    margin: 0 0 1rem 0;
+    padding: 0.75rem 1rem;
+    border: 1px solid #6e8aa6;
+    background: #eef6ff;
+    color: #23384f;
+  }
+  .hardv3-runtime-pending .hardv3-runtime-note {
+    display: block;
+  }
+</style>
+
+  
+
+  <body data-hardv3-profile="hardv3-release-grounded" data-hardv3-variant="structural">
+    <header class="container">
+      
+      <div class="d-flex justify-between">
+        <a href="/" class="app-link d-flex align-center">
+          <img class="app-logo" src="/static/logo.png" alt="Application logo">
+          <span class="app-name">LINKDING</span>
+        </a>
+        <nav>
+          
+            
+ <div class="hide-md"> <ld-dropdown class="dropdown"> <button class="btn btn-link dropdown-toggle" tabindex="0">Settings</button> <ul class="menu" role="list" tabindex="-1"> <li class="menu-item"> <a href="/settings/integrations" class="menu-link">Integrations</a> </li> <li class="menu-item"> <a href="/settings/general" class="menu-link">General</a> </li> <li class="menu-item"> <a href="/admin/" class="menu-link" data-turbo="false">Admin</a> </li> </ul> </ld-dropdown> <ld-dropdown class="dropdown"> <button class="btn btn-link dropdown-toggle" tabindex="0">Collections</button> <ul class="menu" role="list" tabindex="-1"> <li class="menu-item"> <a href="/bookmarks/archived" class="menu-link">Archived</a> </li> <li class="menu-item"> <a href="/bookmarks" class="menu-link">Active</a> </li> <li class="menu-item"> <a href="/bookmarks?unread=yes" class="menu-link">Unread</a> </li> <li class="menu-item"> <a href="/bookmarks?q=!untagged" class="menu-link">Untagged</a> </li> </ul> </ld-dropdown> <a href="/bookmarks/new" class="btn btn-primary mr-2">Add bookmark</a> <form class="d-inline" action="/logout/" method="post" data-turbo="false"> <input type="hidden" name="csrfmiddlewaretoken" value="SANITIZED_CSRF_TOKEN"> <button type="submit" class="btn btn-link">Logout</button> </form> </div> <div class="show-md"> <ld-dropdown class="dropdown dropdown-right"> <button class="btn btn-link dropdown-toggle" aria-label="Navigation menu" tabindex="0"> <svg width="24" height="24"> <use href="/static/icons.svg?v=1.45.0#menu"></use> </svg> </button> <ul class="menu" role="list" tabindex="-1"> <li class="menu-item"> <a href="/settings/general" class="menu-link">Settings</a> </li> <li class="menu-item"> <a href="/settings/integrations" class="menu-link">Integrations</a> </li> <div class="divider"></div> <li class="menu-item"> <a href="/bookmarks" class="menu-link">Bookmarks</a> </li> <li class="menu-item"> <a href="/bookmarks/archived" class="menu-link">Archived bookmarks</a> </li> <li class="menu-item"> <a href="/bookmarks?unread=yes" class="menu-link">Unread</a> </li> <li class="menu-item"> <a href="/bookmarks?q=!untagged" class="menu-link">Untagged</a> </li> <div class="divider"></div> <li class="menu-item"> <a href="/bookmarks/new" class="menu-link">Add bookmark</a> </li> <li class="menu-item"> <form class="d-inline" action="/logout/" method="post" data-turbo="false"> <input type="hidden" name="csrfmiddlewaretoken" value="SANITIZED_CSRF_TOKEN"> <button type="submit" class="btn btn-link menu-link">Logout</button> </form> </li> </ul> </ld-dropdown> </div> 
+
+          
+        </nav>
+      </div>
+    </header>
+    <div class="content container">
+      
+  <main class="settings-page" aria-labelledby="main-heading">
+    <h1 id="main-heading">Settings</h1>
+    
+    
+    
+    <section aria-labelledby="profile-heading">
+      <h2 id="profile-heading">Profile</h2>
+      <p>
+        <a href="/change-password/">Change password</a>
+      </p>
+      <form action="/settings/update"
+            method="post"
+            novalidate
+            data-turbo="false">
+        <input type="hidden" name="csrfmiddlewaretoken" value="SANITIZED_CSRF_TOKEN">
+        <div class="form-group">
+          <label for="id_theme" class="form-label">Theme</label>
+          <select name="theme" class="form-select width-25 width-sm-100" aria-describedby="id_theme_help" aria-invalid="false" id="id_theme">
+  <option value="auto" selected>Auto</option>
+
+  <option value="light">Light</option>
+
+  <option value="dark">Dark</option>
+
+</select>
+          <div id="id_theme_help" class="form-input-hint">
+            Whether to use a light or dark theme, or automatically adjust the theme based on your system's settings.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="id_bookmark_date_display" class="form-label">Bookmark date format</label>
+          <select name="bookmark_date_display" class="form-select width-25 width-sm-100" aria-describedby="id_bookmark_date_display_help" aria-invalid="false" id="id_bookmark_date_display">
+  <option value="relative" selected>Relative</option>
+
+  <option value="absolute">Absolute</option>
+
+  <option value="hidden">Hidden</option>
+
+</select>
+          <div id="id_bookmark_date_display_help" class="form-input-hint">
+            Whether to show bookmark dates as relative (how long ago), or as absolute dates. Alternatively the date can
+            be hidden.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="id_bookmark_description_display" class="form-label">Bookmark description</label>
+          <select name="bookmark_description_display" class="form-select width-25 width-sm-100" aria-describedby="id_bookmark_description_display_help" aria-invalid="false" id="id_bookmark_description_display">
+  <option value="inline" selected>Inline</option>
+
+  <option value="separate">Separate</option>
+
+</select>
+          <div id="id_bookmark_description_display_help" class="form-input-hint">
+            Whether to show bookmark descriptions and tags in the same line, or as separate blocks.
+          </div>
+        </div>
+        <div class="form-group d-hide">
+          <label for="id_bookmark_description_max_lines" class="form-label">Bookmark description max lines</label>
+          <input type="number" name="bookmark_description_max_lines" value="1" class="form-input width-25 width-sm-100" aria-describedby="id_bookmark_description_max_lines_help" aria-invalid="false" required id="id_bookmark_description_max_lines">
+          <div id="id_bookmark_description_max_lines_help" class="form-input-hint">
+            Limits the number of lines that are displayed for the bookmark description.
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-checkbox"><input type="checkbox" name="display_url" aria-describedby="id_display_url_help" id="id_display_url"><i class="form-icon"></i><label for="id_display_url">Show bookmark URL</label></div>
+          <div id="id_display_url_help" class="form-input-hint">
+            When enabled, this setting displays the bookmark URL below the title.
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-checkbox"><input type="checkbox" name="permanent_notes" aria-describedby="id_permanent_notes_help" id="id_permanent_notes"><i class="form-icon"></i><label for="id_permanent_notes">Show notes permanently</label></div>
+          <div id="id_permanent_notes_help" class="form-input-hint">
+            Whether to show bookmark notes permanently, without having to toggle them individually.
+            Alternatively the keyboard shortcut <code>e</code> can be used to temporarily show all notes.
+          </div>
+        </div>
+        <div class="form-group">
+          <span class="form-label">Bookmark actions</span>
+          <div class="form-checkbox"><input type="checkbox" name="display_view_bookmark_action" id="id_display_view_bookmark_action" checked><i class="form-icon"></i><label for="id_display_view_bookmark_action">View</label></div>
+          <div class="form-checkbox"><input type="checkbox" name="display_edit_bookmark_action" id="id_display_edit_bookmark_action" checked><i class="form-icon"></i><label for="id_display_edit_bookmark_action">Edit</label></div>
+          <div class="form-checkbox"><input type="checkbox" name="display_archive_bookmark_action" id="id_display_archive_bookmark_action" checked><i class="form-icon"></i><label for="id_display_archive_bookmark_action">Archive</label></div>
+          <div class="form-checkbox"><input type="checkbox" name="display_remove_bookmark_action" id="id_display_remove_bookmark_action" checked><i class="form-icon"></i><label for="id_display_remove_bookmark_action">Remove</label></div>
+          <div class="form-input-hint">Which actions to display for each bookmark.</div>
+        </div>
+        <div class="form-group">
+          <label for="id_bookmark_link_target" class="form-label">Open bookmarks in</label>
+          <select name="bookmark_link_target" class="form-select width-25 width-sm-100" aria-describedby="id_bookmark_link_target_help" aria-invalid="false" id="id_bookmark_link_target">
+  <option value="_blank" selected>New page</option>
+
+  <option value="_self">Same page</option>
+
+</select>
+          <div id="id_bookmark_link_target_help" class="form-input-hint">
+            Whether to open bookmarks a new page or in the same page.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="id_items_per_page" class="form-label">Items per page</label>
+          <input type="number" name="items_per_page" value="30" class="form-input width-25 width-sm-100" aria-describedby="id_items_per_page_help" aria-invalid="false" min="10" required id="id_items_per_page">
+          
+          <div id="id_items_per_page_help" class="form-input-hint">
+            The number of bookmarks to display per page.
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-checkbox"><input type="checkbox" name="sticky_pagination" aria-describedby="id_sticky_pagination_help" id="id_sticky_pagination"><i class="form-icon"></i><label for="id_sticky_pagination">Sticky pagination</label></div>
+          <div id="id_sticky_pagination_help" class="form-input-hint">
+            When enabled, the pagination controls will stick to the bottom of the screen, so that they are always
+            visible without having to scroll to the end of the page first.
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-checkbox"><input type="checkbox" name="collapse_side_panel" aria-describedby="id_collapse_side_panel_help" id="id_collapse_side_panel"><i class="form-icon"></i><label for="id_collapse_side_panel">Collapse side panel</label></div>
+          <div id="id_collapse_side_panel_help" class="form-input-hint">
+            When enabled, the tags side panel will be collapsed by default to give more space to the bookmark list.
+            Instead, the tags are shown in an expandable drawer.
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-checkbox"><input type="checkbox" name="hide_bundles" aria-describedby="id_hide_bundles_help" id="id_hide_bundles"><i class="form-icon"></i><label for="id_hide_bundles">Hide bundles</label></div>
+          <div id="id_hide_bundles_help" class="form-input-hint">
+            Allows to hide the bundles in the side panel if you don't intend to use them.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="id_tag_search" class="form-label">Tag search</label>
+          <select name="tag_search" class="form-select width-25 width-sm-100" aria-describedby="id_tag_search_help" aria-invalid="false" id="id_tag_search">
+  <option value="strict" selected>Strict</option>
+
+  <option value="lax">Lax</option>
+
+</select>
+          <div id="id_tag_search_help" class="form-input-hint">
+            In strict mode, tags must be prefixed with a hash character (#).
+            In lax mode, tags can also be searched without the hash character.
+            Note that tags without the hash character are indistinguishable from search terms, which means the search
+            result will also include bookmarks where a search term matches otherwise.
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-checkbox"><input type="checkbox" name="legacy_search" aria-describedby="id_legacy_search_help" id="id_legacy_search"><i class="form-icon"></i><label for="id_legacy_search">Enable legacy search</label></div>
+          <div id="id_legacy_search_help" class="form-input-hint">
+            Since version 1.44.0, linkding has a new search engine that supports logical expressions (and, or, not).
+            If you run into any issues with the new search, you can enable this option to temporarily switch back to the old search.
+            Please report any issues you encounter with the new search on <a href="https://github.com/sissbruecker/linkding/issues"
+    target="_blank">GitHub</a> so they can be addressed.
+            This option will be removed in a future version.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="id_tag_grouping" class="form-label">Tag grouping</label>
+          <select name="tag_grouping" class="form-select width-25 width-sm-100" aria-describedby="id_tag_grouping_help" aria-invalid="false" id="id_tag_grouping">
+  <option value="alphabetical" selected>Alphabetical</option>
+
+  <option value="disabled">Disabled</option>
+
+</select>
+          <div id="id_tag_grouping_help" class="form-input-hint">
+            In alphabetical mode, tags will be grouped by the first letter.
+            If disabled, tags will not be grouped.
+          </div>
+        </div>
+        <div class="form-group">
+          <details >
+            <summary>
+              <span class="form-label d-inline-block">Auto Tagging</span>
+            </summary>
+            <label for="id_auto_tagging_rules"
+                   class="text-assistive">Auto Tagging</label>
+            <div><textarea name="auto_tagging_rules" cols="40" rows="6" class="form-input monospace" aria-describedby="id_auto_tagging_rules_help" id="id_auto_tagging_rules">
+</textarea></div>
+          </details>
+          <div id="id_auto_tagging_rules_help" class="form-input-hint">
+            Automatically adds tags to bookmarks based on predefined rules.
+            Each line is a single rule that maps a URL to one or more tags. For example:
+            <pre>youtube.com video
+reddit.com/r/Music music reddit</pre>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-checkbox"><input type="checkbox" name="enable_favicons" aria-describedby="id_enable_favicons_help" id="id_enable_favicons"><i class="form-icon"></i><label for="id_enable_favicons">Enable Favicons</label></div>
+          <div id="id_enable_favicons_help" class="form-input-hint">
+            Automatically loads favicons for bookmarked websites and displays them next to each bookmark.
+            Enabling this feature automatically downloads all missing favicons.
+            By default, this feature uses a <b>Google service</b> to download favicons.
+            If you don't want to use this service, check the
+            <a href="https://linkding.link/options/#ld_favicon_provider"
+               target="_blank">options documentation</a> on how to configure a custom favicon provider.
+            Icons are downloaded in the background, and it may take a while for them to show up.
+          </div>
+          
+        </div>
+        <div class="form-group">
+          <div class="form-checkbox"><input type="checkbox" name="enable_preview_images" aria-describedby="id_enable_preview_images_help" id="id_enable_preview_images"><i class="form-icon"></i><label for="id_enable_preview_images">Enable Preview Images</label></div>
+          <div id="id_enable_preview_images_help" class="form-input-hint">
+            Automatically loads preview images for bookmarked websites and displays them next to each bookmark.
+            Enabling this feature automatically downloads all missing preview images.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="id_web_archive_integration" class="form-label">Internet Archive integration</label>
+          <select name="web_archive_integration" class="form-select width-25 width-sm-100" aria-describedby="id_web_archive_integration_help" aria-invalid="false" id="id_web_archive_integration">
+  <option value="disabled" selected>Disabled</option>
+
+  <option value="enabled">Enabled</option>
+
+</select>
+          <div id="id_web_archive_integration_help" class="form-input-hint">
+            Enabling this feature will automatically create snapshots of bookmarked websites on the
+            <a href="https://web.archive.org/" target="_blank" rel="noopener">Internet Archive Wayback Machine</a>.
+            This allows to preserve, and later access the website as it was at the point in time it was bookmarked, in
+            case it goes offline or its content is modified.
+            Please consider donating to the <a href="https://archive.org/donate" target="_blank" rel="noopener">Internet Archive</a> if you make use of this feature.
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-checkbox"><input type="checkbox" name="enable_sharing" aria-describedby="id_enable_sharing_help" id="id_enable_sharing"><i class="form-icon"></i><label for="id_enable_sharing">Enable bookmark sharing</label></div>
+          <div id="id_enable_sharing_help" class="form-input-hint">
+            Allows to share bookmarks with other users, and to view shared bookmarks.
+            Disabling this feature will hide all previously shared bookmarks from other users.
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-checkbox"><input type="checkbox" name="enable_public_sharing" aria-describedby="id_enable_public_sharing_help" id="id_enable_public_sharing"><i class="form-icon"></i><label for="id_enable_public_sharing">Enable public bookmark sharing</label></div>
+          <div id="id_enable_public_sharing_help" class="form-input-hint">
+            Makes shared bookmarks publicly accessible, without requiring a login.
+            That means that anyone with a link to this instance can view shared bookmarks via the <a href="/bookmarks/shared">shared bookmarks page</a>.
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <div class="form-checkbox"><input type="checkbox" name="default_mark_unread" aria-describedby="id_default_mark_unread_help" id="id_default_mark_unread"><i class="form-icon"></i><label for="id_default_mark_unread">Create bookmarks as unread by default</label></div>
+          <div id="id_default_mark_unread_help" class="form-input-hint">
+            Sets the default state for the "Mark as unread" option when creating a new bookmark.
+            Setting this option will make all new bookmarks default to unread.
+            This can be overridden when creating each new bookmark.
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-checkbox"><input type="checkbox" name="default_mark_shared" aria-describedby="id_default_mark_shared_help" id="id_default_mark_shared"><i class="form-icon"></i><label for="id_default_mark_shared">Create bookmarks as shared by default</label></div>
+          <div id="id_default_mark_shared_help" class="form-input-hint">
+            Sets the default state for the "Share" option when creating a new bookmark.
+            Setting this option will make all new bookmarks default to shared.
+            This can be overridden when creating each new bookmark.
+          </div>
+        </div>
+        <div class="form-group">
+          <details >
+            <summary>
+              <span class="form-label d-inline-block">Custom CSS</span>
+            </summary>
+            <label for="id_custom_css" class="text-assistive">Custom CSS</label>
+            <div><textarea name="custom_css" cols="40" rows="6" class="form-input monospace" aria-describedby="id_custom_css_help" id="id_custom_css">
+</textarea></div>
+          </details>
+          <div id="id_custom_css_help" class="form-input-hint">
+            Allows to add custom CSS to the page.
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="submit"
+                 name="update_profile"
+                 value="Save"
+                 class="btn btn-primary btn-wide mt-2">
+        </div>
+      </form>
+    </section>
+    
+    
+      <section aria-labelledby="global-settings-heading">
+        <h2 id="global-settings-heading">Global settings</h2>
+        <form action="/settings/update"
+              method="post"
+              novalidate
+              data-turbo="false">
+          <input type="hidden" name="csrfmiddlewaretoken" value="SANITIZED_CSRF_TOKEN">
+          <div class="form-group">
+            <label for="id_landing_page" class="form-label">Landing page</label>
+            <select name="landing_page" class="form-select width-25 width-sm-100" aria-describedby="id_landing_page_help" aria-invalid="false" id="id_landing_page">
+  <option value="login" selected>Login</option>
+
+  <option value="shared_bookmarks">Shared Bookmarks</option>
+
+</select>
+            <div id="id_landing_page_help" class="form-input-hint">
+              The page that unauthenticated users are redirected to when accessing the root URL.
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="id_guest_profile_user" class="form-label">Guest user profile</label>
+            <select name="guest_profile_user" class="form-select width-25 width-sm-100" aria-describedby="id_guest_profile_user_help" id="id_guest_profile_user">
+  <option value="" selected>Standard profile</option>
+
+  <option value="1">baseline</option>
+
+</select>
+            <div id="id_guest_profile_user_help" class="form-input-hint">
+              The user profile to use for users that are not logged in. This will affect how publicly shared bookmarks
+              are displayed regarding theme, bookmark list settings, etc. You can either use your own profile or create
+              a dedicated user for this purpose. By default, a standard profile with fixed settings is used.
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-checkbox"><input type="checkbox" name="enable_link_prefetch" aria-describedby="id_enable_link_prefetch_help" id="id_enable_link_prefetch"><i class="form-icon"></i><label for="id_enable_link_prefetch">Enable prefetching links on hover</label></div>
+            <div id="id_enable_link_prefetch_help" class="form-input-hint">
+              Prefetches internal links when hovering over them. This can improve the perceived performance when
+              navigating application, but also increases the load on the server as well as bandwidth usage.
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="submit"
+                   name="update_global_settings"
+                   value="Save"
+                   class="btn btn-primary btn-wide mt-2">
+          </div>
+        </form>
+      </section>
+    
+    
+    <section aria-labelledby="import-heading">
+      <h2 id="import-heading">Import</h2>
+      <p>
+        Import bookmarks and tags in the Netscape HTML format. This will execute a sync where new bookmarks are
+        added and existing ones are updated.
+      </p>
+      <form method="post"
+            enctype="multipart/form-data"
+            action="/settings/import">
+        <input type="hidden" name="csrfmiddlewaretoken" value="SANITIZED_CSRF_TOKEN">
+        <div class="form-group">
+          <label for="import_map_private_flag" class="form-checkbox">
+            <input type="checkbox"
+                   id="import_map_private_flag"
+                   name="map_private_flag"
+                   aria-describedby="import_map_private_flag_help">
+            <i class="form-icon"></i> Import public bookmarks as shared
+          </label>
+          <div id="import_map_private_flag_help" class="form-input-hint">
+            When importing bookmarks from a service that supports marking bookmarks as public or private (using the
+            <code>PRIVATE</code> attribute), enabling this option will import all bookmarks that are marked as not
+            private as shared bookmarks.
+            Otherwise, all bookmarks will be imported as private bookmarks.
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group width-75 width-md-100">
+            <input class="form-input" type="file" name="import_file">
+            <input type="submit" class="input-group-btn btn btn-primary" value="Upload">
+          </div>
+        </div>
+      </form>
+    </section>
+    
+    <section aria-labelledby="export-heading">
+      <h2 id="export-heading">Export</h2>
+      <p>Export all bookmarks in Netscape HTML format.</p>
+      <a class="btn btn-primary"
+         target="_blank"
+         href="/settings/export">Download (.html)</a>
+      
+    </section>
+    
+    <section class="about" aria-labelledby="about-heading">
+      <h2 id="about-heading">About</h2>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>Version</td>
+            <td>1.45.0 (latest)</td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top">Links</td>
+            <td>
+              <div class="d-flex flex-column gap-2">
+                <a href="https://github.com/sissbruecker/linkding/" target="_blank">GitHub</a>
+                <a href="https://linkding.link/" target="_blank">Documentation</a>
+                <a href="https://github.com/sissbruecker/linkding/blob/master/CHANGELOG.md"
+                   target="_blank">Changelog</a>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <script>
+    (function init() {
+      const enableSharing = document.getElementById("id_enable_sharing");
+      const enablePublicSharing = document.getElementById("id_enable_public_sharing");
+      const defaultMarkShared = document.getElementById("id_default_mark_shared");
+      const bookmarkDescriptionDisplay = document.getElementById("id_bookmark_description_display");
+      const bookmarkDescriptionMaxLines = document.getElementById("id_bookmark_description_max_lines");
+
+      // Automatically disable public bookmark sharing and default shared option if bookmark sharing is disabled
+      function updateSharingOptions() {
+        if (enableSharing.checked) {
+          enablePublicSharing.disabled = false;
+          defaultMarkShared.disabled = false;
+        } else {
+          enablePublicSharing.disabled = true;
+          enablePublicSharing.checked = false;
+          defaultMarkShared.disabled = true;
+          defaultMarkShared.checked = false;
+        }
+      }
+
+      updateSharingOptions();
+      enableSharing.addEventListener("change", updateSharingOptions);
+
+      // Automatically hide the bookmark description max lines input if the description display is set to inline
+      function updateBookmarkDescriptionMaxLines() {
+        if (bookmarkDescriptionDisplay.value === "inline") {
+          bookmarkDescriptionMaxLines.closest(".form-group").classList.add("d-hide");
+        } else {
+          bookmarkDescriptionMaxLines.closest(".form-group").classList.remove("d-hide");
+        }
+      }
+
+      updateBookmarkDescriptionMaxLines();
+      bookmarkDescriptionDisplay.addEventListener("change", updateBookmarkDescriptionMaxLines);
+    })();
+  </script>
+
+    </div>
+    <div class="modals">
+      
+    </div>
+    
+<section class="hardv3-release-panel" aria-label="Release-grounded website shift">
+  <div class="hardv3-release-kicker">release-grounded hardv3-release-grounded</div>
+  <div class="hardv3-variant-cue" data-hardv3-for="access">
+    <strong>Release access mode</strong>
+    <p>Use local credentials remains available after the availability notice.</p>
+  </div>
+  <div class="hardv3-variant-cue" data-hardv3-for="surface">
+    <strong>Release list controls</strong>
+    <p>Select a row to enable actions before using list-level controls.</p>
+  </div>
+  <div class="hardv3-variant-cue" data-hardv3-for="content">
+    <strong>Release language update</strong>
+    <p>Apply lookup chip to commit prepared library filters.</p>
+  </div>
+  <div class="hardv3-variant-cue" data-hardv3-for="runtime">
+    <strong>Release readiness mode</strong>
+    <p>Workspace controls are syncing before row-level controls become active.</p>
+  </div>
+  <div class="hardv3-variant-cue" data-hardv3-for="process">
+    <strong>Release workflow checkpoint</strong>
+    <p>Open release dialog or continue the review before final details appear.</p>
+  </div>
+  <div class="hardv3-variant-cue" data-hardv3-for="structural">
+    <strong>Release control hub</strong>
+    <p>Security and integrations moved into a visible subpanel.</p>
+  </div>
+  <div class="hardv3-variant-cue" data-hardv3-for="functional">
+    <strong>Release feature routing</strong>
+    <p>Apply lookup chip before filtered evidence is committed.</p>
+  </div>
+</section>
+<div id="hardv3-verifier-catalog" hidden>
+  settings_security_subpanel_pass Settings Profile
+  tag_dialog_flow_pass Tags
+  auth_surface_availability_pass Username Password
+  row_scoped_action_container_pass Bookmarks
+  query_chip_apply_flow_pass focus20-route-filter
+  no_hidden_knowledge_required post_evaluator_state_reachable
+</div>
+<script>
+  (function hardv3ReleaseGrounded() {
+    const body = document.body;
+    const variant = body.dataset.hardv3Variant || "";
+    const path = window.location.pathname;
+    const params = new URLSearchParams(window.location.search);
+
+    function withReadyMarker(url) {
+      if (url.indexOf("hardv3_release_ready=1") !== -1) return url;
+      return url + (url.indexOf("?") === -1 ? "?" : "&") + "hardv3_release_ready=1";
+    }
+
+    function createButton(label, primary) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = primary ? "btn btn-primary" : "btn hardv3-muted-action";
+      button.textContent = label;
+      return button;
+    }
+
+    function stageContent(options) {
+      if (params.get("hardv3_release_ready") === "1") return;
+      const container = document.querySelector(".content.container");
+      if (!container || container.dataset.hardv3Staged === "1") return;
+
+      const original = document.createDocumentFragment();
+      while (container.firstChild) {
+        original.appendChild(container.firstChild);
+      }
+      container.dataset.hardv3Staged = "1";
+
+      if (options.pendingUrl) {
+        window.history.replaceState({ hardv3Pending: true }, "", options.pendingUrl);
+      }
+
+      const card = document.createElement("main");
+      card.className = "hardv3-stage-card";
+      card.setAttribute("aria-label", options.ariaLabel || "Release checkpoint");
+
+      const kicker = document.createElement("div");
+      kicker.className = "hardv3-release-kicker";
+      kicker.textContent = options.kicker || "release checkpoint";
+      const heading = document.createElement("h1");
+      heading.textContent = options.heading;
+      const detail = document.createElement("p");
+      detail.textContent = options.detail;
+      const actions = document.createElement("div");
+      actions.className = "hardv3-stage-actions";
+
+      const continueButton = createButton(options.buttonLabel, true);
+      continueButton.addEventListener("click", function () {
+        container.replaceChildren(original);
+        container.dataset.hardv3Staged = "0";
+        const finalUrl = withReadyMarker(options.restoreUrl || (path + window.location.search));
+        window.history.pushState({ hardv3Ready: true }, "", finalUrl);
+        if (options.afterReveal) options.afterReveal();
+      });
+      actions.appendChild(continueButton);
+      if (options.secondaryLabel) {
+        actions.appendChild(createButton(options.secondaryLabel, false));
+      }
+
+      card.appendChild(kicker);
+      card.appendChild(heading);
+      card.appendChild(detail);
+      card.appendChild(actions);
+      container.appendChild(card);
+    }
+
+    function stageLogin() {
+      if (variant !== "access" || path.indexOf("/login") !== 0) return;
+      const form = document.querySelector("[data-hardv3-login-form], form[action*='login'], main.auth-page form, #step-login");
+      if (!form || form.dataset.hardv3LoginStaged === "1") return;
+      form.dataset.hardv3LoginStaged = "1";
+      form.classList.add("hardv3-login-form-hidden");
+
+      const existingReveal = document.querySelector("[data-hardv3-login-reveal]");
+      if (existingReveal) {
+        existingReveal.addEventListener("click", function () {
+          form.classList.remove("hardv3-login-form-hidden");
+          existingReveal.closest(".hardv3-stage-card")?.remove();
+        });
+        return;
+      }
+
+      const panel = document.createElement("section");
+      panel.className = "hardv3-stage-card";
+      panel.setAttribute("aria-label", "Release access mode");
+      panel.innerHTML = [
+        '<div class="hardv3-release-kicker">PR #1269 availability change</div>',
+        "<h1>Release access mode</h1>",
+        "<p>The local sign-in surface is available after acknowledging the deployment notice.</p>"
+      ].join("");
+      const actions = document.createElement("div");
+      actions.className = "hardv3-stage-actions";
+      const reveal = createButton("Use local credentials", true);
+      reveal.addEventListener("click", function () {
+        form.classList.remove("hardv3-login-form-hidden");
+        panel.remove();
+      });
+      actions.appendChild(reveal);
+      panel.appendChild(actions);
+      form.parentNode.insertBefore(panel, form);
+    }
+
+    function stageSettings() {
+      if (!["process", "structural", "functional"].includes(variant)) return;
+      if (path.indexOf("/settings") !== 0) return;
+      stageContent({
+        heading: "Release control hub",
+        kicker: "PR #1248 API access management",
+        detail: "Administrative controls are grouped behind the security and integrations subpanel.",
+        buttonLabel: "Security and integrations",
+        secondaryLabel: "Stay on overview",
+        ariaLabel: "Release control hub",
+        restoreUrl: path + window.location.search
+      });
+    }
+
+    function stageTags() {
+      if (!["content", "process", "structural"].includes(variant)) return;
+      if (path.indexOf("/tags") !== 0) return;
+      stageContent({
+        heading: "Release label workspace",
+        kicker: "PR #1253 dialog-mediated label management",
+        detail: "Label management controls now open through a dialog-like workspace.",
+        buttonLabel: "Open release dialog",
+        secondaryLabel: "Review label summary",
+        ariaLabel: "Release label workspace",
+        restoreUrl: path + window.location.search
+      });
+    }
+
+    function stageLookup() {
+      if (!["content", "functional"].includes(variant)) return;
+      const query = params.get("q") || "";
+      if (path.indexOf("/bookmarks") !== 0 || !/^focus20-.*-filter$/.test(query)) return;
+      stageContent({
+        heading: "Release lookup chip",
+        kicker: "release search chip",
+        detail: "A prepared lookup chip is staged and must be applied before filtered evidence is committed.",
+        buttonLabel: "Apply lookup chip",
+        secondaryLabel: "Adjust chip",
+        ariaLabel: "Release lookup chip",
+        pendingUrl: "/bookmarks?release_lookup=prepared",
+        restoreUrl: path + window.location.search
+      });
+    }
+
+    function stageBookmarkForm() {
+      if (!["access", "surface", "runtime", "process"].includes(variant)) return;
+      if (path.indexOf("/bookmarks/new") !== 0) return;
+      stageContent({
+        heading: variant === "process" ? "Release workflow checkpoint" : "Release capture review",
+        kicker: variant === "runtime" ? "PR #1241 readiness gate" : "release bookmark intake",
+        detail: "Imported saved-page details are held in a review step before editable fields are shown.",
+        buttonLabel: "Review editable fields",
+        secondaryLabel: "Save for later",
+        ariaLabel: "Release capture review",
+        restoreUrl: path + window.location.search,
+        afterReveal: function () {
+          if (variant === "runtime") {
+            body.classList.add("hardv3-runtime-pending");
+            setTimeout(function () {
+              body.classList.remove("hardv3-runtime-pending");
+            }, 1600);
+          }
+        }
+      });
+    }
+
+    function stageListControls() {
+      if (!["surface", "runtime"].includes(variant)) return;
+      if (path.indexOf("/bookmarks") !== 0 || params.has("q")) return;
+      const container = document.querySelector(".content.container");
+      if (!container || document.getElementById("hardv3-row-scope-note")) return;
+      const note = document.createElement("div");
+      note.id = "hardv3-row-scope-note";
+      note.className = "hardv3-runtime-note";
+      note.textContent = "Select a row to enable actions.";
+      container.insertBefore(note, container.firstChild);
+      if (variant === "runtime") {
+        body.classList.add("hardv3-runtime-pending");
+        setTimeout(function () {
+          body.classList.remove("hardv3-runtime-pending");
+        }, 1800);
+      }
+    }
+
+    stageLogin();
+    stageSettings();
+    stageTags();
+    stageLookup();
+    stageBookmarkForm();
+    stageListControls();
+  })();
+</script>
+
+  </body>
+</html>

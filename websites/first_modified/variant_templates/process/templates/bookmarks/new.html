@@ -1,0 +1,20 @@
+{% extends 'shared/layout.html' %}
+{% block head %}
+  {% with page_title="Review new bookmark - Linkding" %}{{ block.super }}{% endwith %}
+{% endblock %}
+{% block content %}
+  <div class="bookmarks-form-page">
+    <main aria-labelledby="main-heading">
+      <div class="section-header">
+        <div class="text-secondary text-small">Step 1 of 2</div>
+        <h1 id="main-heading">Review new bookmark</h1>
+        <p class="text-secondary m-0">Confirm the bookmark details before the final save step.</p>
+      </div>
+      <ld-form data-submit-on-ctrl-enter>
+        <form action="{% url 'linkding:bookmarks.new' %}" method="post" novalidate>
+          {% include 'bookmarks/form.html' %}
+        </form>
+      </ld-form>
+    </main>
+  </div>
+{% endblock %}

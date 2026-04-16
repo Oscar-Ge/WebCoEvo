@@ -1,0 +1,94 @@
+{% extends "shared/layout.html" %}
+{% load shared static pagination %}
+{% block head %}
+  {% with page_title="Labels - Linkding" %}{{ block.super }}{% endwith %}
+{% endblock %}
+{% block content %}
+  <div class="tags-page crud-page">
+    <main aria-labelledby="main-heading">
+      <div class="crud-header">
+        <h1 id="main-heading">Labels</h1>
+        <div class="d-flex gap-2 ml-auto">
+          <a href="{% url 'linkding:tags.new' %}"
+             data-turbo-frame="tag-modal"
+             class="btn">Create Label</a>
+          <a href="{% url 'linkding:tags.merge' %}"
+             data-turbo-frame="tag-modal"
+             class="btn">Merge Labels</a>
+        </div>
+      </div>
+      {% include 'shared/messages.html' %}
+      <div class="crud-filters">
+        <ld-form data-form-reset>
+          <form method="get" class="mb-2">
+            <div class="form-group">
+              <label class="form-label text-assistive" for="search">Search labels</label>
+              <div class="input-group">
+                <input type="text"
+                       id="search"
+                       name="search"
+                       value="{{ search }}"
+                       placeholder="Search labels..."
+                       class="form-input">
+                <button type="submit" class="btn input-group-btn">Search</button>
+              </div>
+            </div>
+          </form>
+        </ld-form>
+        <p class="text-secondary text-small m-0">
+          {% if search or unused_only %}
+            Showing {{ page.paginator.count }} of {{ total_tags }} labels
+          {% else %}
+            {{ total_tags }} labels total
+          {% endif %}
+        </p>
+      </div>
+      {% if page.object_list %}
+        <form method="post">
+          {% csrf_token %}
+          <table class="table crud-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th style="width: 25%">Links</th>
+                <th class="actions">
+                  <span class="text-assistive">Actions</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for tag in page.object_list %}
+                <tr>
+                  <td>{{ tag.name }}</td>
+                  <td style="width: 25%">
+                    <a class="btn btn-link"
+                       href="{% url 'linkding:bookmarks.index' %}?q=%23{{ tag.name|urlencode }}">
+                      {{ tag.bookmark_count }}
+                    </a>
+                  </td>
+                  <td class="actions">
+                    <a class="btn btn-link"
+                       href="{% url 'linkding:tags.edit' tag.id %}"
+                       data-turbo-frame="tag-modal">Edit</a>
+                    <button type="submit"
+                            name="delete_tag"
+                            value="{{ tag.id }}"
+                            class="btn btn-link text-error"
+                            data-confirm>Remove</button>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </form>
+        {% pagination page %}
+      {% else %}
+        <div class="empty">
+          <p class="empty-title h5">No labels found</p>
+          <p class="empty-subtitle">Labels will appear here when you tag links</p>
+        </div>
+      {% endif %}
+    </main>
+  </div>
+  <turbo-frame id="tag-modal"></turbo-frame>
+{% endblock %}
