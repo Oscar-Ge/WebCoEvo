@@ -68,6 +68,56 @@ export UITARS_MODEL=Qwen/Qwen3-VL-30B-A3B-Instruct
 
 也可以放一个本地 `.env.umich`，Slurm 脚本会自动 source。不要提交密钥。
 
+## HPC / Slurm 路线
+
+这个仓库默认的正式评测路线仍然是 HPC：
+
+- `slurm/` submitter
+- `scripts/singularity/` runtime helper
+- 共享 module 环境，例如 `python/3.11.5` 和 `singularity/4.x`
+
+如果你要跑正式 full matrix、要让作业排队、或者要把 runtime 放到更合适的存储目录，这条路线最稳。
+
+## 本地 Docker 路线
+
+如果是在 Linux 或 macOS 本地机器上跑，就不要走 HPC 的 Singularity 路线，而是走 Docker：
+
+- runner 镜像：`docker/Dockerfile.runner`
+- compose 生成器：`scripts/docker/generate_local_compose.py`
+- 单变体本地 smoke：`scripts/docker/local_smoke.sh`
+- 顺序版本地 full matrix：`scripts/docker/local_matrix.sh`
+- 详细说明：`docker/README.md`
+
+快速例子：
+
+```bash
+scripts/docker/local_smoke.sh preflight
+```
+
+```bash
+OPENAI_API_KEY=... \
+OPENAI_BASE_URL=http://host.docker.internal:8000/v1 \
+VARIANT=access \
+scripts/docker/local_smoke.sh smoke
+```
+
+```bash
+OPENAI_API_KEY=... \
+OPENAI_BASE_URL=http://host.docker.internal:8000/v1 \
+TASK_FILE=configs/focus20_hardv3_full.raw.json \
+RUN_PREFIX=local_focus20_full \
+scripts/docker/local_matrix.sh
+```
+
+本地时间预算可以先按下面估：
+
+- preflight：通常不到 1 分钟
+- smoke：通常 2 到 15 分钟
+- Focus20 full x 3 个 rulebook x 7 个 variant：通常半天到过夜
+- TaskBank36 full x 3 个 rulebook x 7 个 variant：通常过夜到多天
+
+这里只给 planning range，让本地用户自己决定要不要真的跑 full matrix。
+
 ## 本地检查
 
 跑单测：

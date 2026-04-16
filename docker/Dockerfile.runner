@@ -1,0 +1,33 @@
+FROM python:3.11-slim
+
+ENV PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PYTHONPATH=/workspace
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+      bash \
+      ca-certificates \
+      curl \
+      git \
+      build-essential && \
+    rm -rf /var/lib/apt/lists/*
+
+WORKDIR /workspace
+
+COPY pyproject.toml README.md README-cn.md ./
+COPY linkding_xvr_minimal ./linkding_xvr_minimal
+RUN python -m pip install --upgrade pip && \
+    python -m pip install -e '.[benchmark,dev]' && \
+    python - <<'PY'
+import importlib.util
+import subprocess
+import sys
+
+if importlib.util.find_spec("playwright") is not None:
+    subprocess.check_call([sys.executable, "-m", "playwright", "install", "--with-deps", "chromium"])
+PY
+
+COPY . .
+
+CMD ["bash"]

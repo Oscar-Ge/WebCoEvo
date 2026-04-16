@@ -1,6 +1,6 @@
 ---
 name: webcoevo-monitor
-description: Monitor WebCoEvo Linkding XVR experiments. Use when checking Slurm job status, inspecting smoke/full matrix logs, diagnosing failed or timed-out shards, auditing trace JSONL files for injected ExpeL and cross-version reflection rules, or deciding which shards need reruns.
+description: Monitor WebCoEvo Linkding XVR experiments. Use when checking HPC Slurm jobs or local Docker runs, inspecting smoke or full-matrix logs, diagnosing failed or timed-out shards, auditing trace JSONL files for injected ExpeL and cross-version reflection rules, or deciding which shards need reruns.
 ---
 
 # WebCoEvo Monitor
@@ -20,6 +20,21 @@ sacct -j <job_ids> --format=JobID,JobName%30,State,Elapsed,ExitCode -P
 ```
 
 Treat `FAILED`, `TIMEOUT`, and `CANCELLED` separately from agent task failure. A reset/login error is infrastructure; an unsuccessful eval row with normal trace export is model/task behavior.
+
+## Local Docker Logs
+
+For local Docker runs, inspect the generated compose file and service logs:
+
+```bash
+docker compose -f .docker/compose.access.yml ps
+docker compose -f .docker/compose.access.yml logs --tail=120 linkding
+```
+
+Check:
+
+- the compose file was generated for the intended variant,
+- `host.docker.internal` is the intended model route for the runner container,
+- the local result directory under `results/<run_label>/` is being populated.
 
 ## Logs
 

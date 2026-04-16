@@ -68,6 +68,56 @@ export UITARS_MODEL=Qwen/Qwen3-VL-30B-A3B-Instruct
 
 You can also create a local `.env.umich`; the Slurm scripts source it if present. Do not commit secrets.
 
+## HPC / Slurm Path
+
+The default guidance in this repo is for HPC servers:
+
+- `slurm/` submitters
+- `scripts/singularity/` runtime helpers
+- shared module environments such as `python/3.11.5` and `singularity/4.x`
+
+Use this path for the official matrix runs, quota-aware runtime placement, and long jobs that you want Slurm to manage.
+
+## Local Docker Path
+
+For local Linux or macOS machines, use the Docker path instead of the HPC Singularity path:
+
+- runner image: `docker/Dockerfile.runner`
+- compose generator: `scripts/docker/generate_local_compose.py`
+- one-variant local smoke helper: `scripts/docker/local_smoke.sh`
+- sequential local full-matrix helper: `scripts/docker/local_matrix.sh`
+- local guide: `docker/README.md`
+
+Quick examples:
+
+```bash
+scripts/docker/local_smoke.sh preflight
+```
+
+```bash
+OPENAI_API_KEY=... \
+OPENAI_BASE_URL=http://host.docker.internal:8000/v1 \
+VARIANT=access \
+scripts/docker/local_smoke.sh smoke
+```
+
+```bash
+OPENAI_API_KEY=... \
+OPENAI_BASE_URL=http://host.docker.internal:8000/v1 \
+TASK_FILE=configs/focus20_hardv3_full.raw.json \
+RUN_PREFIX=local_focus20_full \
+scripts/docker/local_matrix.sh
+```
+
+Rough local time budgets:
+
+- preflight: under 1 minute
+- smoke: 2 to 15 minutes
+- Focus20 full x 3 rulebooks x 7 variants: often half a day to overnight
+- TaskBank36 full x 3 rulebooks x 7 variants: often overnight to multi-day
+
+These are planning ranges so local users can decide whether to run the full matrix on their own machine.
+
 ## Local Gates
 
 Run unit tests:
