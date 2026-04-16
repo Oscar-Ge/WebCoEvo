@@ -88,6 +88,8 @@ export UITARS_MODEL=Qwen/Qwen3-VL-30B-A3B-Instruct
 - 顺序版本地 full matrix：`scripts/docker/local_matrix.sh`
 - 详细说明：`docker/README.md`
 
+警告：这个仓库里的 Docker 路线到现在为止从来没有被端到端实际测试过。它还没有作为一个验证过的本地 benchmark 路线跑通过，因此在把它用于正式实验或结果汇报之前，必须先做额外测试。
+
 快速例子：
 
 ```bash

@@ -37,20 +37,28 @@ def test_local_compose_generator_writes_access_binds(tmp_path):
 def test_docs_separate_hpc_and_local_docker_paths():
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     readme_cn = (ROOT / "README-cn.md").read_text(encoding="utf-8")
+    docker_readme = (ROOT / "docker" / "README.md").read_text(encoding="utf-8")
 
     assert "HPC / Slurm Path" in readme
     assert "Local Docker Path" in readme
+    assert "has never been tested end to end" in readme
     assert "HPC / Slurm 路线" in readme_cn
     assert "本地 Docker 路线" in readme_cn
+    assert "从来没有被端到端实际测试过" in readme_cn
+    assert "has never been tested end to end" in docker_readme
 
 
 def test_repo_skills_cover_local_docker_and_hpc_boundary():
     run_skill = (ROOT / "skills" / "webcoevo-run" / "SKILL.md").read_text(encoding="utf-8")
+    monitor_skill = (ROOT / "skills" / "webcoevo-monitor" / "SKILL.md").read_text(encoding="utf-8")
     docker_skill = (ROOT / "skills" / "webcoevo-local-docker" / "SKILL.md").read_text(
         encoding="utf-8"
     )
 
     assert "HPC" in run_skill and "Slurm" in run_skill
     assert "Local Docker" in run_skill
+    assert "has never been tested end to end" in run_skill
     assert "docker compose" in docker_skill
     assert "Linux" in docker_skill and "macOS" in docker_skill
+    assert "has never been tested end to end" in docker_skill
+    assert "untested in this repo" in monitor_skill

@@ -2,6 +2,8 @@
 
 This directory is the local Linux/macOS path. It is not the HPC path.
 
+Warning: this Docker route has never been tested end to end in WebCoEvo. Treat it as an unvalidated convenience path that still needs extra testing before you rely on it for real benchmark numbers.
+
 ## What This Is For
 
 - Use `slurm/` and `scripts/singularity/` on shared HPC servers.
@@ -99,3 +101,5 @@ These are rough planning numbers, not guarantees:
 - Combined 3x2 full matrix on a local setup: budget at least overnight, and often longer
 
 The real runtime depends much more on model latency and browser stability than on Docker itself. Decide locally whether that time is worth it.
+
+Because this route has never been run and validated as part of the repo's main experiment workflow, plan extra bring-up and debugging time before using any local Docker result as evidence.

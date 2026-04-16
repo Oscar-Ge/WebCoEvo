@@ -17,6 +17,8 @@ Do not use this skill for Slurm jobs or Singularity-based cluster runs.
 
 The local flow uses `docker compose` through the helper scripts in `scripts/docker/`.
 
+Warning: this route has never been tested end to end in WebCoEvo. Treat it as documentation plus starter scripts that still require extra validation before any local result should be trusted.
+
 ## Quick Start
 
 Preflight only:
@@ -74,3 +76,4 @@ scripts/docker/local_matrix.sh
 - Default host-to-model routing assumes `host.docker.internal`.
 - Treat local full-matrix times as estimates: smoke is usually minutes, Focus20 is often half a day to overnight, and TaskBank36 is often overnight to multi-day.
 - The detailed local guide lives in `docker/README.md`.
+- Because the Docker path is untested, budget extra bring-up and debugging time before using it seriously.

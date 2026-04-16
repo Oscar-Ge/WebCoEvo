@@ -88,6 +88,8 @@ For local Linux or macOS machines, use the Docker path instead of the HPC Singul
 - sequential local full-matrix helper: `scripts/docker/local_matrix.sh`
 - local guide: `docker/README.md`
 
+Warning: the Docker route in this repo has never been tested end to end. It has not been run as a validated local benchmark path yet, and it requires additional testing before you should trust it for real experiments or reported results.
+
 Quick examples:
 
 ```bash

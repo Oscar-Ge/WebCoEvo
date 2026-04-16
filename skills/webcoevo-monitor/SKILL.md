@@ -36,6 +36,8 @@ Check:
 - `host.docker.internal` is the intended model route for the runner container,
 - the local result directory under `results/<run_label>/` is being populated.
 
+Remember that the Docker route itself is untested in this repo, so a local Docker failure should not be read as evidence about the benchmark until the local path has been validated separately.
+
 ## Logs
 
 Matrix logs live under `results/slurm_logs/<run_stamp>/` when launched by `submit_hardv3_matrix.sh`.

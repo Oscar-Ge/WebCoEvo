@@ -12,6 +12,8 @@ description: Run WebCoEvo Linkding XVR evaluations. Use when choosing between th
 
 When the user says local laptop, home machine, Docker Desktop, Linux workstation, or macOS, prefer the Docker path.
 
+Important: the local Docker path has never been tested end to end in this repo. Always present it as an unvalidated route that needs extra testing before anyone should trust the results.
+
 ## Quick Checks
 
 Start from the repository root.
