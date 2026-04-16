@@ -1,0 +1,4 @@
+interface:
+  display_name: "WebCoEvo Analyze"
+  short_description: "Summarize eval JSONL success rates."
+  default_prompt: "Use $webcoevo-analyze to aggregate WebCoEvo Focus20 and TaskBank36 eval results and compare rulebooks."

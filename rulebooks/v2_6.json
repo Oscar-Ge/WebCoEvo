@@ -1,0 +1,301 @@
+{
+  "artifact_type": "cross_version_reflection_rules",
+  "version": "v2.6-hardv3-selective-merge",
+  "created_at": "2026-04-14",
+  "base_rulebook_sources": [
+    "integration/cross_version_reflection_rules_v2_4_website_repair.json",
+    "integration/cross_version_reflection_rules_v2_5_hardv3_staged_repair.json"
+  ],
+  "design_intent": "Selective merge for Linkding hardv3 Focus20: keep V2.5 hidden-click and checkpoint recovery while restoring V2.4 query finalization plus login next/prefilled form protections.",
+  "evidence_scope": {
+    "primary_slice": "Focus20 hardv3 matched V2.4 vs V2.5 trajectories",
+    "held_out_policy": "TaskBank36 is reserved for validation after Focus20 gates; it is not used to write these rules.",
+    "candidate_rows": "matched saved/lost delta slice"
+  },
+  "rule_count": 8,
+  "filters": {
+    "max_rules": 8,
+    "no_task_ids": true,
+    "generic_operational_language": true
+  },
+  "rules": [
+    {
+      "rule_id": "xvr26_0001",
+      "title": "After one hidden or timed-out click, discard the same bid and re-observe",
+      "scope": {
+        "drift_types": [
+          "surface",
+          "runtime",
+          "structural",
+          "functional",
+          "content"
+        ]
+      },
+      "trigger": {
+        "old_assumption": "A target that appears in the DOM can be clicked again after a visibility or timeout failure.",
+        "observed_symptoms": [
+          "The last action failed because the element was hidden, not visible, not stable, timed-out, or could not be found.",
+          "The URL and visible state did not move toward the goal after the failed click."
+        ]
+      },
+      "adaptation_strategy": [
+        "Never click the same bid again after one hidden or timed-out click.",
+        "Discard the stale bid, re-observe, and choose a different visible link, button, route fallback, visible continuation, or final answer.",
+        "Prefer visible text, aria labels, href semantics, and current-page evidence over a remembered numeric bid."
+      ],
+      "verification_check": [
+        "The next action after the failure uses a different visible target, fallback route, or send_msg_to_user.",
+        "Recovery should change menu visibility, URL, form visibility, or final evidence."
+      ],
+      "forbidden_actions": [
+        "Do not repeat the same bid after an invisible-element timeout.",
+        "Do not treat DOM presence of a hidden target as human-clickable evidence."
+      ],
+      "confidence": 0.97
+    },
+    {
+      "rule_id": "xvr26_0002",
+      "title": "Use one same-site route fallback, then reassess before any second route",
+      "scope": {
+        "drift_types": [
+          "surface",
+          "runtime",
+          "structural",
+          "functional",
+          "content"
+        ]
+      },
+      "trigger": {
+        "old_assumption": "The agent must keep searching for a drifted navigation affordance even when the requested same-site route is obvious.",
+        "observed_symptoms": [
+          "The task asks only to land on settings, tags, bookmarks, or the add-bookmark form.",
+          "A visible navigation attempt failed once, or the page remains on the wrong same-site route."
+        ]
+      },
+      "adaptation_strategy": [
+        "After one failed navigation attempt, use exactly one direct local route fallback on the current origin, such as /settings, /tags, /bookmarks, or /bookmarks/new.",
+        "After the route loads, do not immediately issue another goto; reassess URL, headings, visible fields, staged checkpoint controls, and final evidence.",
+        "Finalize if the route and visible state satisfy the task; otherwise click one visible continuation control and reassess."
+      ],
+      "verification_check": [
+        "The URL path matches the requested destination before additional browser actions.",
+        "The next step after route fallback is finalization, one visible continuation, or one different visible recovery target."
+      ],
+      "forbidden_actions": [
+        "Do not chain multiple same-site gotos without observing the new page.",
+        "Do not use route fallback for tasks that still require saving or editing data."
+      ],
+      "confidence": 0.96
+    },
+    {
+      "rule_id": "xvr26_0003",
+      "title": "Click staged continuation only when final evidence is absent",
+      "scope": {
+        "drift_types": [
+          "access",
+          "surface",
+          "runtime",
+          "process",
+          "content",
+          "functional",
+          "structural"
+        ]
+      },
+      "trigger": {
+        "old_assumption": "Destination route arrival is always enough, or repeated noop is safer than one checkpoint action.",
+        "observed_symptoms": [
+          "The route is plausible but final evidence such as fields, committed query, or requested heading is absent.",
+          "The page shows a visible continuation control such as Review, Apply, Open, Continue, Save options, or a subpanel opener."
+        ]
+      },
+      "adaptation_strategy": [
+        "First check whether final evidence is already present; if it is, send the final answer immediately.",
+        "Only when final evidence is absent, click one visible continuation control that semantically advances the staged page.",
+        "After that one continuation, reassess URL, headings, visible fields, exact query state, and filtered result evidence before taking another action."
+      ],
+      "verification_check": [
+        "A continuation click should reveal fields, committed filter state, a destination panel, or other final evidence.",
+        "A satisfied state should finalize instead of entering noop or goto loops."
+      ],
+      "forbidden_actions": [
+        "Do not click Apply, Open, or Continue after final evidence is already visible.",
+        "Do not noop repeatedly on a staged checkpoint page."
+      ],
+      "confidence": 0.95
+    },
+    {
+      "rule_id": "xvr26_0004",
+      "title": "Preserve task-specific login next redirects and prefilled form values",
+      "scope": {
+        "drift_types": [
+          "access",
+          "surface",
+          "runtime",
+          "process",
+          "content",
+          "functional"
+        ]
+      },
+      "trigger": {
+        "old_assumption": "After a login redirect, replaying a generic login or generic add-bookmark example is a safe recovery.",
+        "observed_symptoms": [
+          "The task starts on /login?next=... with encoded destination, URL, title, tag, or query values.",
+          "After login, the browser leaves /login and lands on a protected destination or prefilled form."
+        ]
+      },
+      "adaptation_strategy": [
+        "Fill username and password once, submit once, then operate on the redirected page instead of returning to /login.",
+        "Preserve the task-specific next parameter and any redirected prefilled URL, title, tag, or query values.",
+        "If the redirected page or prefilled form already proves the requested state, send_msg_to_user with the required completion words."
+      ],
+      "verification_check": [
+        "The current route should stay on the redirected destination after login.",
+        "The visible form, URL, or query state should retain task-specific prefilled values instead of generic examples."
+      ],
+      "forbidden_actions": [
+        "Do not navigate back to /login after a successful redirect.",
+        "Do not strip the next parameter.",
+        "Do not replace prefilled values with generic example data.",
+        "Do not save a bookmark unless the task explicitly asks to persist it."
+      ],
+      "confidence": 0.94
+    },
+    {
+      "rule_id": "xvr26_0005",
+      "title": "Use a visible opener for collapsed navigation, then retry once or fall back",
+      "scope": {
+        "drift_types": [
+          "structural",
+          "functional",
+          "surface",
+          "runtime"
+        ]
+      },
+      "trigger": {
+        "old_assumption": "A hidden destination can be clicked directly because it appears in pruned HTML.",
+        "observed_symptoms": [
+          "A destination like Settings, Tags, Bookmarks, or a subpanel is present but the click target is not visible.",
+          "Navigation groups are nested, collapsed, or reorganized behind a visible group label."
+        ]
+      },
+      "adaptation_strategy": [
+        "Click one visible opener or group label first, then re-observe and retry the now-visible destination once.",
+        "If the destination remains hidden, switch to one direct local route fallback instead of repeating the hidden target.",
+        "Use visible text or href semantics from the new observation, not the previous hidden bid."
+      ],
+      "verification_check": [
+        "The opener should reveal the destination, or the fallback should change the URL to the requested same-site path.",
+        "The trace should not contain a long same-bid loop on a hidden nav item."
+      ],
+      "forbidden_actions": [
+        "Do not repeatedly click a hidden destination inside a collapsed group.",
+        "Do not click the same hidden bid after an opener fails to reveal it."
+      ],
+      "confidence": 0.92
+    },
+    {
+      "rule_id": "xvr26_0006",
+      "title": "Avoid non-interactive marks and containers when a visible semantic control exists",
+      "scope": {
+        "drift_types": [
+          "surface",
+          "runtime",
+          "content",
+          "structural",
+          "functional"
+        ]
+      },
+      "trigger": {
+        "old_assumption": "Any bid-like mark suggested by the model is likely safe to click.",
+        "observed_symptoms": [
+          "The candidate target is a hidden input, CSRF token, divider, list item, shell, or generic container.",
+          "A nearby visible link, button, textbox, or explicit continuation control has clearer task semantics."
+        ]
+      },
+      "adaptation_strategy": [
+        "Choose the visible semantic control rather than a hidden input, CSRF token, divider, or non-interactive container.",
+        "If no valid visible target exists and the task is navigation-only, use one same-site route fallback.",
+        "If the page already satisfies the task, finalize instead of clicking a questionable mark."
+      ],
+      "verification_check": [
+        "Chosen targets should be visible human-clickable links, buttons, textboxes, or explicit continuation controls.",
+        "The next state should either progress toward the goal or expose final evidence."
+      ],
+      "forbidden_actions": [
+        "Do not click hidden inputs, CSRF tokens, dividers, or generic containers.",
+        "Do not treat structural DOM presence as proof of clickability."
+      ],
+      "confidence": 0.91
+    },
+    {
+      "rule_id": "xvr26_0007",
+      "title": "For filtered bookmarks, finalize exact query evidence before apply or commit recovery",
+      "scope": {
+        "drift_types": [
+          "content",
+          "runtime",
+          "process",
+          "functional"
+        ]
+      },
+      "trigger": {
+        "old_assumption": "A filtered bookmarks task always needs another apply or commit action after arriving on bookmarks.",
+        "observed_symptoms": [
+          "The URL already contains the requested q parameter, or a visible search/filter field contains the exact query.",
+          "The page may also show a prepared lookup, chip, Apply button, or other commit control."
+        ]
+      },
+      "adaptation_strategy": [
+        "If exact query evidence is already present in the URL or visible field, treat the filtered result as complete and send_msg_to_user immediately.",
+        "If exact query evidence is absent but a prepared lookup or query chip is visible, click one Apply or commit control, then verify the exact query.",
+        "Do not clear, rewrite, or replace a task-specific query with a generic search."
+      ],
+      "verification_check": [
+        "Final evidence should include the exact requested query in the URL, visible field, chip, or filtered result state.",
+        "The final answer should state that the filtered bookmarks page is open."
+      ],
+      "forbidden_actions": [
+        "Do not click Apply or commit when exact query evidence is already active.",
+        "Do not wait for invisible confirmation after the filtered result is already visible.",
+        "Do not clear a task-specific q parameter."
+      ],
+      "confidence": 0.93
+    },
+    {
+      "rule_id": "xvr26_0008",
+      "title": "Hard stop repeated noop, goto, or click loops after one recovery attempt",
+      "scope": {
+        "drift_types": [
+          "access",
+          "surface",
+          "runtime",
+          "process",
+          "content",
+          "structural",
+          "functional"
+        ]
+      },
+      "trigger": {
+        "old_assumption": "Repeating noop, the same goto, or the same plausible click is safer than switching strategy.",
+        "observed_symptoms": [
+          "Two consecutive actions leave URL and visible page state unchanged.",
+          "The trace repeats noop, the same goto, or the same click while a plausible final state or checkpoint is already visible."
+        ]
+      },
+      "adaptation_strategy": [
+        "Use a hard stop after one failed recovery attempt: do not repeat noop, the same goto, or the same click.",
+        "Switch to exactly one of these: finalize from satisfied evidence, click one visible continuation, use one route fallback, or choose one different visible semantic target.",
+        "Keep enough step budget for verification instead of spending it on identical retries."
+      ],
+      "verification_check": [
+        "A stuck trace should change strategy within two steps.",
+        "The final action should be a verified route, a valid visible target, or send_msg_to_user."
+      ],
+      "forbidden_actions": [
+        "Do not burn the remaining budget on identical clicks, gotos, waits, or noops.",
+        "Do not continue browser actions after benchmark completion is evident."
+      ],
+      "confidence": 0.9
+    }
+  ]
+}

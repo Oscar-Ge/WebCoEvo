@@ -1,0 +1,28 @@
+{% extends 'shared/layout.html' %}
+{% block head %}
+  {% with page_title="Review details - Linkding" %}{{ block.super }}{% endwith %}
+{% endblock %}
+{% block content %}
+  <div class="bookmarks-form-page hardening-draft-shell">
+    <main aria-labelledby="main-heading">
+      <div class="section-header">
+        <p class="text-secondary text-small">Draft capture</p>
+        <h1 id="main-heading">Review details before saving</h1>
+        <p class="text-secondary m-0">
+          Confirm the saved page details and any filing hints before finishing this draft.
+        </p>
+      </div>
+      <div class="text-secondary text-small mb-2">
+        Filing hints stay in the form so you can check context before you commit the saved view.
+      </div>
+      <ld-form data-submit-on-ctrl-enter>
+        <form action="{% url 'linkding:bookmarks.new' %}" method="post" novalidate>
+          {% include 'bookmarks/form.html' %}
+        </form>
+      </ld-form>
+      <p class="text-secondary text-small mb-0">
+        The action area stays below the details so the final save requires a deliberate scan.
+      </p>
+    </main>
+  </div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "shared/layout.html" %}
+{% load static shared bookmarks %}
+{% block content %}
+  <ld-bookmark-page {% if not bookmark_list.bulk_edit_enabled %}no-bulk-edit{% endif %}
+                    class="bookmarks-page grid columns-md-1 {% if bookmark_list.collapse_side_panel %}collapse-side-panel{% endif %}">
+    <main class="main col-2" aria-labelledby="main-heading">
+      <div class="section-header {% if bookmark_list.bulk_edit_enabled %}mb-0{% endif %}">
+        <div>
+          <p class="text-secondary text-small mb-0">Bookmark workspace</p>
+          <h1 id="main-heading">{{ bookmark_list.list_title }}</h1>
+        </div>
+        <div class="header-controls">
+          {% bookmark_search bookmark_list.search mode=bookmark_list.search_mode %}
+        </div>
+      </div>
+      <form class="bookmark-actions" action="{{ bookmark_list.action_url|safe }}" method="post" autocomplete="off">
+        {% csrf_token %}
+        <div id="bookmark-list-container">{% include 'bookmarks/bookmark_list.html' %}</div>
+      </form>
+    </main>
+    <div class="side-panel col-1 hide-md">
+      <div class="panel">
+        <p class="text-secondary text-small mb-2">Capture rail</p>
+        <a href="{% url 'linkding:bookmarks.new' %}" class="btn btn-primary width-100">Open draft</a>
+      </div>
+    </div>
+  </ld-bookmark-page>
+{% endblock %}

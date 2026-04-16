@@ -1,0 +1,237 @@
+{# hardv3-release-grounded; release-grounded operators from PR #1253, PR #1248, PR #1269, PR #1257, PR #1241 #}
+<section class="hardv3-release-panel" aria-label="Release-grounded website shift">
+  <div class="hardv3-release-kicker">release-grounded hardv3-release-grounded</div>
+  <div class="hardv3-variant-cue" data-hardv3-for="access">
+    <strong>Release access mode</strong>
+    <p>Use local credentials remains available after the availability notice.</p>
+  </div>
+  <div class="hardv3-variant-cue" data-hardv3-for="surface">
+    <strong>Release list controls</strong>
+    <p>Select a row to enable actions before using list-level controls.</p>
+  </div>
+  <div class="hardv3-variant-cue" data-hardv3-for="content">
+    <strong>Release language update</strong>
+    <p>Apply lookup chip to commit prepared library filters.</p>
+  </div>
+  <div class="hardv3-variant-cue" data-hardv3-for="runtime">
+    <strong>Release readiness mode</strong>
+    <p>Workspace controls are syncing before row-level controls become active.</p>
+  </div>
+  <div class="hardv3-variant-cue" data-hardv3-for="process">
+    <strong>Release workflow checkpoint</strong>
+    <p>Open release dialog or continue the review before final details appear.</p>
+  </div>
+  <div class="hardv3-variant-cue" data-hardv3-for="structural">
+    <strong>Release control hub</strong>
+    <p>Security and integrations moved into a visible subpanel.</p>
+  </div>
+  <div class="hardv3-variant-cue" data-hardv3-for="functional">
+    <strong>Release feature routing</strong>
+    <p>Apply lookup chip before filtered evidence is committed.</p>
+  </div>
+</section>
+<div id="hardv3-verifier-catalog" hidden>
+  settings_security_subpanel_pass Settings Profile
+  tag_dialog_flow_pass Tags
+  auth_surface_availability_pass Username Password
+  row_scoped_action_container_pass Bookmarks
+  query_chip_apply_flow_pass focus20-route-filter
+  no_hidden_knowledge_required post_evaluator_state_reachable
+</div>
+<script>
+  (function hardv3ReleaseGrounded() {
+    const body = document.body;
+    const variant = body.dataset.hardv3Variant || "";
+    const path = window.location.pathname;
+    const params = new URLSearchParams(window.location.search);
+
+    function withReadyMarker(url) {
+      if (url.indexOf("hardv3_release_ready=1") !== -1) return url;
+      return url + (url.indexOf("?") === -1 ? "?" : "&") + "hardv3_release_ready=1";
+    }
+
+    function createButton(label, primary) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = primary ? "btn btn-primary" : "btn hardv3-muted-action";
+      button.textContent = label;
+      return button;
+    }
+
+    function stageContent(options) {
+      if (params.get("hardv3_release_ready") === "1") return;
+      const container = document.querySelector(".content.container");
+      if (!container || container.dataset.hardv3Staged === "1") return;
+
+      const original = document.createDocumentFragment();
+      while (container.firstChild) {
+        original.appendChild(container.firstChild);
+      }
+      container.dataset.hardv3Staged = "1";
+
+      if (options.pendingUrl) {
+        window.history.replaceState({ hardv3Pending: true }, "", options.pendingUrl);
+      }
+
+      const card = document.createElement("main");
+      card.className = "hardv3-stage-card";
+      card.setAttribute("aria-label", options.ariaLabel || "Release checkpoint");
+
+      const kicker = document.createElement("div");
+      kicker.className = "hardv3-release-kicker";
+      kicker.textContent = options.kicker || "release checkpoint";
+      const heading = document.createElement("h1");
+      heading.textContent = options.heading;
+      const detail = document.createElement("p");
+      detail.textContent = options.detail;
+      const actions = document.createElement("div");
+      actions.className = "hardv3-stage-actions";
+
+      const continueButton = createButton(options.buttonLabel, true);
+      continueButton.addEventListener("click", function () {
+        container.replaceChildren(original);
+        container.dataset.hardv3Staged = "0";
+        const finalUrl = withReadyMarker(options.restoreUrl || (path + window.location.search));
+        window.history.pushState({ hardv3Ready: true }, "", finalUrl);
+        if (options.afterReveal) options.afterReveal();
+      });
+      actions.appendChild(continueButton);
+      if (options.secondaryLabel) {
+        actions.appendChild(createButton(options.secondaryLabel, false));
+      }
+
+      card.appendChild(kicker);
+      card.appendChild(heading);
+      card.appendChild(detail);
+      card.appendChild(actions);
+      container.appendChild(card);
+    }
+
+    function stageLogin() {
+      if (variant !== "access" || path.indexOf("/login") !== 0) return;
+      const form = document.querySelector("[data-hardv3-login-form], form[action*='login'], main.auth-page form, #step-login");
+      if (!form || form.dataset.hardv3LoginStaged === "1") return;
+      form.dataset.hardv3LoginStaged = "1";
+      form.classList.add("hardv3-login-form-hidden");
+
+      const existingReveal = document.querySelector("[data-hardv3-login-reveal]");
+      if (existingReveal) {
+        existingReveal.addEventListener("click", function () {
+          form.classList.remove("hardv3-login-form-hidden");
+          existingReveal.closest(".hardv3-stage-card")?.remove();
+        });
+        return;
+      }
+
+      const panel = document.createElement("section");
+      panel.className = "hardv3-stage-card";
+      panel.setAttribute("aria-label", "Release access mode");
+      panel.innerHTML = [
+        '<div class="hardv3-release-kicker">PR #1269 availability change</div>',
+        "<h1>Release access mode</h1>",
+        "<p>The local sign-in surface is available after acknowledging the deployment notice.</p>"
+      ].join("");
+      const actions = document.createElement("div");
+      actions.className = "hardv3-stage-actions";
+      const reveal = createButton("Use local credentials", true);
+      reveal.addEventListener("click", function () {
+        form.classList.remove("hardv3-login-form-hidden");
+        panel.remove();
+      });
+      actions.appendChild(reveal);
+      panel.appendChild(actions);
+      form.parentNode.insertBefore(panel, form);
+    }
+
+    function stageSettings() {
+      if (!["process", "structural", "functional"].includes(variant)) return;
+      if (path.indexOf("/settings") !== 0) return;
+      stageContent({
+        heading: "Release control hub",
+        kicker: "PR #1248 API access management",
+        detail: "Administrative controls are grouped behind the security and integrations subpanel.",
+        buttonLabel: "Security and integrations",
+        secondaryLabel: "Stay on overview",
+        ariaLabel: "Release control hub",
+        restoreUrl: path + window.location.search
+      });
+    }
+
+    function stageTags() {
+      if (!["content", "process", "structural"].includes(variant)) return;
+      if (path.indexOf("/tags") !== 0) return;
+      stageContent({
+        heading: "Release label workspace",
+        kicker: "PR #1253 dialog-mediated label management",
+        detail: "Label management controls now open through a dialog-like workspace.",
+        buttonLabel: "Open release dialog",
+        secondaryLabel: "Review label summary",
+        ariaLabel: "Release label workspace",
+        restoreUrl: path + window.location.search
+      });
+    }
+
+    function stageLookup() {
+      if (!["content", "functional"].includes(variant)) return;
+      const query = params.get("q") || "";
+      if (path.indexOf("/bookmarks") !== 0 || !/^focus20-.*-filter$/.test(query)) return;
+      stageContent({
+        heading: "Release lookup chip",
+        kicker: "release search chip",
+        detail: "A prepared lookup chip is staged and must be applied before filtered evidence is committed.",
+        buttonLabel: "Apply lookup chip",
+        secondaryLabel: "Adjust chip",
+        ariaLabel: "Release lookup chip",
+        pendingUrl: "/bookmarks?release_lookup=prepared",
+        restoreUrl: path + window.location.search
+      });
+    }
+
+    function stageBookmarkForm() {
+      if (!["access", "surface", "runtime", "process"].includes(variant)) return;
+      if (path.indexOf("/bookmarks/new") !== 0) return;
+      stageContent({
+        heading: variant === "process" ? "Release workflow checkpoint" : "Release capture review",
+        kicker: variant === "runtime" ? "PR #1241 readiness gate" : "release bookmark intake",
+        detail: "Imported saved-page details are held in a review step before editable fields are shown.",
+        buttonLabel: "Review editable fields",
+        secondaryLabel: "Save for later",
+        ariaLabel: "Release capture review",
+        restoreUrl: path + window.location.search,
+        afterReveal: function () {
+          if (variant === "runtime") {
+            body.classList.add("hardv3-runtime-pending");
+            setTimeout(function () {
+              body.classList.remove("hardv3-runtime-pending");
+            }, 1600);
+          }
+        }
+      });
+    }
+
+    function stageListControls() {
+      if (!["surface", "runtime"].includes(variant)) return;
+      if (path.indexOf("/bookmarks") !== 0 || params.has("q")) return;
+      const container = document.querySelector(".content.container");
+      if (!container || document.getElementById("hardv3-row-scope-note")) return;
+      const note = document.createElement("div");
+      note.id = "hardv3-row-scope-note";
+      note.className = "hardv3-runtime-note";
+      note.textContent = "Select a row to enable actions.";
+      container.insertBefore(note, container.firstChild);
+      if (variant === "runtime") {
+        body.classList.add("hardv3-runtime-pending");
+        setTimeout(function () {
+          body.classList.remove("hardv3-runtime-pending");
+        }, 1800);
+      }
+    }
+
+    stageLogin();
+    stageSettings();
+    stageTags();
+    stageLookup();
+    stageBookmarkForm();
+    stageListControls();
+  })();
+</script>

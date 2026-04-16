@@ -1,0 +1,4 @@
+interface:
+  display_name: "WebCoEvo Monitor"
+  short_description: "Monitor jobs, logs, and trace audits."
+  default_prompt: "Use $webcoevo-monitor to check WebCoEvo Slurm job health, logs, trace audits, and result completeness."

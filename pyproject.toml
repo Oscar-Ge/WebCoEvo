@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "webcoevo"
+version = "0.1.0"
+description = "Self-contained Linkding XVR runner for cross-version reflection-rule evaluation."
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+benchmark = [
+  "agentlab",
+  "browsergym",
+  "openai",
+  "pandas",
+  "requests",
+]
+dev = [
+  "pytest",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["linkding_xvr_minimal*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

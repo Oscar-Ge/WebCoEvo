@@ -1,0 +1,3138 @@
+{
+  "schema_version": "webevolve-expel-memory-v2",
+  "summary": {
+    "num_episodes": 10,
+    "num_success_episodes": 1,
+    "num_insights": 21,
+    "num_success_insights": 2,
+    "num_failure_insights": 19,
+    "num_rules": 16,
+    "underpowered": true
+  },
+  "episodes": [
+    {
+      "episode_id": "episode.6000.1_4_0",
+      "task_id": 6000,
+      "source_version": "1.4.0",
+      "version": "1.4.0",
+      "family": "F1_CREATE_ALPHA",
+      "goal": "Assume you are already logged in on http://127.0.0.1:29091 and do not go to login page. Create bookmark URL https://example.com/robust-140-alpha?from=agent&v=140, title 'Robust VV 1.4.0 Alpha', tags 'robust baseline v140 alpha'. Save. Final answer include exact title and URL.",
+      "intent_template": "F1 Create Alpha on linkding {{version}}",
+      "start_url": "http://127.0.0.1:29091",
+      "success": false,
+      "terminal_error": "",
+      "error": "",
+      "final_answer": "",
+      "steps_taken": 20,
+      "elapsed_sec": 49.18928074836731,
+      "steps": [
+        {
+          "step": 0,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 1,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 2,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 3,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 4,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 5,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 6,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 7,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 8,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 9,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 10,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 11,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 12,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 13,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 14,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 15,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 16,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 17,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 18,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 19,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 20,
+          "event": "task_step",
+          "action": "",
+          "model_output": "",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        }
+      ],
+      "trace_provenance": {
+        "trace_file": "result_expel_train_v140/agentlab_v140__uitars_trace_20260326_235004.jsonl",
+        "eval_file": "result_expel_train_v140/agentlab_v140__uitars_eval_20260326_235004.jsonl"
+      }
+    },
+    {
+      "episode_id": "episode.6001.1_4_0",
+      "task_id": 6001,
+      "source_version": "1.4.0",
+      "version": "1.4.0",
+      "family": "F2_CREATE_BETA",
+      "goal": "Assume you are already logged in on http://127.0.0.1:29091 and do not go to login page. Create bookmark URL https://example.com/robust-140-beta#frag, title 'Robust VV 1.4.0 Beta', tags 'robust baseline v140 beta'. Save. Final answer include exact title and URL.",
+      "intent_template": "F2 Create Beta on linkding {{version}}",
+      "start_url": "http://127.0.0.1:29091",
+      "success": false,
+      "terminal_error": "",
+      "error": "",
+      "final_answer": "",
+      "steps_taken": 20,
+      "elapsed_sec": 37.32046937942505,
+      "steps": [
+        {
+          "step": 0,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 1,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 2,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 3,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 4,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 5,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 6,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 7,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 8,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 9,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 10,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 11,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 12,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 13,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 14,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 15,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 16,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 17,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 18,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 19,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 20,
+          "event": "task_step",
+          "action": "",
+          "model_output": "",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        }
+      ],
+      "trace_provenance": {
+        "trace_file": "result_expel_train_v140/agentlab_v140__uitars_trace_20260326_235004.jsonl",
+        "eval_file": "result_expel_train_v140/agentlab_v140__uitars_eval_20260326_235004.jsonl"
+      }
+    },
+    {
+      "episode_id": "episode.6002.1_4_0",
+      "task_id": 6002,
+      "source_version": "1.4.0",
+      "version": "1.4.0",
+      "family": "F3_CREATE_GAMMA",
+      "goal": "Assume you are already logged in on http://127.0.0.1:29091 and do not go to login page. Create bookmark URL https://example.com/robust-140-gamma/path?q=multi&src=bench, title 'Robust VV 1.4.0 Gamma', tags 'robust baseline v140 gamma'. Save. Final answer include exact title and URL.",
+      "intent_template": "F3 Create Gamma on linkding {{version}}",
+      "start_url": "http://127.0.0.1:29091",
+      "success": false,
+      "terminal_error": "",
+      "error": "",
+      "final_answer": "",
+      "steps_taken": 20,
+      "elapsed_sec": 37.44346332550049,
+      "steps": [
+        {
+          "step": 0,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 1,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 2,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 3,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 4,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 5,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 6,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 7,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 8,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 9,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 10,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 11,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 12,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 13,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 14,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 15,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 16,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 17,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 18,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 19,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 20,
+          "event": "task_step",
+          "action": "",
+          "model_output": "",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        }
+      ],
+      "trace_provenance": {
+        "trace_file": "result_expel_train_v140/agentlab_v140__uitars_trace_20260326_235004.jsonl",
+        "eval_file": "result_expel_train_v140/agentlab_v140__uitars_eval_20260326_235004.jsonl"
+      }
+    },
+    {
+      "episode_id": "episode.6003.1_4_0",
+      "task_id": 6003,
+      "source_version": "1.4.0",
+      "version": "1.4.0",
+      "family": "F4_EDIT_ALPHA",
+      "goal": "Assume you are already logged in on http://127.0.0.1:29091 and do not go to login page. Find bookmark URL https://example.com/robust-140-alpha?from=agent&v=140, change title to 'Robust VV 1.4.0 Alpha Edited', add tag 'regression', save. Final answer include 'Robust VV 1.4.0 Alpha Edited' and 'regression'.",
+      "intent_template": "F4 Edit Alpha on linkding {{version}}",
+      "start_url": "http://127.0.0.1:29091",
+      "success": false,
+      "terminal_error": "",
+      "error": "",
+      "final_answer": "",
+      "steps_taken": 20,
+      "elapsed_sec": 37.370516300201416,
+      "steps": [
+        {
+          "step": 0,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 1,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 2,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 3,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 4,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 5,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 6,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 7,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 8,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 9,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 10,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 11,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 12,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 13,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 14,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 15,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 16,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 17,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 18,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 19,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 20,
+          "event": "task_step",
+          "action": "",
+          "model_output": "",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        }
+      ],
+      "trace_provenance": {
+        "trace_file": "result_expel_train_v140/agentlab_v140__uitars_trace_20260326_235004.jsonl",
+        "eval_file": "result_expel_train_v140/agentlab_v140__uitars_eval_20260326_235004.jsonl"
+      }
+    },
+    {
+      "episode_id": "episode.6004.1_4_0",
+      "task_id": 6004,
+      "source_version": "1.4.0",
+      "version": "1.4.0",
+      "family": "F5_DELETE_BETA",
+      "goal": "Assume you are already logged in on http://127.0.0.1:29091 and do not go to login page. Find bookmark titled 'Robust VV 1.4.0 Beta', delete it, confirm deletion. Final answer include 'Deleted Robust VV 1.4.0 Beta'.",
+      "intent_template": "F5 Delete Beta on linkding {{version}}",
+      "start_url": "http://127.0.0.1:29091",
+      "success": false,
+      "terminal_error": "",
+      "error": "",
+      "final_answer": "",
+      "steps_taken": 20,
+      "elapsed_sec": 37.1848201751709,
+      "steps": [
+        {
+          "step": 0,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 1,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 2,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 3,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 4,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 5,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 6,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 7,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 8,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 9,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 10,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 11,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 12,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 13,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 14,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 15,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 16,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 17,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 18,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 19,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 20,
+          "event": "task_step",
+          "action": "",
+          "model_output": "",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        }
+      ],
+      "trace_provenance": {
+        "trace_file": "result_expel_train_v140/agentlab_v140__uitars_trace_20260326_235004.jsonl",
+        "eval_file": "result_expel_train_v140/agentlab_v140__uitars_eval_20260326_235004.jsonl"
+      }
+    },
+    {
+      "episode_id": "episode.6005.1_4_0",
+      "task_id": 6005,
+      "source_version": "1.4.0",
+      "version": "1.4.0",
+      "family": "F6_CONSISTENCY",
+      "goal": "Assume you are already logged in on http://127.0.0.1:29091 and do not go to login page. On bookmarks list verify 'Robust VV 1.4.0 Alpha Edited' exists and 'Robust VV 1.4.0 Beta' is absent. Final answer include 'Robust VV 1.4.0 Alpha Edited' and 'beta deleted'.",
+      "intent_template": "F6 Consistency check on linkding {{version}}",
+      "start_url": "http://127.0.0.1:29091",
+      "success": false,
+      "terminal_error": "",
+      "error": "",
+      "final_answer": "",
+      "steps_taken": 20,
+      "elapsed_sec": 37.37728834152222,
+      "steps": [
+        {
+          "step": 0,
+          "event": "task_step",
+          "action": "click('19')",
+          "model_output": "```\nclick('19')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 1,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/new",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 2,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 3,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 4,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 5,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 6,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 7,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 8,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 9,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 10,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 11,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 12,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 13,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 14,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 15,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 16,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 17,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 18,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 19,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 20,
+          "event": "task_step",
+          "action": "",
+          "model_output": "",
+          "url": "http://127.0.0.1:29091/bookmarks/archived",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        }
+      ],
+      "trace_provenance": {
+        "trace_file": "result_expel_train_v140/agentlab_v140__uitars_trace_20260326_235004.jsonl",
+        "eval_file": "result_expel_train_v140/agentlab_v140__uitars_eval_20260326_235004.jsonl"
+      }
+    },
+    {
+      "episode_id": "episode.6006.1_4_0",
+      "task_id": 6006,
+      "source_version": "1.4.0",
+      "version": "1.4.0",
+      "family": "F7_TAG_FILTER",
+      "goal": "Assume you are already logged in on http://127.0.0.1:29091 and do not go to login page. Filter bookmarks by tag 'regression' and keep results page showing 'Robust VV 1.4.0 Alpha Edited'.",
+      "intent_template": "F7 Tag filter check on linkding {{version}}",
+      "start_url": "http://127.0.0.1:29091",
+      "success": false,
+      "terminal_error": "",
+      "error": "",
+      "final_answer": "",
+      "steps_taken": 20,
+      "elapsed_sec": 36.480727434158325,
+      "steps": [
+        {
+          "step": 0,
+          "event": "task_step",
+          "action": "click('44')",
+          "model_output": "```\nclick('44')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 1,
+          "event": "task_step",
+          "action": "click('44')",
+          "model_output": "```\nclick('44')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 2,
+          "event": "task_step",
+          "action": "click('44')",
+          "model_output": "```\nclick('44')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 3,
+          "event": "task_step",
+          "action": "click('44')",
+          "model_output": "```\nclick('44')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 4,
+          "event": "task_step",
+          "action": "click('44')",
+          "model_output": "```\nclick('44')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 5,
+          "event": "task_step",
+          "action": "click('44')",
+          "model_output": "```\nclick('44')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 6,
+          "event": "task_step",
+          "action": "click('44')",
+          "model_output": "```\nclick('44')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 7,
+          "event": "task_step",
+          "action": "click('44')",
+          "model_output": "```\nclick('44')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 8,
+          "event": "task_step",
+          "action": "click('44')",
+          "model_output": "```\nclick('44')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 9,
+          "event": "task_step",
+          "action": "click('44')",
+          "model_output": "```\nclick('44')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 10,
+          "event": "task_step",
+          "action": "click('44')",
+          "model_output": "```\nclick('44')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 11,
+          "event": "task_step",
+          "action": "click('44')",
+          "model_output": "```\nclick('44')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 12,
+          "event": "task_step",
+          "action": "click('44')",
+          "model_output": "```\nclick('44')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 13,
+          "event": "task_step",
+          "action": "click('44')",
+          "model_output": "```\nclick('44')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 14,
+          "event": "task_step",
+          "action": "click('44')",
+          "model_output": "```\nclick('44')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 15,
+          "event": "task_step",
+          "action": "click('44')",
+          "model_output": "```\nclick('44')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 16,
+          "event": "task_step",
+          "action": "click('44')",
+          "model_output": "```\nclick('44')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 17,
+          "event": "task_step",
+          "action": "click('44')",
+          "model_output": "```\nclick('44')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 18,
+          "event": "task_step",
+          "action": "click('44')",
+          "model_output": "```\nclick('44')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 19,
+          "event": "task_step",
+          "action": "click('44')",
+          "model_output": "```\nclick('44')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 20,
+          "event": "task_step",
+          "action": "",
+          "model_output": "",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        }
+      ],
+      "trace_provenance": {
+        "trace_file": "result_expel_train_v140/agentlab_v140__uitars_trace_20260326_235004.jsonl",
+        "eval_file": "result_expel_train_v140/agentlab_v140__uitars_eval_20260326_235004.jsonl"
+      }
+    },
+    {
+      "episode_id": "episode.6007.1_4_0",
+      "task_id": 6007,
+      "source_version": "1.4.0",
+      "version": "1.4.0",
+      "family": "F8_SEARCH_FILTER",
+      "goal": "Assume you are already logged in on http://127.0.0.1:29091 and do not go to login page. Use search to find 'Robust VV 1.4.0 Alpha Edited' and keep only matching result visible.",
+      "intent_template": "F8 Search query check on linkding {{version}}",
+      "start_url": "http://127.0.0.1:29091",
+      "success": false,
+      "terminal_error": "",
+      "error": "",
+      "final_answer": "",
+      "steps_taken": 20,
+      "elapsed_sec": 35.87132024765015,
+      "steps": [
+        {
+          "step": 0,
+          "event": "task_step",
+          "action": "focus('48')",
+          "model_output": "```\nfocus('48')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 1,
+          "event": "task_step",
+          "action": "focus('48')",
+          "model_output": "```\nfocus('48')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 2,
+          "event": "task_step",
+          "action": "focus('48')",
+          "model_output": "```\nfocus('48')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 3,
+          "event": "task_step",
+          "action": "focus('48')",
+          "model_output": "```\nfocus('48')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 4,
+          "event": "task_step",
+          "action": "focus('48')",
+          "model_output": "```\nfocus('48')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 5,
+          "event": "task_step",
+          "action": "focus('48')",
+          "model_output": "```\nfocus('48')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 6,
+          "event": "task_step",
+          "action": "focus('48')",
+          "model_output": "```\nfocus('48')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 7,
+          "event": "task_step",
+          "action": "focus('48')",
+          "model_output": "```\nfocus('48')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 8,
+          "event": "task_step",
+          "action": "focus('48')",
+          "model_output": "```\nfocus('48')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 9,
+          "event": "task_step",
+          "action": "focus('48')",
+          "model_output": "```\nfocus('48')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 10,
+          "event": "task_step",
+          "action": "focus('48')",
+          "model_output": "```\nfocus('48')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 11,
+          "event": "task_step",
+          "action": "focus('48')",
+          "model_output": "```\nfocus('48')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 12,
+          "event": "task_step",
+          "action": "focus('48')",
+          "model_output": "```\nfocus('48')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 13,
+          "event": "task_step",
+          "action": "focus('48')",
+          "model_output": "```\nfocus('48')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 14,
+          "event": "task_step",
+          "action": "focus('48')",
+          "model_output": "```\nfocus('48')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 15,
+          "event": "task_step",
+          "action": "focus('48')",
+          "model_output": "```\nfocus('48')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 16,
+          "event": "task_step",
+          "action": "focus('48')",
+          "model_output": "```\nfocus('48')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 17,
+          "event": "task_step",
+          "action": "focus('48')",
+          "model_output": "```\nfocus('48')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 18,
+          "event": "task_step",
+          "action": "focus('48')",
+          "model_output": "```\nfocus('48')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 19,
+          "event": "task_step",
+          "action": "focus('48')",
+          "model_output": "```\nfocus('48')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 20,
+          "event": "task_step",
+          "action": "",
+          "model_output": "",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        }
+      ],
+      "trace_provenance": {
+        "trace_file": "result_expel_train_v140/agentlab_v140__uitars_trace_20260326_235004.jsonl",
+        "eval_file": "result_expel_train_v140/agentlab_v140__uitars_eval_20260326_235004.jsonl"
+      }
+    },
+    {
+      "episode_id": "episode.6008.1_4_0",
+      "task_id": 6008,
+      "source_version": "1.4.0",
+      "version": "1.4.0",
+      "family": "F9_VERSION_ITERATION",
+      "goal": "Assume you are already logged in on http://127.0.0.1:29091 and do not go to login page. Open Settings and keep the settings page stable. Final answer include: settings.",
+      "intent_template": "F9 Settings surface check on linkding {version}",
+      "start_url": "http://127.0.0.1:29091",
+      "success": true,
+      "terminal_error": "",
+      "error": "",
+      "final_answer": "f9 pass",
+      "steps_taken": 1,
+      "elapsed_sec": 2.875941514968872,
+      "steps": [
+        {
+          "step": 0,
+          "event": "task_step",
+          "action": "click('21')",
+          "model_output": "```\nclick('21')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 1,
+          "event": "task_step",
+          "action": "",
+          "model_output": "",
+          "url": "http://127.0.0.1:29091/settings",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": true
+        }
+      ],
+      "trace_provenance": {
+        "trace_file": "result_expel_train_v140/agentlab_v140__uitars_trace_20260326_235004.jsonl",
+        "eval_file": "result_expel_train_v140/agentlab_v140__uitars_eval_20260326_235004.jsonl"
+      }
+    },
+    {
+      "episode_id": "episode.6009.1_4_0",
+      "task_id": 6009,
+      "source_version": "1.4.0",
+      "version": "1.4.0",
+      "family": "F10_VERSION_ITERATION",
+      "goal": "Assume you are already logged in on http://127.0.0.1:29091 and do not go to login page. Navigate Bookmarks -> Settings -> Bookmarks and ensure bookmarks page is visible again. Final answer include: bookmarks, visible.",
+      "intent_template": "F10 Settings navigation check on linkding {version}",
+      "start_url": "http://127.0.0.1:29091",
+      "success": false,
+      "terminal_error": "",
+      "error": "",
+      "final_answer": "",
+      "steps_taken": 20,
+      "elapsed_sec": 37.006922006607056,
+      "steps": [
+        {
+          "step": 0,
+          "event": "task_step",
+          "action": "click('21')",
+          "model_output": "```\nclick('21')\n```",
+          "url": "http://127.0.0.1:29091/bookmarks",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 1,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/settings",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 2,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/settings",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 3,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/settings",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 4,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/settings",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 5,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/settings",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 6,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/settings",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 7,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/settings",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 8,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/settings",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 9,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/settings",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 10,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/settings",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 11,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/settings",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 12,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/settings",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 13,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/settings",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 14,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/settings",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 15,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/settings",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 16,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/settings",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 17,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/settings",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 18,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/settings",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 19,
+          "event": "task_step",
+          "action": "click('20')",
+          "model_output": "```\nclick('20')\n```",
+          "url": "http://127.0.0.1:29091/settings",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        },
+        {
+          "step": 20,
+          "event": "task_step",
+          "action": "",
+          "model_output": "",
+          "url": "http://127.0.0.1:29091/settings",
+          "error": "",
+          "final_answer": "",
+          "success_so_far": false
+        }
+      ],
+      "trace_provenance": {
+        "trace_file": "result_expel_train_v140/agentlab_v140__uitars_trace_20260326_235004.jsonl",
+        "eval_file": "result_expel_train_v140/agentlab_v140__uitars_eval_20260326_235004.jsonl"
+      }
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "rule.1",
+      "text": "Always verify the current page URL and ensure it matches the expected destination before performing any action. Period.",
+      "score": 4,
+      "scope": "global",
+      "scope_id": "",
+      "version_tags": [
+        "1.4.0"
+      ],
+      "provenance_episode_ids": [
+        "episode.6000.1_4_0",
+        "episode.6005.1_4_0",
+        "episode.6008.1_4_0"
+      ],
+      "evidence_mode": "failure_only+success_only"
+    },
+    {
+      "rule_id": "rule.2",
+      "text": "Before attempting to interact with a page, verify that the page has fully loaded and that the expected elements are present and responsive. Period.",
+      "score": 4,
+      "scope": "global",
+      "scope_id": "",
+      "version_tags": [
+        "1.4.0"
+      ],
+      "provenance_episode_ids": [
+        "episode.6004.1_4_0",
+        "episode.6005.1_4_0",
+        "episode.6008.1_4_0"
+      ],
+      "evidence_mode": "failure_only+success_only"
+    },
+    {
+      "rule_id": "rule.3",
+      "text": "If a sequence of identical clicks fails to change the page state, check the current URL and ensure it matches the expected destination before proceeding. Period.",
+      "score": 4,
+      "scope": "global",
+      "scope_id": "",
+      "version_tags": [
+        "1.4.0"
+      ],
+      "provenance_episode_ids": [
+        "episode.6004.1_4_0",
+        "episode.6005.1_4_0",
+        "episode.6006.1_4_0"
+      ],
+      "evidence_mode": "failure_only"
+    },
+    {
+      "rule_id": "rule.4",
+      "text": "If a sequence of identical clicks fails to progress, check for page load issues or missing elements and pause to assess the state. Period.",
+      "score": 4,
+      "scope": "global",
+      "scope_id": "",
+      "version_tags": [
+        "1.4.0"
+      ],
+      "provenance_episode_ids": [
+        "episode.6000.1_4_0",
+        "episode.6005.1_4_0",
+        "episode.6006.1_4_0"
+      ],
+      "evidence_mode": "failure_only"
+    },
+    {
+      "rule_id": "rule.5",
+      "text": "If repeated clicks on the same element fail to progress, check whether the page has loaded correctly and whether the target element is present and responsive. Period.",
+      "score": 4,
+      "scope": "global",
+      "scope_id": "",
+      "version_tags": [
+        "1.4.0"
+      ],
+      "provenance_episode_ids": [
+        "episode.6002.1_4_0",
+        "episode.6005.1_4_0",
+        "episode.6006.1_4_0"
+      ],
+      "evidence_mode": "failure_only"
+    },
+    {
+      "rule_id": "rule.6",
+      "text": "When a task requires navigating to a specific page, verify the page is loaded and ready before proceeding with actions. Period.",
+      "score": 4,
+      "scope": "global",
+      "scope_id": "",
+      "version_tags": [
+        "1.4.0"
+      ],
+      "provenance_episode_ids": [
+        "episode.6000.1_4_0",
+        "episode.6005.1_4_0",
+        "episode.6008.1_4_0"
+      ],
+      "evidence_mode": "failure_only+success_only"
+    },
+    {
+      "rule_id": "rule.7",
+      "text": "When clicking to navigate, ensure the click results in a page change and verify the new page URL and content before continuing. Period.",
+      "score": 4,
+      "scope": "global",
+      "scope_id": "",
+      "version_tags": [
+        "1.4.0"
+      ],
+      "provenance_episode_ids": [
+        "episode.6003.1_4_0",
+        "episode.6005.1_4_0",
+        "episode.6008.1_4_0"
+      ],
+      "evidence_mode": "failure_only+success_only"
+    },
+    {
+      "rule_id": "rule.8",
+      "text": "After navigating to a new page, verify that the page content and URL reflect the intended destination before performing any further actions. Period.",
+      "score": 3,
+      "scope": "global",
+      "scope_id": "",
+      "version_tags": [
+        "1.4.0"
+      ],
+      "provenance_episode_ids": [
+        "episode.6004.1_4_0",
+        "episode.6005.1_4_0"
+      ],
+      "evidence_mode": "failure_only"
+    },
+    {
+      "rule_id": "rule.9",
+      "text": "Before attempting any interaction on a page, verify that the page has fully loaded and is responsive by checking for visible elements and interactive components. Period.",
+      "score": 3,
+      "scope": "global",
+      "scope_id": "",
+      "version_tags": [
+        "1.4.0"
+      ],
+      "provenance_episode_ids": [
+        "episode.6001.1_4_0",
+        "episode.6005.1_4_0"
+      ],
+      "evidence_mode": "failure_only"
+    },
+    {
+      "rule_id": "rule.10",
+      "text": "Before attempting to create a bookmark, verify that the current page is the correct bookmark creation page and that the form is visible and interactive. Period.",
+      "score": 3,
+      "scope": "global",
+      "scope_id": "",
+      "version_tags": [
+        "1.4.0"
+      ],
+      "provenance_episode_ids": [
+        "episode.6003.1_4_0",
+        "episode.6004.1_4_0",
+        "episode.6005.1_4_0",
+        "episode.6008.1_4_0"
+      ],
+      "evidence_mode": "failure_only+success_only"
+    },
+    {
+      "rule_id": "rule.11",
+      "text": "If repeated clicks on the same element fail to change the page state, verify that the current page is the correct one and that the intended action is applicable before continuing. Period.",
+      "score": 3,
+      "scope": "global",
+      "scope_id": "",
+      "version_tags": [
+        "1.4.0"
+      ],
+      "provenance_episode_ids": [
+        "episode.6006.1_4_0",
+        "episode.6009.1_4_0"
+      ],
+      "evidence_mode": "failure_only"
+    },
+    {
+      "rule_id": "rule.12",
+      "text": "If the page URL does not match the expected destination after navigation, reattempt navigation or verify the correct link before proceeding. Period.",
+      "score": 3,
+      "scope": "global",
+      "scope_id": "",
+      "version_tags": [
+        "1.4.0"
+      ],
+      "provenance_episode_ids": [
+        "episode.6003.1_4_0",
+        "episode.6005.1_4_0"
+      ],
+      "evidence_mode": "failure_only"
+    },
+    {
+      "rule_id": "rule.13",
+      "text": "Before attempting to create a bookmark, confirm that the bookmark creation form is fully loaded, visible, and interactive. Period.",
+      "score": 2,
+      "scope": "global",
+      "scope_id": "",
+      "version_tags": [
+        "1.4.0"
+      ],
+      "provenance_episode_ids": [
+        "episode.6002.1_4_0",
+        "episode.6004.1_4_0",
+        "episode.6005.1_4_0",
+        "episode.6008.1_4_0"
+      ],
+      "evidence_mode": "failure_only+success_only"
+    },
+    {
+      "rule_id": "rule.14",
+      "text": "Before attempting to create a bookmark, verify that the user is on the correct page and that the bookmark creation form is visible and interactive. Period.",
+      "score": 2,
+      "scope": "global",
+      "scope_id": "",
+      "version_tags": [
+        "1.4.0"
+      ],
+      "provenance_episode_ids": [
+        "episode.6002.1_4_0",
+        "episode.6003.1_4_0",
+        "episode.6004.1_4_0",
+        "episode.6005.1_4_0",
+        "episode.6008.1_4_0"
+      ],
+      "evidence_mode": "failure_only+success_only"
+    },
+    {
+      "rule_id": "rule.15",
+      "text": "Before performing any action on a page, verify that the page has fully loaded and that the expected elements are present and interactive. Period.",
+      "score": 2,
+      "scope": "family",
+      "scope_id": "F9_VERSION_ITERATION",
+      "version_tags": [
+        "1.4.0"
+      ],
+      "provenance_episode_ids": [
+        "episode.6008.1_4_0"
+      ],
+      "evidence_mode": "success_only"
+    },
+    {
+      "rule_id": "rule.16",
+      "text": "If repeated focus actions on the same element fail to produce any change in page state or interaction, verify that the current page is the correct one and that the target element is visible and interactive before continuing. Period.",
+      "score": 2,
+      "scope": "family",
+      "scope_id": "F8_SEARCH_FILTER",
+      "version_tags": [
+        "1.4.0"
+      ],
+      "provenance_episode_ids": [
+        "episode.6007.1_4_0"
+      ],
+      "evidence_mode": "failure_only"
+    }
+  ],
+  "insights": [
+    {
+      "insight_id": "expel.6000.0.the_agent_repeatedly_attempts_to_click_element_19_to_proceed_wit",
+      "task_id": 6000,
+      "family": "F1_CREATE_ALPHA",
+      "source_version": "1.4.0",
+      "summary": "The agent repeatedly attempts to click element '19' to proceed with creating a new bookmark, but the action fails to progress beyond the bookmark creation page, indicating a possible UI or element identification issue.",
+      "when": "during the bookmark creation process",
+      "query_terms": [
+        "19",
+        "bookmark",
+        "bookmarks",
+        "click",
+        "create",
+        "failed",
+        "new",
+        "to"
+      ],
+      "outcome_tag": "failure"
+    },
+    {
+      "insight_id": "expel.6001.0.the_agent_repeatedly_attempts_to_click_element_19_to_proceed_wit",
+      "task_id": 6001,
+      "family": "F2_CREATE_BETA",
+      "source_version": "1.4.0",
+      "summary": "The agent repeatedly attempts to click element '19' to proceed with creating a new bookmark, but the action fails to progress beyond the bookmark creation page, indicating a possible issue with the target element or page state.",
+      "when": "during the bookmark creation process",
+      "query_terms": [
+        "19",
+        "bookmark",
+        "click",
+        "creation",
+        "failure",
+        "progress",
+        "to"
+      ],
+      "outcome_tag": "failure"
+    },
+    {
+      "insight_id": "expel.6001.1.the_agent_is_stuck_in_a_loop_of_clicking_the_same_element_withou",
+      "task_id": 6001,
+      "family": "F2_CREATE_BETA",
+      "source_version": "1.4.0",
+      "summary": "The agent is stuck in a loop of clicking the same element without success, suggesting that the intended interaction point may not be functional or the page is not responding as expected.",
+      "when": "throughout the trajectory",
+      "query_terms": [
+        "change",
+        "clicks",
+        "no",
+        "page",
+        "repeated",
+        "state",
+        "stuck"
+      ],
+      "outcome_tag": "failure"
+    },
+    {
+      "insight_id": "expel.6001.2.the_agent_fails_to_input_the_required_bookmark_details_url_title",
+      "task_id": 6001,
+      "family": "F2_CREATE_BETA",
+      "source_version": "1.4.0",
+      "summary": "The agent fails to input the required bookmark details (URL, title, tags) and save the bookmark, likely due to the inability to interact with the form fields after navigating to the new bookmark page.",
+      "when": "at the end of the trajectory",
+      "query_terms": [
+        "failure",
+        "form",
+        "input",
+        "interaction",
+        "missing",
+        "no",
+        "save"
+      ],
+      "outcome_tag": "failure"
+    },
+    {
+      "insight_id": "expel.6002.0.the_agent_repeatedly_attempts_to_click_element_19_to_proceed_to_",
+      "task_id": 6002,
+      "family": "F3_CREATE_GAMMA",
+      "source_version": "1.4.0",
+      "summary": "The agent repeatedly attempts to click element '19' to proceed to the bookmark creation page but fails to advance beyond the new bookmark form, indicating a possible UI issue or incorrect element targeting.",
+      "when": "step 0 to step 20",
+      "query_terms": [
+        "19",
+        "bookmark",
+        "bookmarks",
+        "click",
+        "creation",
+        "new"
+      ],
+      "outcome_tag": "failure"
+    },
+    {
+      "insight_id": "expel.6003.0.the_agent_repeatedly_navigated_to_the_archived_bookmarks_page_wi",
+      "task_id": 6003,
+      "family": "F4_EDIT_ALPHA",
+      "source_version": "1.4.0",
+      "summary": "The agent repeatedly navigated to the archived bookmarks page without finding the target bookmark, indicating a failure to locate the specific URL in the expected location.",
+      "when": "during the search for the bookmark URL",
+      "query_terms": [
+        "140",
+        "add",
+        "agent",
+        "alpha",
+        "bookmark",
+        "com",
+        "edit",
+        "example",
+        "find",
+        "from",
+        "https",
+        "robust",
+        "tag",
+        "title"
+      ],
+      "outcome_tag": "failure"
+    },
+    {
+      "insight_id": "expel.6003.1.the_agent_did_not_attempt_to_search_or_filter_bookmarks_leading_",
+      "task_id": 6003,
+      "family": "F4_EDIT_ALPHA",
+      "source_version": "1.4.0",
+      "summary": "The agent did not attempt to search or filter bookmarks, leading to inefficient navigation and failure to locate the desired entry.",
+      "when": "before attempting to edit the bookmark",
+      "query_terms": [
+        "bookmark",
+        "filter",
+        "search",
+        "tag",
+        "title"
+      ],
+      "outcome_tag": "failure"
+    },
+    {
+      "insight_id": "expel.6003.2.the_agent_failed_to_recognize_that_the_target_bookmark_was_not_i",
+      "task_id": 6003,
+      "family": "F4_EDIT_ALPHA",
+      "source_version": "1.4.0",
+      "summary": "The agent failed to recognize that the target bookmark was not in the archived section, suggesting a lack of understanding of the bookmark organization structure.",
+      "when": "during navigation to the bookmark page",
+      "query_terms": [
+        "active",
+        "archived",
+        "bookmarks",
+        "location"
+      ],
+      "outcome_tag": "failure"
+    },
+    {
+      "insight_id": "expel.6004.0.the_agent_repeatedly_navigated_to_the_archived_bookmarks_page_wi",
+      "task_id": 6004,
+      "family": "F5_DELETE_BETA",
+      "source_version": "1.4.0",
+      "summary": "The agent repeatedly navigated to the archived bookmarks page without finding or deleting the target bookmark, indicating a failure to locate 'Robust VV 1.4.0 Beta' in the expected location.",
+      "when": "during the trajectory from step 1 to step 20",
+      "query_terms": [
+        "archived",
+        "beta",
+        "bookmarks",
+        "delete",
+        "robust",
+        "vv"
+      ],
+      "outcome_tag": "failure"
+    },
+    {
+      "insight_id": "expel.6004.1.the_agent_failed_to_identify_the_correct_path_to_the_bookmark_re",
+      "task_id": 6004,
+      "family": "F5_DELETE_BETA",
+      "source_version": "1.4.0",
+      "summary": "The agent failed to identify the correct path to the bookmark, repeatedly clicking on the same element without progressing toward the goal.",
+      "when": "throughout the entire trajectory",
+      "query_terms": [
+        "20",
+        "archived",
+        "bookmarks",
+        "click",
+        "navigation"
+      ],
+      "outcome_tag": "failure"
+    },
+    {
+      "insight_id": "expel.6004.2.the_agent_did_not_attempt_to_search_for_the_bookmark_or_verify_i",
+      "task_id": 6004,
+      "family": "F5_DELETE_BETA",
+      "source_version": "1.4.0",
+      "summary": "The agent did not attempt to search for the bookmark or verify its presence in the main bookmarks list before moving to archived, suggesting a flawed strategy.",
+      "when": "at the beginning of the trajectory",
+      "query_terms": [
+        "beta",
+        "bookmarks",
+        "existence",
+        "main",
+        "robust",
+        "search",
+        "vv"
+      ],
+      "outcome_tag": "failure"
+    },
+    {
+      "insight_id": "expel.6005.0.the_agent_repeatedly_navigated_to_the_archived_bookmarks_page_wi",
+      "task_id": 6005,
+      "family": "F6_CONSISTENCY",
+      "source_version": "1.4.0",
+      "summary": "The agent repeatedly navigated to the archived bookmarks page without verifying the presence of 'Robust VV 1.4.0 Alpha Edited' or absence of 'Robust VV 1.4.0 Beta', indicating a failure to perform the required check.",
+      "when": "during the trajectory",
+      "query_terms": [
+        "absence",
+        "alpha",
+        "beta",
+        "bookmarks",
+        "edited",
+        "existence",
+        "list",
+        "robust",
+        "verify",
+        "vv"
+      ],
+      "outcome_tag": "failure"
+    },
+    {
+      "insight_id": "expel.6005.1.the_agent_did_not_perform_any_action_to_search_or_inspect_the_bo",
+      "task_id": 6005,
+      "family": "F6_CONSISTENCY",
+      "source_version": "1.4.0",
+      "summary": "The agent did not perform any action to search or inspect the bookmarks list for the required entries, leading to a failure in completing the task.",
+      "when": "during the trajectory",
+      "query_terms": [
+        "bookmark",
+        "bookmarks",
+        "check",
+        "for",
+        "list",
+        "search",
+        "validate",
+        "verify"
+      ],
+      "outcome_tag": "failure"
+    },
+    {
+      "insight_id": "expel.6005.2.the_agent_s_repeated_clicks_on_the_same_element_id_20_suggest_a_",
+      "task_id": 6005,
+      "family": "F6_CONSISTENCY",
+      "source_version": "1.4.0",
+      "summary": "The agent's repeated clicks on the same element (ID '20') suggest a lack of understanding of the interface or a failure to identify the correct navigation path to the bookmarks list.",
+      "when": "during the trajectory",
+      "query_terms": [
+        "20",
+        "click",
+        "error",
+        "incorrect",
+        "interaction",
+        "interface",
+        "misunderstanding",
+        "navigation"
+      ],
+      "outcome_tag": "failure"
+    },
+    {
+      "insight_id": "expel.6006.0.the_agent_repeatedly_attempts_to_interact_with_element_44_on_the",
+      "task_id": 6006,
+      "family": "F7_TAG_FILTER",
+      "source_version": "1.4.0",
+      "summary": "The agent repeatedly attempts to interact with element '44' on the bookmarks page but fails to progress, indicating a potential issue with the element's functionality or the page's state.",
+      "when": "during the entire trajectory from step 0 to step 20",
+      "query_terms": [
+        "44",
+        "bookmarks",
+        "by",
+        "click",
+        "failure",
+        "filter",
+        "page",
+        "tag",
+        "to"
+      ],
+      "outcome_tag": "failure"
+    },
+    {
+      "insight_id": "expel.6007.0.the_agent_repeatedly_focused_on_element_48_without_achieving_the",
+      "task_id": 6007,
+      "family": "F8_SEARCH_FILTER",
+      "source_version": "1.4.0",
+      "summary": "The agent repeatedly focused on element '48' without achieving the goal of filtering search results for 'Robust VV 1.4.0 Alpha Edited'. This indicates a failure to initiate or interact with the search functionality.",
+      "when": "early",
+      "query_terms": [
+        "alpha",
+        "edited",
+        "filter",
+        "robust",
+        "search",
+        "vv"
+      ],
+      "outcome_tag": "failure"
+    },
+    {
+      "insight_id": "expel.6007.1.no_search_action_was_executed_despite_multiple_focus_attempts_su",
+      "task_id": 6007,
+      "family": "F8_SEARCH_FILTER",
+      "source_version": "1.4.0",
+      "summary": "No search action was executed despite multiple focus attempts, suggesting the agent did not proceed to input the search query or activate the search function.",
+      "when": "early",
+      "query_terms": [
+        "execute",
+        "input",
+        "search"
+      ],
+      "outcome_tag": "failure"
+    },
+    {
+      "insight_id": "expel.6007.2.the_agent_remained_on_the_bookmarks_page_without_navigating_to_a",
+      "task_id": 6007,
+      "family": "F8_SEARCH_FILTER",
+      "source_version": "1.4.0",
+      "summary": "The agent remained on the bookmarks page without navigating to a search interface, indicating a lack of understanding or access to the search functionality.",
+      "when": "early",
+      "query_terms": [
+        "interface",
+        "navigation",
+        "search"
+      ],
+      "outcome_tag": "failure"
+    },
+    {
+      "insight_id": "expel.6008.0.the_user_successfully_navigated_to_the_settings_page_without_log",
+      "task_id": 6008,
+      "family": "F9_VERSION_ITERATION",
+      "source_version": "1.4.0",
+      "summary": "The user successfully navigated to the settings page without logging in again, indicating that the session was already authenticated.",
+      "when": "after step 0",
+      "query_terms": [
+        "in",
+        "logged",
+        "navigation",
+        "settings"
+      ],
+      "outcome_tag": "success"
+    },
+    {
+      "insight_id": "expel.6008.1.the_settings_page_was_opened_and_remained_stable_suggesting_that",
+      "task_id": 6008,
+      "family": "F9_VERSION_ITERATION",
+      "source_version": "1.4.0",
+      "summary": "The settings page was opened and remained stable, suggesting that the user's goal of keeping the settings page stable was achieved.",
+      "when": "after step 1",
+      "query_terms": [
+        "open",
+        "page",
+        "settings",
+        "stable"
+      ],
+      "outcome_tag": "success"
+    },
+    {
+      "insight_id": "expel.6009.0.the_agent_repeatedly_attempts_to_navigate_to_the_bookmarks_page_",
+      "task_id": 6009,
+      "family": "F10_VERSION_ITERATION",
+      "source_version": "1.4.0",
+      "summary": "The agent repeatedly attempts to navigate to the bookmarks page but remains stuck in the settings page, indicating a failure to transition from settings to bookmarks despite multiple click attempts on the same element.",
+      "when": "after step 0",
+      "query_terms": [
+        "bookmarks",
+        "failure",
+        "navigation",
+        "settings",
+        "visible"
+      ],
+      "outcome_tag": "failure"
+    }
+  ],
+  "success_insights": [
+    {
+      "insight_id": "expel.6008.0.the_user_successfully_navigated_to_the_settings_page_without_log",
+      "task_id": 6008,
+      "family": "F9_VERSION_ITERATION",
+      "source_version": "1.4.0",
+      "summary": "The user successfully navigated to the settings page without logging in again, indicating that the session was already authenticated.",
+      "when": "after step 0",
+      "query_terms": [
+        "in",
+        "logged",
+        "navigation",
+        "settings"
+      ],
+      "outcome_tag": "success"
+    },
+    {
+      "insight_id": "expel.6008.1.the_settings_page_was_opened_and_remained_stable_suggesting_that",
+      "task_id": 6008,
+      "family": "F9_VERSION_ITERATION",
+      "source_version": "1.4.0",
+      "summary": "The settings page was opened and remained stable, suggesting that the user's goal of keeping the settings page stable was achieved.",
+      "when": "after step 1",
+      "query_terms": [
+        "open",
+        "page",
+        "settings",
+        "stable"
+      ],
+      "outcome_tag": "success"
+    }
+  ],
+  "failure_insights": [
+    {
+      "insight_id": "expel.6000.0.the_agent_repeatedly_attempts_to_click_element_19_to_proceed_wit",
+      "task_id": 6000,
+      "family": "F1_CREATE_ALPHA",
+      "source_version": "1.4.0",
+      "summary": "The agent repeatedly attempts to click element '19' to proceed with creating a new bookmark, but the action fails to progress beyond the bookmark creation page, indicating a possible UI or element identification issue.",
+      "when": "during the bookmark creation process",
+      "query_terms": [
+        "19",
+        "bookmark",
+        "bookmarks",
+        "click",
+        "create",
+        "failed",
+        "new",
+        "to"
+      ],
+      "outcome_tag": "failure"
+    },
+    {
+      "insight_id": "expel.6001.0.the_agent_repeatedly_attempts_to_click_element_19_to_proceed_wit",
+      "task_id": 6001,
+      "family": "F2_CREATE_BETA",
+      "source_version": "1.4.0",
+      "summary": "The agent repeatedly attempts to click element '19' to proceed with creating a new bookmark, but the action fails to progress beyond the bookmark creation page, indicating a possible issue with the target element or page state.",
+      "when": "during the bookmark creation process",
+      "query_terms": [
+        "19",
+        "bookmark",
+        "click",
+        "creation",
+        "failure",
+        "progress",
+        "to"
+      ],
+      "outcome_tag": "failure"
+    },
+    {
+      "insight_id": "expel.6001.1.the_agent_is_stuck_in_a_loop_of_clicking_the_same_element_withou",
+      "task_id": 6001,
+      "family": "F2_CREATE_BETA",
+      "source_version": "1.4.0",
+      "summary": "The agent is stuck in a loop of clicking the same element without success, suggesting that the intended interaction point may not be functional or the page is not responding as expected.",
+      "when": "throughout the trajectory",
+      "query_terms": [
+        "change",
+        "clicks",
+        "no",
+        "page",
+        "repeated",
+        "state",
+        "stuck"
+      ],
+      "outcome_tag": "failure"
+    },
+    {
+      "insight_id": "expel.6001.2.the_agent_fails_to_input_the_required_bookmark_details_url_title",
+      "task_id": 6001,
+      "family": "F2_CREATE_BETA",
+      "source_version": "1.4.0",
+      "summary": "The agent fails to input the required bookmark details (URL, title, tags) and save the bookmark, likely due to the inability to interact with the form fields after navigating to the new bookmark page.",
+      "when": "at the end of the trajectory",
+      "query_terms": [
+        "failure",
+        "form",
+        "input",
+        "interaction",
+        "missing",
+        "no",
+        "save"
+      ],
+      "outcome_tag": "failure"
+    },
+    {
+      "insight_id": "expel.6002.0.the_agent_repeatedly_attempts_to_click_element_19_to_proceed_to_",
+      "task_id": 6002,
+      "family": "F3_CREATE_GAMMA",
+      "source_version": "1.4.0",
+      "summary": "The agent repeatedly attempts to click element '19' to proceed to the bookmark creation page but fails to advance beyond the new bookmark form, indicating a possible UI issue or incorrect element targeting.",
+      "when": "step 0 to step 20",
+      "query_terms": [
+        "19",
+        "bookmark",
+        "bookmarks",
+        "click",
+        "creation",
+        "new"
+      ],
+      "outcome_tag": "failure"
+    },
+    {
+      "insight_id": "expel.6003.0.the_agent_repeatedly_navigated_to_the_archived_bookmarks_page_wi",
+      "task_id": 6003,
+      "family": "F4_EDIT_ALPHA",
+      "source_version": "1.4.0",
+      "summary": "The agent repeatedly navigated to the archived bookmarks page without finding the target bookmark, indicating a failure to locate the specific URL in the expected location.",
+      "when": "during the search for the bookmark URL",
+      "query_terms": [
+        "140",
+        "add",
+        "agent",
+        "alpha",
+        "bookmark",
+        "com",
+        "edit",
+        "example",
+        "find",
+        "from",
+        "https",
+        "robust",
+        "tag",
+        "title"
+      ],
+      "outcome_tag": "failure"
+    },
+    {
+      "insight_id": "expel.6003.1.the_agent_did_not_attempt_to_search_or_filter_bookmarks_leading_",
+      "task_id": 6003,
+      "family": "F4_EDIT_ALPHA",
+      "source_version": "1.4.0",
+      "summary": "The agent did not attempt to search or filter bookmarks, leading to inefficient navigation and failure to locate the desired entry.",
+      "when": "before attempting to edit the bookmark",
+      "query_terms": [
+        "bookmark",
+        "filter",
+        "search",
+        "tag",
+        "title"
+      ],
+      "outcome_tag": "failure"
+    },
+    {
+      "insight_id": "expel.6003.2.the_agent_failed_to_recognize_that_the_target_bookmark_was_not_i",
+      "task_id": 6003,
+      "family": "F4_EDIT_ALPHA",
+      "source_version": "1.4.0",
+      "summary": "The agent failed to recognize that the target bookmark was not in the archived section, suggesting a lack of understanding of the bookmark organization structure.",
+      "when": "during navigation to the bookmark page",
+      "query_terms": [
+        "active",
+        "archived",
+        "bookmarks",
+        "location"
+      ],
+      "outcome_tag": "failure"
+    },
+    {
+      "insight_id": "expel.6004.0.the_agent_repeatedly_navigated_to_the_archived_bookmarks_page_wi",
+      "task_id": 6004,
+      "family": "F5_DELETE_BETA",
+      "source_version": "1.4.0",
+      "summary": "The agent repeatedly navigated to the archived bookmarks page without finding or deleting the target bookmark, indicating a failure to locate 'Robust VV 1.4.0 Beta' in the expected location.",
+      "when": "during the trajectory from step 1 to step 20",
+      "query_terms": [
+        "archived",
+        "beta",
+        "bookmarks",
+        "delete",
+        "robust",
+        "vv"
+      ],
+      "outcome_tag": "failure"
+    },
+    {
+      "insight_id": "expel.6004.1.the_agent_failed_to_identify_the_correct_path_to_the_bookmark_re",
+      "task_id": 6004,
+      "family": "F5_DELETE_BETA",
+      "source_version": "1.4.0",
+      "summary": "The agent failed to identify the correct path to the bookmark, repeatedly clicking on the same element without progressing toward the goal.",
+      "when": "throughout the entire trajectory",
+      "query_terms": [
+        "20",
+        "archived",
+        "bookmarks",
+        "click",
+        "navigation"
+      ],
+      "outcome_tag": "failure"
+    },
+    {
+      "insight_id": "expel.6004.2.the_agent_did_not_attempt_to_search_for_the_bookmark_or_verify_i",
+      "task_id": 6004,
+      "family": "F5_DELETE_BETA",
+      "source_version": "1.4.0",
+      "summary": "The agent did not attempt to search for the bookmark or verify its presence in the main bookmarks list before moving to archived, suggesting a flawed strategy.",
+      "when": "at the beginning of the trajectory",
+      "query_terms": [
+        "beta",
+        "bookmarks",
+        "existence",
+        "main",
+        "robust",
+        "search",
+        "vv"
+      ],
+      "outcome_tag": "failure"
+    },
+    {
+      "insight_id": "expel.6005.0.the_agent_repeatedly_navigated_to_the_archived_bookmarks_page_wi",
+      "task_id": 6005,
+      "family": "F6_CONSISTENCY",
+      "source_version": "1.4.0",
+      "summary": "The agent repeatedly navigated to the archived bookmarks page without verifying the presence of 'Robust VV 1.4.0 Alpha Edited' or absence of 'Robust VV 1.4.0 Beta', indicating a failure to perform the required check.",
+      "when": "during the trajectory",
+      "query_terms": [
+        "absence",
+        "alpha",
+        "beta",
+        "bookmarks",
+        "edited",
+        "existence",
+        "list",
+        "robust",
+        "verify",
+        "vv"
+      ],
+      "outcome_tag": "failure"
+    },
+    {
+      "insight_id": "expel.6005.1.the_agent_did_not_perform_any_action_to_search_or_inspect_the_bo",
+      "task_id": 6005,
+      "family": "F6_CONSISTENCY",
+      "source_version": "1.4.0",
+      "summary": "The agent did not perform any action to search or inspect the bookmarks list for the required entries, leading to a failure in completing the task.",
+      "when": "during the trajectory",
+      "query_terms": [
+        "bookmark",
+        "bookmarks",
+        "check",
+        "for",
+        "list",
+        "search",
+        "validate",
+        "verify"
+      ],
+      "outcome_tag": "failure"
+    },
+    {
+      "insight_id": "expel.6005.2.the_agent_s_repeated_clicks_on_the_same_element_id_20_suggest_a_",
+      "task_id": 6005,
+      "family": "F6_CONSISTENCY",
+      "source_version": "1.4.0",
+      "summary": "The agent's repeated clicks on the same element (ID '20') suggest a lack of understanding of the interface or a failure to identify the correct navigation path to the bookmarks list.",
+      "when": "during the trajectory",
+      "query_terms": [
+        "20",
+        "click",
+        "error",
+        "incorrect",
+        "interaction",
+        "interface",
+        "misunderstanding",
+        "navigation"
+      ],
+      "outcome_tag": "failure"
+    },
+    {
+      "insight_id": "expel.6006.0.the_agent_repeatedly_attempts_to_interact_with_element_44_on_the",
+      "task_id": 6006,
+      "family": "F7_TAG_FILTER",
+      "source_version": "1.4.0",
+      "summary": "The agent repeatedly attempts to interact with element '44' on the bookmarks page but fails to progress, indicating a potential issue with the element's functionality or the page's state.",
+      "when": "during the entire trajectory from step 0 to step 20",
+      "query_terms": [
+        "44",
+        "bookmarks",
+        "by",
+        "click",
+        "failure",
+        "filter",
+        "page",
+        "tag",
+        "to"
+      ],
+      "outcome_tag": "failure"
+    },
+    {
+      "insight_id": "expel.6007.0.the_agent_repeatedly_focused_on_element_48_without_achieving_the",
+      "task_id": 6007,
+      "family": "F8_SEARCH_FILTER",
+      "source_version": "1.4.0",
+      "summary": "The agent repeatedly focused on element '48' without achieving the goal of filtering search results for 'Robust VV 1.4.0 Alpha Edited'. This indicates a failure to initiate or interact with the search functionality.",
+      "when": "early",
+      "query_terms": [
+        "alpha",
+        "edited",
+        "filter",
+        "robust",
+        "search",
+        "vv"
+      ],
+      "outcome_tag": "failure"
+    },
+    {
+      "insight_id": "expel.6007.1.no_search_action_was_executed_despite_multiple_focus_attempts_su",
+      "task_id": 6007,
+      "family": "F8_SEARCH_FILTER",
+      "source_version": "1.4.0",
+      "summary": "No search action was executed despite multiple focus attempts, suggesting the agent did not proceed to input the search query or activate the search function.",
+      "when": "early",
+      "query_terms": [
+        "execute",
+        "input",
+        "search"
+      ],
+      "outcome_tag": "failure"
+    },
+    {
+      "insight_id": "expel.6007.2.the_agent_remained_on_the_bookmarks_page_without_navigating_to_a",
+      "task_id": 6007,
+      "family": "F8_SEARCH_FILTER",
+      "source_version": "1.4.0",
+      "summary": "The agent remained on the bookmarks page without navigating to a search interface, indicating a lack of understanding or access to the search functionality.",
+      "when": "early",
+      "query_terms": [
+        "interface",
+        "navigation",
+        "search"
+      ],
+      "outcome_tag": "failure"
+    },
+    {
+      "insight_id": "expel.6009.0.the_agent_repeatedly_attempts_to_navigate_to_the_bookmarks_page_",
+      "task_id": 6009,
+      "family": "F10_VERSION_ITERATION",
+      "source_version": "1.4.0",
+      "summary": "The agent repeatedly attempts to navigate to the bookmarks page but remains stuck in the settings page, indicating a failure to transition from settings to bookmarks despite multiple click attempts on the same element.",
+      "when": "after step 0",
+      "query_terms": [
+        "bookmarks",
+        "failure",
+        "navigation",
+        "settings",
+        "visible"
+      ],
+      "outcome_tag": "failure"
+    }
+  ]
+}

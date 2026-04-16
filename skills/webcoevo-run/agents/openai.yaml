@@ -1,0 +1,4 @@
+interface:
+  display_name: "WebCoEvo Runner"
+  short_description: "Run smoke, preflight, and full XVR jobs."
+  default_prompt: "Use $webcoevo-run to launch a WebCoEvo smoke, preflight, or full matrix evaluation."

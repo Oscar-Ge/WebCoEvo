@@ -1,0 +1,356 @@
+{
+  "artifact_type": "cross_version_reflection_rules",
+  "version": "v2.5-hardv3-staged-repair",
+  "created_at": "2026-04-14",
+  "base_rulebook_source": "integration/cross_version_reflection_rules_v2_4_website_repair.json",
+  "design_intent": "Focus20-first repair rules for the hardv3 release-grounded Linkding websites. These rules keep the compact V2.4 scope but make staged checkpoint continuation, post-login redirect trust, and invisible-navigation recovery more executable for Qwen3-VL.",
+  "task_slice": "config_files/linkding_v1450_focus20_website_probe_v1.raw.json",
+  "candidate_row_count": 68,
+  "rule_count": 8,
+  "filters": {
+    "no_source_task_ids": true,
+    "mining_policy": "focus20_primary_taskbank36_validation_only",
+    "target_eval": "focus20_hardv3_xvr25_v1"
+  },
+  "rules": [
+    {
+      "rule_id": "xvr25_0001",
+      "title": "After one invisible or timed-out click, never click the same bid again",
+      "scope": {
+        "drift_types": [
+          "surface",
+          "runtime",
+          "structural",
+          "functional",
+          "content"
+        ]
+      },
+      "trigger": {
+        "old_assumption": "If a hidden or stale target timed out once, repeating the same bid may eventually work.",
+        "observed_symptoms": [
+          "The last click failed because the element is not visible, not stable, timed out, or could not be found.",
+          "The URL is unchanged and the same bid or target is being retried."
+        ]
+      },
+      "required_observations": [
+        "Read the last_action_error and compare the current URL with the previous step before acting again.",
+        "Look for one different visible semantic target, a visible opener, or a same-site route fallback instead of the same hidden bid."
+      ],
+      "adaptation_strategy": [
+        "After one invisible or timed-out click, never click the same bid again in this task.",
+        "Switch immediately to one visible opener for that navigation group, or to direct local route fallback for navigation-only tasks.",
+        "Reassess after that one different action instead of repeating the hidden target."
+      ],
+      "forbidden_actions": [
+        "Do not spend multiple steps repeating the same invisible menu or stale bid click.",
+        "Do not trust DOM presence of a hidden target as proof it is human-clickable."
+      ],
+      "verification_check": [
+        "The next action after the timeout uses a different visible target, opener, fallback, or final answer.",
+        "Recovery changes menu visibility, URL, or reveals the requested state."
+      ],
+      "confidence": 0.97,
+      "support": {
+        "support_count": 16,
+        "evidence": "Focus20 hardv3 lost rows repeatedly retried invisible or stale targets, especially structural 1601306 and related stuck navigation traces."
+      }
+    },
+    {
+      "rule_id": "xvr25_0002",
+      "title": "Use direct local route fallback once, then reassess for a checkpoint or final state",
+      "scope": {
+        "drift_types": [
+          "surface",
+          "runtime",
+          "structural",
+          "functional",
+          "content"
+        ]
+      },
+      "trigger": {
+        "old_assumption": "The agent must keep searching for a drifted nav affordance even when the same-site route is obvious.",
+        "observed_symptoms": [
+          "The task is navigation-only or asks only to land on a page or form.",
+          "A visible navigation attempt failed once or the page remains stuck on the wrong same-site page."
+        ]
+      },
+      "required_observations": [
+        "Confirm the task only asks to open, land on, or move to a same-site destination rather than save new data.",
+        "After route fallback loads, immediately inspect whether the page is already final or is a staged checkpoint with one visible continuation control."
+      ],
+      "adaptation_strategy": [
+        "After one failed nav attempt, use one direct local route fallback such as /settings, /tags, /bookmarks, or /bookmarks/new on the current origin.",
+        "Once that route is loaded, do not navigate again immediately; first check for a visible review/apply/open/continue control or for final evidence.",
+        "Finalize if the goal evidence is already visible, otherwise click one visible continuation control and reassess."
+      ],
+      "forbidden_actions": [
+        "Do not chain multiple same-site gotos without reassessing the new page.",
+        "Do not use route fallback for tasks that require saving or editing data before completion."
+      ],
+      "verification_check": [
+        "The URL path matches the requested destination before any further navigation.",
+        "The next step after route fallback is either a continuation click or finalization."
+      ],
+      "confidence": 0.96,
+      "support": {
+        "support_count": 12,
+        "evidence": "Hardv3 lost rows often reached the correct route, then wasted steps on noop or repeated goto instead of acting on the staged page."
+      }
+    },
+    {
+      "rule_id": "xvr25_0003",
+      "title": "Treat staged review or apply pages as one-click checkpoints, not as noop states",
+      "scope": {
+        "drift_types": [
+          "access",
+          "surface",
+          "runtime",
+          "process",
+          "content",
+          "functional",
+          "structural"
+        ]
+      },
+      "trigger": {
+        "old_assumption": "If the destination route is already correct, waiting with noop is safer than interacting with the checkpoint page.",
+        "observed_symptoms": [
+          "The current route already matches the task destination, but the page shows a visible Review, Apply, Open, Continue, or similar control.",
+          "Final evaluator text, editable fields, or committed filter evidence are not yet visible."
+        ]
+      },
+      "required_observations": [
+        "Check whether the current page is a staged checkpoint rather than the final evidence state.",
+        "If a single visible continuation control is present, use it once before considering noop or any new navigation."
+      ],
+      "adaptation_strategy": [
+        "Click one visible continuation control that semantically advances the staged page, such as review, apply, open, continue, or a visible subpanel opener.",
+        "After that one continuation click, reassess the URL, headings, visible fields, and required evidence.",
+        "If the goal evidence is now visible, finalize immediately instead of waiting."
+      ],
+      "forbidden_actions": [
+        "Do not noop repeatedly on a staged checkpoint page.",
+        "Do not abandon the correct destination route before trying the visible continuation."
+      ],
+      "verification_check": [
+        "The continuation click reveals fields, query evidence, or the requested destination state.",
+        "Long noop loops disappear after destination arrival."
+      ],
+      "confidence": 0.95,
+      "support": {
+        "support_count": 15,
+        "evidence": "Focus20 hardv3 lost rows on /bookmarks/new and related destinations reached the right route but then stalled in staged checkpoint pages."
+      }
+    },
+    {
+      "rule_id": "xvr25_0004",
+      "title": "After login redirect success, never return to /login and operate on the redirected page",
+      "scope": {
+        "drift_types": [
+          "access",
+          "surface",
+          "runtime",
+          "process",
+          "content",
+          "functional"
+        ]
+      },
+      "trigger": {
+        "old_assumption": "If a login task still feels incomplete, revisiting login?next=... is an acceptable recovery step.",
+        "observed_symptoms": [
+          "The submit click succeeded and the current URL changed away from /login to the same-site destination route.",
+          "A staged card, review page, or destination page is already open after login."
+        ]
+      },
+      "required_observations": [
+        "Check whether the current URL is still /login or has already changed to the destination route.",
+        "If the route changed away from /login, inspect the redirected page for visible continuation controls or final evidence before taking any new navigation action."
+      ],
+      "adaptation_strategy": [
+        "Once the route changed away from /login, never goto('/login?...') again in that task.",
+        "Operate on the redirected page: either click one visible continuation control or finalize if the goal evidence is already visible.",
+        "Preserve the task-specific next parameters and redirected form or query values instead of replaying generic login recovery."
+      ],
+      "forbidden_actions": [
+        "Do not navigate back to /login after a successful redirect.",
+        "Do not oscillate between the redirected page and login."
+      ],
+      "verification_check": [
+        "The trace remains on the redirected destination after login.",
+        "The task finishes from the redirected page rather than from another login attempt."
+      ],
+      "confidence": 0.94,
+      "support": {
+        "support_count": 11,
+        "evidence": "Hardv3 Focus20 login-to-form and login-to-filter failures repeatedly returned to login?next=... even after redirect success."
+      }
+    },
+    {
+      "rule_id": "xvr25_0005",
+      "title": "Open collapsed navigation only through a visible opener, then retry once or fall back",
+      "scope": {
+        "drift_types": [
+          "structural",
+          "functional",
+          "surface",
+          "runtime"
+        ]
+      },
+      "trigger": {
+        "old_assumption": "A hidden or regrouped navigation item can be activated directly because it appears somewhere in the page structure.",
+        "observed_symptoms": [
+          "A destination like Settings, Tags, or Bookmarks is present but the target click reports not visible.",
+          "Navigation groups are reorganized, nested, or collapsed behind a visible group label."
+        ]
+      },
+      "required_observations": [
+        "Look for one visible menu, navigation, workspace, group, drawer, or overflow opener that could reveal the destination.",
+        "If no visible opener is available after one search, switch to direct local route fallback for navigation-only tasks."
+      ],
+      "adaptation_strategy": [
+        "Click one visible opener first, then retry the now-visible destination once using the new observation tree.",
+        "If the destination is still hidden after the opener, switch to direct local route fallback instead of repeating the hidden target.",
+        "Prefer visible text or href semantics over the previous hidden bid."
+      ],
+      "forbidden_actions": [
+        "Do not repeatedly click a hidden destination inside a collapsed group.",
+        "Do not use the same hidden target after an opener failed to reveal it."
+      ],
+      "verification_check": [
+        "Either the opener reveals the destination or the URL changes through route fallback.",
+        "The trace does not contain a long same-bid loop on a hidden nav item."
+      ],
+      "confidence": 0.92,
+      "support": {
+        "support_count": 5,
+        "evidence": "Structural hardv3 failures still cluster around hidden grouped navigation and wrong-page persistence."
+      }
+    },
+    {
+      "rule_id": "xvr25_0006",
+      "title": "Ignore non-interactive marks and questionable containers when a visible semantic control exists",
+      "scope": {
+        "drift_types": [
+          "surface",
+          "runtime",
+          "content",
+          "structural",
+          "functional"
+        ]
+      },
+      "trigger": {
+        "old_assumption": "Any candidate target with a bid-like marker is probably safe to click.",
+        "observed_symptoms": [
+          "The candidate target looks like a hidden input, CSRF token, divider, list container, or non-button structural shell.",
+          "A nearby visible link or button provides clearer semantics for the same goal."
+        ]
+      },
+      "required_observations": [
+        "Prefer visible link text, button text, aria labels, and obvious continuation controls over structural shells or hidden fields.",
+        "If no valid visible control exists for a navigation-only task, use direct local route fallback instead."
+      ],
+      "adaptation_strategy": [
+        "Choose the visible semantic control, not the hidden input, csrf token, divider, or generic list container.",
+        "If the page already satisfies the task, finalize instead of clicking a questionable mark.",
+        "Reobserve after switching to the visible semantic control."
+      ],
+      "forbidden_actions": [
+        "Do not click hidden inputs, CSRF tokens, dividers, or generic list containers.",
+        "Do not treat non-interactive DOM presence as proof of clickability."
+      ],
+      "verification_check": [
+        "Chosen targets are visible buttons, links, or explicit continuation controls.",
+        "The next page state is easier to verify than the discarded non-interactive target."
+      ],
+      "confidence": 0.91,
+      "support": {
+        "support_count": 8,
+        "evidence": "V2.4 already needed this protection, and hardv3 still punishes ambiguous non-interactive targets near the real continuation controls."
+      }
+    },
+    {
+      "rule_id": "xvr25_0007",
+      "title": "For filtered bookmark tasks, distinguish prepared lookup states from committed filter results",
+      "scope": {
+        "drift_types": [
+          "content",
+          "runtime",
+          "functional",
+          "surface"
+        ]
+      },
+      "trigger": {
+        "old_assumption": "Any bookmarks route reached after login or recovery is good enough for filtered-view tasks.",
+        "observed_symptoms": [
+          "The task asks for a filtered bookmarks view but the exact requested query or filter evidence is not yet visible.",
+          "The page shows a prepared lookup, filter chip, review state, or apply-like control instead of the committed filter."
+        ]
+      },
+      "required_observations": [
+        "Check whether the exact requested query or equivalent visible filter evidence is already present in the URL or visible page.",
+        "If the exact filter evidence is absent but an apply or commit control is visible, the page is still a prepared checkpoint."
+      ],
+      "adaptation_strategy": [
+        "For filtered-view tasks, click one visible apply or commit continuation on the prepared lookup page before concluding.",
+        "Finalize only after the exact requested query or equivalent visible filter evidence appears.",
+        "If the exact filter evidence is already present, send_msg_to_user immediately instead of goto or noop."
+      ],
+      "forbidden_actions": [
+        "Do not treat a prepared lookup shell as final completion.",
+        "Do not revisit login or spam noop once the lookup page is already open."
+      ],
+      "verification_check": [
+        "The final URL or visible page includes the requested filter evidence.",
+        "The answer is sent only after the committed filtered state is visible."
+      ],
+      "confidence": 0.9,
+      "support": {
+        "support_count": 5,
+        "evidence": "Focus20 hardv3 content and functional lost rows landed on prepared lookup states and then looped instead of applying the visible continuation."
+      }
+    },
+    {
+      "rule_id": "xvr25_0008",
+      "title": "Use a hard stop on repeated noop or repeated goto with unchanged page state",
+      "scope": {
+        "drift_types": [
+          "access",
+          "surface",
+          "runtime",
+          "process",
+          "content",
+          "functional",
+          "structural"
+        ]
+      },
+      "trigger": {
+        "old_assumption": "If no action is obvious, repeating noop or the same goto is a safe default.",
+        "observed_symptoms": [
+          "Two consecutive steps repeat noop() or the same goto(...) while the URL and visible page state do not progress.",
+          "The browser is already on a plausible destination or checkpoint page."
+        ]
+      },
+      "required_observations": [
+        "Before repeating noop or goto, compare the current URL and page state with the previous step.",
+        "Decide whether the page is already final, is a staged checkpoint, or needs one different visible recovery action."
+      ],
+      "adaptation_strategy": [
+        "Never take more than one noop in a row without new evidence that the page is still loading.",
+        "Never repeat the same goto to the same same-site URL when the browser is already there.",
+        "Switch to exactly one of three actions: finalize from satisfied evidence, click one visible continuation, or choose one different visible recovery target."
+      ],
+      "forbidden_actions": [
+        "Do not burn the step budget on noop loops.",
+        "Do not repeat the same goto after the browser already reached that URL."
+      ],
+      "verification_check": [
+        "The trace changes strategy after one repeated noop or goto.",
+        "Long same-URL loops disappear."
+      ],
+      "confidence": 0.89,
+      "support": {
+        "support_count": 13,
+        "evidence": "Hardv3 Focus20 lost rows repeatedly stalled on noop or same-URL goto loops after already reaching the right route or checkpoint."
+      }
+    }
+  ]
+}

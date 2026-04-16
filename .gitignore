@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+.env
+.env.*
+!.env.example
+results/
+slurm/*.log
+*.log
+*.sif
+linkding-drift-runtimes/
+linkding-baselines/

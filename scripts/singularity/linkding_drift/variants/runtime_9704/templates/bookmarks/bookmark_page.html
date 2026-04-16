@@ -1,0 +1,47 @@
+{% extends "shared/layout.html" %}
+{% load static shared bookmarks %}
+{% block head %}
+  {{ block.super }}
+  <style>
+    .runtime-hidden { visibility: hidden; }
+  </style>
+{% endblock %}
+{% block content %}
+  <ld-bookmark-page {% if not bookmark_list.bulk_edit_enabled %}no-bulk-edit{% endif %}
+                    class="bookmarks-page grid columns-md-1 {% if bookmark_list.collapse_side_panel %}collapse-side-panel{% endif %}">
+    <main class="main col-2" aria-labelledby="main-heading">
+      <div class="section-header {% if bookmark_list.bulk_edit_enabled %}mb-0{% endif %}">
+        <div>
+          <p class="text-secondary text-small mb-0">Preparing capture workspace</p>
+          <h1 id="main-heading">{{ bookmark_list.list_title }}</h1>
+          <p id="runtime-capture-status" class="text-secondary m-0">Capture controls are loading.</p>
+        </div>
+        <div class="header-controls">
+          <button id="runtime-capture-trigger"
+                  type="button"
+                  class="btn btn-primary"
+                  disabled
+                  onclick="window.location.href='{% url 'linkding:bookmarks.new' %}'">Open draft</button>
+          {% bookmark_search bookmark_list.search mode=bookmark_list.search_mode %}
+        </div>
+      </div>
+      <form class="bookmark-actions" action="{{ bookmark_list.action_url|safe }}" method="post" autocomplete="off">
+        {% csrf_token %}
+        <div id="bookmark-list-container">{% include 'bookmarks/bookmark_list.html' %}</div>
+      </form>
+      <p id="runtime-capture-ready" class="runtime-hidden text-secondary text-small mb-0">Capture controls are ready.</p>
+    </main>
+  </ld-bookmark-page>
+  <script>
+    (function init() {
+      const button = document.getElementById('runtime-capture-trigger');
+      const ready = document.getElementById('runtime-capture-ready');
+      const status = document.getElementById('runtime-capture-status');
+      setTimeout(() => {
+        button.removeAttribute('disabled');
+        ready.classList.remove('runtime-hidden');
+        status.textContent = 'Capture controls are ready.';
+      }, 1200);
+    })();
+  </script>
+{% endblock %}

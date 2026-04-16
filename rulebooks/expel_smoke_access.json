@@ -1,0 +1,20 @@
+{
+  "rules": [
+    {
+      "rule_id": "expel_access_login_0001",
+      "text": "For local Linkding access-login tasks, use username baseline and password Baseline123! when the page asks for local credentials.",
+      "scope": {
+        "drift_types": ["access"],
+        "source_task_ids": [16005]
+      }
+    },
+    {
+      "rule_id": "expel_access_login_0002",
+      "text": "After clicking the visible Use local credentials continuation, fill the revealed username and password fields and submit once while preserving the redirected next destination.",
+      "scope": {
+        "drift_types": ["access"],
+        "source_task_ids": [16005]
+      }
+    }
+  ]
+}

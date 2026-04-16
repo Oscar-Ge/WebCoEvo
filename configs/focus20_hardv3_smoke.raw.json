@@ -1,0 +1,585 @@
+[
+  {
+    "sites": [
+      "linkding"
+    ],
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "http://localhost:9103/login?next=%2Fbookmarks%2Fnew%3Furl%3Dhttps%253A%252F%252Fexample.com%252Ffocus20%252Flogin-prefill-tagged%26title%3DFocus20%2520Login%2520Prefill%2520Tagged%26tag_names%3Dfocus20-login",
+    "geolocation": null,
+    "intent_template": "Focused v1.45.0 auth/reentry task (af20_login_prefilled_bookmark_form_with_tags)",
+    "instantiation_dict": {
+      "version": "1.45.0",
+      "focus_slice": "linkding_v1450_auth_reentry_focus20_v1",
+      "difficulty_band": "medium_auth_reentry",
+      "group": "login_redirect",
+      "family_id": "AF20_LOGIN_PREFILLED_BOOKMARK_FORM_WITH_TAGS",
+      "task_id": 1600501,
+      "variant": "access",
+      "drift_type": "access",
+      "variant_port": 9103,
+      "benchmark_validity": "candidate",
+      "focus20_source_task_id": 16005,
+      "website_probe_eval": "linkding_v1450_focus20_website_probe_v1",
+      "website_probe_task_chain_node": "authentication",
+      "website_probe_smoke_candidate": false,
+      "website_probe_anchor_task": false,
+      "website_probe_variant_scope": "fresh_v1450_generic_overlay",
+      "trajectory_probe": "focus20_website_probe_xvr23_v1",
+      "prompt_scaffold": "website_first_observe_plan_verify"
+    },
+    "require_reset": false,
+    "intent_template_id": 1600501,
+    "task_id": 1600501,
+    "capability_dims": [
+      "planning",
+      "adaptation",
+      "verification"
+    ],
+    "proxy_risk": "low",
+    "needs_first_live_check": true,
+    "benchmark_validity": "candidate",
+    "primary_benchmark": false,
+    "intent": "Goal: Authenticate and land on a prefilled add-bookmark form that already includes tags.\n\nYou are starting from a fresh logged-out session. Sign in while preserving a destination that should open a tagged, prefilled bookmark form.\n\nStay inside this localhost Linkding site, do not open external websites, and stop as soon as the requested state is clearly reached. In your final answer include 'login' and 'tagged'.\n\nWebsite-first cue: this run is evaluating generalization to a fresh Linkding v1.45.0 drift website. Solve from the live page instead of memorized control-version clicks. Silently Observe -> Plan -> Verify before every action. If the current URL, heading, form state, or visible content already satisfy the goal, stop with the concise final answer instead of taking another browser action. Do not write out hidden chain-of-thought.",
+    "eval": {
+      "eval_types": [
+        "state_check",
+        "string_match"
+      ],
+      "state_check": {
+        "url_must_include": [
+          "/bookmarks/new"
+        ],
+        "url_must_not_include": [
+          "/login"
+        ],
+        "body_must_include": [
+          "https://example.com/focus20/login-prefill-tagged",
+          "Focus20 Login Prefill Tagged",
+          "focus20-login"
+        ],
+        "body_must_not_include": [],
+        "success_summary": "AF20_LOGIN_PREFILLED_BOOKMARK_FORM_WITH_TAGS focus20 check passed"
+      },
+      "reference_answers": {
+        "must_include": [
+          "login",
+          "tagged"
+        ]
+      },
+      "reference_url": "http://localhost:9103",
+      "program_html": [],
+      "string_note": "A slightly richer redirect task where the form should still show both the prefilled bookmark metadata and its tag seed.",
+      "reference_answer_raw_annotation": "login; tagged"
+    },
+    "variant": "access",
+    "drift_type": "access",
+    "variant_port": 9103,
+    "focus20_source_task_id": 16005,
+    "website_probe_eval": "linkding_v1450_focus20_website_probe_v1",
+    "website_probe_task_chain_node": "authentication",
+    "website_probe_smoke_candidate": false,
+    "website_probe_anchor_task": false,
+    "website_probe_variant_scope": "fresh_v1450_generic_overlay",
+    "trajectory_probe": "focus20_website_probe_xvr23_v1",
+    "include_in_transfer_eval": true
+  },
+  {
+    "sites": [
+      "linkding"
+    ],
+    "require_login": true,
+    "storage_state": "auth/linkding_state.json",
+    "start_url": "http://localhost:9100/bookmarks",
+    "geolocation": null,
+    "intent_template": "Focused v1.45.0 auth/reentry task (af20_anchor_open_bookmark_form)",
+    "instantiation_dict": {
+      "version": "1.45.0",
+      "focus_slice": "linkding_v1450_auth_reentry_focus20_v1",
+      "difficulty_band": "medium_auth_reentry",
+      "group": "anchor",
+      "family_id": "AF20_ANCHOR_OPEN_BOOKMARK_FORM",
+      "task_id": 970402,
+      "variant": "surface",
+      "drift_type": "surface",
+      "variant_port": 9100,
+      "benchmark_validity": "candidate",
+      "focus20_source_task_id": 9704,
+      "website_probe_eval": "linkding_v1450_focus20_website_probe_v1",
+      "website_probe_task_chain_node": "visual_entrypoint",
+      "website_probe_smoke_candidate": false,
+      "website_probe_anchor_task": false,
+      "website_probe_variant_scope": "fresh_v1450_generic_overlay",
+      "trajectory_probe": "focus20_website_probe_xvr23_v1",
+      "prompt_scaffold": "website_first_observe_plan_verify"
+    },
+    "require_reset": false,
+    "intent_template_id": 970402,
+    "task_id": 970402,
+    "capability_dims": [
+      "grounding",
+      "robustness",
+      "exploration"
+    ],
+    "proxy_risk": "low",
+    "needs_first_live_check": true,
+    "benchmark_validity": "candidate",
+    "primary_benchmark": false,
+    "intent": "Goal: Reach the add-bookmark form for this Linkding site.\n\nBegin on the main bookmarks page and use the visible navigation to open the form for adding a new bookmark.\n\nStay inside this localhost Linkding site, do not open external websites, and stop as soon as the requested state is clearly reached. In your final answer include 'bookmark form' and 'opened'.\n\nWebsite-first cue: this run is evaluating generalization to a fresh Linkding v1.45.0 drift website. Solve from the live page instead of memorized control-version clicks. Silently Observe -> Plan -> Verify before every action. If the current URL, heading, form state, or visible content already satisfy the goal, stop with the concise final answer instead of taking another browser action. Do not write out hidden chain-of-thought.",
+    "eval": {
+      "eval_types": [
+        "state_check",
+        "string_match"
+      ],
+      "state_check": {
+        "url_must_include": [
+          "/bookmarks/new"
+        ],
+        "url_must_not_include": [
+          "/login"
+        ],
+        "body_must_include": [
+          "title",
+          "url"
+        ],
+        "body_must_not_include": [],
+        "success_summary": "AF20_ANCHOR_OPEN_BOOKMARK_FORM focus20 check passed"
+      },
+      "reference_answers": {
+        "must_include": [
+          "bookmark form",
+          "opened"
+        ]
+      },
+      "reference_url": "http://localhost:9100",
+      "program_html": [],
+      "string_note": "Anchor task: a short route-to-form interaction with stable semantic form fields.",
+      "reference_answer_raw_annotation": "bookmark form; opened"
+    },
+    "variant": "surface",
+    "drift_type": "surface",
+    "variant_port": 9100,
+    "focus20_source_task_id": 9704,
+    "website_probe_eval": "linkding_v1450_focus20_website_probe_v1",
+    "website_probe_task_chain_node": "visual_entrypoint",
+    "website_probe_smoke_candidate": false,
+    "website_probe_anchor_task": false,
+    "website_probe_variant_scope": "fresh_v1450_generic_overlay",
+    "trajectory_probe": "focus20_website_probe_xvr23_v1",
+    "include_in_transfer_eval": true
+  },
+  {
+    "sites": [
+      "linkding"
+    ],
+    "require_login": true,
+    "storage_state": "auth/linkding_state.json",
+    "start_url": "http://localhost:9104/bookmarks",
+    "geolocation": null,
+    "intent_template": "Focused v1.45.0 auth/reentry task (af20_route_bookmarks_to_tags)",
+    "instantiation_dict": {
+      "version": "1.45.0",
+      "focus_slice": "linkding_v1450_auth_reentry_focus20_v1",
+      "difficulty_band": "medium_auth_reentry",
+      "group": "post_login_route",
+      "family_id": "AF20_ROUTE_BOOKMARKS_TO_TAGS",
+      "task_id": 1601303,
+      "variant": "content",
+      "drift_type": "content",
+      "variant_port": 9104,
+      "benchmark_validity": "candidate",
+      "focus20_source_task_id": 16013,
+      "website_probe_eval": "linkding_v1450_focus20_website_probe_v1",
+      "website_probe_task_chain_node": "semantic_content",
+      "website_probe_smoke_candidate": false,
+      "website_probe_anchor_task": false,
+      "website_probe_variant_scope": "fresh_v1450_generic_overlay",
+      "trajectory_probe": "focus20_website_probe_xvr23_v1",
+      "prompt_scaffold": "website_first_observe_plan_verify"
+    },
+    "require_reset": false,
+    "intent_template_id": 1601303,
+    "task_id": 1601303,
+    "capability_dims": [
+      "grounding",
+      "robustness",
+      "exploration"
+    ],
+    "proxy_risk": "low",
+    "needs_first_live_check": true,
+    "benchmark_validity": "candidate",
+    "primary_benchmark": false,
+    "intent": "Goal: While already signed in, open the tags page from the bookmarks page.\n\nYou are already authenticated and starting on the bookmarks page. Use the visible navigation to open the tags page.\n\nStay inside this localhost Linkding site, do not open external websites, and stop as soon as the requested state is clearly reached. In your final answer include 'tags' and 'opened'.\n\nWebsite-first cue: this run is evaluating generalization to a fresh Linkding v1.45.0 drift website. Solve from the live page instead of memorized control-version clicks. Silently Observe -> Plan -> Verify before every action. If the current URL, heading, form state, or visible content already satisfy the goal, stop with the concise final answer instead of taking another browser action. Do not write out hidden chain-of-thought.",
+    "eval": {
+      "eval_types": [
+        "state_check",
+        "string_match"
+      ],
+      "state_check": {
+        "url_must_include": [
+          "/tags"
+        ],
+        "url_must_not_include": [
+          "/login"
+        ],
+        "body_must_include": [],
+        "body_must_not_include": [],
+        "success_summary": "AF20_ROUTE_BOOKMARKS_TO_TAGS focus20 check passed"
+      },
+      "reference_answers": {
+        "must_include": [
+          "tags",
+          "opened"
+        ]
+      },
+      "reference_url": "http://localhost:9104",
+      "program_html": [],
+      "string_note": "A short authenticated route task that targets the tag-management page.",
+      "reference_answer_raw_annotation": "tags; opened"
+    },
+    "variant": "content",
+    "drift_type": "content",
+    "variant_port": 9104,
+    "focus20_source_task_id": 16013,
+    "website_probe_eval": "linkding_v1450_focus20_website_probe_v1",
+    "website_probe_task_chain_node": "semantic_content",
+    "website_probe_smoke_candidate": false,
+    "website_probe_anchor_task": false,
+    "website_probe_variant_scope": "fresh_v1450_generic_overlay",
+    "trajectory_probe": "focus20_website_probe_xvr23_v1",
+    "include_in_transfer_eval": true
+  },
+  {
+    "sites": [
+      "linkding"
+    ],
+    "require_login": true,
+    "storage_state": "auth/linkding_state.json",
+    "start_url": "http://localhost:9106/bookmarks",
+    "geolocation": null,
+    "intent_template": "Focused v1.45.0 auth/reentry task (af20_route_filter_bookmarks)",
+    "instantiation_dict": {
+      "version": "1.45.0",
+      "focus_slice": "linkding_v1450_auth_reentry_focus20_v1",
+      "difficulty_band": "medium_auth_reentry",
+      "group": "post_login_route",
+      "family_id": "AF20_ROUTE_FILTER_BOOKMARKS",
+      "task_id": 1601704,
+      "variant": "runtime",
+      "drift_type": "runtime",
+      "variant_port": 9106,
+      "benchmark_validity": "candidate",
+      "focus20_source_task_id": 16017,
+      "website_probe_eval": "linkding_v1450_focus20_website_probe_v1",
+      "website_probe_task_chain_node": "readiness_and_stop",
+      "website_probe_smoke_candidate": false,
+      "website_probe_anchor_task": false,
+      "website_probe_variant_scope": "fresh_v1450_generic_overlay",
+      "trajectory_probe": "focus20_website_probe_xvr23_v1",
+      "prompt_scaffold": "website_first_observe_plan_verify"
+    },
+    "require_reset": false,
+    "intent_template_id": 1601704,
+    "task_id": 1601704,
+    "capability_dims": [
+      "grounding",
+      "verification",
+      "robustness"
+    ],
+    "proxy_risk": "low",
+    "needs_first_live_check": true,
+    "benchmark_validity": "candidate",
+    "primary_benchmark": false,
+    "intent": "Goal: While already signed in, apply a search query on the bookmarks page and keep the filtered view open.\n\nYou are already authenticated and starting on the bookmarks page. Use the built-in search box to search for `focus20-route-filter` and stop once the filtered bookmarks view is open.\n\nStay inside this localhost Linkding site, do not open external websites, and stop as soon as the requested state is clearly reached. In your final answer include 'filtered' and 'bookmarks'.\n\nWebsite-first cue: this run is evaluating generalization to a fresh Linkding v1.45.0 drift website. Solve from the live page instead of memorized control-version clicks. Silently Observe -> Plan -> Verify before every action. If the current URL, heading, form state, or visible content already satisfy the goal, stop with the concise final answer instead of taking another browser action. Do not write out hidden chain-of-thought.",
+    "eval": {
+      "eval_types": [
+        "state_check",
+        "string_match"
+      ],
+      "state_check": {
+        "url_must_include": [
+          "/bookmarks",
+          "q=focus20-route-filter"
+        ],
+        "url_must_not_include": [
+          "/login"
+        ],
+        "body_must_include": [
+          "focus20-route-filter"
+        ],
+        "body_must_not_include": [],
+        "success_summary": "AF20_ROUTE_FILTER_BOOKMARKS focus20 check passed"
+      },
+      "reference_answers": {
+        "must_include": [
+          "filtered",
+          "bookmarks"
+        ]
+      },
+      "reference_url": "http://localhost:9106",
+      "program_html": [],
+      "string_note": "A short authenticated task that adds one lightweight text-entry step on top of normal route navigation.",
+      "reference_answer_raw_annotation": "filtered; bookmarks"
+    },
+    "variant": "runtime",
+    "drift_type": "runtime",
+    "variant_port": 9106,
+    "focus20_source_task_id": 16017,
+    "website_probe_eval": "linkding_v1450_focus20_website_probe_v1",
+    "website_probe_task_chain_node": "readiness_and_stop",
+    "website_probe_smoke_candidate": false,
+    "website_probe_anchor_task": false,
+    "website_probe_variant_scope": "fresh_v1450_generic_overlay",
+    "trajectory_probe": "focus20_website_probe_xvr23_v1",
+    "include_in_transfer_eval": true
+  },
+  {
+    "sites": [
+      "linkding"
+    ],
+    "require_login": true,
+    "storage_state": "auth/linkding_state.json",
+    "start_url": "http://localhost:9105/bookmarks",
+    "geolocation": null,
+    "intent_template": "Focused v1.45.0 auth/reentry task (af20_anchor_open_bookmark_form)",
+    "instantiation_dict": {
+      "version": "1.45.0",
+      "focus_slice": "linkding_v1450_auth_reentry_focus20_v1",
+      "difficulty_band": "medium_auth_reentry",
+      "group": "anchor",
+      "family_id": "AF20_ANCHOR_OPEN_BOOKMARK_FORM",
+      "task_id": 970405,
+      "variant": "process",
+      "drift_type": "process",
+      "variant_port": 9105,
+      "benchmark_validity": "candidate",
+      "focus20_source_task_id": 9704,
+      "website_probe_eval": "linkding_v1450_focus20_website_probe_v1",
+      "website_probe_task_chain_node": "workflow_sequence",
+      "website_probe_smoke_candidate": false,
+      "website_probe_anchor_task": false,
+      "website_probe_variant_scope": "fresh_v1450_generic_overlay",
+      "trajectory_probe": "focus20_website_probe_xvr23_v1",
+      "prompt_scaffold": "website_first_observe_plan_verify"
+    },
+    "require_reset": false,
+    "intent_template_id": 970405,
+    "task_id": 970405,
+    "capability_dims": [
+      "grounding",
+      "robustness",
+      "exploration"
+    ],
+    "proxy_risk": "low",
+    "needs_first_live_check": true,
+    "benchmark_validity": "candidate",
+    "primary_benchmark": false,
+    "intent": "Goal: Reach the add-bookmark form for this Linkding site.\n\nBegin on the main bookmarks page and use the visible navigation to open the form for adding a new bookmark.\n\nStay inside this localhost Linkding site, do not open external websites, and stop as soon as the requested state is clearly reached. In your final answer include 'bookmark form' and 'opened'.\n\nWebsite-first cue: this run is evaluating generalization to a fresh Linkding v1.45.0 drift website. Solve from the live page instead of memorized control-version clicks. Silently Observe -> Plan -> Verify before every action. If the current URL, heading, form state, or visible content already satisfy the goal, stop with the concise final answer instead of taking another browser action. Do not write out hidden chain-of-thought.",
+    "eval": {
+      "eval_types": [
+        "state_check",
+        "string_match"
+      ],
+      "state_check": {
+        "url_must_include": [
+          "/bookmarks/new"
+        ],
+        "url_must_not_include": [
+          "/login"
+        ],
+        "body_must_include": [
+          "title",
+          "url"
+        ],
+        "body_must_not_include": [],
+        "success_summary": "AF20_ANCHOR_OPEN_BOOKMARK_FORM focus20 check passed"
+      },
+      "reference_answers": {
+        "must_include": [
+          "bookmark form",
+          "opened"
+        ]
+      },
+      "reference_url": "http://localhost:9105",
+      "program_html": [],
+      "string_note": "Anchor task: a short route-to-form interaction with stable semantic form fields.",
+      "reference_answer_raw_annotation": "bookmark form; opened"
+    },
+    "variant": "process",
+    "drift_type": "process",
+    "variant_port": 9105,
+    "focus20_source_task_id": 9704,
+    "website_probe_eval": "linkding_v1450_focus20_website_probe_v1",
+    "website_probe_task_chain_node": "workflow_sequence",
+    "website_probe_smoke_candidate": false,
+    "website_probe_anchor_task": false,
+    "website_probe_variant_scope": "fresh_v1450_generic_overlay",
+    "trajectory_probe": "focus20_website_probe_xvr23_v1",
+    "include_in_transfer_eval": true
+  },
+  {
+    "sites": [
+      "linkding"
+    ],
+    "require_login": true,
+    "storage_state": "auth/linkding_state.json",
+    "start_url": "http://localhost:9101/bookmarks",
+    "geolocation": null,
+    "intent_template": "Focused v1.45.0 auth/reentry task (af20_route_bookmarks_to_tags)",
+    "instantiation_dict": {
+      "version": "1.45.0",
+      "focus_slice": "linkding_v1450_auth_reentry_focus20_v1",
+      "difficulty_band": "medium_auth_reentry",
+      "group": "post_login_route",
+      "family_id": "AF20_ROUTE_BOOKMARKS_TO_TAGS",
+      "task_id": 1601306,
+      "variant": "structural",
+      "drift_type": "structural",
+      "variant_port": 9101,
+      "benchmark_validity": "candidate",
+      "focus20_source_task_id": 16013,
+      "website_probe_eval": "linkding_v1450_focus20_website_probe_v1",
+      "website_probe_task_chain_node": "navigation_structure",
+      "website_probe_smoke_candidate": false,
+      "website_probe_anchor_task": false,
+      "website_probe_variant_scope": "fresh_v1450_generic_overlay",
+      "trajectory_probe": "focus20_website_probe_xvr23_v1",
+      "prompt_scaffold": "website_first_observe_plan_verify"
+    },
+    "require_reset": false,
+    "intent_template_id": 1601306,
+    "task_id": 1601306,
+    "capability_dims": [
+      "grounding",
+      "robustness",
+      "exploration"
+    ],
+    "proxy_risk": "low",
+    "needs_first_live_check": true,
+    "benchmark_validity": "candidate",
+    "primary_benchmark": false,
+    "intent": "Goal: While already signed in, open the tags page from the bookmarks page.\n\nYou are already authenticated and starting on the bookmarks page. Use the visible navigation to open the tags page.\n\nStay inside this localhost Linkding site, do not open external websites, and stop as soon as the requested state is clearly reached. In your final answer include 'tags' and 'opened'.\n\nWebsite-first cue: this run is evaluating generalization to a fresh Linkding v1.45.0 drift website. Solve from the live page instead of memorized control-version clicks. Silently Observe -> Plan -> Verify before every action. If the current URL, heading, form state, or visible content already satisfy the goal, stop with the concise final answer instead of taking another browser action. Do not write out hidden chain-of-thought.",
+    "eval": {
+      "eval_types": [
+        "state_check",
+        "string_match"
+      ],
+      "state_check": {
+        "url_must_include": [
+          "/tags"
+        ],
+        "url_must_not_include": [
+          "/login"
+        ],
+        "body_must_include": [],
+        "body_must_not_include": [],
+        "success_summary": "AF20_ROUTE_BOOKMARKS_TO_TAGS focus20 check passed"
+      },
+      "reference_answers": {
+        "must_include": [
+          "tags",
+          "opened"
+        ]
+      },
+      "reference_url": "http://localhost:9101",
+      "program_html": [],
+      "string_note": "A short authenticated route task that targets the tag-management page.",
+      "reference_answer_raw_annotation": "tags; opened"
+    },
+    "variant": "structural",
+    "drift_type": "structural",
+    "variant_port": 9101,
+    "focus20_source_task_id": 16013,
+    "website_probe_eval": "linkding_v1450_focus20_website_probe_v1",
+    "website_probe_task_chain_node": "navigation_structure",
+    "website_probe_smoke_candidate": false,
+    "website_probe_anchor_task": false,
+    "website_probe_variant_scope": "fresh_v1450_generic_overlay",
+    "trajectory_probe": "focus20_website_probe_xvr23_v1",
+    "include_in_transfer_eval": true
+  },
+  {
+    "sites": [
+      "linkding"
+    ],
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "http://localhost:9102/bookmarks?q=focus20-reentry-filter",
+    "geolocation": null,
+    "intent_template": "Focused v1.45.0 auth/reentry task (af20_reentry_filtered_bookmarks)",
+    "instantiation_dict": {
+      "version": "1.45.0",
+      "focus_slice": "linkding_v1450_auth_reentry_focus20_v1",
+      "difficulty_band": "medium_auth_reentry",
+      "group": "reentry",
+      "family_id": "AF20_REENTRY_FILTERED_BOOKMARKS",
+      "task_id": 1601107,
+      "variant": "functional",
+      "drift_type": "functional",
+      "variant_port": 9102,
+      "benchmark_validity": "candidate",
+      "focus20_source_task_id": 16011,
+      "website_probe_eval": "linkding_v1450_focus20_website_probe_v1",
+      "website_probe_task_chain_node": "bookmark_page_controls",
+      "website_probe_smoke_candidate": false,
+      "website_probe_anchor_task": false,
+      "website_probe_variant_scope": "fresh_v1450_generic_overlay",
+      "trajectory_probe": "focus20_website_probe_xvr23_v1",
+      "prompt_scaffold": "website_first_observe_plan_verify"
+    },
+    "require_reset": false,
+    "intent_template_id": 1601107,
+    "task_id": 1601107,
+    "capability_dims": [
+      "planning",
+      "adaptation",
+      "verification"
+    ],
+    "proxy_risk": "low",
+    "needs_first_live_check": true,
+    "benchmark_validity": "candidate",
+    "primary_benchmark": false,
+    "intent": "Goal: Recover access to a filtered bookmarks view from a fresh session.\n\nYou are given a protected bookmarks route that already includes a search query. Follow the required sign-in flow and return to the filtered view.\n\nStay inside this localhost Linkding site, do not open external websites, and stop as soon as the requested state is clearly reached. In your final answer include 'login' and 'filtered'.\n\nWebsite-first cue: this run is evaluating generalization to a fresh Linkding v1.45.0 drift website. Solve from the live page instead of memorized control-version clicks. Silently Observe -> Plan -> Verify before every action. If the current URL, heading, form state, or visible content already satisfy the goal, stop with the concise final answer instead of taking another browser action. Do not write out hidden chain-of-thought.",
+    "eval": {
+      "eval_types": [
+        "state_check",
+        "string_match"
+      ],
+      "state_check": {
+        "url_must_include": [
+          "/bookmarks",
+          "q=focus20-reentry-filter"
+        ],
+        "url_must_not_include": [
+          "/login"
+        ],
+        "body_must_include": [
+          "focus20-reentry-filter"
+        ],
+        "body_must_not_include": [],
+        "success_summary": "AF20_REENTRY_FILTERED_BOOKMARKS focus20 check passed"
+      },
+      "reference_answers": {
+        "must_include": [
+          "login",
+          "filtered"
+        ]
+      },
+      "reference_url": "http://localhost:9102",
+      "program_html": [],
+      "string_note": "A protected-route re-entry task that verifies query preservation across authentication.",
+      "reference_answer_raw_annotation": "login; filtered"
+    },
+    "variant": "functional",
+    "drift_type": "functional",
+    "variant_port": 9102,
+    "focus20_source_task_id": 16011,
+    "website_probe_eval": "linkding_v1450_focus20_website_probe_v1",
+    "website_probe_task_chain_node": "bookmark_page_controls",
+    "website_probe_smoke_candidate": false,
+    "website_probe_anchor_task": false,
+    "website_probe_variant_scope": "fresh_v1450_generic_overlay",
+    "trajectory_probe": "focus20_website_probe_xvr23_v1",
+    "include_in_transfer_eval": true
+  }
+]

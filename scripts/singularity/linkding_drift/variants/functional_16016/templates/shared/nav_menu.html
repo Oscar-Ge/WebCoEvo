@@ -1,0 +1,35 @@
+{% load shared static %}
+{% htmlmin %}
+<div class="hide-md">
+  <ld-dropdown class="dropdown">
+    <button class="btn btn-link dropdown-toggle" tabindex="0">Bookmarks</button>
+    <ul class="menu" role="list" tabindex="-1">
+      <li class="menu-item"><a href="{% url 'linkding:bookmarks.index' %}" class="menu-link">Active</a></li>
+      <li class="menu-item"><a href="{% url 'linkding:bookmarks.archived' %}" class="menu-link">Archived</a></li>
+    </ul>
+  </ld-dropdown>
+  <ld-dropdown class="dropdown">
+    <button class="btn btn-link dropdown-toggle" tabindex="0">Workspace tools</button>
+    <ul class="menu" role="list" tabindex="-1">
+      <li class="menu-item"><a href="{% url 'linkding:tags.index' %}" class="menu-link">Tags</a></li>
+      <li class="menu-item"><a href="{% url 'linkding:settings.general' %}" class="menu-link">Preferences</a></li>
+      <li class="menu-item"><a href="{% url 'linkding:settings.integrations' %}" class="menu-link">Integrations</a></li>
+    </ul>
+  </ld-dropdown>
+  <a href="{% url 'linkding:bookmarks.new' %}" class="btn btn-primary mr-2">Add bookmark</a>
+</div>
+<div class="show-md">
+  <ld-dropdown class="dropdown dropdown-right">
+    <button class="btn btn-link dropdown-toggle" aria-label="Navigation menu" tabindex="0">
+      <svg width="24" height="24">
+        <use href="{% static 'icons.svg' %}?v={{ app_version }}#menu"></use>
+      </svg>
+    </button>
+    <ul class="menu" role="list" tabindex="-1">
+      <li class="menu-item"><span class="menu-link">Workspace tools</span></li>
+      <li class="menu-item"><a href="{% url 'linkding:settings.general' %}" class="menu-link">Preferences</a></li>
+      <li class="menu-item"><a href="{% url 'linkding:tags.index' %}" class="menu-link">Tags</a></li>
+    </ul>
+  </ld-dropdown>
+</div>
+{% endhtmlmin %}
