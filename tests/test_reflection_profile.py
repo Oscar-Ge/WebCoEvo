@@ -48,6 +48,7 @@ def test_group_transition_rows_by_drift_variant_and_source_task():
 def test_recommend_next_action_prefers_infra_repair_rules_or_hardening():
     assert recommend_next_action({"status": "invalid_for_mining"}) == "fix_infrastructure"
     assert recommend_next_action({"status": "borderline", "transition_counts": {"lost": 2}}) == "repair_rules"
+    assert recommend_next_action({"status": "can_do", "right_success_rate": 0.95, "transition_counts": {"lost": 1}}) == "repair_rules"
     assert recommend_next_action({"status": "can_do", "right_success_rate": 0.95}) == "harden_environment"
     assert recommend_next_action({"status": "cannot_do"}) == "repair_rules"
 

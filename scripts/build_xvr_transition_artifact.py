@@ -40,6 +40,13 @@ def main(argv=None):
         left_label=args.left_label,
         right_label=args.right_label,
         task_file=args.task_file,
+        provenance={
+            "task_file": args.task_file,
+            "left_eval": args.left_eval,
+            "left_trace": args.left_trace,
+            "right_eval": args.right_eval,
+            "right_trace": args.right_trace,
+        },
     )
     output_path = Path(args.output_file)
     output_path.parent.mkdir(parents=True, exist_ok=True)

@@ -99,6 +99,32 @@ def test_index_helpers_and_trace_excerpt_are_deterministic():
     )
 
 
+def test_build_transition_artifact_reports_missing_duplicate_and_provenance_diagnostics():
+    task_rows = [_task(501, 9738, "access"), _task(502, 16017, "runtime")]
+    artifact = build_transition_artifact(
+        task_rows=task_rows,
+        left_eval_rows=[_eval(501, True), _eval(501, False, error="duplicate")],
+        left_trace_rows=_trace(501),
+        right_eval_rows=[_eval(501, True)],
+        right_trace_rows=_trace(501),
+        left_label="v2_4",
+        right_label="v2_5",
+        task_file="configs/focus20_hardv3_full.raw.json",
+        provenance={
+            "left_eval": "left_eval.jsonl",
+            "right_eval": "right_eval.jsonl",
+        },
+    )
+
+    row_502 = [row for row in artifact["rows"] if row["task_id"] == 502][0]
+    assert row_502["transition"] == "incomplete_run"
+    assert row_502["validity"] == "incomplete_run"
+    assert row_502["invalid_reason"] == "missing_eval_row"
+    assert artifact["summary"]["missing_counts"] == {"left_eval": 1, "right_eval": 1}
+    assert artifact["summary"]["duplicate_counts"] == {"left_eval": 1, "right_eval": 0}
+    assert artifact["provenance"]["left_eval"] == "left_eval.jsonl"
+
+
 def test_build_transition_artifact_classifies_rows_and_preserves_metadata():
     task_rows = [
         _task(101, 9704, "surface"),

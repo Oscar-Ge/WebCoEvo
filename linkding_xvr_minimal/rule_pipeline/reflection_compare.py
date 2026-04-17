@@ -121,6 +121,7 @@ def build_transition_artifact(
     left_label,
     right_label,
     task_file="",
+    provenance=None,
 ):
     left_eval = index_eval_rows(left_eval_rows)
     right_eval = index_eval_rows(right_eval_rows)
@@ -128,6 +129,11 @@ def build_transition_artifact(
     right_trace = index_trace_rows(right_trace_rows)
     rows = []
     transition_counts = {}
+    duplicate_counts = {
+        "left_eval": _duplicate_count(left_eval_rows),
+        "right_eval": _duplicate_count(right_eval_rows),
+    }
+    missing_counts = {"left_eval": 0, "right_eval": 0}
 
     for task_row in list(task_rows or []):
         metadata = normalize_task_metadata(task_row)
@@ -138,8 +144,23 @@ def build_transition_artifact(
         right_success = _success_value(right_row)
         left_invalid = classify_invalid_reason(left_row, left_trace.get(task_id, []))
         right_invalid = classify_invalid_reason(right_row, right_trace.get(task_id, []))
-        invalid_reason = left_invalid or right_invalid
-        transition = "invalid_for_mining" if invalid_reason else classify_transition(left_success, right_success)
+        missing_eval = ""
+        if not left_row:
+            missing_counts["left_eval"] += 1
+            missing_eval = "missing_eval_row"
+        if not right_row:
+            missing_counts["right_eval"] += 1
+            missing_eval = "missing_eval_row"
+        invalid_reason = missing_eval or left_invalid or right_invalid
+        if missing_eval:
+            transition = "incomplete_run"
+            validity = "incomplete_run"
+        elif invalid_reason:
+            transition = "invalid_for_mining"
+            validity = "invalid_for_mining"
+        else:
+            transition = classify_transition(left_success, right_success)
+            validity = "valid_for_mining"
         transition_counts[transition] = transition_counts.get(transition, 0) + 1
         rows.append(
             {
@@ -162,7 +183,7 @@ def build_transition_artifact(
                 "left_error": str(left_row.get("error") or ""),
                 "right_error": str(right_row.get("error") or ""),
                 "transition": transition,
-                "validity": "invalid_for_mining" if invalid_reason else "valid_for_mining",
+                "validity": validity,
                 "invalid_reason": invalid_reason,
                 "left_eval": dict(left_row),
                 "right_eval": dict(right_row),
@@ -178,9 +199,12 @@ def build_transition_artifact(
             "right_label": str(right_label or ""),
             "task_file": str(task_file or ""),
         },
+        "provenance": dict(provenance or {}),
         "summary": {
             "num_rows": len(rows),
             "transition_counts": dict(sorted(transition_counts.items())),
+            "duplicate_counts": duplicate_counts,
+            "missing_counts": missing_counts,
         },
         "rows": rows,
     }
@@ -203,6 +227,19 @@ def _success_value(row):
     if "success" not in row:
         return None
     return bool(row.get("success"))
+
+
+def _duplicate_count(rows):
+    seen = set()
+    duplicates = 0
+    for row in list(rows or []):
+        task_id = _to_int(row.get("task_id"))
+        if not task_id:
+            continue
+        if task_id in seen:
+            duplicates += 1
+        seen.add(task_id)
+    return duplicates
 
 
 def _to_int(value):

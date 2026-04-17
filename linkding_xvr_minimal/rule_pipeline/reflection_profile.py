@@ -68,10 +68,10 @@ def recommend_next_action(group):
     right_success_rate = float(group.get("right_success_rate") or 0.0)
     if status == "invalid_for_mining":
         return "fix_infrastructure"
-    if status == "can_do" and right_success_rate >= 0.9:
-        return "harden_environment"
     if transitions.get("lost") or transitions.get("both_fail") or status in set(["borderline", "cannot_do"]):
         return "repair_rules"
+    if status == "can_do" and right_success_rate >= 0.9:
+        return "harden_environment"
     return "hold_steady"
 
 
