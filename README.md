@@ -153,6 +153,175 @@ python3 -m linkding_xvr_minimal.runner \
 
 Expected: every selected task has nonempty `preflight[].selected_rule_ids`, and ExpeL preflight has nonempty `expel_preflight[].selected_rule_ids`.
 
+## Build Rule Inputs
+
+WebCoEvo now includes a lightweight producer-side pipeline for public, auditable rule artifacts. The intended flow is:
+
+1. build episode artifacts from trace/eval JSONL,
+2. build recovery artifacts from episode attempts,
+3. induce ExpeL-style rules,
+4. audit rule coverage before runtime injection.
+
+Build an episode artifact from existing run outputs:
+
+```bash
+python3 scripts/build_episode_artifact.py \
+  --trace "results/<run-label>/*trace*.jsonl" \
+  --eval "results/<run-label>/*eval*.jsonl" \
+  --task-file configs/focus20_hardv3_smoke.raw.json \
+  --source-version 1.45.0 \
+  --output-file rulebooks/generated/<run-label>/episodes.json
+```
+
+Build a recovery artifact from the episode attempts:
+
+```bash
+python3 scripts/build_recovery_artifact.py \
+  --episodes-file rulebooks/generated/<run-label>/episodes.json \
+  --output-file rulebooks/generated/<run-label>/recovery.json
+```
+
+Then build an ExpeL-style rule artifact from that recovery summary:
+
+```bash
+python3 scripts/build_expel_rules_from_recovery.py \
+  --recovery-artifact rulebooks/generated/<run-label>/recovery.json \
+  --output-file rulebooks/generated/<run-label>/expel_rules.json \
+  --base-url "$OPENAI_BASE_URL" \
+  --api-key "$OPENAI_API_KEY" \
+  --model "${UITARS_MODEL:-gpt-5.4}"
+```
+
+For local testing without a model endpoint, the ExpeL builder supports stub files:
+
+```bash
+python3 scripts/build_recovery_artifact.py \
+  --episodes-file rulebooks/generated/dev/episodes.json \
+  --output-file rulebooks/generated/dev/recovery.json
+
+python3 scripts/build_expel_rules_from_recovery.py \
+  --recovery-artifact rulebooks/generated/dev/recovery.json \
+  --output-file rulebooks/generated/dev/expel_rules.json \
+  --stub-critique-file /path/to/local_stub_rule_ops.txt \
+  --stub-insights-file /path/to/local_stub_insights.json \
+  --include-insights
+```
+
+Audit coverage before any real agent run:
+
+```bash
+python3 scripts/verify_rule_coverage.py \
+  --task-file configs/focus20_hardv3_smoke.raw.json \
+  --rulebook rulebooks/v2_6.json \
+  --expel-rule-file rulebooks/generated/<run-label>/expel_rules.json \
+  --require-full-xvr-coverage \
+  --require-full-expel-coverage \
+  --json
+```
+
+## Build Reflection Rules
+
+WebCoEvo also includes a public, auditable pipeline for cross-version reflection rules. This pipeline is separate from the ExpeL rule generator: it compares matched XVR runs, mines behavior gaps, asks a model or local stub for structured rule proposals, merges those proposals deterministically, verifies the candidate rulebook, and prepares a delta evaluation slice.
+
+Focus20 is the mining set for reflection rule wording. TaskBank36 is held out for validation and should not be used to write deployable reflection rules unless the research protocol is explicitly changed. The `websites/` directory remains archive/review material only: websites/ is not the runtime source of truth. Runtime behavior still comes from `scripts/singularity/linkding_drift/variants/`.
+
+Recommended generated layout:
+
+```text
+rulebooks/generated/<run-label>/reflection/
+  transition_artifact.json
+  capability_profile.json
+  behavior_gaps.json
+  mining_cases.jsonl
+  rule_proposals.json
+  candidate_rulebook.json
+  verification_report.json
+  delta_slice.raw.json
+  promotion_decision.md
+```
+
+Build the matched transition artifact from paired eval/trace JSONL:
+
+```bash
+python3 scripts/build_xvr_transition_artifact.py \
+  --task-file configs/focus20_hardv3_full.raw.json \
+  --left-label v2_4 \
+  --left-eval "results/<left-run>/*eval*.jsonl" \
+  --left-trace "results/<left-run>/*trace*.jsonl" \
+  --right-label candidate \
+  --right-eval "results/<right-run>/*eval*.jsonl" \
+  --right-trace "results/<right-run>/*trace*.jsonl" \
+  --output-file rulebooks/generated/<run-label>/reflection/transition_artifact.json
+```
+
+Mine deterministic behavior gaps and compact model-facing cases:
+
+```bash
+python3 scripts/mine_reflection_gaps.py \
+  --transition-artifact rulebooks/generated/<run-label>/reflection/transition_artifact.json \
+  --output-file rulebooks/generated/<run-label>/reflection/behavior_gaps.json \
+  --cases-file rulebooks/generated/<run-label>/reflection/mining_cases.jsonl
+```
+
+Build a candidate rulebook from structured proposals. Use `--stub-proposals-file` for local reproducibility, or provide an OpenAI-compatible endpoint for live proposal generation.
+
+```bash
+python3 scripts/build_reflection_rules.py \
+  --base-rulebook rulebooks/v2_6.json \
+  --mining-cases rulebooks/generated/<run-label>/reflection/mining_cases.jsonl \
+  --output-file rulebooks/generated/<run-label>/reflection/candidate_rulebook.json \
+  --stub-proposals-file rulebooks/generated/<run-label>/reflection/rule_proposals.json \
+  --max-rules 8
+```
+
+Verify that the candidate is compact, deployable, and compatible with the runtime `load_rulebook` / `select_rules` path:
+
+```bash
+python3 scripts/verify_reflection_rulebook.py \
+  --task-file configs/focus20_hardv3_full.raw.json \
+  --rulebook rulebooks/generated/<run-label>/reflection/candidate_rulebook.json \
+  --max-rules 8 \
+  --no-task-scopes \
+  --require-full-coverage \
+  --json > rulebooks/generated/<run-label>/reflection/verification_report.json
+```
+
+Build a small delta-slice task file for promotion testing:
+
+```bash
+python3 scripts/build_reflection_delta_slice.py \
+  --transition-artifact rulebooks/generated/<run-label>/reflection/transition_artifact.json \
+  --task-file configs/focus20_hardv3_full.raw.json \
+  --output-task-file rulebooks/generated/<run-label>/reflection/delta_slice.raw.json \
+  --manifest-file rulebooks/generated/<run-label>/reflection/delta_manifest.json \
+  --max-per-bucket 8
+```
+
+Finally, write the promotion decision record:
+
+```bash
+python3 scripts/decide_reflection_promotion.py \
+  --transition-artifact rulebooks/generated/<run-label>/reflection/transition_artifact.json \
+  --verification-report rulebooks/generated/<run-label>/reflection/verification_report.json \
+  --output-file rulebooks/generated/<run-label>/reflection/promotion_decision.md
+```
+
+Consume the resulting artifacts with the existing preflight/runtime path:
+
+```bash
+python3 -m linkding_xvr_minimal.runner \
+  --task-file configs/focus20_hardv3_smoke.raw.json \
+  --rulebook rulebooks/v2_6.json \
+  --expel-rule-file rulebooks/generated/<run-label>/expel_rules.json \
+  --run-label rules_pipeline_preflight_smoke \
+  --preflight-rules-only \
+  --fail-on-empty-xvr-rules
+```
+
+Generated rule artifacts should live under `rulebooks/generated/`; see `rulebooks/generated/README.md` for the expected metadata and provenance fields.
+
+This producer pipeline does not change the runtime source of truth: `scripts/singularity/linkding_drift/variants/` remains the runtime authority, and `websites/` is not the runtime authority.
+
 ## Smoke Run
 
 Submit one access-task smoke run with the bundled Linkding drift runtime:
@@ -248,10 +417,12 @@ WebCoEvo avoids silent rule injection failures by:
 - backfilling preflight rule IDs into reset-error eval/trace rows,
 - auditing traces after Slurm runs.
 
-The intentionally omitted historical features are:
+The intentionally omitted historical features are still:
 
-- knowledge-graph mining and broad ExpeL discovery,
+- the old knowledge-graph mining harness and broader benchmark-maintenance framework,
 - TaskBank generation/analysis scaffolds,
 - paper/report/figure pipelines,
 - retrieved trajectory exemplar injection,
 - retry guidance text from previous failed attempts.
+
+What WebCoEvo does include now is a narrower public producer pipeline: episode extraction, failed-then-success recovery mining, ExpeL-style rule induction, and rule coverage auditing, all scoped to the Linkding XVR path and kept repo-local.
