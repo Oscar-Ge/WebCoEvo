@@ -8,5 +8,6 @@ __all__ = [
     "reflection_gaps",
     "reflection_merge",
     "reflection_proposals",
+    "reflection_profile",
     "reflection_verify",
 ]
