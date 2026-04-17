@@ -153,6 +153,88 @@ python3 -m linkding_xvr_minimal.runner \
 
 Expected: every selected task has nonempty `preflight[].selected_rule_ids`, and ExpeL preflight has nonempty `expel_preflight[].selected_rule_ids`.
 
+## Build Rule Inputs
+
+WebCoEvo now includes a lightweight producer-side pipeline for public, auditable rule artifacts. The intended flow is:
+
+1. build episode artifacts from trace/eval JSONL,
+2. build recovery artifacts from episode attempts,
+3. induce ExpeL-style rules,
+4. audit rule coverage before runtime injection.
+
+Build an episode artifact from existing run outputs:
+
+```bash
+python3 scripts/build_episode_artifact.py \
+  --trace "results/<run-label>/*trace*.jsonl" \
+  --eval "results/<run-label>/*eval*.jsonl" \
+  --task-file configs/focus20_hardv3_smoke.raw.json \
+  --source-version 1.45.0 \
+  --output-file rulebooks/generated/<run-label>/episodes.json
+```
+
+Build a recovery artifact from the episode attempts:
+
+```bash
+python3 scripts/build_recovery_artifact.py \
+  --episodes-file rulebooks/generated/<run-label>/episodes.json \
+  --output-file rulebooks/generated/<run-label>/recovery.json
+```
+
+Then build an ExpeL-style rule artifact from that recovery summary:
+
+```bash
+python3 scripts/build_expel_rules_from_recovery.py \
+  --recovery-artifact rulebooks/generated/<run-label>/recovery.json \
+  --output-file rulebooks/generated/<run-label>/expel_rules.json \
+  --base-url "$OPENAI_BASE_URL" \
+  --api-key "$OPENAI_API_KEY" \
+  --model "${UITARS_MODEL:-gpt-5.4}"
+```
+
+For local testing without a model endpoint, the ExpeL builder supports stub files:
+
+```bash
+python3 scripts/build_recovery_artifact.py \
+  --episodes-file rulebooks/generated/dev/episodes.json \
+  --output-file rulebooks/generated/dev/recovery.json
+
+python3 scripts/build_expel_rules_from_recovery.py \
+  --recovery-artifact rulebooks/generated/dev/recovery.json \
+  --output-file rulebooks/generated/dev/expel_rules.json \
+  --stub-critique-file /path/to/local_stub_rule_ops.txt \
+  --stub-insights-file /path/to/local_stub_insights.json \
+  --include-insights
+```
+
+Audit coverage before any real agent run:
+
+```bash
+python3 scripts/verify_rule_coverage.py \
+  --task-file configs/focus20_hardv3_smoke.raw.json \
+  --rulebook rulebooks/v2_6.json \
+  --expel-rule-file rulebooks/generated/<run-label>/expel_rules.json \
+  --require-full-xvr-coverage \
+  --require-full-expel-coverage \
+  --json
+```
+
+Consume the resulting artifacts with the existing preflight/runtime path:
+
+```bash
+python3 -m linkding_xvr_minimal.runner \
+  --task-file configs/focus20_hardv3_smoke.raw.json \
+  --rulebook rulebooks/v2_6.json \
+  --expel-rule-file rulebooks/generated/<run-label>/expel_rules.json \
+  --run-label rules_pipeline_preflight_smoke \
+  --preflight-rules-only \
+  --fail-on-empty-xvr-rules
+```
+
+Generated rule artifacts should live under `rulebooks/generated/`; see `rulebooks/generated/README.md` for the expected metadata and provenance fields.
+
+This producer pipeline does not change the runtime source of truth: `scripts/singularity/linkding_drift/variants/` remains the runtime authority, and `websites/` is not the runtime authority.
+
 ## Smoke Run
 
 Submit one access-task smoke run with the bundled Linkding drift runtime:
@@ -248,10 +330,12 @@ WebCoEvo avoids silent rule injection failures by:
 - backfilling preflight rule IDs into reset-error eval/trace rows,
 - auditing traces after Slurm runs.
 
-The intentionally omitted historical features are:
+The intentionally omitted historical features are still:
 
-- knowledge-graph mining and broad ExpeL discovery,
+- the old knowledge-graph mining harness and broader benchmark-maintenance framework,
 - TaskBank generation/analysis scaffolds,
 - paper/report/figure pipelines,
 - retrieved trajectory exemplar injection,
 - retry guidance text from previous failed attempts.
+
+What WebCoEvo does include now is a narrower public producer pipeline: episode extraction, failed-then-success recovery mining, ExpeL-style rule induction, and rule coverage auditing, all scoped to the Linkding XVR path and kept repo-local.
