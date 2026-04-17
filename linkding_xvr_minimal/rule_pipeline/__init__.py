@@ -5,6 +5,7 @@ __all__ = [
     "recovery",
     "reflection_cases",
     "reflection_compare",
+    "reflection_decision",
     "reflection_delta",
     "reflection_gaps",
     "reflection_merge",

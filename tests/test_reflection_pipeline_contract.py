@@ -8,6 +8,8 @@ def test_reflection_pipeline_modules_are_public_and_repo_local():
     for name in [
         "reflection_cases",
         "reflection_compare",
+        "reflection_decision",
+        "reflection_delta",
         "reflection_gaps",
         "reflection_merge",
         "reflection_proposals",
