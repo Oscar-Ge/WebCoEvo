@@ -219,6 +219,93 @@ python3 scripts/verify_rule_coverage.py \
   --json
 ```
 
+## Build Reflection Rules
+
+WebCoEvo also includes a public, auditable pipeline for cross-version reflection rules. This pipeline is separate from the ExpeL rule generator: it compares matched XVR runs, mines behavior gaps, asks a model or local stub for structured rule proposals, merges those proposals deterministically, verifies the candidate rulebook, and prepares a delta evaluation slice.
+
+Focus20 is the mining set for reflection rule wording. TaskBank36 is held out for validation and should not be used to write deployable reflection rules unless the research protocol is explicitly changed. The `websites/` directory remains archive/review material only: websites/ is not the runtime source of truth. Runtime behavior still comes from `scripts/singularity/linkding_drift/variants/`.
+
+Recommended generated layout:
+
+```text
+rulebooks/generated/<run-label>/reflection/
+  transition_artifact.json
+  capability_profile.json
+  behavior_gaps.json
+  mining_cases.jsonl
+  rule_proposals.json
+  candidate_rulebook.json
+  verification_report.json
+  delta_slice.raw.json
+  promotion_decision.md
+```
+
+Build the matched transition artifact from paired eval/trace JSONL:
+
+```bash
+python3 scripts/build_xvr_transition_artifact.py \
+  --task-file configs/focus20_hardv3_full.raw.json \
+  --left-label v2_4 \
+  --left-eval "results/<left-run>/*eval*.jsonl" \
+  --left-trace "results/<left-run>/*trace*.jsonl" \
+  --right-label candidate \
+  --right-eval "results/<right-run>/*eval*.jsonl" \
+  --right-trace "results/<right-run>/*trace*.jsonl" \
+  --output-file rulebooks/generated/<run-label>/reflection/transition_artifact.json
+```
+
+Mine deterministic behavior gaps and compact model-facing cases:
+
+```bash
+python3 scripts/mine_reflection_gaps.py \
+  --transition-artifact rulebooks/generated/<run-label>/reflection/transition_artifact.json \
+  --output-file rulebooks/generated/<run-label>/reflection/behavior_gaps.json \
+  --cases-file rulebooks/generated/<run-label>/reflection/mining_cases.jsonl
+```
+
+Build a candidate rulebook from structured proposals. Use `--stub-proposals-file` for local reproducibility, or provide an OpenAI-compatible endpoint for live proposal generation.
+
+```bash
+python3 scripts/build_reflection_rules.py \
+  --base-rulebook rulebooks/v2_6.json \
+  --mining-cases rulebooks/generated/<run-label>/reflection/mining_cases.jsonl \
+  --output-file rulebooks/generated/<run-label>/reflection/candidate_rulebook.json \
+  --stub-proposals-file rulebooks/generated/<run-label>/reflection/rule_proposals.json \
+  --max-rules 8
+```
+
+Verify that the candidate is compact, deployable, and compatible with the runtime `load_rulebook` / `select_rules` path:
+
+```bash
+python3 scripts/verify_reflection_rulebook.py \
+  --task-file configs/focus20_hardv3_full.raw.json \
+  --rulebook rulebooks/generated/<run-label>/reflection/candidate_rulebook.json \
+  --max-rules 8 \
+  --no-task-scopes \
+  --require-full-coverage \
+  --json > rulebooks/generated/<run-label>/reflection/verification_report.json
+```
+
+Build a small delta-slice task file for promotion testing:
+
+```bash
+python3 scripts/build_reflection_delta_slice.py \
+  --transition-artifact rulebooks/generated/<run-label>/reflection/transition_artifact.json \
+  --task-file configs/focus20_hardv3_full.raw.json \
+  --output-task-file rulebooks/generated/<run-label>/reflection/delta_slice.raw.json \
+  --manifest-file rulebooks/generated/<run-label>/reflection/delta_manifest.json \
+  --max-per-bucket 8
+```
+
+Finally, write the promotion decision record:
+
+```bash
+python3 scripts/decide_reflection_promotion.py \
+  --transition-artifact rulebooks/generated/<run-label>/reflection/transition_artifact.json \
+  --verification-report rulebooks/generated/<run-label>/reflection/verification_report.json \
+  --output-file rulebooks/generated/<run-label>/reflection/promotion_decision.md
+```
+
 Consume the resulting artifacts with the existing preflight/runtime path:
 
 ```bash
