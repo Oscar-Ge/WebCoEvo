@@ -1,1 +1,12 @@
-__all__ = ["coverage", "episodes", "induction", "recovery"]
+__all__ = [
+    "coverage",
+    "episodes",
+    "induction",
+    "recovery",
+    "reflection_cases",
+    "reflection_compare",
+    "reflection_gaps",
+    "reflection_merge",
+    "reflection_proposals",
+    "reflection_verify",
+]
