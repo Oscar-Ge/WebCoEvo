@@ -9,6 +9,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from linkding_xvr_minimal.rule_pipeline.reflection_gaps import build_behavior_gaps
+from linkding_xvr_minimal.rule_pipeline.reflection_cases import build_mining_cases, write_jsonl
 
 
 def parse_args(argv=None):
@@ -27,8 +28,7 @@ def main(argv=None):
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(json.dumps(gaps, indent=2), encoding="utf-8")
     if args.cases_file:
-        Path(args.cases_file).parent.mkdir(parents=True, exist_ok=True)
-        Path(args.cases_file).write_text("", encoding="utf-8")
+        write_jsonl(args.cases_file, build_mining_cases(transition_artifact, gaps))
     print(
         json.dumps(
             {
