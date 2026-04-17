@@ -5,6 +5,7 @@ import sys
 
 from linkding_xvr_minimal.rule_pipeline.reflection_compare import (
     build_transition_artifact,
+    classify_invalid_reason,
     classify_transition,
     index_eval_rows,
     index_trace_rows,
@@ -199,3 +200,49 @@ def test_build_xvr_transition_artifact_cli_writes_public_json(tmp_path):
     assert payload["schema_version"] == "webcoevo-xvr-transitions-v1"
     assert payload["summary"]["transition_counts"] == {"saved": 1}
     assert payload["rows"][0]["transition"] == "saved"
+
+
+def test_classify_invalid_reason_quarantines_infrastructure_and_parser_rows():
+    assert (
+        classify_invalid_reason(
+            {"success": False, "error": "auth_session_failure: could not reveal login form"},
+            _trace(301),
+        )
+        == "runtime_or_setup_failure"
+    )
+    assert (
+        classify_invalid_reason(
+            {"success": False, "error": "parser_failure: could not parse action"},
+            _trace(302),
+        )
+        == "parser_or_action_format"
+    )
+    assert (
+        classify_invalid_reason(
+            {"success": False, "error": "max_steps_no_success"},
+            [],
+        )
+        == "empty_trace"
+    )
+
+
+def test_build_transition_artifact_marks_invalid_rows_before_gap_mining():
+    task_rows = [_task(401, 9738, "access")]
+    left_eval_rows = [_eval(401, False, error="auth_session_failure during setup")]
+    right_eval_rows = [_eval(401, True)]
+
+    artifact = build_transition_artifact(
+        task_rows=task_rows,
+        left_eval_rows=left_eval_rows,
+        left_trace_rows=[],
+        right_eval_rows=right_eval_rows,
+        right_trace_rows=_trace(401),
+        left_label="no_xvr",
+        right_label="v2_6",
+    )
+
+    row = artifact["rows"][0]
+    assert row["validity"] == "invalid_for_mining"
+    assert row["invalid_reason"] == "runtime_or_setup_failure"
+    assert row["transition"] == "invalid_for_mining"
+    assert artifact["summary"]["transition_counts"] == {"invalid_for_mining": 1}

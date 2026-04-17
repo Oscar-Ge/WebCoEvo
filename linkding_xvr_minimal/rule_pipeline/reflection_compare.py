@@ -73,6 +73,45 @@ def classify_transition(left_success, right_success):
     return "both_fail"
 
 
+def classify_invalid_reason(eval_row, trace_rows):
+    error = str((eval_row or {}).get("error") or "").strip().lower()
+    if any(
+        marker in error
+        for marker in [
+            "auth_session_failure",
+            "login bootstrap",
+            "setup failure",
+            "could not reveal login",
+            "runtime failure",
+            "port collision",
+        ]
+    ):
+        return "runtime_or_setup_failure"
+    if any(
+        marker in error
+        for marker in [
+            "parser_failure",
+            "parse failure",
+            "action format",
+            "could not parse action",
+        ]
+    ):
+        return "parser_or_action_format"
+    if any(
+        marker in error
+        for marker in [
+            "reset failure",
+            "evaluator failure",
+            "evaluation failure",
+            "assertion mismatch",
+        ]
+    ):
+        return "reset_or_evaluator_failure"
+    if not list(trace_rows or []):
+        return "empty_trace"
+    return ""
+
+
 def build_transition_artifact(
     task_rows,
     left_eval_rows,
@@ -97,7 +136,10 @@ def build_transition_artifact(
         right_row = right_eval.get(task_id, {})
         left_success = _success_value(left_row)
         right_success = _success_value(right_row)
-        transition = classify_transition(left_success, right_success)
+        left_invalid = classify_invalid_reason(left_row, left_trace.get(task_id, []))
+        right_invalid = classify_invalid_reason(right_row, right_trace.get(task_id, []))
+        invalid_reason = left_invalid or right_invalid
+        transition = "invalid_for_mining" if invalid_reason else classify_transition(left_success, right_success)
         transition_counts[transition] = transition_counts.get(transition, 0) + 1
         rows.append(
             {
@@ -120,8 +162,8 @@ def build_transition_artifact(
                 "left_error": str(left_row.get("error") or ""),
                 "right_error": str(right_row.get("error") or ""),
                 "transition": transition,
-                "validity": "valid_for_mining",
-                "invalid_reason": "",
+                "validity": "invalid_for_mining" if invalid_reason else "valid_for_mining",
+                "invalid_reason": invalid_reason,
                 "left_eval": dict(left_row),
                 "right_eval": dict(right_row),
                 "left_trace_excerpt": short_trace_excerpt(left_trace.get(task_id, [])),
