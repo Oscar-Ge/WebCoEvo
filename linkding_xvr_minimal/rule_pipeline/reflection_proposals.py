@@ -2,6 +2,8 @@
 
 import json
 import re
+import os
+import urllib.request
 
 
 ALLOWED_OPERATIONS = set(["add_rule", "edit_rule", "keep_rule", "drop_rule"])
@@ -118,6 +120,78 @@ def parse_rule_proposals(text, allow_task_scope=False):
         "rejected": rejected,
         "raw_payload": payload,
     }
+
+
+def build_reflection_proposal_prompt(cases, base_rules):
+    prompt = {
+        "task": "Propose compact cross-version reflection rulebook edits.",
+        "constraints": [
+            "Return only JSON with schema_version and proposals.",
+            "Allowed operations: add_rule, edit_rule, keep_rule, drop_rule.",
+            "For add_rule/edit_rule include title, scope, trigger, adaptation_strategy, verification_check, forbidden_actions.",
+            "Use drift_types scope by default. Do not use task_ids unless explicitly allowed by the caller.",
+            "Keep rules mechanism-level and grounded in the supplied mining cases.",
+        ],
+        "proposal_schema": {
+            "schema_version": "webcoevo-xvr-rule-proposals-v1",
+            "proposals": [
+                {
+                    "operation": "edit_rule",
+                    "target_rule_id": "existing_rule_id",
+                    "rule": {},
+                    "support": {"gap_ids": [], "supporting_task_ids": []},
+                }
+            ],
+        },
+        "base_rules": list(base_rules or []),
+        "mining_cases": list(cases or []),
+    }
+    return json.dumps(prompt, indent=2, sort_keys=True)
+
+
+def build_stub_proposal_fn(path):
+    def proposal_fn(prompt):
+        del prompt
+        with open(path, "r", encoding="utf-8") as handle:
+            return handle.read()
+
+    return proposal_fn
+
+
+def build_openai_proposal_fn(base_url=None, api_key=None, model=None):
+    endpoint = str(base_url or os.environ.get("OPENAI_BASE_URL") or "https://api.openai.com/v1").rstrip("/")
+    if not endpoint.endswith("/chat/completions"):
+        endpoint = endpoint + "/chat/completions"
+    resolved_api_key = str(api_key or os.environ.get("OPENAI_API_KEY") or "")
+    resolved_model = str(model or os.environ.get("OPENAI_MODEL") or "gpt-5.4")
+
+    def proposal_fn(prompt):
+        body = json.dumps(
+            {
+                "model": resolved_model,
+                "messages": [
+                    {
+                        "role": "system",
+                        "content": "You output only valid JSON reflection-rule proposals.",
+                    },
+                    {"role": "user", "content": str(prompt or "")},
+                ],
+            }
+        ).encode("utf-8")
+        request = urllib.request.Request(
+            endpoint,
+            data=body,
+            headers={
+                "Content-Type": "application/json",
+                "Authorization": "Bearer {}".format(resolved_api_key),
+            },
+            method="POST",
+        )
+        with urllib.request.urlopen(request, timeout=120) as response:
+            payload = json.loads(response.read().decode("utf-8"))
+        return payload["choices"][0]["message"]["content"]
+
+    return proposal_fn
 
 
 def _proposal_rows(payload):
