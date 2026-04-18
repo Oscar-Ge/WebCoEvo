@@ -489,6 +489,42 @@ Generated rule artifacts should live under `rulebooks/generated/`; see `rulebook
 
 This producer pipeline does not change the runtime source of truth: `scripts/singularity/linkding_drift/variants/` remains the runtime authority, and `websites/` is not the runtime authority.
 
+The repo also carries one audited concrete instance of this pipeline for GPT-5.4 reflection hardening on hardv3:
+
+- promoted candidate rulebook: `rulebooks/v2_4_1.json`
+- raw and parsed proposal artifacts: `artifacts/reflection/v2_4_1/`
+- verification and promotion report: `docs/reports/2026-04-18-gpt54-v2_4_1-reflection-hardening-report.md`
+
+That `v2.4.1` run keeps the existing reflection pipeline, adds an OpenAI-compatible compatibility layer for the ASXS endpoint, and records provider outputs for auditability.
+
+## Reports And Figures
+
+WebCoEvo now includes a narrow reporting layer for the current Linkding rule-comparison and website-version-line analyses. These scripts are repo-local and write Markdown/JSON summaries under `docs/reports/` plus SVG figures under `figures/`.
+
+- `scripts/reporting/generate_umich_qwen3_rule_report.py`: builds the UMich Qwen3-VL control-vs-first-modified comparison report and per-drift SVG figures.
+- `scripts/reporting/generate_website_version_line_report.py`: merges the hardv3 matrix summary with the UMich comparison summary to render website-version line charts.
+- `linkding_xvr_minimal/reporting_version_lines.py`: shared summary and SVG renderer used by the website-version-line report.
+
+Regenerate the checked-in reports with:
+
+```bash
+python3 scripts/reporting/generate_umich_qwen3_rule_report.py
+python3 scripts/reporting/generate_website_version_line_report.py
+```
+
+The current checked-in outputs include:
+
+- `docs/reports/2026-04-18-umich-qwen3-rule-comparison-report.md`
+- `docs/reports/2026-04-18-umich-qwen3-rule-comparison-summary.json`
+- `docs/reports/2026-04-18-website-version-line-report.md`
+- `docs/reports/2026-04-18-website-version-line-summary.json`
+- `figures/focus20_control_rules_success.svg`
+- `figures/focus20_first_modified_rules_success.svg`
+- `figures/focus20_website_version_lines.svg`
+- `figures/taskbank36_control_rules_status.svg`
+- `figures/taskbank36_first_modified_rules_success.svg`
+- `figures/taskbank36_website_version_lines.svg`
+
 ## Outputs
 
 Each run writes:
@@ -535,8 +571,8 @@ The intentionally omitted historical features are still:
 
 - the old knowledge-graph mining harness and broader benchmark-maintenance framework
 - TaskBank generation/analysis scaffolds
-- paper/report/figure pipelines
+- general paper-writing and submission pipelines
 - retrieved trajectory exemplar injection
 - retry guidance text from previous failed attempts
 
-What WebCoEvo does include now is a narrower public producer pipeline: episode extraction, failed-then-success recovery mining, ExpeL-style rule induction, and rule coverage auditing, all scoped to the Linkding XVR path and kept repo-local.
+What WebCoEvo does include now is a narrower public producer pipeline: episode extraction, failed-then-success recovery mining, ExpeL-style rule induction, rule coverage auditing, and lightweight rule-comparison reporting, all scoped to the Linkding XVR path and kept repo-local.

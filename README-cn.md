@@ -262,6 +262,44 @@ bash slurm/submit_first_modified_rules_matrix.sh
 
 通用 runner 现在支持 `LINKDING_DRIFT_PROFILE=hardv3|first_modified|control`、`REQUIRE_XVR_RULES`、`REQUIRE_EXPEL_RULES`、`TASK_HOST_PROFILE`、`RUNTIME_VARIANTS` 和 `TASK_LIMIT`。
 
+## Reflection Rules 产物
+
+仓库里现在已经带了一份经过审计的 `v2.4.1` reflection hardening 产物，仍然沿用现有 reflection pipeline，而不是另起炉灶：
+
+- rulebook：`rulebooks/v2_4_1.json`
+- 原始与解析后的 proposal / casebook / verification artifacts：`artifacts/reflection/v2_4_1/`
+- 汇总报告：`docs/reports/2026-04-18-gpt54-v2_4_1-reflection-hardening-report.md`
+
+这次 `v2.4.1` 还补了 ASXS OpenAI-compatible endpoint 的兼容层，并把 provider 输出保留下来，方便之后复核。
+
+## 报告与图表
+
+WebCoEvo 现在也带一层很轻量的 reporting 脚本，用来生成当前 Linkding 规则对比和 website-version-line 报告。输出会写到 `docs/reports/`，对应 SVG 会写到 `figures/`。
+
+- `scripts/reporting/generate_umich_qwen3_rule_report.py`：生成 UMich Qwen3-VL 的 control / first-modified rules comparison report。
+- `scripts/reporting/generate_website_version_line_report.py`：把 hardv3 summary 和 UMich comparison summary 合并成 website version line report。
+- `linkding_xvr_minimal/reporting_version_lines.py`：website-version-line report 共用的 summary / SVG renderer。
+
+重新生成当前已提交报告的命令：
+
+```bash
+python3 scripts/reporting/generate_umich_qwen3_rule_report.py
+python3 scripts/reporting/generate_website_version_line_report.py
+```
+
+当前已提交的主要输出包括：
+
+- `docs/reports/2026-04-18-umich-qwen3-rule-comparison-report.md`
+- `docs/reports/2026-04-18-umich-qwen3-rule-comparison-summary.json`
+- `docs/reports/2026-04-18-website-version-line-report.md`
+- `docs/reports/2026-04-18-website-version-line-summary.json`
+- `figures/focus20_control_rules_success.svg`
+- `figures/focus20_first_modified_rules_success.svg`
+- `figures/focus20_website_version_lines.svg`
+- `figures/taskbank36_control_rules_status.svg`
+- `figures/taskbank36_first_modified_rules_success.svg`
+- `figures/taskbank36_website_version_lines.svg`
+
 ## 输出
 
 每个 run 会写：
@@ -307,6 +345,8 @@ WebCoEvo 避免 silent rule injection failure 的方式：
 
 - knowledge-graph mining 和 broad ExpeL discovery。
 - TaskBank 生成/分析 scaffold。
-- paper/report/figure pipelines。
+- 泛化的 paper 写作 / 投稿流水线。
 - retrieved trajectory exemplar injection。
 - previous failure 的 retry guidance text。
+
+仓库现在实际包含的是更窄的一组本地能力：Linkding XVR 路径上的 rule producer pipeline、verification，以及轻量的规则对比 / version-line reporting。
