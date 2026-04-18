@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="560" viewBox="0 0 1120 560">
+<style>
+.title { font: 700 28px 'Helvetica Neue', Arial, sans-serif; fill: #111827; }
+.subtitle { font: 400 15px 'Helvetica Neue', Arial, sans-serif; fill: #4b5563; }
+.axis { font: 12px 'Helvetica Neue', Arial, sans-serif; fill: #374151; }
+.legend { font: 13px 'Helvetica Neue', Arial, sans-serif; fill: #1f2937; }
+.value { font: 12px 'Helvetica Neue', Arial, sans-serif; fill: #111827; }
+.na { font: 11px 'Helvetica Neue', Arial, sans-serif; fill: #9ca3af; }
+</style>
+<rect width="100%%" height="100%%" fill="#ffffff"/>
+<text x="80" y="52" class="title">Focus20 Website Version Lines</text>
+<text x="80" y="78" class="subtitle">X-axis: website version. Y-axis: final success rate. Missing points are shown as N/A.</text>
+<line x1="80" y1="98" x2="102" y2="98" stroke="#f59e0b" stroke-width="3"/>
+<circle cx="91" cy="98" r="5" fill="#f59e0b" stroke="#ffffff" stroke-width="2"/>
+<text x="112" y="102" class="legend">ExpeL Only</text>
+<line x1="228" y1="98" x2="250" y2="98" stroke="#2563eb" stroke-width="3"/>
+<circle cx="239" cy="98" r="5" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="260" y="102" class="legend">V2.4</text>
+<line x1="100" y1="440" x2="1000" y2="440" stroke="#111827" stroke-width="1.5"/>
+<line x1="100" y1="120" x2="100" y2="440" stroke="#111827" stroke-width="1.5"/>
+<line x1="100" y1="440" x2="1000" y2="440" stroke="#e5e7eb" stroke-width="1"/>
+<text x="90" y="444" class="axis" text-anchor="end">0%</text>
+<line x1="100" y1="360" x2="1000" y2="360" stroke="#e5e7eb" stroke-width="1"/>
+<text x="90" y="364" class="axis" text-anchor="end">25%</text>
+<line x1="100" y1="280" x2="1000" y2="280" stroke="#e5e7eb" stroke-width="1"/>
+<text x="90" y="284" class="axis" text-anchor="end">50%</text>
+<line x1="100" y1="200" x2="1000" y2="200" stroke="#e5e7eb" stroke-width="1"/>
+<text x="90" y="204" class="axis" text-anchor="end">75%</text>
+<line x1="100" y1="120" x2="1000" y2="120" stroke="#e5e7eb" stroke-width="1"/>
+<text x="90" y="124" class="axis" text-anchor="end">100%</text>
+<text x="100" y="468" class="axis" text-anchor="middle">
+<tspan x="100" dy="0">Control</tspan>
+<tspan x="100" dy="15">1.45.0</tspan>
+</text>
+<text x="550" y="468" class="axis" text-anchor="middle">
+<tspan x="550" dy="0">First-Modified</tspan>
+</text>
+<text x="1000" y="468" class="axis" text-anchor="middle">
+<tspan x="1000" dy="0">Hardv3</tspan>
+</text>
+<circle cx="100.0" cy="176.5" r="6" fill="#f59e0b" stroke="#ffffff" stroke-width="2"/>
+<text x="100.0" y="164.5" class="value" text-anchor="middle">82.4%</text>
+<circle cx="550.0" cy="157.6" r="6" fill="#f59e0b" stroke="#ffffff" stroke-width="2"/>
+<text x="550.0" y="145.6" class="value" text-anchor="middle">88.2%</text>
+<circle cx="1000.0" cy="402.4" r="6" fill="#f59e0b" stroke="#ffffff" stroke-width="2"/>
+<text x="1000.0" y="390.4" class="value" text-anchor="middle">11.8%</text>
+<polyline fill="none" stroke="#f59e0b" stroke-width="3" points="100.0,176.5 550.0,157.6 1000.0,402.4"/>
+<circle cx="100.0" cy="432.0" r="6" fill="#ffffff" stroke="#2563eb" stroke-width="2" stroke-dasharray="3 2"/>
+<text x="100.0" y="422.0" class="na" text-anchor="middle">N/A</text>
+<circle cx="550.0" cy="124.7" r="6" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="550.0" y="112.7" class="value" text-anchor="middle">98.5%</text>
+<circle cx="1000.0" cy="134.1" r="6" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="1000.0" y="122.1" class="value" text-anchor="middle">95.6%</text>
+<polyline fill="none" stroke="#2563eb" stroke-width="3" points="550.0,124.7 1000.0,134.1"/>
+<text x="80" y="500" class="subtitle">Control 1.45.0 has an ExpeL-only point, but no matching V2.4 run in the current experiment set.</text>
+</svg>

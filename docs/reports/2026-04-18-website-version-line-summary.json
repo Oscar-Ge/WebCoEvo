@@ -1,0 +1,147 @@
+{
+  "benchmarks": {
+    "focus20": {
+      "label": "Focus20",
+      "series": {
+        "expel_only": {
+          "label": "ExpeL Only",
+          "points": [
+            {
+              "available": true,
+              "note": "",
+              "rate": 0.8235294117647058,
+              "status": "complete",
+              "successes": 56,
+              "total": 68
+            },
+            {
+              "available": true,
+              "note": "",
+              "rate": 0.8823529411764706,
+              "status": "complete",
+              "successes": 60,
+              "total": 68
+            },
+            {
+              "available": true,
+              "note": "",
+              "rate": 0.11764705882352941,
+              "status": "complete",
+              "successes": 8,
+              "total": 68
+            }
+          ]
+        },
+        "v2_4": {
+          "label": "V2.4",
+          "points": [
+            {
+              "available": false,
+              "note": "No control V2.4 run is available in the current summaries.",
+              "status": "missing"
+            },
+            {
+              "available": true,
+              "note": "",
+              "rate": 0.9852941176470589,
+              "status": "complete",
+              "successes": 67,
+              "total": 68
+            },
+            {
+              "available": true,
+              "note": "",
+              "rate": 0.9558823529411765,
+              "status": "complete",
+              "successes": 65,
+              "total": 68
+            }
+          ]
+        }
+      },
+      "series_order": [
+        "expel_only",
+        "v2_4"
+      ],
+      "x_labels": [
+        "Control 1.45.0",
+        "First-Modified",
+        "Hardv3"
+      ]
+    },
+    "taskbank36": {
+      "label": "TaskBank36",
+      "series": {
+        "expel_only": {
+          "label": "ExpeL Only",
+          "points": [
+            {
+              "available": false,
+              "completed": 98,
+              "completion_rate": 0.5868263473053892,
+              "lower_bound_rate": 0.3652694610778443,
+              "note": "Point unavailable because the run did not produce a final benchmark-wide success rate.",
+              "status": "partial",
+              "successes": 61
+            },
+            {
+              "available": true,
+              "note": "",
+              "rate": 0.6826347305389222,
+              "status": "complete",
+              "successes": 114,
+              "total": 167
+            },
+            {
+              "available": true,
+              "note": "",
+              "rate": 0.39520958083832336,
+              "status": "complete",
+              "successes": 66,
+              "total": 167
+            }
+          ]
+        },
+        "v2_4": {
+          "label": "V2.4",
+          "points": [
+            {
+              "available": false,
+              "note": "No control V2.4 run is available in the current summaries.",
+              "status": "missing"
+            },
+            {
+              "available": true,
+              "note": "",
+              "rate": 0.8562874251497006,
+              "status": "complete",
+              "successes": 143,
+              "total": 167
+            },
+            {
+              "available": true,
+              "note": "",
+              "rate": 0.5808383233532934,
+              "status": "complete",
+              "successes": 97,
+              "total": 167
+            }
+          ]
+        }
+      },
+      "series_order": [
+        "expel_only",
+        "v2_4"
+      ],
+      "x_labels": [
+        "Control 1.45.0",
+        "First-Modified",
+        "Hardv3"
+      ]
+    }
+  },
+  "endpoint": "http://promaxgb10-d668.eecs.umich.edu:8000/v1",
+  "hardv3_summary_path": "/home/gecm/WebCoEvo/docs/reports/2026-04-17-hardv3-xvr-matrix-summary.json",
+  "model": "Qwen/Qwen3-VL-30B-A3B-Instruct",
+  "umich_summary_path": "/home/gecm/WebCoEvo/docs/reports/2026-04-18-umich-qwen3-rule-comparison-summary.json"
+}
