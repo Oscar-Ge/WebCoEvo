@@ -1,0 +1,20 @@
+{
+  "base_url": "https://api.asxs.top/v1",
+  "chat_completions_url": "https://api.asxs.top/v1/chat/completions",
+  "chat_ok": true,
+  "generation_endpoint": "responses_stream",
+  "model": "gpt-5.4",
+  "model_available": true,
+  "models_url": "https://api.asxs.top/v1/models",
+  "ok": true,
+  "provider_model_ids": [
+    "gpt-5.2",
+    "gpt-5.3-codex",
+    "gpt-5.4",
+    "gpt-5.4-mini"
+  ],
+  "provider_models_count": 4,
+  "provider_models_ok": true,
+  "response_excerpt": "OK",
+  "user_agent": "curl/8.7.1"
+}

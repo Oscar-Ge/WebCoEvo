@@ -1,6 +1,9 @@
 import json
+import threading
+from http.server import BaseHTTPRequestHandler, HTTPServer
 
 from linkding_xvr_minimal.rule_pipeline.reflection_proposals import (
+    build_openai_proposal_fn,
     extract_json_payload,
     normalize_proposal,
     parse_rule_proposals,
@@ -99,3 +102,91 @@ def test_parse_rule_proposals_returns_rejected_diagnostics():
     assert len(parsed["accepted"]) == 1
     assert len(parsed["rejected"]) == 2
     assert parsed["rejected"][0]["errors"] == ["missing_target_rule_id"]
+
+
+def test_build_openai_proposal_fn_uses_curl_user_agent_and_falls_back_to_streaming_responses():
+    class Handler(BaseHTTPRequestHandler):
+        def do_POST(self):
+            length = int(self.headers.get("Content-Length", "0"))
+            body = self.rfile.read(length).decode("utf-8")
+            payload = json.loads(body)
+            self.server.requests.append(
+                {
+                    "path": self.path,
+                    "headers": dict(self.headers),
+                    "payload": payload,
+                }
+            )
+            if self.path == "/v1/chat/completions":
+                self.send_response(200)
+                self.send_header("Content-Type", "application/json")
+                self.end_headers()
+                self.wfile.write(
+                    json.dumps({"choices": [{"message": {"role": "assistant"}}]}).encode("utf-8")
+                )
+                return
+            if self.path == "/v1/responses":
+                if payload.get("stream"):
+                    proposal_text = json.dumps(
+                        {
+                            "proposals": [
+                                {
+                                    "operation": "keep_rule",
+                                    "target_rule_id": "xvr24_0007",
+                                }
+                            ]
+                        }
+                    )
+                    stream_lines = [
+                        "event: response.output_text.delta",
+                        "data: {}".format(
+                            json.dumps(
+                                {
+                                    "type": "response.output_text.delta",
+                                    "delta": proposal_text,
+                                }
+                            )
+                        ),
+                        "",
+                    ]
+                    self.send_response(200)
+                    self.send_header("Content-Type", "text/event-stream")
+                    self.end_headers()
+                    self.wfile.write("\n".join(stream_lines).encode("utf-8"))
+                    return
+                self.send_response(200)
+                self.send_header("Content-Type", "application/json")
+                self.end_headers()
+                self.wfile.write(json.dumps({"status": "completed", "output": []}).encode("utf-8"))
+                return
+            self.send_response(404)
+            self.end_headers()
+
+        def log_message(self, format, *args):
+            return
+
+    server = HTTPServer(("127.0.0.1", 0), Handler)
+    server.requests = []
+    thread = threading.Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    try:
+        proposal_fn = build_openai_proposal_fn(
+            base_url="http://127.0.0.1:{}/v1".format(server.server_port),
+            api_key="test-key",
+            model="gpt-5.4",
+        )
+
+        text = proposal_fn("Return JSON only.")
+        parsed = parse_rule_proposals(text)
+
+        assert [proposal["operation"] for proposal in parsed["accepted"]] == ["keep_rule"]
+        assert [request["path"] for request in server.requests] == [
+            "/v1/chat/completions",
+            "/v1/responses",
+            "/v1/responses",
+        ]
+        for request in server.requests:
+            assert request["headers"].get("User-Agent", "").startswith("curl/")
+    finally:
+        server.shutdown()
+        thread.join(timeout=5)
