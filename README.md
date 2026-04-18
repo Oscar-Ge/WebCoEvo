@@ -8,11 +8,7 @@ Chinese documentation is available in [README-cn.md](README-cn.md).
 
 ## Course Project
 
-WebCoEvo is a course project for **UMich EECS545 Winter 2026**.
-
-**Authors:** Chenming Ge, Chengyang Shi, Yifei Xu, Yuxiang Yang, and Binglin Zhong.  
-**Advisor:** Honglak Lee.  
-**Mentor:** Violet Fu.
+WebCoEvo was developed as part of the **UMich EECS545 Winter 2026** course project by Chenming Ge, Chengyang Shi, Yifei Xu, Yuxiang Yang, and Binglin Zhong. It represents a shared effort that we were fortunate to pursue under the generous guidance of Prof. Honglak Lee and the thoughtful mentorship of Violet Fu.
 
 ## Scope
 
