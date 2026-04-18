@@ -88,7 +88,7 @@ def test_render_and_payload_use_legacy_injected_rule_fields():
     ]
 
 
-def test_official_expel_memory_v2_official_eval_injects_full_rulebook():
+def test_official_expel_memory_official_eval_injects_full_rulebook():
     rulebook = load_expel_rules(
         Path(__file__).resolve().parents[1] / "rulebooks" / "expel_official_v2.json"
     )
@@ -108,6 +108,6 @@ def test_official_expel_memory_v2_official_eval_injects_full_rulebook():
         fidelity="official_eval",
     )
 
-    assert len(selection["selected_rule_ids"]) == 16
+    assert len(selection["selected_rule_ids"]) == len(rulebook["rules"])
     assert selection["selected_rule_ids"][0] == "rule.1"
-    assert selection["selected_rules"][-1]["rule_id"] == "rule.16"
+    assert selection["selected_rules"][-1]["rule_id"] == "rule.{}".format(len(rulebook["rules"]))

@@ -158,5 +158,8 @@ def test_preflight_official_expel_fidelity_loads_full_rulebook():
 
     assert result.returncode == 0, result.stderr
     payload = json.loads(result.stdout)
+    rulebook_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "rulebooks", "expel_official_v2.json")
+    with open(rulebook_path, encoding="utf-8") as fh:
+        expected_rule_count = len(json.load(fh)["rules"])
     assert payload["expel_preflight"][0]["fidelity"] == "official_eval"
-    assert len(payload["expel_preflight"][0]["selected_rule_ids"]) == 16
+    assert len(payload["expel_preflight"][0]["selected_rule_ids"]) == expected_rule_count

@@ -51,8 +51,8 @@ def test_summarize_expel_coverage_reports_official_eval_selection():
     assert summary["covered"] == len(specs)
     assert summary["missing_task_ids"] == []
     assert summary["fidelity"] == "official_eval"
-    assert summary["selected_rule_count_min"] == 16
-    assert summary["selected_rule_count_max"] == 16
+    assert summary["selected_rule_count_min"] == len(rulebook["rules"])
+    assert summary["selected_rule_count_max"] == len(rulebook["rules"])
 
 
 def test_verify_rule_coverage_cli_emits_machine_readable_report(tmp_path):
