@@ -24,7 +24,16 @@ fi
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="${REPO_ROOT:-$(cd "${SCRIPT_DIR}/.." && pwd)}"
 MIN_ROOT="${REPO_ROOT}"
-PYTHON_BIN="${PYTHON_BIN:-${REPO_ROOT}/.venv/bin/python}"
+if [[ -z "${PYTHON_BIN:-}" ]]; then
+  if [[ -x "${HOME}/webAgentBenchmark/.venv/bin/python" ]]; then
+    PYTHON_BIN="${HOME}/webAgentBenchmark/.venv/bin/python"
+  elif [[ -x "${REPO_ROOT}/.venv/bin/python" ]]; then
+    PYTHON_BIN="${REPO_ROOT}/.venv/bin/python"
+  else
+    PYTHON_BIN="$(command -v python3 || true)"
+  fi
+fi
+export PYTHON_BIN
 
 cd "${REPO_ROOT}"
 
@@ -44,10 +53,19 @@ export RUN_LABEL="${RUN_LABEL:?RUN_LABEL is required}"
 export TASK_FILE="${TASK_FILE:?TASK_FILE is required}"
 export RULEBOOK="${RULEBOOK:?RULEBOOK is required}"
 export DRIFT_VARIANTS="${DRIFT_VARIANTS:?DRIFT_VARIANTS is required}"
+export RUNTIME_VARIANTS="${RUNTIME_VARIANTS:-${DRIFT_VARIANTS}}"
+export TASK_HOST_PROFILE="${TASK_HOST_PROFILE:-variant}"
+export TASK_LIMIT="${TASK_LIMIT:-0}"
 export OUTPUT_DIR="${OUTPUT_DIR:-${MIN_ROOT}/results/${RUN_LABEL}}"
-export EXPEL_RULE_FILE="${EXPEL_RULE_FILE:-${MIN_ROOT}/rulebooks/expel_official_v2.json}"
+if [[ -z "${EXPEL_RULE_FILE+x}" ]]; then
+  export EXPEL_RULE_FILE="${MIN_ROOT}/rulebooks/expel_official_v2.json"
+else
+  export EXPEL_RULE_FILE
+fi
 export EXPEL_RULE_LIMIT="${EXPEL_RULE_LIMIT:-3}"
 export EXPEL_FIDELITY="${EXPEL_FIDELITY:-official_eval}"
+export REQUIRE_XVR_RULES="${REQUIRE_XVR_RULES:-1}"
+export REQUIRE_EXPEL_RULES="${REQUIRE_EXPEL_RULES:-1}"
 export BASELINE_USER="${BASELINE_USER:-baseline}"
 export BASELINE_PASS="${BASELINE_PASS:-Baseline123!}"
 export BASELINE_EMAIL_DOMAIN="${BASELINE_EMAIL_DOMAIN:-local.test}"
@@ -103,15 +121,16 @@ ensure_baseline_user() {
 rewrite_task_file() {
   local src="$1"
   local dest="$2"
-  shift 2
-  "${PYTHON_BIN}" - "$src" "$dest" "$@" <<'PY'
+  local limit="$3"
+  shift 3
+  "${PYTHON_BIN}" - "$src" "$dest" "$limit" "$@" <<'PY'
 import json
 import sys
 from pathlib import Path
 
 from linkding_xvr_minimal.tasks import load_raw_tasks, rewrite_task_start_urls
 
-src, dest, *pairs = sys.argv[1:]
+src, dest, limit, *pairs = sys.argv[1:]
 variant_host_map = {}
 for pair in pairs:
     variant, host_url = pair.split("=", 1)
@@ -122,6 +141,7 @@ rewritten = rewrite_task_start_urls(
     rows,
     variant_host_map=variant_host_map,
     variants=sorted(variant_host_map),
+    limit=int(limit or 0),
 )
 Path(dest).parent.mkdir(parents=True, exist_ok=True)
 Path(dest).write_text(json.dumps(rewritten, indent=2, ensure_ascii=False), encoding="utf-8")
@@ -138,32 +158,60 @@ require_singularity
 ensure_drift_port_offset
 
 IFS=':' read -r -a variant_array <<< "${DRIFT_VARIANTS}"
+IFS=':' read -r -a runtime_variant_array <<< "${RUNTIME_VARIANTS}"
 task_file="${OUTPUT_DIR}/tasks.offset.json"
 mkdir -p "${OUTPUT_DIR}"
 
-variant_pairs=()
-for variant in "${variant_array[@]}"; do
+runtime_pairs=()
+for variant in "${runtime_variant_array[@]}"; do
   port="$(drift_variant_port "${variant}")"
   host_url="http://127.0.0.1:${port}"
-  variant_pairs+=("${variant}=${host_url}")
+  runtime_pairs+=("${variant}=${host_url}")
   echo "[minimal-hardv3] starting variant=${variant} host_url=${host_url}"
   start_drift_variant "${variant}"
 done
 
-for variant in "${variant_array[@]}"; do
+for variant in "${runtime_variant_array[@]}"; do
   wait_drift_variant_ready "${variant}" 90
   reset_variant_state "${variant}"
   ensure_baseline_user "${variant}"
 done
 
-task_count="$(rewrite_task_file "${TASK_FILE}" "${task_file}" "${variant_pairs[@]}")"
+variant_pairs=()
+case "${TASK_HOST_PROFILE}" in
+  variant)
+    variant_pairs=("${runtime_pairs[@]}")
+    ;;
+  control)
+    control_url=""
+    for pair in "${runtime_pairs[@]}"; do
+      if [[ "${pair}" == control=* ]]; then
+        control_url="${pair#control=}"
+        break
+      fi
+    done
+    if [[ -z "${control_url}" ]]; then
+      echo "Error: TASK_HOST_PROFILE=control requires RUNTIME_VARIANTS to include control." >&2
+      exit 1
+    fi
+    for variant in "${variant_array[@]}"; do
+      variant_pairs+=("${variant}=${control_url}")
+    done
+    ;;
+  *)
+    echo "Error: unknown TASK_HOST_PROFILE=${TASK_HOST_PROFILE}; expected variant or control." >&2
+    exit 1
+    ;;
+esac
+
+task_count="$(rewrite_task_file "${TASK_FILE}" "${task_file}" "${TASK_LIMIT}" "${variant_pairs[@]}")"
 if [[ "${task_count}" == "0" ]]; then
   echo "Error: no tasks matched DRIFT_VARIANTS=${DRIFT_VARIANTS}" >&2
   exit 1
 fi
 
-echo "[minimal-hardv3] python=$("${PYTHON_BIN}" -V 2>&1)"
-echo "[minimal-hardv3] variants=${DRIFT_VARIANTS} task_count=${task_count} output_dir=${OUTPUT_DIR}"
+echo "[minimal-hardv3] python_bin=${PYTHON_BIN} python=$("${PYTHON_BIN}" -V 2>&1)"
+echo "[minimal-hardv3] variants=${DRIFT_VARIANTS} runtime_variants=${RUNTIME_VARIANTS} task_host_profile=${TASK_HOST_PROFILE} task_limit=${TASK_LIMIT} task_count=${task_count} output_dir=${OUTPUT_DIR}"
 
 cd "${MIN_ROOT}"
 expel_args=()
@@ -173,6 +221,11 @@ if [[ -n "${EXPEL_RULE_FILE:-}" ]]; then
     --expel-rule-limit "${EXPEL_RULE_LIMIT}"
     --expel-fidelity "${EXPEL_FIDELITY}"
   )
+fi
+
+runner_args=()
+if [[ "${REQUIRE_XVR_RULES}" == "1" ]]; then
+  runner_args+=(--fail-on-empty-xvr-rules)
 fi
 
 "${PYTHON_BIN}" -m linkding_xvr_minimal.runner \
@@ -187,15 +240,16 @@ fi
   --api-key "${OPENAI_API_KEY}" \
   --agent-mode "${AGENT_MODE}" \
   --headless \
-  --fail-on-empty-xvr-rules \
+  "${runner_args[@]}" \
   --output-dir "${OUTPUT_DIR}"
 
 verify_args=(
   --trace "${OUTPUT_DIR}/*trace*.jsonl"
-  --require-cross-version-rules
-  --require-rulebook-path
 )
-if [[ -n "${EXPEL_RULE_FILE:-}" ]]; then
+if [[ "${REQUIRE_XVR_RULES}" == "1" ]]; then
+  verify_args+=(--require-cross-version-rules --require-rulebook-path)
+fi
+if [[ -n "${EXPEL_RULE_FILE:-}" && "${REQUIRE_EXPEL_RULES}" == "1" ]]; then
   verify_args+=(--require-expel-rules)
 fi
 "${PYTHON_BIN}" "${MIN_ROOT}/scripts/verify_trace_rules.py" "${verify_args[@]}"

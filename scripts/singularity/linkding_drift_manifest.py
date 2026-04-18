@@ -1,17 +1,26 @@
 #!/usr/bin/env python3
 import argparse
 import json
+import os
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
 VARIANT_ROOT = ROOT / "scripts" / "singularity" / "linkding_drift" / "variants"
+FIRST_MODIFIED_ROOT = ROOT / "websites" / "first_modified" / "variant_templates"
 LINKDING_DRIFT_VERSION = "1.45.0"
 CONTROL_VARIANT = "control"
+LINKDING_DRIFT_PROFILE = (
+    os.environ.get("LINKDING_DRIFT_PROFILE", "hardv3").strip().lower() or "hardv3"
+)
 
 
 def _variant_file(variant: str, relative_path: str) -> str:
     return str(VARIANT_ROOT / variant / relative_path)
+
+
+def _first_modified_file(variant: str, relative_path: str) -> str:
+    return str(FIRST_MODIFIED_ROOT / variant / relative_path)
 
 
 def _bind(variant: str, relative_path: str, target: str) -> dict:
@@ -19,6 +28,145 @@ def _bind(variant: str, relative_path: str, target: str) -> dict:
         "source": _variant_file(variant, relative_path),
         "target": target,
     }
+
+
+def _first_modified_bind(variant: str, relative_path: str, target: str) -> dict:
+    return {
+        "source": _first_modified_file(variant, relative_path),
+        "target": target,
+    }
+
+
+FIRST_MODIFIED_BINDS = {
+    "access": [
+        _first_modified_bind(
+            "access",
+            "templates/registration/login.html",
+            "/etc/linkding/bookmarks/templates/registration/login.html",
+        )
+    ],
+    "surface": [
+        _first_modified_bind(
+            "surface",
+            "templates/shared/layout.html",
+            "/etc/linkding/bookmarks/templates/shared/layout.html",
+        )
+    ],
+    "content": [
+        _first_modified_bind(
+            "content",
+            "templates/shared/nav_menu.html",
+            "/etc/linkding/bookmarks/templates/shared/nav_menu.html",
+        ),
+        _first_modified_bind(
+            "content",
+            "templates/tags/index.html",
+            "/etc/linkding/bookmarks/templates/tags/index.html",
+        ),
+    ],
+    "structural": [
+        _first_modified_bind(
+            "structural",
+            "templates/shared/nav_menu.html",
+            "/etc/linkding/bookmarks/templates/shared/nav_menu.html",
+        )
+    ],
+    "functional": [
+        _first_modified_bind(
+            "functional",
+            "templates/bookmarks/bookmark_page.html",
+            "/etc/linkding/bookmarks/templates/bookmarks/bookmark_page.html",
+        )
+    ],
+    "process": [
+        _first_modified_bind(
+            "process",
+            "templates/bookmarks/new.html",
+            "/etc/linkding/bookmarks/templates/bookmarks/new.html",
+        )
+    ],
+    "runtime": [
+        _first_modified_bind(
+            "runtime",
+            "templates/shared/layout.html",
+            "/etc/linkding/bookmarks/templates/shared/layout.html",
+        )
+    ],
+}
+
+
+FIRST_MODIFIED_SMOKE = {
+    "access": {
+        "path_assertions": [
+            {
+                "path": "/login",
+                "requires_auth": False,
+                "must_include": ["stepped sign-in flow", "Username", "Continue"],
+                "must_not_include": [],
+            }
+        ]
+    },
+    "surface": {
+        "path_assertions": [
+            {
+                "path": "/bookmarks",
+                "requires_auth": True,
+                "must_include": ["Visual refresh active"],
+                "must_not_include": [],
+            }
+        ]
+    },
+    "content": {
+        "path_assertions": [
+            {
+                "path": "/tags",
+                "requires_auth": True,
+                "must_include": ["Labels", "Create Label"],
+                "must_not_include": [],
+            }
+        ]
+    },
+    "structural": {
+        "path_assertions": [
+            {
+                "path": "/bookmarks",
+                "requires_auth": True,
+                "must_include": ["Collections", "Settings"],
+                "must_not_include": [],
+            }
+        ]
+    },
+    "functional": {
+        "path_assertions": [
+            {
+                "path": "/bookmarks",
+                "requires_auth": True,
+                "must_include": ["Feature-limited mode"],
+                "must_not_include": [],
+            }
+        ]
+    },
+    "process": {
+        "path_assertions": [
+            {
+                "path": "/bookmarks/new",
+                "requires_auth": True,
+                "must_include": ["Review new bookmark", "Step 1 of 2"],
+                "must_not_include": [],
+            }
+        ]
+    },
+    "runtime": {
+        "path_assertions": [
+            {
+                "path": "/bookmarks",
+                "requires_auth": True,
+                "must_include": ["Delayed rendering active"],
+                "must_not_include": [],
+            }
+        ]
+    },
+}
 
 
 def _hardv2_common_binds() -> list:
@@ -840,6 +988,60 @@ LINKDING_DRIFT_VARIANTS.update(
         ),
     }
 )
+
+
+def _apply_control_profile() -> None:
+    for name, row in LINKDING_DRIFT_VARIANTS.items():
+        row["bind_mounts"] = []
+        row["env"] = {}
+        if name != CONTROL_VARIANT:
+            row["note"] = (
+                "Unmodified control profile on Linkding 1.45.0; "
+                f"task metadata keeps the {name} drift label."
+            )
+            row["smoke"] = LINKDING_DRIFT_VARIANTS[CONTROL_VARIANT]["smoke"]
+
+
+def _apply_first_modified_profile() -> None:
+    for name, row in LINKDING_DRIFT_VARIANTS.items():
+        row["env"] = {}
+        if name == CONTROL_VARIANT:
+            row["bind_mounts"] = []
+            row["note"] = "Unmodified control profile on Linkding 1.45.0."
+            continue
+        if name in FIRST_MODIFIED_BINDS:
+            row["bind_mounts"] = FIRST_MODIFIED_BINDS[name]
+            row["note"] = (
+                "First-modified historical drift profile restored from "
+                f"websites/first_modified/variant_templates/{name}."
+            )
+            row["smoke"] = FIRST_MODIFIED_SMOKE[name]
+        else:
+            # The first-modified snapshot only contains the seven base drifts.
+            row["bind_mounts"] = []
+            row["note"] = (
+                "First-modified profile has no task-targeted override for "
+                f"{name}; this variant falls back to the clean runtime."
+            )
+            row["smoke"] = LINKDING_DRIFT_VARIANTS[CONTROL_VARIANT]["smoke"]
+
+
+def _apply_profile() -> None:
+    if LINKDING_DRIFT_PROFILE == "hardv3":
+        return
+    if LINKDING_DRIFT_PROFILE == "control":
+        _apply_control_profile()
+        return
+    if LINKDING_DRIFT_PROFILE == "first_modified":
+        _apply_first_modified_profile()
+        return
+    raise ValueError(
+        "unknown LINKDING_DRIFT_PROFILE="
+        f"{LINKDING_DRIFT_PROFILE}; expected hardv3, first_modified, or control"
+    )
+
+
+_apply_profile()
 
 
 def iter_variants():
