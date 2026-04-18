@@ -1,0 +1,1525 @@
+{
+  "api_smoke": {
+    "base_url": "https://api.asxs.top/v1",
+    "chat_completions_url": "https://api.asxs.top/v1/chat/completions",
+    "chat_ok": true,
+    "generation_endpoint": "responses_stream",
+    "model": "gpt-5.4",
+    "model_available": true,
+    "models_url": "https://api.asxs.top/v1/models",
+    "ok": true,
+    "provider_model_ids": [
+      "gpt-5.2",
+      "gpt-5.3-codex",
+      "gpt-5.4",
+      "gpt-5.4-mini"
+    ],
+    "provider_models_count": 4,
+    "provider_models_ok": true,
+    "response_excerpt": "OK",
+    "user_agent": "curl/8.7.1"
+  },
+  "candidate_summary": {
+    "candidate_version": "v2_4_1",
+    "evidence": {
+      "casebook_excerpt": "## Representative `lost` Excerpts\n- task 1600303 (`content` / `lost`)\n  left: step 0 action=fill('39', 'baseline') url=http://127.0.0.1:49904/login/?next=%2Fbookmarks%3Fq%3Dfocus20-login-filter error=- final=- | step 1 action=fill('42', 'Baseline123!') url=http://127.0.0.1:49904/login/?next=%2Fbookmarks%3Fq%3Dfocus20-login-filter error=- final=-\n  right: step 0 action=fill('42', 'baseline') url=http://127.0.0.1:29404/login/?next=%2Fbookmarks%3Fq%3Dfocus20-login-filter error=- final=- | step 1 action=fill('45', 'Baseline123!') url=http://127.0.0.1:29404/login/?next=%2Fbookmarks%3Fq%3Dfocus20-login-filter error=- final=-\n- task 1600307 (`functional` / `lost`)\n  left: step 0 action=fill('39', 'baseline') url=http://127.0.0.1:50102/login/?next=%2Fbookmarks%3Fq%3Dfocus20-login-filter error=- final=- | step 1 action=fill('42', 'Baseline123!') url=http://127.0.0.1:50102/login/?next=%2Fbookmarks%3Fq%3Dfocus20-login-filter error=- final=-\n  right: step 0 action=fill('42', 'baseline') url=http://127.0.0.1:29602/login/?next=%2Fbookmarks%3Fq%3Dfocus20-login-filter error=- final=- | step 1 action=fill('45', 'Baseline123!') url=http://127.0.0.1:29602/login/?next=%2Fbookmarks%3Fq%3Dfocus20-login-filter error=- final=-",
+      "cases": [
+        {
+          "case_id": "gap.login_next_lost.1600303",
+          "diagnosis": {
+            "must_avoid": "Do not strip the next parameter or return to a generic login page after successful authentication.",
+            "must_preserve": "Preserve next redirects, protected destinations, and prefilled values after login.",
+            "observed_gap": "A task-specific login next redirect or protected destination is lost after authentication."
+          },
+          "gap_id": "login_next_lost",
+          "left_result": {
+            "error": "",
+            "label": "first_modified_v2_4",
+            "success": true,
+            "trace_excerpt": [
+              {
+                "action": "fill('39', 'baseline')",
+                "error": "",
+                "final_answer": "",
+                "model_output": "```\nfill('39', 'baseline')\n```",
+                "step": 0,
+                "url": "http://127.0.0.1:49904/login/?next=%2Fbookmarks%3Fq%3Dfocus20-login-filter"
+              },
+              {
+                "action": "fill('42', 'Baseline123!')",
+                "error": "",
+                "final_answer": "",
+                "model_output": "```\nfill('42', 'Baseline123!')\n```",
+                "step": 1,
+                "url": "http://127.0.0.1:49904/login/?next=%2Fbookmarks%3Fq%3Dfocus20-login-filter"
+              },
+              {
+                "action": "click('43')",
+                "error": "",
+                "final_answer": "",
+                "model_output": "```\nclick('43')\n```",
+                "step": 2,
+                "url": "http://127.0.0.1:49904/login/?next=%2Fbookmarks%3Fq%3Dfocus20-login-filter"
+              },
+              {
+                "action": "",
+                "error": "",
+                "final_answer": "",
+                "model_output": "",
+                "step": 3,
+                "url": "http://127.0.0.1:49904/bookmarks?q=focus20-login-filter"
+              }
+            ]
+          },
+          "right_result": {
+            "error": "max_steps_no_success",
+            "label": "hardv3_v2_4",
+            "success": false,
+            "trace_excerpt": [
+              {
+                "action": "fill('42', 'baseline')",
+                "error": "",
+                "final_answer": "",
+                "model_output": "```\nfill('42', 'baseline')\n```",
+                "step": 0,
+                "url": "http://127.0.0.1:29404/login/?next=%2Fbookmarks%3Fq%3Dfocus20-login-filter"
+              },
+              {
+                "action": "fill('45', 'Baseline123!')",
+                "error": "",
+                "final_answer": "",
+                "model_output": "```\nfill('45', 'Baseline123!')\n```",
+                "step": 1,
+                "url": "http://127.0.0.1:29404/login/?next=%2Fbookmarks%3Fq%3Dfocus20-login-filter"
+              },
+              {
+                "action": "click('46')",
+                "error": "",
+                "final_answer": "",
+                "model_output": "```\nclick('46')\n```",
+                "step": 2,
+                "url": "http://127.0.0.1:29404/login/?next=%2Fbookmarks%3Fq%3Dfocus20-login-filter"
+              },
+              {
+                "action": "goto('http://127.0.0.1:29404/login/?next=%2Fbookmarks%3Frelease_lookup%3Dprepared')",
+                "error": "",
+                "final_answer": "",
+                "model_output": "```\ngoto('http://127.0.0.1:29404/login/?next=%2Fbookmarks%3Frelease_lookup%3Dprepared')\n```",
+                "step": 3,
+                "url": "http://127.0.0.1:29404/bookmarks?release_lookup=prepared"
+              },
+              {
+                "action": "goto('http://127.0.0.1:29404/login/?next=%2Fbookmarks%3Frelease_lookup%3Dprepared')",
+                "error": "",
+                "final_answer": "",
+                "model_output": "```\ngoto('http://127.0.0.1:29404/login/?next=%2Fbookmarks%3Frelease_lookup%3Dprepared')\n```",
+                "step": 4,
+                "url": "http://127.0.0.1:29404/bookmarks?release_lookup=prepared"
+              },
+              {
+                "action": "goto('http://127.0.0.1:29404/login/?next=%2Fbookmarks%3Frelease_lookup%3Dprepared')",
+                "error": "",
+                "final_answer": "",
+                "model_output": "```\ngoto('http://127.0.0.1:29404/login/?next=%2Fbookmarks%3Frelease_lookup%3Dprepared')\n```",
+                "step": 5,
+                "url": "http://127.0.0.1:29404/bookmarks?release_lookup=prepared"
+              }
+            ]
+          },
+          "task_metadata": {
+            "drift_type": "content",
+            "family": "AF20_LOGIN_FILTERED_BOOKMARKS",
+            "focus20_source_task_id": 16003,
+            "intent": "Goal: Authenticate and land on a filtered bookmarks view.\n\nYou are starting from a fresh logged-out session. Sign in while preserving an in-site destination that already includes a search query.\n\nStay inside this localhost Linkding site, do not open external websites, and stop as soon as the requested state is clearly reached. In your final answer include 'login' and 'filtered'.\n\nWebsite-first cue: this run is evaluating generalization to a fresh Linkding v1.45.0 drift website. Solve from the live page instead of memorized control-version clicks. Silently Observe -> Plan -> Verify before every action. If the current URL, heading, form state, or visible content already satisfy the goal, stop with the concise final answer instead of taking another browser action. Do not write out hidden chain-of-thought.",
+            "source_task_id": 16003,
+            "task_id": 1600303,
+            "variant": "content"
+          },
+          "transition": "lost"
+        },
+        {
+          "case_id": "gap.target_reached_but_no_final_answer.1601603",
+          "diagnosis": {
+            "must_avoid": "Do not enter noop, goto, or repeated-click loops after target evidence is visible.",
+            "must_preserve": "Stop with a final answer when visible URL, heading, form, or result evidence satisfies the goal.",
+            "observed_gap": "Final task evidence is visible, but the agent keeps acting instead of answering."
+          },
+          "gap_id": "target_reached_but_no_final_answer",
+          "left_result": {
+            "error": "max_steps_no_success",
+            "label": "first_modified_v2_4",
+            "success": false,
+            "trace_excerpt": [
+              {
+                "action": "click('81')",
+                "error": "",
+                "final_answer": "",
+                "model_output": "```\nclick('81')\n```",
+                "step": 0,
+                "url": "http://127.0.0.1:49904/tags"
+              },
+              {
+                "action": "click('81')",
+                "error": "",
+                "final_answer": "",
+                "model_output": "```\nclick('81')\n```",
+                "step": 1,
+                "url": "http://127.0.0.1:49904/tags"
+              },
+              {
+                "action": "click('81')",
+                "error": "",
+                "final_answer": "",
+                "model_output": "```\nclick('81')\n```",
+                "step": 2,
+                "url": "http://127.0.0.1:49904/tags"
+              },
+              {
+                "action": "click('81')",
+                "error": "",
+                "final_answer": "",
+                "model_output": "```\nclick('81')\n```",
+                "step": 3,
+                "url": "http://127.0.0.1:49904/tags"
+              },
+              {
+                "action": "click('81')",
+                "error": "",
+                "final_answer": "",
+                "model_output": "```\nclick('81')\n```",
+                "step": 4,
+                "url": "http://127.0.0.1:49904/tags"
+              },
+              {
+                "action": "click('81')",
+                "error": "",
+                "final_answer": "",
+                "model_output": "```\nclick('81')\n```",
+                "step": 5,
+                "url": "http://127.0.0.1:49904/tags"
+              }
+            ]
+          },
+          "right_result": {
+            "error": "max_steps_no_success",
+            "label": "hardv3_v2_4",
+            "success": false,
+            "trace_excerpt": [
+              {
+                "action": "click('83')",
+                "error": "",
+                "final_answer": "",
+                "model_output": "```\nclick('83')\n```",
+                "step": 0,
+                "url": "http://127.0.0.1:29404/tags"
+              },
+              {
+                "action": "click('83')",
+                "error": "",
+                "final_answer": "",
+                "model_output": "```\nclick('83')\n```",
+                "step": 1,
+                "url": "http://127.0.0.1:29404/tags"
+              },
+              {
+                "action": "click('83')",
+                "error": "",
+                "final_answer": "",
+                "model_output": "```\nclick('83')\n```",
+                "step": 2,
+                "url": "http://127.0.0.1:29404/tags"
+              },
+              {
+                "action": "click('83')",
+                "error": "",
+                "final_answer": "",
+                "model_output": "```\nclick('83')\n```",
+                "step": 3,
+                "url": "http://127.0.0.1:29404/tags"
+              },
+              {
+                "action": "click('83')",
+                "error": "",
+                "final_answer": "",
+                "model_output": "```\nclick('83')\n```",
+                "step": 4,
+                "url": "http://127.0.0.1:29404/tags"
+              },
+              {
+                "action": "click('83')",
+                "error": "",
+                "final_answer": "",
+                "model_output": "```\nclick('83')\n```",
+                "step": 5,
+                "url": "http://127.0.0.1:29404/tags"
+              }
+            ]
+          },
+          "task_metadata": {
+            "drift_type": "content",
+            "family": "AF20_ROUTE_TAGS_TO_SETTINGS",
+            "focus20_source_task_id": 16016,
+            "intent": "Goal: While already signed in, move from the tags page to the settings page.\n\nYou are already authenticated and starting on the tags page. Use the visible navigation to open settings.\n\nStay inside this localhost Linkding site, do not open external websites, and stop as soon as the requested state is clearly reached. In your final answer include 'settings' and 'opened'.\n\nWebsite-first cue: this run is evaluating generalization to a fresh Linkding v1.45.0 drift website. Solve from the live page instead of memorized control-version clicks. Silently Observe -> Plan -> Verify before every action. If the current URL, heading, form state, or visible content already satisfy the goal, stop with the concise final answer instead of taking another browser action. Do not write out hidden chain-of-thought.",
+            "source_task_id": 16016,
+            "task_id": 1601603,
+            "variant": "content"
+          },
+          "transition": "both_fail"
+        },
+        {
+          "case_id": "gap.login_next_lost.1600307",
+          "diagnosis": {
+            "must_avoid": "Do not strip the next parameter or return to a generic login page after successful authentication.",
+            "must_preserve": "Preserve next redirects, protected destinations, and prefilled values after login.",
+            "observed_gap": "A task-specific login next redirect or protected destination is lost after authentication."
+          },
+          "gap_id": "login_next_lost",
+          "left_result": {
+            "error": "",
+            "label": "first_modified_v2_4",
+            "success": true,
+            "trace_excerpt": [
+              {
+                "action": "fill('39', 'baseline')",
+                "error": "",
+                "final_answer": "",
+                "model_output": "```\nfill('39', 'baseline')\n```",
+                "step": 0,
+                "url": "http://127.0.0.1:50102/login/?next=%2Fbookmarks%3Fq%3Dfocus20-login-filter"
+              },
+              {
+                "action": "fill('42', 'Baseline123!')",
+                "error": "",
+                "final_answer": "",
+                "model_output": "```\nfill('42', 'Baseline123!')\n```",
+                "step": 1,
+                "url": "http://127.0.0.1:50102/login/?next=%2Fbookmarks%3Fq%3Dfocus20-login-filter"
+              },
+              {
+                "action": "click('43')",
+                "error": "",
+                "final_answer": "",
+                "model_output": "```\nclick('43')\n```",
+                "step": 2,
+                "url": "http://127.0.0.1:50102/login/?next=%2Fbookmarks%3Fq%3Dfocus20-login-filter"
+              },
+              {
+                "action": "",
+                "error": "",
+                "final_answer": "",
+                "model_output": "",
+                "step": 3,
+                "url": "http://127.0.0.1:50102/bookmarks?q=focus20-login-filter"
+              }
+            ]
+          },
+          "right_result": {
+            "error": "max_steps_no_success",
+            "label": "hardv3_v2_4",
+            "success": false,
+            "trace_excerpt": [
+              {
+                "action": "fill('42', 'baseline')",
+                "error": "",
+                "final_answer": "",
+                "model_output": "```\nfill('42', 'baseline')\n```",
+                "step": 0,
+                "url": "http://127.0.0.1:29602/login/?next=%2Fbookmarks%3Fq%3Dfocus20-login-filter"
+              },
+              {
+                "action": "fill('45', 'Baseline123!')",
+                "error": "",
+                "final_answer": "",
+                "model_output": "```\nfill('45', 'Baseline123!')\n```",
+                "step": 1,
+                "url": "http://127.0.0.1:29602/login/?next=%2Fbookmarks%3Fq%3Dfocus20-login-filter"
+              },
+              {
+                "action": "click('46')",
+                "error": "",
+                "final_answer": "",
+                "model_output": "```\nclick('46')\n```",
+                "step": 2,
+                "url": "http://127.0.0.1:29602/login/?next=%2Fbookmarks%3Fq%3Dfocus20-login-filter"
+              },
+              {
+                "action": "goto('http://127.0.0.1:29602/login/?next=%2Fbookmarks%3Frelease_lookup%3Dprepared')",
+                "error": "",
+                "final_answer": "",
+                "model_output": "```\ngoto('http://127.0.0.1:29602/login/?next=%2Fbookmarks%3Frelease_lookup%3Dprepared')\n```",
+                "step": 3,
+                "url": "http://127.0.0.1:29602/bookmarks?release_lookup=prepared"
+              },
+              {
+                "action": "goto('http://127.0.0.1:29602/login/?next=%2Fbookmarks%3Frelease_lookup%3Dprepared')",
+                "error": "",
+                "final_answer": "",
+                "model_output": "```\ngoto('http://127.0.0.1:29602/login/?next=%2Fbookmarks%3Frelease_lookup%3Dprepared')\n```",
+                "step": 4,
+                "url": "http://127.0.0.1:29602/bookmarks?release_lookup=prepared"
+              },
+              {
+                "action": "goto('http://127.0.0.1:29602/login/?next=%2Fbookmarks%3Frelease_lookup%3Dprepared')",
+                "error": "",
+                "final_answer": "",
+                "model_output": "```\ngoto('http://127.0.0.1:29602/login/?next=%2Fbookmarks%3Frelease_lookup%3Dprepared')\n```",
+                "step": 5,
+                "url": "http://127.0.0.1:29602/bookmarks?release_lookup=prepared"
+              }
+            ]
+          },
+          "task_metadata": {
+            "drift_type": "functional",
+            "family": "AF20_LOGIN_FILTERED_BOOKMARKS",
+            "focus20_source_task_id": 16003,
+            "intent": "Goal: Authenticate and land on a filtered bookmarks view.\n\nYou are starting from a fresh logged-out session. Sign in while preserving an in-site destination that already includes a search query.\n\nStay inside this localhost Linkding site, do not open external websites, and stop as soon as the requested state is clearly reached. In your final answer include 'login' and 'filtered'.\n\nWebsite-first cue: this run is evaluating generalization to a fresh Linkding v1.45.0 drift website. Solve from the live page instead of memorized control-version clicks. Silently Observe -> Plan -> Verify before every action. If the current URL, heading, form state, or visible content already satisfy the goal, stop with the concise final answer instead of taking another browser action. Do not write out hidden chain-of-thought.",
+            "source_task_id": 16003,
+            "task_id": 1600307,
+            "variant": "functional"
+          },
+          "transition": "lost"
+        }
+      ],
+      "mode": "transition_casebook_fallback",
+      "num_cases": 3,
+      "required_gap_phrases": [
+        "login next",
+        "filtered bookmark",
+        "final answer"
+      ],
+      "transition_counts": {
+        "both_fail": 1,
+        "both_success": 65,
+        "lost": 2
+      }
+    },
+    "output_rulebook": "rulebooks/v2_4_1.json",
+    "proposal_summary": {
+      "accepted": 2,
+      "rejected": 2
+    },
+    "provider_summary": {
+      "lost_patterns": [
+        "Hardv3 loses the login next redirect after successful authentication by overwriting a task-specific filtered bookmark destination with an unrelated generic/probe route.",
+        "Hardv3 keeps acting after target evidence is already visible, especially when a filtered bookmark URL or destination page is already loaded, instead of giving the final answer.",
+        "Existing rules cover tagged add-bookmark next preservation, but the current gap shows missing cross-task coverage for login next preservation to filtered bookmark destinations and other protected in-site routes."
+      ],
+      "preserve_patterns": [
+        "Preserve successful v2.4 behavior that logs in once and lets the existing same-site next redirect land on the protected destination with its original query intact.",
+        "Preserve URL/query-based completion detection for navigation-only and filtered bookmark tasks so the agent stops once the requested state is clearly visible.",
+        "Preserve the broader anti-loop behavior: after failed clicks or hidden targets, switch strategy instead of repeating stale bids."
+      ]
+    },
+    "required_gap_phrases": [
+      "login next",
+      "filtered bookmark",
+      "final answer"
+    ],
+    "schema_version": "webcoevo-linkding-v241-candidate-summary-v1",
+    "selected_transport": "responses_stream"
+  },
+  "candidate_version": "v2_4_1",
+  "compatibility_note": "ASXS was usable in this run, but only after using curl-like request headers and falling back to /responses streaming. The provider returned HTTP 200 with empty text for chat_completions, responses_json before the streaming fallback produced usable content.",
+  "focus20": {
+    "num_rows": 68,
+    "transition_counts": {
+      "both_fail": 1,
+      "both_success": 65,
+      "lost": 2
+    }
+  },
+  "report_path": "/home/gecm/WebCoEvo/docs/reports/2026-04-18-gpt54-v2_4_1-reflection-hardening-report.md",
+  "rule_delta": {
+    "added_rule_count": 0,
+    "added_rules": [],
+    "base_rule_count": 8,
+    "candidate_rule_count": 8,
+    "changed_rules": [
+      {
+        "base_title": "Finalize instead of noop when URL, query, or heading already proves the target state",
+        "candidate_rule_id": "xvr_candidate_0003",
+        "candidate_title": "Finalize instead of acting when URL, query, heading, or redirected destination already proves completion",
+        "source_rule_id": "xvr24_0003"
+      },
+      {
+        "base_title": "Preserve task-specific login next parameters and never replace them with generic examples",
+        "candidate_rule_id": "xvr_candidate_0004",
+        "candidate_title": "Preserve task-specific login next destinations and their query parameters across authentication",
+        "source_rule_id": "xvr24_0004"
+      }
+    ],
+    "dropped_rule_count": 0,
+    "dropped_rules": [],
+    "edited_rule_count": 2
+  },
+  "rulebook_path": "/home/gecm/WebCoEvo/rulebooks/v2_4_1.json",
+  "schema_version": "webcoevo-linkding-v241-promotion-packet-v1",
+  "taskbank36": {
+    "num_rows": 167,
+    "transition_counts": {
+      "both_fail": 16,
+      "both_success": 89,
+      "lost": 54,
+      "saved": 8
+    }
+  },
+  "verification": {
+    "contract": {
+      "errors": [],
+      "max_rules": 8,
+      "no_task_scopes": true,
+      "ok": true,
+      "rule_count": 8,
+      "warnings": []
+    },
+    "coverage": {
+      "covered": 68,
+      "missing_task_ids": [],
+      "rows": [
+        {
+          "drift_type": "access",
+          "selected_rule_ids": [
+            "xvr_candidate_0008",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 9730,
+          "task_id": 973001,
+          "variant": "access",
+          "warning": ""
+        },
+        {
+          "drift_type": "access",
+          "selected_rule_ids": [
+            "xvr_candidate_0008",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 9738,
+          "task_id": 973801,
+          "variant": "access",
+          "warning": ""
+        },
+        {
+          "drift_type": "access",
+          "selected_rule_ids": [
+            "xvr_candidate_0008",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16001,
+          "task_id": 1600101,
+          "variant": "access",
+          "warning": ""
+        },
+        {
+          "drift_type": "access",
+          "selected_rule_ids": [
+            "xvr_candidate_0008",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16002,
+          "task_id": 1600201,
+          "variant": "access",
+          "warning": ""
+        },
+        {
+          "drift_type": "access",
+          "selected_rule_ids": [
+            "xvr_candidate_0008",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16003,
+          "task_id": 1600301,
+          "variant": "access",
+          "warning": ""
+        },
+        {
+          "drift_type": "access",
+          "selected_rule_ids": [
+            "xvr_candidate_0008",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16004,
+          "task_id": 1600401,
+          "variant": "access",
+          "warning": ""
+        },
+        {
+          "drift_type": "access",
+          "selected_rule_ids": [
+            "xvr_candidate_0008",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16005,
+          "task_id": 1600501,
+          "variant": "access",
+          "warning": ""
+        },
+        {
+          "drift_type": "access",
+          "selected_rule_ids": [
+            "xvr_candidate_0008",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16006,
+          "task_id": 1600601,
+          "variant": "access",
+          "warning": ""
+        },
+        {
+          "drift_type": "access",
+          "selected_rule_ids": [
+            "xvr_candidate_0008",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16007,
+          "task_id": 1600701,
+          "variant": "access",
+          "warning": ""
+        },
+        {
+          "drift_type": "access",
+          "selected_rule_ids": [
+            "xvr_candidate_0008",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16008,
+          "task_id": 1600801,
+          "variant": "access",
+          "warning": ""
+        },
+        {
+          "drift_type": "access",
+          "selected_rule_ids": [
+            "xvr_candidate_0008",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16009,
+          "task_id": 1600901,
+          "variant": "access",
+          "warning": ""
+        },
+        {
+          "drift_type": "access",
+          "selected_rule_ids": [
+            "xvr_candidate_0008",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16010,
+          "task_id": 1601001,
+          "variant": "access",
+          "warning": ""
+        },
+        {
+          "drift_type": "access",
+          "selected_rule_ids": [
+            "xvr_candidate_0008",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16011,
+          "task_id": 1601101,
+          "variant": "access",
+          "warning": ""
+        },
+        {
+          "drift_type": "surface",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 9704,
+          "task_id": 970402,
+          "variant": "surface",
+          "warning": ""
+        },
+        {
+          "drift_type": "surface",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 9730,
+          "task_id": 973002,
+          "variant": "surface",
+          "warning": ""
+        },
+        {
+          "drift_type": "surface",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 9738,
+          "task_id": 973802,
+          "variant": "surface",
+          "warning": ""
+        },
+        {
+          "drift_type": "surface",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16001,
+          "task_id": 1600102,
+          "variant": "surface",
+          "warning": ""
+        },
+        {
+          "drift_type": "surface",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16002,
+          "task_id": 1600202,
+          "variant": "surface",
+          "warning": ""
+        },
+        {
+          "drift_type": "surface",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16004,
+          "task_id": 1600402,
+          "variant": "surface",
+          "warning": ""
+        },
+        {
+          "drift_type": "surface",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16005,
+          "task_id": 1600502,
+          "variant": "surface",
+          "warning": ""
+        },
+        {
+          "drift_type": "surface",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16006,
+          "task_id": 1600602,
+          "variant": "surface",
+          "warning": ""
+        },
+        {
+          "drift_type": "surface",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16007,
+          "task_id": 1600702,
+          "variant": "surface",
+          "warning": ""
+        },
+        {
+          "drift_type": "surface",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16008,
+          "task_id": 1600802,
+          "variant": "surface",
+          "warning": ""
+        },
+        {
+          "drift_type": "surface",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16009,
+          "task_id": 1600902,
+          "variant": "surface",
+          "warning": ""
+        },
+        {
+          "drift_type": "surface",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16012,
+          "task_id": 1601202,
+          "variant": "surface",
+          "warning": ""
+        },
+        {
+          "drift_type": "surface",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16013,
+          "task_id": 1601302,
+          "variant": "surface",
+          "warning": ""
+        },
+        {
+          "drift_type": "content",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16002,
+          "task_id": 1600203,
+          "variant": "content",
+          "warning": ""
+        },
+        {
+          "drift_type": "content",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16003,
+          "task_id": 1600303,
+          "variant": "content",
+          "warning": ""
+        },
+        {
+          "drift_type": "content",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16005,
+          "task_id": 1600503,
+          "variant": "content",
+          "warning": ""
+        },
+        {
+          "drift_type": "content",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16008,
+          "task_id": 1600803,
+          "variant": "content",
+          "warning": ""
+        },
+        {
+          "drift_type": "content",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16011,
+          "task_id": 1601103,
+          "variant": "content",
+          "warning": ""
+        },
+        {
+          "drift_type": "content",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16013,
+          "task_id": 1601303,
+          "variant": "content",
+          "warning": ""
+        },
+        {
+          "drift_type": "content",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16015,
+          "task_id": 1601503,
+          "variant": "content",
+          "warning": ""
+        },
+        {
+          "drift_type": "content",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16016,
+          "task_id": 1601603,
+          "variant": "content",
+          "warning": ""
+        },
+        {
+          "drift_type": "content",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16017,
+          "task_id": 1601703,
+          "variant": "content",
+          "warning": ""
+        },
+        {
+          "drift_type": "runtime",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 9704,
+          "task_id": 970404,
+          "variant": "runtime",
+          "warning": ""
+        },
+        {
+          "drift_type": "runtime",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 9730,
+          "task_id": 973004,
+          "variant": "runtime",
+          "warning": ""
+        },
+        {
+          "drift_type": "runtime",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 9738,
+          "task_id": 973804,
+          "variant": "runtime",
+          "warning": ""
+        },
+        {
+          "drift_type": "runtime",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16001,
+          "task_id": 1600104,
+          "variant": "runtime",
+          "warning": ""
+        },
+        {
+          "drift_type": "runtime",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16002,
+          "task_id": 1600204,
+          "variant": "runtime",
+          "warning": ""
+        },
+        {
+          "drift_type": "runtime",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16004,
+          "task_id": 1600404,
+          "variant": "runtime",
+          "warning": ""
+        },
+        {
+          "drift_type": "runtime",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16005,
+          "task_id": 1600504,
+          "variant": "runtime",
+          "warning": ""
+        },
+        {
+          "drift_type": "runtime",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16006,
+          "task_id": 1600604,
+          "variant": "runtime",
+          "warning": ""
+        },
+        {
+          "drift_type": "runtime",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16007,
+          "task_id": 1600704,
+          "variant": "runtime",
+          "warning": ""
+        },
+        {
+          "drift_type": "runtime",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16008,
+          "task_id": 1600804,
+          "variant": "runtime",
+          "warning": ""
+        },
+        {
+          "drift_type": "runtime",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16009,
+          "task_id": 1600904,
+          "variant": "runtime",
+          "warning": ""
+        },
+        {
+          "drift_type": "runtime",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16010,
+          "task_id": 1601004,
+          "variant": "runtime",
+          "warning": ""
+        },
+        {
+          "drift_type": "runtime",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16012,
+          "task_id": 1601204,
+          "variant": "runtime",
+          "warning": ""
+        },
+        {
+          "drift_type": "runtime",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16013,
+          "task_id": 1601304,
+          "variant": "runtime",
+          "warning": ""
+        },
+        {
+          "drift_type": "runtime",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16016,
+          "task_id": 1601604,
+          "variant": "runtime",
+          "warning": ""
+        },
+        {
+          "drift_type": "runtime",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16017,
+          "task_id": 1601704,
+          "variant": "runtime",
+          "warning": ""
+        },
+        {
+          "drift_type": "process",
+          "selected_rule_ids": [
+            "xvr_candidate_0008",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 9704,
+          "task_id": 970405,
+          "variant": "process",
+          "warning": ""
+        },
+        {
+          "drift_type": "process",
+          "selected_rule_ids": [
+            "xvr_candidate_0008",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 9738,
+          "task_id": 973805,
+          "variant": "process",
+          "warning": ""
+        },
+        {
+          "drift_type": "process",
+          "selected_rule_ids": [
+            "xvr_candidate_0008",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16004,
+          "task_id": 1600405,
+          "variant": "process",
+          "warning": ""
+        },
+        {
+          "drift_type": "process",
+          "selected_rule_ids": [
+            "xvr_candidate_0008",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16005,
+          "task_id": 1600505,
+          "variant": "process",
+          "warning": ""
+        },
+        {
+          "drift_type": "process",
+          "selected_rule_ids": [
+            "xvr_candidate_0008",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16009,
+          "task_id": 1600905,
+          "variant": "process",
+          "warning": ""
+        },
+        {
+          "drift_type": "process",
+          "selected_rule_ids": [
+            "xvr_candidate_0008",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16010,
+          "task_id": 1601005,
+          "variant": "process",
+          "warning": ""
+        },
+        {
+          "drift_type": "structural",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0003"
+          ],
+          "source_task_id": 9704,
+          "task_id": 970406,
+          "variant": "structural",
+          "warning": ""
+        },
+        {
+          "drift_type": "structural",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0003"
+          ],
+          "source_task_id": 16012,
+          "task_id": 1601206,
+          "variant": "structural",
+          "warning": ""
+        },
+        {
+          "drift_type": "structural",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0003"
+          ],
+          "source_task_id": 16013,
+          "task_id": 1601306,
+          "variant": "structural",
+          "warning": ""
+        },
+        {
+          "drift_type": "structural",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0003"
+          ],
+          "source_task_id": 16014,
+          "task_id": 1601406,
+          "variant": "structural",
+          "warning": ""
+        },
+        {
+          "drift_type": "structural",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0003"
+          ],
+          "source_task_id": 16015,
+          "task_id": 1601506,
+          "variant": "structural",
+          "warning": ""
+        },
+        {
+          "drift_type": "structural",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0003"
+          ],
+          "source_task_id": 16016,
+          "task_id": 1601606,
+          "variant": "structural",
+          "warning": ""
+        },
+        {
+          "drift_type": "functional",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 9730,
+          "task_id": 973007,
+          "variant": "functional",
+          "warning": ""
+        },
+        {
+          "drift_type": "functional",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16003,
+          "task_id": 1600307,
+          "variant": "functional",
+          "warning": ""
+        },
+        {
+          "drift_type": "functional",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16006,
+          "task_id": 1600607,
+          "variant": "functional",
+          "warning": ""
+        },
+        {
+          "drift_type": "functional",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16011,
+          "task_id": 1601107,
+          "variant": "functional",
+          "warning": ""
+        },
+        {
+          "drift_type": "functional",
+          "selected_rule_ids": [
+            "xvr_candidate_0001",
+            "xvr_candidate_0002",
+            "xvr_candidate_0008",
+            "xvr_candidate_0005",
+            "xvr_candidate_0006",
+            "xvr_candidate_0007",
+            "xvr_candidate_0003",
+            "xvr_candidate_0004"
+          ],
+          "source_task_id": 16017,
+          "task_id": 1601707,
+          "variant": "functional",
+          "warning": ""
+        }
+      ],
+      "task_count": 68
+    },
+    "ok": true,
+    "schema_version": "webcoevo-xvr-rulebook-verification-v1"
+  }
+}
