@@ -8,7 +8,7 @@ WebCoEvo 是一个自包含的 Linkding XVR 评测 runner，用来在 hardv3 dri
 
 ## 课程项目
 
-WebCoEvo 是 **UMich EECS545 Winter 2026** 的课程项目，由 Chenming Ge、Chengyang Shi、Yifei Xu、Yuxiang Yang 和 Binglin Zhong 共同完成。它凝聚了团队的共同投入，我们也很幸运能在 Honglak Lee 教授的悉心指导下推进这项工作，并受益于 Violet Fu 细致而温暖的 mentoring。
+WebCoEvo 是 **UMich EECS545 Winter 2026** 的课程项目，由 Chenming Ge、Chengyang Shi、Yifei Xu、Yuxiang Yang 和 Binglin Zhong 完成，项目在 Honglak Lee 教授指导下开展，并得到 Violet Fu 的 mentoring。
 
 ## 仓库包含什么
 
