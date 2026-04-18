@@ -8,7 +8,7 @@ from typing import Dict, Iterable, Mapping, MutableMapping, Optional, Sequence, 
 
 
 BENCHMARK_ORDER = ["focus20_hardv3", "taskbank36_hardv3"]
-SETTING_ORDER = ["expel_only", "v2_4", "v2_5", "v2_6"]
+SETTING_ORDER = ["expel_only", "v2_4", "v2_4_1", "v2_5", "v2_6"]
 DRIFT_ORDER = ["access", "surface", "content", "structural", "functional", "runtime", "process"]
 
 BENCHMARK_LABELS = {
@@ -24,6 +24,7 @@ BENCHMARK_NOTES = {
 SETTING_LABELS = {
     "expel_only": "Non-reflection",
     "v2_4": "v2.4",
+    "v2_4_1": "v2.4.1",
     "v2_5": "v2.5",
     "v2_6": "v2.6",
 }
@@ -41,12 +42,13 @@ DRIFT_LABELS = {
 SETTING_COLORS = {
     "expel_only": "#9aa0a6",
     "v2_4": "#2563eb",
+    "v2_4_1": "#dc2626",
     "v2_5": "#f59e0b",
     "v2_6": "#059669",
 }
 
 _EVAL_PATH_RE = re.compile(
-    r"(?P<benchmark>focus20_hardv3|taskbank36_hardv3)_(?P<setting>expel_only|v2_4|v2_5|v2_6)_(?:expel_)?official_minimal_v1"
+    r"(?P<benchmark>focus20_hardv3|taskbank36_hardv3)_(?P<setting>expel_only|v2_4|v2_4_1|v2_5|v2_6)_(?:expel_)?official_minimal_v1"
     r"/shard_(?P<shard>[^/]+)/(?P<run>run_[^/]+)/uitars_eval_[^/]+\.jsonl$"
 )
 
@@ -570,16 +572,20 @@ def _two_line_label(x: int, y: int, line1: str, line2: str, css_class: str) -> S
 
 
 def _benchmark_summary_paragraph(benchmark_key: str, benchmark: Mapping[str, object]) -> str:
-    best = _best_setting(benchmark)
+    best_settings = _best_settings(benchmark)
+    best_rate = benchmark["settings"][best_settings[0]]["overall_rate"]
     non_reflection_rate = benchmark["settings"]["expel_only"]["overall_rate"]
-    best_rate = benchmark["settings"][best]["overall_rate"]
     delta = (best_rate - non_reflection_rate) * 100.0
+    label = _format_setting_list(best_settings)
+    verb = "are" if len(best_settings) > 1 else "is"
+    successes = benchmark["settings"][best_settings[0]]["successes"]
     return (
-        "On %s, the strongest configuration is %s at `%d/%d = %s`, which is `%.1f` percentage points above the non-reflection baseline."
+        "On %s, the strongest configuration%s %s at `%d/%d = %s`, which is `%.1f` percentage points above the non-reflection baseline."
         % (
             BENCHMARK_LABELS[benchmark_key],
-            SETTING_LABELS[best],
-            benchmark["settings"][best]["successes"],
+            "s" if len(best_settings) > 1 else "",
+            verb + " " + label,
+            successes,
             benchmark["expected_total"],
             _format_percent(best_rate),
             delta,
@@ -588,7 +594,7 @@ def _benchmark_summary_paragraph(benchmark_key: str, benchmark: Mapping[str, obj
 
 
 def _benchmark_detail_paragraph(benchmark_key: str, benchmark: Mapping[str, object]) -> str:
-    best = _best_setting(benchmark)
+    best_settings = _best_settings(benchmark)
     ordered = [_setting_result_clause(benchmark, setting) for setting in SETTING_ORDER]
     benchmark_name = BENCHMARK_LABELS[benchmark_key]
     if benchmark_key == "focus20_hardv3":
@@ -601,30 +607,46 @@ def _benchmark_detail_paragraph(benchmark_key: str, benchmark: Mapping[str, obje
             "%s is treated as the held-out test benchmark, so the main question is which rulebook carries over best to unseen task families."
             % benchmark_name
         )
-    return "%s %s The best overall configuration is %s." % (
+    return "%s %s The best overall configuration%s %s." % (
         framing,
         " ".join(ordered),
-        SETTING_LABELS[best],
+        "s are" if len(best_settings) > 1 else " is",
+        _format_setting_list(best_settings),
     )
 
 
 def _paper_result_paragraph(benchmark_key: str, benchmark: Mapping[str, object]) -> str:
-    best = _best_setting(benchmark)
+    best_settings = _best_settings(benchmark)
     non_reflection = benchmark["settings"]["expel_only"]["overall_rate"]
-    best_rate = benchmark["settings"][best]["overall_rate"]
-    sentence = (
-        "For %s, %s obtains `%d/%d = %s`, compared with the non-reflection baseline at `%d/%d = %s`."
-        % (
-            BENCHMARK_LABELS[benchmark_key],
-            SETTING_LABELS[best],
-            benchmark["settings"][best]["successes"],
-            benchmark["expected_total"],
-            _format_percent(best_rate),
-            benchmark["settings"]["expel_only"]["successes"],
-            benchmark["expected_total"],
-            _format_percent(non_reflection),
+    best_rate = benchmark["settings"][best_settings[0]]["overall_rate"]
+    if len(best_settings) > 1:
+        sentence = (
+            "For %s, %s tie at `%d/%d = %s`, compared with the non-reflection baseline at `%d/%d = %s`."
+            % (
+                BENCHMARK_LABELS[benchmark_key],
+                _format_setting_list(best_settings),
+                benchmark["settings"][best_settings[0]]["successes"],
+                benchmark["expected_total"],
+                _format_percent(best_rate),
+                benchmark["settings"]["expel_only"]["successes"],
+                benchmark["expected_total"],
+                _format_percent(non_reflection),
+            )
         )
-    )
+    else:
+        sentence = (
+            "For %s, %s obtains `%d/%d = %s`, compared with the non-reflection baseline at `%d/%d = %s`."
+            % (
+                BENCHMARK_LABELS[benchmark_key],
+                SETTING_LABELS[best_settings[0]],
+                benchmark["settings"][best_settings[0]]["successes"],
+                benchmark["expected_total"],
+                _format_percent(best_rate),
+                benchmark["settings"]["expel_only"]["successes"],
+                benchmark["expected_total"],
+                _format_percent(non_reflection),
+            )
+        )
     if benchmark_key == "taskbank36_hardv3":
         v25 = benchmark["settings"]["v2_5"]["overall_rate"]
         return (
@@ -632,19 +654,25 @@ def _paper_result_paragraph(benchmark_key: str, benchmark: Mapping[str, object])
             % (sentence, _format_percent(v25))
         )
     return (
-        "%s This indicates that cross-version reflection rules deliver a large gain on the training-like benchmark, with `v2.4` remaining the strongest variant."
-        % sentence
+        "%s This indicates that cross-version reflection rules deliver a large gain on the training-like benchmark, with %s at the top."
+        % (sentence, _format_setting_list(best_settings))
     )
 
 
 def _cross_benchmark_paragraph(
     focus20: Mapping[str, object], taskbank: Mapping[str, object]
 ) -> str:
-    focus_best = _best_setting(focus20)
-    task_best = _best_setting(taskbank)
+    focus_best = _best_settings(focus20)
+    task_best = _best_settings(taskbank)
+    xvr_count = len(SETTING_ORDER) - 1
     return (
-        "The two benchmarks tell a consistent but not identical story. On the training-like Focus20 benchmark, all three XVR rulebooks substantially outperform non-reflection, with `%s` clearly on top. On the held-out TaskBank36 benchmark, `%s` is still the strongest setting, but the ranking is more discriminative: `v2.6` remains above non-reflection, whereas `v2.5` falls below the non-reflection baseline. This pattern suggests that the strongest rulebook is not only better at fitting the mined distribution, but also more robust when transferred to unseen tasks."
-        % (SETTING_LABELS[focus_best], SETTING_LABELS[task_best])
+        "The two benchmarks tell a consistent but not identical story. On the training-like Focus20 benchmark, all %d XVR rulebooks substantially outperform non-reflection, with %s on top. On the held-out TaskBank36 benchmark, %s remain the strongest setting%s, but the ranking is more discriminative: `v2.6` remains above non-reflection, whereas `v2.5` falls below the non-reflection baseline. This pattern suggests that the strongest rulebook is not only better at fitting the mined distribution, but also more robust when transferred to unseen tasks."
+        % (
+            xvr_count,
+            _format_setting_list(focus_best),
+            _format_setting_list(task_best),
+            "s" if len(task_best) > 1 else "",
+        )
     )
 
 
@@ -673,9 +701,10 @@ def _render_benchmark_table(benchmark_key: str, benchmark: Mapping[str, object])
 
 
 def _render_per_drift_table(benchmark: Mapping[str, object]) -> str:
+    header_cells = ["Drift", "n"] + [SETTING_LABELS[setting] for setting in SETTING_ORDER]
     lines = [
-        "| Drift | n | Non-reflection | v2.4 | v2.5 | v2.6 |",
-        "| --- | ---: | ---: | ---: | ---: | ---: |",
+        "| %s |" % " | ".join(header_cells),
+        "| %s |" % " | ".join(["---", "---:"] + ["---:"] * len(SETTING_ORDER)),
     ]
     for drift in DRIFT_ORDER:
         n = benchmark["expected_by_drift"][drift]
@@ -685,17 +714,8 @@ def _render_per_drift_table(benchmark: Mapping[str, object]) -> str:
             values.append(
                 "%d/%d (%s)" % (payload["successes"], n, _format_percent(payload["rate"]))
             )
-        lines.append(
-            "| %s | %d | %s | %s | %s | %s |"
-            % (
-                DRIFT_LABELS[drift],
-                n,
-                values[0],
-                values[1],
-                values[2],
-                values[3],
-            )
-        )
+        row_cells = [DRIFT_LABELS[drift], str(n)] + values
+        lines.append("| %s |" % " | ".join(row_cells))
     return "\n".join(lines)
 
 
@@ -710,13 +730,27 @@ def _setting_result_clause(benchmark: Mapping[str, object], setting: str) -> str
 
 
 def _best_setting(benchmark: Mapping[str, object]) -> str:
-    return max(
-        SETTING_ORDER,
-        key=lambda setting: (
-            benchmark["settings"][setting]["overall_rate"],
-            -SETTING_ORDER.index(setting),
-        ),
+    return _best_settings(benchmark)[0]
+
+
+def _best_settings(benchmark: Mapping[str, object]) -> Sequence[str]:
+    best_rate = max(
+        benchmark["settings"][setting]["overall_rate"] for setting in SETTING_ORDER
     )
+    return [
+        setting
+        for setting in SETTING_ORDER
+        if benchmark["settings"][setting]["overall_rate"] == best_rate
+    ]
+
+
+def _format_setting_list(settings: Sequence[str]) -> str:
+    labels = [SETTING_LABELS[setting] for setting in settings]
+    if len(labels) == 1:
+        return "`%s`" % labels[0]
+    if len(labels) == 2:
+        return "`%s` and `%s`" % (labels[0], labels[1])
+    return ", ".join("`%s`" % label for label in labels[:-1]) + ", and `%s`" % labels[-1]
 
 
 __all__ = [

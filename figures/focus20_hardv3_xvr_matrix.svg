@@ -17,10 +17,12 @@
 <text x="102" y="130" class="legend">Non-reflection</text>
 <rect x="242" y="119" width="14" height="14" rx="3" fill="#2563eb"/>
 <text x="264" y="130" class="legend">v2.4</text>
-<rect x="324" y="119" width="14" height="14" rx="3" fill="#f59e0b"/>
-<text x="346" y="130" class="legend">v2.5</text>
-<rect x="406" y="119" width="14" height="14" rx="3" fill="#059669"/>
-<text x="428" y="130" class="legend">v2.6</text>
+<rect x="324" y="119" width="14" height="14" rx="3" fill="#dc2626"/>
+<text x="346" y="130" class="legend">v2.4.1</text>
+<rect x="422" y="119" width="14" height="14" rx="3" fill="#f59e0b"/>
+<text x="444" y="130" class="legend">v2.5</text>
+<rect x="504" y="119" width="14" height="14" rx="3" fill="#059669"/>
+<text x="526" y="130" class="legend">v2.6</text>
 <line x1="935" y1="150" x2="935" y2="560" stroke="#e5e7eb" stroke-width="2"/>
 <text x="80" y="150" class="panel-title">Version Drift Breakdown</text>
 <text x="970" y="150" class="panel-title">Overall</text>
@@ -52,78 +54,90 @@
 <tspan x="138" dy="0">Access</tspan>
 <tspan x="138" dy="15">n=13</tspan>
 </text>
-<rect x="93.6" y="490.0" width="18" height="0.0" rx="4" fill="#9aa0a6"/>
-<rect x="117.6" y="170.0" width="18" height="320.0" rx="4" fill="#2563eb"/>
-<rect x="141.6" y="170.0" width="18" height="320.0" rx="4" fill="#f59e0b"/>
-<rect x="165.6" y="170.0" width="18" height="320.0" rx="4" fill="#059669"/>
+<rect x="81.6" y="490.0" width="18" height="0.0" rx="4" fill="#9aa0a6"/>
+<rect x="105.6" y="170.0" width="18" height="320.0" rx="4" fill="#2563eb"/>
+<rect x="129.6" y="170.0" width="18" height="320.0" rx="4" fill="#dc2626"/>
+<rect x="153.6" y="170.0" width="18" height="320.0" rx="4" fill="#f59e0b"/>
+<rect x="177.6" y="170.0" width="18" height="320.0" rx="4" fill="#059669"/>
 <text x="255" y="518" class="axis" text-anchor="middle">
 <tspan x="255" dy="0">Surface</tspan>
 <tspan x="255" dy="15">n=13</tspan>
 </text>
-<rect x="210.7" y="465.4" width="18" height="24.6" rx="4" fill="#9aa0a6"/>
-<rect x="234.7" y="170.0" width="18" height="320.0" rx="4" fill="#2563eb"/>
-<rect x="258.7" y="170.0" width="18" height="320.0" rx="4" fill="#f59e0b"/>
-<rect x="282.7" y="170.0" width="18" height="320.0" rx="4" fill="#059669"/>
+<rect x="198.7" y="465.4" width="18" height="24.6" rx="4" fill="#9aa0a6"/>
+<rect x="222.7" y="170.0" width="18" height="320.0" rx="4" fill="#2563eb"/>
+<rect x="246.7" y="194.6" width="18" height="295.4" rx="4" fill="#dc2626"/>
+<rect x="270.7" y="170.0" width="18" height="320.0" rx="4" fill="#f59e0b"/>
+<rect x="294.7" y="170.0" width="18" height="320.0" rx="4" fill="#059669"/>
 <text x="372" y="518" class="axis" text-anchor="middle">
 <tspan x="372" dy="0">Content</tspan>
 <tspan x="372" dy="15">n=9</tspan>
 </text>
-<rect x="327.9" y="418.9" width="18" height="71.1" rx="4" fill="#9aa0a6"/>
-<rect x="351.9" y="241.1" width="18" height="248.9" rx="4" fill="#2563eb"/>
-<rect x="375.9" y="312.2" width="18" height="177.8" rx="4" fill="#f59e0b"/>
-<rect x="399.9" y="347.8" width="18" height="142.2" rx="4" fill="#059669"/>
+<rect x="315.9" y="418.9" width="18" height="71.1" rx="4" fill="#9aa0a6"/>
+<rect x="339.9" y="241.1" width="18" height="248.9" rx="4" fill="#2563eb"/>
+<rect x="363.9" y="276.7" width="18" height="213.3" rx="4" fill="#dc2626"/>
+<rect x="387.9" y="312.2" width="18" height="177.8" rx="4" fill="#f59e0b"/>
+<rect x="411.9" y="347.8" width="18" height="142.2" rx="4" fill="#059669"/>
 <text x="490" y="518" class="axis" text-anchor="middle">
 <tspan x="490" dy="0">Structural</tspan>
 <tspan x="490" dy="15">n=6</tspan>
 </text>
-<rect x="445.0" y="330.0" width="18" height="160.0" rx="4" fill="#9aa0a6"/>
-<rect x="469.0" y="170.0" width="18" height="320.0" rx="4" fill="#2563eb"/>
-<rect x="493.0" y="170.0" width="18" height="320.0" rx="4" fill="#f59e0b"/>
-<rect x="517.0" y="170.0" width="18" height="320.0" rx="4" fill="#059669"/>
+<rect x="433.0" y="330.0" width="18" height="160.0" rx="4" fill="#9aa0a6"/>
+<rect x="457.0" y="170.0" width="18" height="320.0" rx="4" fill="#2563eb"/>
+<rect x="481.0" y="223.3" width="18" height="266.7" rx="4" fill="#dc2626"/>
+<rect x="505.0" y="170.0" width="18" height="320.0" rx="4" fill="#f59e0b"/>
+<rect x="529.0" y="170.0" width="18" height="320.0" rx="4" fill="#059669"/>
 <text x="607" y="518" class="axis" text-anchor="middle">
 <tspan x="607" dy="0">Functional</tspan>
 <tspan x="607" dy="15">n=5</tspan>
 </text>
-<rect x="562.1" y="490.0" width="18" height="0.0" rx="4" fill="#9aa0a6"/>
-<rect x="586.1" y="234.0" width="18" height="256.0" rx="4" fill="#2563eb"/>
-<rect x="610.1" y="298.0" width="18" height="192.0" rx="4" fill="#f59e0b"/>
-<rect x="634.1" y="298.0" width="18" height="192.0" rx="4" fill="#059669"/>
+<rect x="550.1" y="490.0" width="18" height="0.0" rx="4" fill="#9aa0a6"/>
+<rect x="574.1" y="234.0" width="18" height="256.0" rx="4" fill="#2563eb"/>
+<rect x="598.1" y="298.0" width="18" height="192.0" rx="4" fill="#dc2626"/>
+<rect x="622.1" y="298.0" width="18" height="192.0" rx="4" fill="#f59e0b"/>
+<rect x="646.1" y="298.0" width="18" height="192.0" rx="4" fill="#059669"/>
 <text x="724" y="518" class="axis" text-anchor="middle">
 <tspan x="724" dy="0">Runtime</tspan>
 <tspan x="724" dy="15">n=16</tspan>
 </text>
-<rect x="679.3" y="450.0" width="18" height="40.0" rx="4" fill="#9aa0a6"/>
-<rect x="703.3" y="170.0" width="18" height="320.0" rx="4" fill="#2563eb"/>
-<rect x="727.3" y="190.0" width="18" height="300.0" rx="4" fill="#f59e0b"/>
-<rect x="751.3" y="170.0" width="18" height="320.0" rx="4" fill="#059669"/>
+<rect x="667.3" y="450.0" width="18" height="40.0" rx="4" fill="#9aa0a6"/>
+<rect x="691.3" y="170.0" width="18" height="320.0" rx="4" fill="#2563eb"/>
+<rect x="715.3" y="170.0" width="18" height="320.0" rx="4" fill="#dc2626"/>
+<rect x="739.3" y="190.0" width="18" height="300.0" rx="4" fill="#f59e0b"/>
+<rect x="763.3" y="170.0" width="18" height="320.0" rx="4" fill="#059669"/>
 <text x="841" y="518" class="axis" text-anchor="middle">
 <tspan x="841" dy="0">Process</tspan>
 <tspan x="841" dy="15">n=6</tspan>
 </text>
-<rect x="796.4" y="490.0" width="18" height="0.0" rx="4" fill="#9aa0a6"/>
-<rect x="820.4" y="170.0" width="18" height="320.0" rx="4" fill="#2563eb"/>
-<rect x="844.4" y="223.3" width="18" height="266.7" rx="4" fill="#f59e0b"/>
-<rect x="868.4" y="223.3" width="18" height="266.7" rx="4" fill="#059669"/>
-<rect x="1001.0" y="452.4" width="36" height="37.6" rx="5" fill="#9aa0a6"/>
-<text x="1019.0" y="444.4" class="value" text-anchor="middle">11.8%</text>
-<text x="1019" y="518" class="axis" text-anchor="middle">
-<tspan x="1019" dy="0">Non-</tspan>
-<tspan x="1019" dy="15">reflection</tspan>
+<rect x="784.4" y="490.0" width="18" height="0.0" rx="4" fill="#9aa0a6"/>
+<rect x="808.4" y="170.0" width="18" height="320.0" rx="4" fill="#2563eb"/>
+<rect x="832.4" y="223.3" width="18" height="266.7" rx="4" fill="#dc2626"/>
+<rect x="856.4" y="223.3" width="18" height="266.7" rx="4" fill="#f59e0b"/>
+<rect x="880.4" y="223.3" width="18" height="266.7" rx="4" fill="#059669"/>
+<rect x="974.0" y="452.4" width="36" height="37.6" rx="5" fill="#9aa0a6"/>
+<text x="992.0" y="444.4" class="value" text-anchor="middle">11.8%</text>
+<text x="992" y="518" class="axis" text-anchor="middle">
+<tspan x="992" dy="0">Non-</tspan>
+<tspan x="992" dy="15">reflection</tspan>
 </text>
-<rect x="1055.0" y="184.1" width="36" height="305.9" rx="5" fill="#2563eb"/>
-<text x="1073.0" y="176.1" class="value" text-anchor="middle">95.6%</text>
-<text x="1073" y="518" class="axis" text-anchor="middle">
-<tspan x="1073" dy="0">v2.4</tspan>
+<rect x="1028.0" y="184.1" width="36" height="305.9" rx="5" fill="#2563eb"/>
+<text x="1046.0" y="176.1" class="value" text-anchor="middle">95.6%</text>
+<text x="1046" y="518" class="axis" text-anchor="middle">
+<tspan x="1046" dy="0">v2.4</tspan>
 </text>
-<rect x="1109.0" y="207.6" width="36" height="282.4" rx="5" fill="#f59e0b"/>
-<text x="1127.0" y="199.6" class="value" text-anchor="middle">88.2%</text>
-<text x="1127" y="518" class="axis" text-anchor="middle">
-<tspan x="1127" dy="0">v2.5</tspan>
+<rect x="1082.0" y="207.6" width="36" height="282.4" rx="5" fill="#dc2626"/>
+<text x="1100.0" y="199.6" class="value" text-anchor="middle">88.2%</text>
+<text x="1100" y="518" class="axis" text-anchor="middle">
+<tspan x="1100" dy="0">v2.4.1</tspan>
 </text>
-<rect x="1163.0" y="207.6" width="36" height="282.4" rx="5" fill="#059669"/>
-<text x="1181.0" y="199.6" class="value" text-anchor="middle">88.2%</text>
-<text x="1181" y="518" class="axis" text-anchor="middle">
-<tspan x="1181" dy="0">v2.6</tspan>
+<rect x="1136.0" y="207.6" width="36" height="282.4" rx="5" fill="#f59e0b"/>
+<text x="1154.0" y="199.6" class="value" text-anchor="middle">88.2%</text>
+<text x="1154" y="518" class="axis" text-anchor="middle">
+<tspan x="1154" dy="0">v2.5</tspan>
+</text>
+<rect x="1190.0" y="207.6" width="36" height="282.4" rx="5" fill="#059669"/>
+<text x="1208.0" y="199.6" class="value" text-anchor="middle">88.2%</text>
+<text x="1208" y="518" class="axis" text-anchor="middle">
+<tspan x="1208" dy="0">v2.6</tspan>
 </text>
 <text x="80" y="590" class="axis-muted">Note: rates are benchmark-local. Focus20 and TaskBank36 are reported separately rather than merged.</text>
 </svg>

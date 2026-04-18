@@ -58,6 +58,14 @@ def test_discover_latest_eval_files_prefers_latest_run_and_mixed_naming(tmp_path
         run_label="run_20260417_030303_debug",
         rows=[{"task_id": 2, "drift_type": "surface", "variant": "surface", "success": False}],
     )
+    v241 = _write_eval(
+        tmp_path / "repo-results",
+        benchmark="focus20_hardv3",
+        setting="v2_4_1",
+        shard="content",
+        run_label="run_20260418_010101_v241",
+        rows=[{"task_id": 3, "drift_type": "content", "variant": "content", "success": True}],
+    )
 
     discovered = discover_latest_eval_files(
         [tmp_path / "repo-results", tmp_path / "external-results"]
@@ -65,6 +73,7 @@ def test_discover_latest_eval_files_prefers_latest_run_and_mixed_naming(tmp_path
 
     assert discovered[("focus20_hardv3", "v2_4", "access")] == latest
     assert discovered[("focus20_hardv3", "expel_only", "surface")] == expel_only
+    assert discovered[("focus20_hardv3", "v2_4_1", "content")] == v241
 
 
 def test_aggregate_eval_files_computes_overall_and_per_drift_rates(tmp_path):
@@ -95,6 +104,18 @@ def test_aggregate_eval_files_computes_overall_and_per_drift_rates(tmp_path):
                 {"task_id": 3, "drift_type": "process", "variant": "process", "success": True},
             ],
         ),
+        ("focus20_hardv3", "v2_4_1", "surface"): _write_eval(
+            repo_root,
+            benchmark="focus20_hardv3",
+            setting="v2_4_1",
+            shard="surface",
+            run_label="run_20260418_021000",
+            rows=[
+                {"task_id": 1, "drift_type": "access", "variant": "access", "success": True},
+                {"task_id": 2, "drift_type": "runtime", "variant": "runtime", "success": False},
+                {"task_id": 3, "drift_type": "process", "variant": "process", "success": True},
+            ],
+        ),
         ("taskbank36_hardv3", "expel_only", "structural_functional"): _write_eval(
             expel_root,
             benchmark="taskbank36_hardv3",
@@ -117,6 +138,17 @@ def test_aggregate_eval_files_computes_overall_and_per_drift_rates(tmp_path):
                 {"task_id": 11, "drift_type": "functional", "variant": "functional", "success": True},
             ],
         ),
+        ("taskbank36_hardv3", "v2_4_1", "runtime_process"): _write_eval(
+            repo_root,
+            benchmark="taskbank36_hardv3",
+            setting="v2_4_1",
+            shard="runtime_process",
+            run_label="run_20260418_041000",
+            rows=[
+                {"task_id": 10, "drift_type": "runtime", "variant": "runtime", "success": True},
+                {"task_id": 11, "drift_type": "process", "variant": "process", "success": False},
+            ],
+        ),
     }
 
     summary = aggregate_eval_files(files)
@@ -127,11 +159,15 @@ def test_aggregate_eval_files_computes_overall_and_per_drift_rates(tmp_path):
     assert focus20["settings"]["expel_only"]["successes"] == 1
     assert focus20["settings"]["expel_only"]["overall_rate"] == 1 / 3
     assert focus20["settings"]["v2_4"]["by_drift"]["process"]["rate"] == 1.0
+    assert focus20["settings"]["v2_4_1"]["successes"] == 2
+    assert focus20["settings"]["v2_4_1"]["overall_rate"] == 2 / 3
 
     taskbank = summary["benchmarks"]["taskbank36_hardv3"]
     assert taskbank["expected_total"] == 2
     assert taskbank["settings"]["expel_only"]["overall_rate"] == 0.5
     assert taskbank["settings"]["v2_4"]["by_drift"]["structural"]["rate"] == 1.0
+    assert taskbank["settings"]["v2_4_1"]["by_drift"]["runtime"]["rate"] == 1.0
+    assert taskbank["settings"]["v2_4_1"]["by_drift"]["process"]["rate"] == 0.0
 
 
 def test_renderers_include_expected_figure_and_report_content(tmp_path):
@@ -158,6 +194,17 @@ def test_renderers_include_expected_figure_and_report_content(tmp_path):
                 {"task_id": 2, "drift_type": "surface", "variant": "surface", "success": True},
             ],
         ),
+        ("focus20_hardv3", "v2_4_1", "surface"): _write_eval(
+            tmp_path / "repo",
+            benchmark="focus20_hardv3",
+            setting="v2_4_1",
+            shard="surface",
+            run_label="run_20260418_025000",
+            rows=[
+                {"task_id": 1, "drift_type": "access", "variant": "access", "success": True},
+                {"task_id": 2, "drift_type": "surface", "variant": "surface", "success": False},
+            ],
+        ),
         ("taskbank36_hardv3", "expel_only", "runtime_process"): _write_eval(
             tmp_path / "expel",
             benchmark="taskbank36_hardv3",
@@ -180,6 +227,17 @@ def test_renderers_include_expected_figure_and_report_content(tmp_path):
                 {"task_id": 11, "drift_type": "process", "variant": "process", "success": True},
             ],
         ),
+        ("taskbank36_hardv3", "v2_4_1", "runtime_process"): _write_eval(
+            tmp_path / "repo",
+            benchmark="taskbank36_hardv3",
+            setting="v2_4_1",
+            shard="runtime_process",
+            run_label="run_20260418_045000",
+            rows=[
+                {"task_id": 10, "drift_type": "runtime", "variant": "runtime", "success": True},
+                {"task_id": 11, "drift_type": "process", "variant": "process", "success": False},
+            ],
+        ),
     }
     summary = aggregate_eval_files(files)
 
@@ -196,8 +254,10 @@ def test_renderers_include_expected_figure_and_report_content(tmp_path):
     assert "Access" in svg
     assert "Overall" in svg
     assert "Non-reflection" in svg
+    assert "v2.4.1" in svg
 
     assert "# Hardv3 XVR Matrix Report" in report
     assert "../../figures/focus20_hardv3_xvr_matrix.svg" in report
     assert "| Non-reflection | 1/2 | 50.0% |" in report
+    assert "| v2.4.1 | 1/2 | 50.0% | +0.0 pts |" in report
     assert "TaskBank36 is treated as the held-out test benchmark" in report

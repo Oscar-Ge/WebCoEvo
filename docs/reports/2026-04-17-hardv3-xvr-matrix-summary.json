@@ -146,6 +146,72 @@
           "successes": 65,
           "unique_tasks": 68
         },
+        "v2_4_1": {
+          "by_drift": {
+            "access": {
+              "completed": 13,
+              "completion_rate": 1.0,
+              "expected": 13,
+              "rate": 1.0,
+              "successes": 13
+            },
+            "content": {
+              "completed": 9,
+              "completion_rate": 1.0,
+              "expected": 9,
+              "rate": 0.6666666666666666,
+              "successes": 6
+            },
+            "functional": {
+              "completed": 5,
+              "completion_rate": 1.0,
+              "expected": 5,
+              "rate": 0.6,
+              "successes": 3
+            },
+            "process": {
+              "completed": 6,
+              "completion_rate": 1.0,
+              "expected": 6,
+              "rate": 0.8333333333333334,
+              "successes": 5
+            },
+            "runtime": {
+              "completed": 16,
+              "completion_rate": 1.0,
+              "expected": 16,
+              "rate": 1.0,
+              "successes": 16
+            },
+            "structural": {
+              "completed": 6,
+              "completion_rate": 1.0,
+              "expected": 6,
+              "rate": 0.8333333333333334,
+              "successes": 5
+            },
+            "surface": {
+              "completed": 13,
+              "completion_rate": 1.0,
+              "expected": 13,
+              "rate": 0.9230769230769231,
+              "successes": 12
+            }
+          },
+          "completed": 68,
+          "completion_rate": 1.0,
+          "label": "v2.4.1",
+          "overall_rate": 0.8823529411764706,
+          "source_paths": [
+            "/home/gecm/WebCoEvo/results/focus20_hardv3_v2_4_1_expel_official_minimal_v1/shard_access/run_20260418_125040_v241_hardv3_eval/uitars_eval_20260418_130611.jsonl",
+            "/home/gecm/WebCoEvo/results/focus20_hardv3_v2_4_1_expel_official_minimal_v1/shard_content/run_20260418_125040_v241_hardv3_eval/uitars_eval_20260418_132057.jsonl",
+            "/home/gecm/WebCoEvo/results/focus20_hardv3_v2_4_1_expel_official_minimal_v1/shard_runtime_process/run_20260418_125040_v241_hardv3_eval/uitars_eval_20260418_133000.jsonl",
+            "/home/gecm/WebCoEvo/results/focus20_hardv3_v2_4_1_expel_official_minimal_v1/shard_structural_functional/run_20260418_125040_v241_hardv3_eval/uitars_eval_20260418_133933.jsonl",
+            "/home/gecm/WebCoEvo/results/focus20_hardv3_v2_4_1_expel_official_minimal_v1/shard_surface/run_20260418_125040_v241_hardv3_eval/uitars_eval_20260418_131217.jsonl"
+          ],
+          "successes": 60,
+          "unique_tasks": 68
+        },
         "v2_5": {
           "by_drift": {
             "access": {
@@ -422,6 +488,72 @@
             "/home/gecm/WebCoEvo/results/taskbank36_hardv3_v2_4_expel_official_minimal_v1/shard_runtime_process/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_154058.jsonl",
             "/home/gecm/WebCoEvo/results/taskbank36_hardv3_v2_4_expel_official_minimal_v1/shard_structural_functional/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_152830.jsonl",
             "/home/gecm/WebCoEvo/results/taskbank36_hardv3_v2_4_expel_official_minimal_v1/shard_surface/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_144509.jsonl"
+          ],
+          "successes": 97,
+          "unique_tasks": 167
+        },
+        "v2_4_1": {
+          "by_drift": {
+            "access": {
+              "completed": 36,
+              "completion_rate": 1.0,
+              "expected": 36,
+              "rate": 0.2777777777777778,
+              "successes": 10
+            },
+            "content": {
+              "completed": 14,
+              "completion_rate": 1.0,
+              "expected": 14,
+              "rate": 0.7142857142857143,
+              "successes": 10
+            },
+            "functional": {
+              "completed": 13,
+              "completion_rate": 1.0,
+              "expected": 13,
+              "rate": 0.3076923076923077,
+              "successes": 4
+            },
+            "process": {
+              "completed": 19,
+              "completion_rate": 1.0,
+              "expected": 19,
+              "rate": 0.47368421052631576,
+              "successes": 9
+            },
+            "runtime": {
+              "completed": 36,
+              "completion_rate": 1.0,
+              "expected": 36,
+              "rate": 0.8055555555555556,
+              "successes": 29
+            },
+            "structural": {
+              "completed": 13,
+              "completion_rate": 1.0,
+              "expected": 13,
+              "rate": 0.38461538461538464,
+              "successes": 5
+            },
+            "surface": {
+              "completed": 36,
+              "completion_rate": 1.0,
+              "expected": 36,
+              "rate": 0.8333333333333334,
+              "successes": 30
+            }
+          },
+          "completed": 167,
+          "completion_rate": 1.0,
+          "label": "v2.4.1",
+          "overall_rate": 0.5808383233532934,
+          "source_paths": [
+            "/home/gecm/WebCoEvo/results/taskbank36_hardv3_v2_4_1_expel_official_minimal_v1/shard_access/run_20260418_125040_v241_hardv3_eval/uitars_eval_20260418_134533.jsonl",
+            "/home/gecm/WebCoEvo/results/taskbank36_hardv3_v2_4_1_expel_official_minimal_v1/shard_content/run_20260418_125040_v241_hardv3_eval/uitars_eval_20260418_140642.jsonl",
+            "/home/gecm/WebCoEvo/results/taskbank36_hardv3_v2_4_1_expel_official_minimal_v1/shard_runtime_process/run_20260418_125040_v241_hardv3_eval/uitars_eval_20260418_150517.jsonl",
+            "/home/gecm/WebCoEvo/results/taskbank36_hardv3_v2_4_1_expel_official_minimal_v1/shard_structural_functional/run_20260418_125040_v241_hardv3_eval/uitars_eval_20260418_145427.jsonl",
+            "/home/gecm/WebCoEvo/results/taskbank36_hardv3_v2_4_1_expel_official_minimal_v1/shard_surface/run_20260418_125040_v241_hardv3_eval/uitars_eval_20260418_141208.jsonl"
           ],
           "successes": 97,
           "unique_tasks": 167
