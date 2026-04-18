@@ -10,8 +10,8 @@
 .value { font: 12px 'Helvetica Neue', Arial, sans-serif; fill: #111827; }
 </style>
 <rect width="100%%" height="100%%" fill="#ffffff"/>
-<text x="80" y="52" class="title">TaskBank36 Control 1.45.0: Run Status</text>
-<text x="80" y="78" class="subtitle">Full baseline runs were interrupted by the 02:00:00 Slurm time limit; completion is shown instead of final success rate.</text>
+<text x="80" y="52" class="title">TaskBank36 Control 1.45.0: No Rules vs ExpeL</text>
+<text x="80" y="78" class="subtitle">Overall success rate and per-drift success rate on the original Linkding 1.45.0 site.</text>
 <text x="80" y="104" class="subtitle">Left: per-drift rates. Right: benchmark-level overall summary.</text>
 <rect x="80" y="119" width="14" height="14" rx="3" fill="#9aa0a6"/>
 <text x="102" y="130" class="legend">No Rules</text>
@@ -48,63 +48,55 @@
 <tspan x="138" dy="0">Access</tspan>
 <tspan x="138" dy="15">n=36</tspan>
 </text>
-<rect x="107.6" y="205.6" width="26" height="284.4" rx="4" fill="#9aa0a6"/>
-<rect x="143.6" y="285.6" width="26" height="204.4" rx="4" fill="#f59e0b"/>
+<rect x="107.6" y="250.0" width="26" height="240.0" rx="4" fill="#9aa0a6"/>
+<rect x="143.6" y="250.0" width="26" height="240.0" rx="4" fill="#f59e0b"/>
 <text x="255" y="518" class="axis" text-anchor="middle">
 <tspan x="255" dy="0">Surface</tspan>
 <tspan x="255" dy="15">n=36</tspan>
 </text>
-<rect x="224.7" y="205.6" width="26" height="284.4" rx="4" fill="#9aa0a6"/>
-<rect x="260.7" y="294.4" width="26" height="195.6" rx="4" fill="#f59e0b"/>
+<rect x="224.7" y="223.3" width="26" height="266.7" rx="4" fill="#9aa0a6"/>
+<rect x="260.7" y="258.9" width="26" height="231.1" rx="4" fill="#f59e0b"/>
 <text x="372" y="518" class="axis" text-anchor="middle">
 <tspan x="372" dy="0">Content</tspan>
 <tspan x="372" dy="15">n=14</tspan>
 </text>
 <rect x="341.9" y="170.0" width="26" height="320.0" rx="4" fill="#9aa0a6"/>
-<rect x="377.9" y="192.9" width="26" height="297.1" rx="4" fill="#f59e0b"/>
+<rect x="377.9" y="307.1" width="26" height="182.9" rx="4" fill="#f59e0b"/>
 <text x="490" y="518" class="axis" text-anchor="middle">
 <tspan x="490" dy="0">Structural</tspan>
 <tspan x="490" dy="15">n=13</tspan>
 </text>
-<rect x="459.0" y="268.5" width="26" height="221.5" rx="4" fill="#9aa0a6"/>
-<rect x="495.0" y="490.0" width="26" height="0.0" rx="4" fill="#f59e0b"/>
+<rect x="459.0" y="293.1" width="26" height="196.9" rx="4" fill="#9aa0a6"/>
+<rect x="495.0" y="243.8" width="26" height="246.2" rx="4" fill="#f59e0b"/>
 <text x="607" y="518" class="axis" text-anchor="middle">
 <tspan x="607" dy="0">Functional</tspan>
 <tspan x="607" dy="15">n=13</tspan>
 </text>
 <rect x="576.1" y="293.1" width="26" height="196.9" rx="4" fill="#9aa0a6"/>
-<rect x="612.1" y="490.0" width="26" height="0.0" rx="4" fill="#f59e0b"/>
+<rect x="612.1" y="243.8" width="26" height="246.2" rx="4" fill="#f59e0b"/>
 <text x="724" y="518" class="axis" text-anchor="middle">
 <tspan x="724" dy="0">Runtime</tspan>
 <tspan x="724" dy="15">n=36</tspan>
 </text>
-<rect x="693.3" y="205.6" width="26" height="284.4" rx="4" fill="#9aa0a6"/>
-<rect x="729.3" y="294.4" width="26" height="195.6" rx="4" fill="#f59e0b"/>
+<rect x="693.3" y="232.2" width="26" height="257.8" rx="4" fill="#9aa0a6"/>
+<rect x="729.3" y="250.0" width="26" height="240.0" rx="4" fill="#f59e0b"/>
 <text x="841" y="518" class="axis" text-anchor="middle">
 <tspan x="841" dy="0">Process</tspan>
 <tspan x="841" dy="15">n=19</tspan>
 </text>
-<rect x="810.4" y="170.0" width="26" height="320.0" rx="4" fill="#9aa0a6"/>
-<rect x="846.4" y="186.8" width="26" height="303.2" rx="4" fill="#f59e0b"/>
-<rect x="1028.0" y="210.2" width="44" height="279.8" rx="5" fill="#9aa0a6"/>
-<text x="1050.0" y="202.2" class="value" text-anchor="middle">87.4%</text>
-<text x="1050" y="178" class="axis-muted" text-anchor="middle">
-<tspan x="1050" dy="0">obs.</tspan>
-<tspan x="1050" dy="15">109/146 = 74.7%</tspan>
-</text>
+<rect x="810.4" y="203.7" width="26" height="286.3" rx="4" fill="#9aa0a6"/>
+<rect x="846.4" y="220.5" width="26" height="269.5" rx="4" fill="#f59e0b"/>
+<rect x="1028.0" y="235.1" width="44" height="254.9" rx="5" fill="#9aa0a6"/>
+<text x="1050.0" y="227.1" class="value" text-anchor="middle">79.6%</text>
 <text x="1050" y="518" class="axis" text-anchor="middle">
 <tspan x="1050" dy="0">No</tspan>
 <tspan x="1050" dy="15">Rules</tspan>
 </text>
-<rect x="1098.0" y="302.2" width="44" height="187.8" rx="5" fill="#f59e0b"/>
-<text x="1120.0" y="294.2" class="value" text-anchor="middle">58.7%</text>
-<text x="1120" y="270" class="axis-muted" text-anchor="middle">
-<tspan x="1120" dy="0">obs.</tspan>
-<tspan x="1120" dy="15">61/98 = 62.2%</tspan>
-</text>
+<rect x="1098.0" y="252.4" width="44" height="237.6" rx="5" fill="#f59e0b"/>
+<text x="1120.0" y="244.4" class="value" text-anchor="middle">74.3%</text>
 <text x="1120" y="518" class="axis" text-anchor="middle">
 <tspan x="1120" dy="0">ExpeL</tspan>
 <tspan x="1120" dy="15">Only</tspan>
 </text>
-<text x="80" y="590" class="axis-muted">Bars show completion coverage; observed success among completed tasks is printed above each bar.</text>
+<text x="80" y="590" class="axis-muted">Rates are final success rates.</text>
 </svg>

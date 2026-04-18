@@ -323,7 +323,21 @@ def build_summary():
                 eval_paths = discover_latest_eval_paths(run_label, benchmark_spec["run_name_filter"])
                 if eval_paths:
                     setting_payload = aggregate_from_eval(eval_paths, benchmark_meta)
+                    if benchmark_spec.get("allow_partial") and not setting_payload["complete"]:
+                        fallback_eval_paths = discover_latest_eval_paths(run_label, None)
+                        if fallback_eval_paths:
+                            fallback_payload = aggregate_from_eval(fallback_eval_paths, benchmark_meta)
+                            if fallback_payload["completed"] > setting_payload["completed"]:
+                                setting_payload = fallback_payload
                 else:
+                    if benchmark_spec.get("allow_partial"):
+                        fallback_eval_paths = discover_latest_eval_paths(run_label, None)
+                        if fallback_eval_paths:
+                            setting_payload = aggregate_from_eval(fallback_eval_paths, benchmark_meta)
+                            setting_payload["label"] = SETTING_LABELS[setting]
+                            setting_payload["run_label"] = run_label
+                            benchmark_payload["settings"][setting] = setting_payload
+                            continue
                     if not benchmark_spec.get("allow_partial"):
                         raise RuntimeError(
                             "Missing eval files for %s / %s / %s"
@@ -351,6 +365,7 @@ def build_summary():
 def write_report_assets(summary, figure_dir, report_dir, report_filename):
     figure_dir.mkdir(parents=True, exist_ok=True)
     report_dir.mkdir(parents=True, exist_ok=True)
+    control_taskbank = summary["scenarios"]["control_1450"]["benchmarks"]["taskbank36"]
 
     figure_paths = {}
     figure_paths["control_1450_focus20"] = write_figure(
@@ -365,11 +380,20 @@ def write_report_assets(summary, figure_dir, report_dir, report_filename):
     )
     figure_paths["control_1450_taskbank36_status"] = write_figure(
         figure_dir / "taskbank36_control_rules_status.svg",
-        render_partial_status_figure_svg(
-            "TaskBank36 Control 1.45.0: Run Status",
-            "Full baseline runs were interrupted by the 02:00:00 Slurm time limit; completion is shown instead of final success rate.",
-            summary["scenarios"]["control_1450"]["setting_order"],
-            summary["scenarios"]["control_1450"]["benchmarks"]["taskbank36"],
+        (
+            render_success_figure_svg(
+                "TaskBank36 Control 1.45.0: No Rules vs ExpeL",
+                "Overall success rate and per-drift success rate on the original Linkding 1.45.0 site.",
+                summary["scenarios"]["control_1450"]["setting_order"],
+                control_taskbank,
+            )
+            if control_taskbank["all_complete"]
+            else render_partial_status_figure_svg(
+                "TaskBank36 Control 1.45.0: Run Status",
+                "Full baseline runs were interrupted by the 02:00:00 Slurm time limit; completion is shown instead of final success rate.",
+                summary["scenarios"]["control_1450"]["setting_order"],
+                control_taskbank,
+            )
         ),
         report_dir,
     )
@@ -419,6 +443,7 @@ def render_markdown_report(summary, figure_paths, report_dir):
     control_taskbank = summary["scenarios"]["control_1450"]["benchmarks"]["taskbank36"]
     first_focus20 = summary["scenarios"]["first_modified"]["benchmarks"]["focus20"]
     first_taskbank = summary["scenarios"]["first_modified"]["benchmarks"]["taskbank36"]
+    control_taskbank_complete = control_taskbank["all_complete"]
     access_asset = os.path.relpath(
         ROOT / "websites" / "first_modified" / "report" / "assets" / "access_before_after.png",
         start=report_dir,
@@ -450,7 +475,19 @@ def render_markdown_report(summary, figure_paths, report_dir):
             format_ratio_line(first_taskbank["settings"]["expel_only"], first_taskbank["expected_total"]),
             format_ratio_line(first_taskbank["settings"]["v2_4"], first_taskbank["expected_total"]),
         ),
-        "- The full TaskBank36 control baselines are not available: jobs `48219145` and `48219147` were canceled at the Slurm time limit, so the report separates completed success-rate results from incomplete run-status evidence.",
+        (
+            "- On the control Linkding 1.45.0 TaskBank36 benchmark, `ExpeL Only` changes performance from `%s` to `%s` (`%+.1f` points)."
+            % (
+                format_ratio_line(control_taskbank["settings"]["no_rules"], control_taskbank["expected_total"]),
+                format_ratio_line(control_taskbank["settings"]["expel_only"], control_taskbank["expected_total"]),
+                delta_points(
+                    control_taskbank["settings"]["expel_only"]["overall_rate"],
+                    control_taskbank["settings"]["no_rules"]["overall_rate"],
+                ),
+            )
+            if control_taskbank_complete
+            else "- The full TaskBank36 control baselines are not available: jobs `48219145` and `48219147` were canceled at the Slurm time limit, so the report separates completed success-rate results from incomplete run-status evidence."
+        ),
         "",
         "## Evaluation Setup",
         "",
@@ -494,14 +531,42 @@ def render_markdown_report(summary, figure_paths, report_dir):
         "",
         "### TaskBank36",
         "",
-        "![TaskBank36 control rules status](%s)" % figure_paths["control_1450_taskbank36_status"],
+        (
+            "![TaskBank36 control rules success](%s)" % figure_paths["control_1450_taskbank36_status"]
+            if control_taskbank_complete
+            else "![TaskBank36 control rules status](%s)" % figure_paths["control_1450_taskbank36_status"]
+        ),
         "",
-        "The full TaskBank36 control baselines did not finish before the Slurm time limit. Job `48219145` (`No Rules`) stopped at `2026-04-18T02:45:35`, and job `48219147` (`ExpeL Only`) stopped at `2026-04-18T03:44:43`.",
-        "This means the report cannot claim final TaskBank36 control success rates. Instead, it reports completion coverage and observed success on the completed subset only.",
+        (
+            "On the original Linkding 1.45.0 TaskBank36 benchmark, `ExpeL Only` changes success from `%s` to `%s` (`%+.1f` points)."
+            % (
+                format_ratio_line(control_taskbank["settings"]["no_rules"], control_taskbank["expected_total"]),
+                format_ratio_line(control_taskbank["settings"]["expel_only"], control_taskbank["expected_total"]),
+                delta_points(
+                    control_taskbank["settings"]["expel_only"]["overall_rate"],
+                    control_taskbank["settings"]["no_rules"]["overall_rate"],
+                ),
+            )
+            if control_taskbank_complete
+            else "The full TaskBank36 control baselines did not finish before the Slurm time limit. Job `48219145` (`No Rules`) stopped at `2026-04-18T02:45:35`, and job `48219147` (`ExpeL Only`) stopped at `2026-04-18T03:44:43`."
+        ),
+        (
+            "The latest completed control rerun covers every drift family, including `structural` and `functional`, so the figure now reports final benchmark-level success instead of partial completion coverage."
+            if control_taskbank_complete
+            else "This means the report cannot claim final TaskBank36 control success rates. Instead, it reports completion coverage and observed success on the completed subset only."
+        ),
         "",
-        render_partial_status_table(control_taskbank, ["no_rules", "expel_only"]),
+        (
+            render_success_table(control_taskbank, ["no_rules", "expel_only"])
+            if control_taskbank_complete
+            else render_partial_status_table(control_taskbank, ["no_rules", "expel_only"])
+        ),
         "",
-        "Observed completion bias is non-uniform: the `ExpeL Only` run never reached the `structural` or `functional` tail of the task order, so its observed subset should not be read as a benchmark-level win or loss.",
+        (
+            "Per-drift coverage is now complete for both settings, including the previously missing `structural` and `functional` families. The updated table below should be treated as the source of truth for the final control comparison."
+            if control_taskbank_complete
+            else "Observed completion bias is non-uniform: the `ExpeL Only` run never reached the `structural` or `functional` tail of the task order, so its observed subset should not be read as a benchmark-level win or loss."
+        ),
         "",
         "## Matrix B: `websites/first_modified` (`ExpeL Only` vs `V2.4 XVR`)",
         "",
@@ -563,6 +628,14 @@ def render_markdown_report(summary, figure_paths, report_dir):
         "",
         render_complete_per_drift_table(control_focus20, ["no_rules", "expel_only"]),
         "",
+        ("### Control TaskBank36" if control_taskbank_complete else "### Control TaskBank36 Partial Coverage"),
+        "",
+        (
+            render_complete_per_drift_table(control_taskbank, ["no_rules", "expel_only"])
+            if control_taskbank_complete
+            else render_partial_per_drift_table(control_taskbank, ["no_rules", "expel_only"])
+        ),
+        "",
         "### First-Modified Focus20",
         "",
         render_complete_per_drift_table(first_focus20, ["expel_only", "v2_4"]),
@@ -570,10 +643,6 @@ def render_markdown_report(summary, figure_paths, report_dir):
         "### First-Modified TaskBank36",
         "",
         render_complete_per_drift_table(first_taskbank, ["expel_only", "v2_4"]),
-        "",
-        "### Control TaskBank36 Partial Coverage",
-        "",
-        render_partial_per_drift_table(control_taskbank, ["no_rules", "expel_only"]),
     ]
     return "\n".join(lines).rstrip() + "\n"
 

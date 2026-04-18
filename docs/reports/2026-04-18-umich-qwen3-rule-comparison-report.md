@@ -6,7 +6,7 @@
 
 - On the control Linkding 1.45.0 Focus20 benchmark, `ExpeL Only` improves from `9/68 = 13.2%` to `56/68 = 82.4%` (`+69.1` points).
 - On `websites/first_modified`, `V2.4 XVR` improves over `ExpeL Only` on both Focus20 (`60/68 = 88.2%` to `67/68 = 98.5%`) and TaskBank36 (`114/167 = 68.3%` to `143/167 = 85.6%`).
-- The full TaskBank36 control baselines are not available: jobs `48219145` and `48219147` were canceled at the Slurm time limit, so the report separates completed success-rate results from incomplete run-status evidence.
+- On the control Linkding 1.45.0 TaskBank36 benchmark, `ExpeL Only` changes performance from `133/167 = 79.6%` to `124/167 = 74.3%` (`-5.4` points).
 
 ## Evaluation Setup
 
@@ -40,17 +40,17 @@ The strongest per-drift gains are on `access` (`0/13` to `13/13`), `process` (`1
 
 ### TaskBank36
 
-![TaskBank36 control rules status](../../figures/taskbank36_control_rules_status.svg)
+![TaskBank36 control rules success](../../figures/taskbank36_control_rules_status.svg)
 
-The full TaskBank36 control baselines did not finish before the Slurm time limit. Job `48219145` (`No Rules`) stopped at `2026-04-18T02:45:35`, and job `48219147` (`ExpeL Only`) stopped at `2026-04-18T03:44:43`.
-This means the report cannot claim final TaskBank36 control success rates. Instead, it reports completion coverage and observed success on the completed subset only.
+On the original Linkding 1.45.0 TaskBank36 benchmark, `ExpeL Only` changes success from `133/167 = 79.6%` to `124/167 = 74.3%` (`-5.4` points).
+The latest completed control rerun covers every drift family, including `structural` and `functional`, so the figure now reports final benchmark-level success instead of partial completion coverage.
 
-| Setting | Completed / Total | Completion Rate | Successes on Completed Tasks | Observed Success Rate |
-| --- | ---: | ---: | ---: | ---: |
-| No Rules | 146/167 | 87.4% | 109/146 | 74.7% |
-| ExpeL Only | 98/167 | 58.7% | 61/98 | 62.2% |
+| Setting | Success / Total | Success Rate | Delta vs First Setting |
+| --- | ---: | ---: | ---: |
+| No Rules | 133/167 | 79.6% | — |
+| ExpeL Only | 124/167 | 74.3% | -5.4 pts |
 
-Observed completion bias is non-uniform: the `ExpeL Only` run never reached the `structural` or `functional` tail of the task order, so its observed subset should not be read as a benchmark-level win or loss.
+Per-drift coverage is now complete for both settings, including the previously missing `structural` and `functional` families. The updated table below should be treated as the source of truth for the final control comparison.
 
 ## Matrix B: `websites/first_modified` (`ExpeL Only` vs `V2.4 XVR`)
 
@@ -110,6 +110,18 @@ Three conclusions are stable in the completed data. First, ExpeL rules alone alr
 | Runtime | 16 | 2/16 (12.5%) | 13/16 (81.2%) |
 | Process | 6 | 1/6 (16.7%) | 6/6 (100.0%) |
 
+### Control TaskBank36
+
+| Drift | n | No Rules | ExpeL Only |
+| --- | ---: | ---: | ---: |
+| Access | 36 | 27/36 (75.0%) | 27/36 (75.0%) |
+| Surface | 36 | 30/36 (83.3%) | 26/36 (72.2%) |
+| Content | 14 | 14/14 (100.0%) | 8/14 (57.1%) |
+| Structural | 13 | 8/13 (61.5%) | 10/13 (76.9%) |
+| Functional | 13 | 8/13 (61.5%) | 10/13 (76.9%) |
+| Runtime | 36 | 29/36 (80.6%) | 27/36 (75.0%) |
+| Process | 19 | 17/19 (89.5%) | 16/19 (84.2%) |
+
 ### First-Modified Focus20
 
 | Drift | n | ExpeL Only | V2.4 XVR |
@@ -133,15 +145,3 @@ Three conclusions are stable in the completed data. First, ExpeL rules alone alr
 | Functional | 13 | 11/13 (84.6%) | 13/13 (100.0%) |
 | Runtime | 36 | 16/36 (44.4%) | 30/36 (83.3%) |
 | Process | 19 | 16/19 (84.2%) | 17/19 (89.5%) |
-
-### Control TaskBank36 Partial Coverage
-
-| Drift | n | No Rules completion | No Rules observed success | ExpeL completion | ExpeL observed success |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| Access | 36 | 32/36 (88.9%) | 26/32 (81.2%) | 23/36 (63.9%) | 14/23 (60.9%) |
-| Surface | 36 | 32/36 (88.9%) | 24/32 (75.0%) | 22/36 (61.1%) | 13/22 (59.1%) |
-| Content | 14 | 14/14 (100.0%) | 10/14 (71.4%) | 13/14 (92.9%) | 6/13 (46.2%) |
-| Structural | 13 | 9/13 (69.2%) | 3/9 (33.3%) | 0/13 (0.0%) | 0/0 (0.0%) |
-| Functional | 13 | 8/13 (61.5%) | 2/8 (25.0%) | 0/13 (0.0%) | 0/0 (0.0%) |
-| Runtime | 36 | 32/36 (88.9%) | 27/32 (84.4%) | 22/36 (61.1%) | 14/22 (63.6%) |
-| Process | 19 | 19/19 (100.0%) | 17/19 (89.5%) | 18/19 (94.7%) | 14/18 (77.8%) |
