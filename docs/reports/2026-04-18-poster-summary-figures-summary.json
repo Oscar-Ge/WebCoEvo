@@ -1,0 +1,226 @@
+{
+  "claims": [
+    "ExpeL rules lose robustness as the website changes from Website V1 to Website V3.",
+    "Reflection rules transfer better to held-out validation task sets than ExpeL rules.",
+    "Reflection rules can be iterated from V1 to V4, but later iterations are not guaranteed to be stronger."
+  ],
+  "main_panel_order": [
+    "training_task_sets_main",
+    "heldout_validation_task_sets_main"
+  ],
+  "main_panels": {
+    "heldout_validation_task_sets_main": {
+      "caption": "On held-out validation task sets, ExpeL rules degrade sharply as the website changes, while reflection rules transfer better to unseen tasks and remain stronger on both vibe-coded versions.",
+      "subtitle": "Transfer to unseen task sets across website versions",
+      "takeaway": "Reflection rules transfer better to held-out validation task sets, while ExpeL degrades sharply under newer vibe-coded websites.",
+      "title": "Held-out Validation Task Sets",
+      "website_versions": [
+        {
+          "label": "Website V1",
+          "series": {
+            "expel_rules": {
+              "rate": 0.7425149700598802,
+              "successes": 124,
+              "total": 167
+            },
+            "no_rules": {
+              "rate": 0.7964071856287425,
+              "successes": 133,
+              "total": 167
+            }
+          },
+          "sublabel": "Original 1.45.0"
+        },
+        {
+          "label": "Website V2",
+          "series": {
+            "best_reflection_rules": {
+              "public_version": "Reflection Rules V1",
+              "rate": 0.8562874251497006,
+              "successes": 143,
+              "total": 167
+            },
+            "expel_rules": {
+              "rate": 0.6826347305389222,
+              "successes": 114,
+              "total": 167
+            }
+          },
+          "sublabel": "First vibe-coded version"
+        },
+        {
+          "label": "Website V3",
+          "series": {
+            "best_reflection_rules": {
+              "public_version": "Reflection Rules V1 / V4",
+              "rate": 0.5808383233532934,
+              "successes": 97,
+              "total": 167
+            },
+            "expel_rules": {
+              "rate": 0.39520958083832336,
+              "successes": 66,
+              "total": 167
+            }
+          },
+          "sublabel": "Harder vibe-coded version"
+        }
+      ]
+    },
+    "training_task_sets_main": {
+      "caption": "On training task sets, ExpeL rules help dramatically on the original environment but collapse on the harder vibe-coded Website V3, while reflection rules remain strong across newer website versions.",
+      "subtitle": "Performance across website versions",
+      "takeaway": "ExpeL helps on the original training-like environment, but reflection stays stronger as website versions drift.",
+      "title": "Training Task Sets",
+      "website_versions": [
+        {
+          "label": "Website V1",
+          "series": {
+            "expel_rules": {
+              "rate": 0.8235294117647058,
+              "successes": 56,
+              "total": 68
+            },
+            "no_rules": {
+              "rate": 0.1323529411764706,
+              "successes": 9,
+              "total": 68
+            }
+          },
+          "sublabel": "Original 1.45.0"
+        },
+        {
+          "label": "Website V2",
+          "series": {
+            "best_reflection_rules": {
+              "public_version": "Reflection Rules V1",
+              "rate": 0.9852941176470589,
+              "successes": 67,
+              "total": 68
+            },
+            "expel_rules": {
+              "rate": 0.8823529411764706,
+              "successes": 60,
+              "total": 68
+            }
+          },
+          "sublabel": "First vibe-coded version"
+        },
+        {
+          "label": "Website V3",
+          "series": {
+            "best_reflection_rules": {
+              "public_version": "Reflection Rules V1",
+              "rate": 0.9558823529411765,
+              "successes": 65,
+              "total": 68
+            },
+            "expel_rules": {
+              "rate": 0.11764705882352941,
+              "successes": 8,
+              "total": 68
+            }
+          },
+          "sublabel": "Harder vibe-coded version"
+        }
+      ]
+    }
+  },
+  "public_mapping": {
+    "reflection_versions": {
+      "Reflection Rules V1": "internal v2.4",
+      "Reflection Rules V2": "internal v2.5",
+      "Reflection Rules V3": "internal v2.6",
+      "Reflection Rules V4": "internal v2.4.1"
+    },
+    "website_versions": {
+      "Website V1": "Original Linkding 1.45.0",
+      "Website V2": "First vibe-coded website version",
+      "Website V3": "Harder vibe-coded website version"
+    }
+  },
+  "reflection_panel_order": [
+    "training_task_sets_reflection_v3",
+    "heldout_validation_task_sets_reflection_v3"
+  ],
+  "reflection_panels": {
+    "heldout_validation_task_sets_reflection_v3": {
+      "series": [
+        {
+          "is_best": true,
+          "key": "v2_4",
+          "label": "Reflection Rules V1",
+          "rate": 0.5808383233532934,
+          "successes": 97,
+          "total": 167
+        },
+        {
+          "is_best": false,
+          "key": "v2_5",
+          "label": "Reflection Rules V2",
+          "rate": 0.3652694610778443,
+          "successes": 61,
+          "total": 167
+        },
+        {
+          "is_best": false,
+          "key": "v2_6",
+          "label": "Reflection Rules V3",
+          "rate": 0.49101796407185627,
+          "successes": 82,
+          "total": 167
+        },
+        {
+          "is_best": true,
+          "key": "v2_4_1",
+          "label": "Reflection Rules V4",
+          "rate": 0.5808383233532934,
+          "successes": 97,
+          "total": 167
+        }
+      ],
+      "subtitle": "Reflection Rules on Website V3",
+      "takeaway": "Not monotonic: V1 and V4 tie",
+      "title": "Held-out Validation Task Sets"
+    },
+    "training_task_sets_reflection_v3": {
+      "series": [
+        {
+          "is_best": true,
+          "key": "v2_4",
+          "label": "Reflection Rules V1",
+          "rate": 0.9558823529411765,
+          "successes": 65,
+          "total": 68
+        },
+        {
+          "is_best": false,
+          "key": "v2_5",
+          "label": "Reflection Rules V2",
+          "rate": 0.8823529411764706,
+          "successes": 60,
+          "total": 68
+        },
+        {
+          "is_best": false,
+          "key": "v2_6",
+          "label": "Reflection Rules V3",
+          "rate": 0.8823529411764706,
+          "successes": 60,
+          "total": 68
+        },
+        {
+          "is_best": false,
+          "key": "v2_4_1",
+          "label": "Reflection Rules V4",
+          "rate": 0.8823529411764706,
+          "successes": 60,
+          "total": 68
+        }
+      ],
+      "subtitle": "Reflection Rules on Website V3",
+      "takeaway": "Not monotonic: V1 remains best",
+      "title": "Training Task Sets"
+    }
+  }
+}
