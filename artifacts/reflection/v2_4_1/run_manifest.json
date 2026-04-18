@@ -1,0 +1,186 @@
+{
+  "focus20": {
+    "first_modified": {
+      "expel_only": {
+        "eval_path": "results/focus20_first_modified_expel_only_official_minimal_v1/shard_*/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_eval_*.jsonl",
+        "eval_paths": [
+          "results/focus20_first_modified_expel_only_official_minimal_v1/shard_access/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_eval_20260417_235423.jsonl",
+          "results/focus20_first_modified_expel_only_official_minimal_v1/shard_content/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_eval_20260418_004509.jsonl",
+          "results/focus20_first_modified_expel_only_official_minimal_v1/shard_runtime_process/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_eval_20260418_014433.jsonl",
+          "results/focus20_first_modified_expel_only_official_minimal_v1/shard_structural_functional/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_eval_20260418_025157.jsonl",
+          "results/focus20_first_modified_expel_only_official_minimal_v1/shard_surface/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_eval_20260418_000025.jsonl"
+        ],
+        "family_name": "focus20_first_modified_expel_only_official_minimal_v1",
+        "family_root": "results/focus20_first_modified_expel_only_official_minimal_v1",
+        "run_dir": "results/focus20_first_modified_expel_only_official_minimal_v1/shard_*/run_20260417_234856_first_modified_rules_full_qwen3vl_v1",
+        "run_dirs": [
+          "results/focus20_first_modified_expel_only_official_minimal_v1/shard_access/run_20260417_234856_first_modified_rules_full_qwen3vl_v1",
+          "results/focus20_first_modified_expel_only_official_minimal_v1/shard_content/run_20260417_234856_first_modified_rules_full_qwen3vl_v1",
+          "results/focus20_first_modified_expel_only_official_minimal_v1/shard_runtime_process/run_20260417_234856_first_modified_rules_full_qwen3vl_v1",
+          "results/focus20_first_modified_expel_only_official_minimal_v1/shard_structural_functional/run_20260417_234856_first_modified_rules_full_qwen3vl_v1",
+          "results/focus20_first_modified_expel_only_official_minimal_v1/shard_surface/run_20260417_234856_first_modified_rules_full_qwen3vl_v1"
+        ],
+        "trace_path": "results/focus20_first_modified_expel_only_official_minimal_v1/shard_*/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_trace_*.jsonl",
+        "trace_paths": [
+          "results/focus20_first_modified_expel_only_official_minimal_v1/shard_access/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_trace_20260417_235423.jsonl",
+          "results/focus20_first_modified_expel_only_official_minimal_v1/shard_content/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_trace_20260418_004509.jsonl",
+          "results/focus20_first_modified_expel_only_official_minimal_v1/shard_runtime_process/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_trace_20260418_014433.jsonl",
+          "results/focus20_first_modified_expel_only_official_minimal_v1/shard_structural_functional/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_trace_20260418_025157.jsonl",
+          "results/focus20_first_modified_expel_only_official_minimal_v1/shard_surface/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_trace_20260418_000025.jsonl"
+        ]
+      },
+      "v2_4": {
+        "eval_path": "results/focus20_first_modified_v2_4_expel_official_minimal_v1/shard_*/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_eval_*.jsonl",
+        "eval_paths": [
+          "results/focus20_first_modified_v2_4_expel_official_minimal_v1/shard_access/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_eval_20260418_025741.jsonl",
+          "results/focus20_first_modified_v2_4_expel_official_minimal_v1/shard_content/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_eval_20260418_030805.jsonl",
+          "results/focus20_first_modified_v2_4_expel_official_minimal_v1/shard_runtime_process/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_eval_20260418_031532.jsonl",
+          "results/focus20_first_modified_v2_4_expel_official_minimal_v1/shard_structural_functional/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_eval_20260418_031933.jsonl",
+          "results/focus20_first_modified_v2_4_expel_official_minimal_v1/shard_surface/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_eval_20260418_030231.jsonl"
+        ],
+        "family_name": "focus20_first_modified_v2_4_expel_official_minimal_v1",
+        "family_root": "results/focus20_first_modified_v2_4_expel_official_minimal_v1",
+        "run_dir": "results/focus20_first_modified_v2_4_expel_official_minimal_v1/shard_*/run_20260417_234856_first_modified_rules_full_qwen3vl_v1",
+        "run_dirs": [
+          "results/focus20_first_modified_v2_4_expel_official_minimal_v1/shard_access/run_20260417_234856_first_modified_rules_full_qwen3vl_v1",
+          "results/focus20_first_modified_v2_4_expel_official_minimal_v1/shard_content/run_20260417_234856_first_modified_rules_full_qwen3vl_v1",
+          "results/focus20_first_modified_v2_4_expel_official_minimal_v1/shard_runtime_process/run_20260417_234856_first_modified_rules_full_qwen3vl_v1",
+          "results/focus20_first_modified_v2_4_expel_official_minimal_v1/shard_structural_functional/run_20260417_234856_first_modified_rules_full_qwen3vl_v1",
+          "results/focus20_first_modified_v2_4_expel_official_minimal_v1/shard_surface/run_20260417_234856_first_modified_rules_full_qwen3vl_v1"
+        ],
+        "trace_path": "results/focus20_first_modified_v2_4_expel_official_minimal_v1/shard_*/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_trace_*.jsonl",
+        "trace_paths": [
+          "results/focus20_first_modified_v2_4_expel_official_minimal_v1/shard_access/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_trace_20260418_025741.jsonl",
+          "results/focus20_first_modified_v2_4_expel_official_minimal_v1/shard_content/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_trace_20260418_030805.jsonl",
+          "results/focus20_first_modified_v2_4_expel_official_minimal_v1/shard_runtime_process/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_trace_20260418_031532.jsonl",
+          "results/focus20_first_modified_v2_4_expel_official_minimal_v1/shard_structural_functional/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_trace_20260418_031933.jsonl",
+          "results/focus20_first_modified_v2_4_expel_official_minimal_v1/shard_surface/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_trace_20260418_030231.jsonl"
+        ]
+      }
+    },
+    "hardv3": {
+      "v2_4": {
+        "eval_path": "results/focus20_hardv3_v2_4_expel_official_minimal_v1/shard_*/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_*.jsonl",
+        "eval_paths": [
+          "results/focus20_hardv3_v2_4_expel_official_minimal_v1/shard_access/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_125912.jsonl",
+          "results/focus20_hardv3_v2_4_expel_official_minimal_v1/shard_content/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_130713.jsonl",
+          "results/focus20_hardv3_v2_4_expel_official_minimal_v1/shard_runtime_process/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_130938.jsonl",
+          "results/focus20_hardv3_v2_4_expel_official_minimal_v1/shard_structural_functional/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_131628.jsonl",
+          "results/focus20_hardv3_v2_4_expel_official_minimal_v1/shard_surface/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_125755.jsonl"
+        ],
+        "family_name": "focus20_hardv3_v2_4_expel_official_minimal_v1",
+        "family_root": "results/focus20_hardv3_v2_4_expel_official_minimal_v1",
+        "run_dir": "results/focus20_hardv3_v2_4_expel_official_minimal_v1/shard_*/run_20260417_125123_webcoevo_3x2_focus20expel_v2",
+        "run_dirs": [
+          "results/focus20_hardv3_v2_4_expel_official_minimal_v1/shard_access/run_20260417_125123_webcoevo_3x2_focus20expel_v2",
+          "results/focus20_hardv3_v2_4_expel_official_minimal_v1/shard_content/run_20260417_125123_webcoevo_3x2_focus20expel_v2",
+          "results/focus20_hardv3_v2_4_expel_official_minimal_v1/shard_runtime_process/run_20260417_125123_webcoevo_3x2_focus20expel_v2",
+          "results/focus20_hardv3_v2_4_expel_official_minimal_v1/shard_structural_functional/run_20260417_125123_webcoevo_3x2_focus20expel_v2",
+          "results/focus20_hardv3_v2_4_expel_official_minimal_v1/shard_surface/run_20260417_125123_webcoevo_3x2_focus20expel_v2"
+        ],
+        "trace_path": "results/focus20_hardv3_v2_4_expel_official_minimal_v1/shard_*/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_trace_*.jsonl",
+        "trace_paths": [
+          "results/focus20_hardv3_v2_4_expel_official_minimal_v1/shard_access/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_trace_20260417_125912.jsonl",
+          "results/focus20_hardv3_v2_4_expel_official_minimal_v1/shard_content/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_trace_20260417_130713.jsonl",
+          "results/focus20_hardv3_v2_4_expel_official_minimal_v1/shard_runtime_process/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_trace_20260417_130938.jsonl",
+          "results/focus20_hardv3_v2_4_expel_official_minimal_v1/shard_structural_functional/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_trace_20260417_131628.jsonl",
+          "results/focus20_hardv3_v2_4_expel_official_minimal_v1/shard_surface/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_trace_20260417_125755.jsonl"
+        ]
+      }
+    }
+  },
+  "optional_entries": 2,
+  "required_entries": 4,
+  "results_root": "/home/gecm/WebCoEvo/results",
+  "schema_version": "webcoevo-linkding-v241-manifest-v1",
+  "taskbank36": {
+    "first_modified": {
+      "expel_only": {
+        "eval_path": "results/taskbank36_first_modified_expel_only_official_minimal_v1/shard_*/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_eval_*.jsonl",
+        "eval_paths": [
+          "results/taskbank36_first_modified_expel_only_official_minimal_v1/shard_access/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_eval_20260418_035920.jsonl",
+          "results/taskbank36_first_modified_expel_only_official_minimal_v1/shard_content/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_eval_20260418_042040.jsonl",
+          "results/taskbank36_first_modified_expel_only_official_minimal_v1/shard_runtime_process/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_eval_20260418_051334.jsonl",
+          "results/taskbank36_first_modified_expel_only_official_minimal_v1/shard_structural_functional/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_eval_20260418_043931.jsonl",
+          "results/taskbank36_first_modified_expel_only_official_minimal_v1/shard_surface/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_eval_20260418_042318.jsonl"
+        ],
+        "family_name": "taskbank36_first_modified_expel_only_official_minimal_v1",
+        "family_root": "results/taskbank36_first_modified_expel_only_official_minimal_v1",
+        "run_dir": "results/taskbank36_first_modified_expel_only_official_minimal_v1/shard_*/run_20260417_234856_first_modified_rules_full_qwen3vl_v1",
+        "run_dirs": [
+          "results/taskbank36_first_modified_expel_only_official_minimal_v1/shard_access/run_20260417_234856_first_modified_rules_full_qwen3vl_v1",
+          "results/taskbank36_first_modified_expel_only_official_minimal_v1/shard_content/run_20260417_234856_first_modified_rules_full_qwen3vl_v1",
+          "results/taskbank36_first_modified_expel_only_official_minimal_v1/shard_runtime_process/run_20260417_234856_first_modified_rules_full_qwen3vl_v1",
+          "results/taskbank36_first_modified_expel_only_official_minimal_v1/shard_structural_functional/run_20260417_234856_first_modified_rules_full_qwen3vl_v1",
+          "results/taskbank36_first_modified_expel_only_official_minimal_v1/shard_surface/run_20260417_234856_first_modified_rules_full_qwen3vl_v1"
+        ],
+        "trace_path": "results/taskbank36_first_modified_expel_only_official_minimal_v1/shard_*/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_trace_*.jsonl",
+        "trace_paths": [
+          "results/taskbank36_first_modified_expel_only_official_minimal_v1/shard_access/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_trace_20260418_035920.jsonl",
+          "results/taskbank36_first_modified_expel_only_official_minimal_v1/shard_content/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_trace_20260418_042040.jsonl",
+          "results/taskbank36_first_modified_expel_only_official_minimal_v1/shard_runtime_process/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_trace_20260418_051334.jsonl",
+          "results/taskbank36_first_modified_expel_only_official_minimal_v1/shard_structural_functional/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_trace_20260418_043931.jsonl",
+          "results/taskbank36_first_modified_expel_only_official_minimal_v1/shard_surface/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_trace_20260418_042318.jsonl"
+        ]
+      },
+      "v2_4": {
+        "eval_path": "results/taskbank36_first_modified_v2_4_expel_official_minimal_v1/shard_*/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_eval_*.jsonl",
+        "eval_paths": [
+          "results/taskbank36_first_modified_v2_4_expel_official_minimal_v1/shard_access/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_eval_20260418_050412.jsonl",
+          "results/taskbank36_first_modified_v2_4_expel_official_minimal_v1/shard_content/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_eval_20260418_053722.jsonl",
+          "results/taskbank36_first_modified_v2_4_expel_official_minimal_v1/shard_runtime_process/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_eval_20260418_061110.jsonl",
+          "results/taskbank36_first_modified_v2_4_expel_official_minimal_v1/shard_structural_functional/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_eval_20260418_054643.jsonl",
+          "results/taskbank36_first_modified_v2_4_expel_official_minimal_v1/shard_surface/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_eval_20260418_053802.jsonl"
+        ],
+        "family_name": "taskbank36_first_modified_v2_4_expel_official_minimal_v1",
+        "family_root": "results/taskbank36_first_modified_v2_4_expel_official_minimal_v1",
+        "run_dir": "results/taskbank36_first_modified_v2_4_expel_official_minimal_v1/shard_*/run_20260417_234856_first_modified_rules_full_qwen3vl_v1",
+        "run_dirs": [
+          "results/taskbank36_first_modified_v2_4_expel_official_minimal_v1/shard_access/run_20260417_234856_first_modified_rules_full_qwen3vl_v1",
+          "results/taskbank36_first_modified_v2_4_expel_official_minimal_v1/shard_content/run_20260417_234856_first_modified_rules_full_qwen3vl_v1",
+          "results/taskbank36_first_modified_v2_4_expel_official_minimal_v1/shard_runtime_process/run_20260417_234856_first_modified_rules_full_qwen3vl_v1",
+          "results/taskbank36_first_modified_v2_4_expel_official_minimal_v1/shard_structural_functional/run_20260417_234856_first_modified_rules_full_qwen3vl_v1",
+          "results/taskbank36_first_modified_v2_4_expel_official_minimal_v1/shard_surface/run_20260417_234856_first_modified_rules_full_qwen3vl_v1"
+        ],
+        "trace_path": "results/taskbank36_first_modified_v2_4_expel_official_minimal_v1/shard_*/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_trace_*.jsonl",
+        "trace_paths": [
+          "results/taskbank36_first_modified_v2_4_expel_official_minimal_v1/shard_access/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_trace_20260418_050412.jsonl",
+          "results/taskbank36_first_modified_v2_4_expel_official_minimal_v1/shard_content/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_trace_20260418_053722.jsonl",
+          "results/taskbank36_first_modified_v2_4_expel_official_minimal_v1/shard_runtime_process/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_trace_20260418_061110.jsonl",
+          "results/taskbank36_first_modified_v2_4_expel_official_minimal_v1/shard_structural_functional/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_trace_20260418_054643.jsonl",
+          "results/taskbank36_first_modified_v2_4_expel_official_minimal_v1/shard_surface/run_20260417_234856_first_modified_rules_full_qwen3vl_v1/uitars_trace_20260418_053802.jsonl"
+        ]
+      }
+    },
+    "hardv3": {
+      "v2_4": {
+        "eval_path": "results/taskbank36_hardv3_v2_4_expel_official_minimal_v1/shard_*/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_*.jsonl",
+        "eval_paths": [
+          "results/taskbank36_hardv3_v2_4_expel_official_minimal_v1/shard_access/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_141329.jsonl",
+          "results/taskbank36_hardv3_v2_4_expel_official_minimal_v1/shard_content/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_144208.jsonl",
+          "results/taskbank36_hardv3_v2_4_expel_official_minimal_v1/shard_runtime_process/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_154058.jsonl",
+          "results/taskbank36_hardv3_v2_4_expel_official_minimal_v1/shard_structural_functional/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_152830.jsonl",
+          "results/taskbank36_hardv3_v2_4_expel_official_minimal_v1/shard_surface/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_144509.jsonl"
+        ],
+        "family_name": "taskbank36_hardv3_v2_4_expel_official_minimal_v1",
+        "family_root": "results/taskbank36_hardv3_v2_4_expel_official_minimal_v1",
+        "run_dir": "results/taskbank36_hardv3_v2_4_expel_official_minimal_v1/shard_*/run_20260417_125123_webcoevo_3x2_focus20expel_v2",
+        "run_dirs": [
+          "results/taskbank36_hardv3_v2_4_expel_official_minimal_v1/shard_access/run_20260417_125123_webcoevo_3x2_focus20expel_v2",
+          "results/taskbank36_hardv3_v2_4_expel_official_minimal_v1/shard_content/run_20260417_125123_webcoevo_3x2_focus20expel_v2",
+          "results/taskbank36_hardv3_v2_4_expel_official_minimal_v1/shard_runtime_process/run_20260417_125123_webcoevo_3x2_focus20expel_v2",
+          "results/taskbank36_hardv3_v2_4_expel_official_minimal_v1/shard_structural_functional/run_20260417_125123_webcoevo_3x2_focus20expel_v2",
+          "results/taskbank36_hardv3_v2_4_expel_official_minimal_v1/shard_surface/run_20260417_125123_webcoevo_3x2_focus20expel_v2"
+        ],
+        "trace_path": "results/taskbank36_hardv3_v2_4_expel_official_minimal_v1/shard_*/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_trace_*.jsonl",
+        "trace_paths": [
+          "results/taskbank36_hardv3_v2_4_expel_official_minimal_v1/shard_access/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_trace_20260417_141329.jsonl",
+          "results/taskbank36_hardv3_v2_4_expel_official_minimal_v1/shard_content/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_trace_20260417_144208.jsonl",
+          "results/taskbank36_hardv3_v2_4_expel_official_minimal_v1/shard_runtime_process/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_trace_20260417_154058.jsonl",
+          "results/taskbank36_hardv3_v2_4_expel_official_minimal_v1/shard_structural_functional/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_trace_20260417_152830.jsonl",
+          "results/taskbank36_hardv3_v2_4_expel_official_minimal_v1/shard_surface/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_trace_20260417_144509.jsonl"
+        ]
+      }
+    }
+  }
+}

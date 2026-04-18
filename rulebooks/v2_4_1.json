@@ -1,0 +1,529 @@
+{
+  "artifact_type": "cross_version_reflection_rules",
+  "base_artifact_type": "cross_version_reflection_rules",
+  "base_version": "v2.4-website-repair",
+  "filters": {
+    "max_rules": 8,
+    "no_task_ids": true
+  },
+  "generation_endpoint": "responses_stream",
+  "merge_audit": [
+    {
+      "operation": "edit_rule",
+      "reason": "Broaden the existing login-next preservation rule from tagged add-bookmark forms to all protected in-site destinations, including filtered bookmark views. This directly repairs the lost cross-version regression where hardv3 replaces a task-specific next target after authentication.",
+      "status": "edited",
+      "target_rule_id": "xvr24_0004"
+    },
+    {
+      "operation": "edit_rule",
+      "reason": "The current completion rule already mentions URL/query evidence, but the failures show it should explicitly cover post-login filtered bookmark arrival and require an immediate final answer rather than further exploration.",
+      "status": "edited",
+      "target_rule_id": "xvr24_0003"
+    }
+  ],
+  "proposal_summary": {
+    "accepted": 2,
+    "rejected": 2
+  },
+  "rejected_proposals": [
+    {
+      "errors": [
+        "missing_target_rule_id"
+      ],
+      "index": 2,
+      "proposal": {
+        "operation": "keep_rule",
+        "raw": {
+          "operation": "keep_rule",
+          "reason": "Keep the direct same-site route fallback rule because it remains useful for navigation-only drift recovery; the regression is not that route fallback exists, but that it was used to replace a preserved login next destination after success.",
+          "rule": {
+            "title": "Use a direct local route fallback for navigation-only tasks after one failed nav click"
+          },
+          "support": {
+            "gap_ids": [],
+            "supporting_task_ids": []
+          }
+        },
+        "reason": "Keep the direct same-site route fallback rule because it remains useful for navigation-only drift recovery; the regression is not that route fallback exists, but that it was used to replace a preserved login next destination after success.",
+        "rule": {
+          "title": "Use a direct local route fallback for navigation-only tasks after one failed nav click"
+        },
+        "support": {
+          "gap_ids": [],
+          "supporting_task_ids": []
+        },
+        "target_rule_id": ""
+      }
+    },
+    {
+      "errors": [
+        "missing_target_rule_id"
+      ],
+      "index": 3,
+      "proposal": {
+        "operation": "keep_rule",
+        "raw": {
+          "operation": "keep_rule",
+          "reason": "Keep the two-step stuck policy because it is still a good mechanism-level anti-loop guard; the needed repair is to prioritize preserved login next destinations and immediate final answer detection before fallback loops begin.",
+          "rule": {
+            "title": "Use a two-step stuck policy: one recovery action, then route fallback or final answer"
+          },
+          "support": {
+            "gap_ids": [],
+            "supporting_task_ids": []
+          }
+        },
+        "reason": "Keep the two-step stuck policy because it is still a good mechanism-level anti-loop guard; the needed repair is to prioritize preserved login next destinations and immediate final answer detection before fallback loops begin.",
+        "rule": {
+          "title": "Use a two-step stuck policy: one recovery action, then route fallback or final answer"
+        },
+        "support": {
+          "gap_ids": [],
+          "supporting_task_ids": []
+        },
+        "target_rule_id": ""
+      }
+    }
+  ],
+  "required_gap_phrases": [
+    "login next",
+    "filtered bookmark",
+    "final answer"
+  ],
+  "rule_count": 8,
+  "rules": [
+    {
+      "adaptation_strategy": [
+        "After one failed click or invisible target timeout, discard the old bid and choose a newly visible target from the current observation.",
+        "Prefer visible link text, button text, aria label, or href semantics over a repeated numeric bid.",
+        "If the old target was a hidden input, CSRF token, divider, list item, or non-interactive container, do not click it again."
+      ],
+      "confidence": 0.93,
+      "forbidden_actions": [
+        "Do not repeat the same failed click after an invisible-element timeout.",
+        "Do not click hidden input or csrf elements.",
+        "Do not assume DOM presence means the element is human-clickable."
+      ],
+      "required_observations": [
+        "Read the last_action_error before choosing the next action.",
+        "Check whether the previous bid is visible in the current accessibility tree, not only present in hidden HTML.",
+        "Compare the current URL and heading with the previous step to detect no progress."
+      ],
+      "rule_id": "xvr_candidate_0001",
+      "scope": {
+        "drift_types": [
+          "surface",
+          "runtime",
+          "structural",
+          "functional",
+          "content"
+        ],
+        "task_patterns": [
+          "invisible element",
+          "locator timeout",
+          "stale bid",
+          "element not found",
+          "hidden navigation"
+        ]
+      },
+      "source_rule_id": "xvr24_0001",
+      "support": {
+        "evidence": "V2.3 website revalidation failures repeatedly clicked invisible bids such as surface 16012/16013, runtime 16013/16016, and structural 16014/16015.",
+        "support_count": 14
+      },
+      "title": "After any failed or invisible click, discard the old bid and re-observe",
+      "trigger": {
+        "observed_symptoms": [
+          "The last action error says the element is not visible, not stable, timed out, or could not find element with bid.",
+          "The same click repeats while the URL and visible page state do not move toward the goal."
+        ],
+        "old_assumption": "A remembered numeric bid can be clicked repeatedly until navigation eventually succeeds."
+      },
+      "verification_check": [
+        "The next action after a failed click should use a different visible target, a route fallback, or finalization.",
+        "A successful recovery should change URL, reveal a menu, or reach the target state."
+      ]
+    },
+    {
+      "adaptation_strategy": [
+        "After one failed nav click, use a direct local route fallback such as goto('<current_origin>/settings'), goto('<current_origin>/tags'), or goto('<current_origin>/bookmarks').",
+        "For add-bookmark form arrival tasks, use the same-site /bookmarks/new route only when the task asks to open or land on the form.",
+        "After the direct route loads, immediately verify the URL or heading and then send_msg_to_user with the requested keywords."
+      ],
+      "confidence": 0.91,
+      "forbidden_actions": [
+        "Do not navigate to external websites.",
+        "Do not keep clicking a hidden nav item when the same-site route is known.",
+        "Do not use direct route fallback for tasks that require manipulating data before completion."
+      ],
+      "required_observations": [
+        "Identify the requested destination from the task: settings, tags, bookmarks, or add-bookmark form.",
+        "Confirm the task is navigation-only and does not require saving a new record.",
+        "Stay on the same localhost base URL and preserve the current port."
+      ],
+      "rule_id": "xvr_candidate_0002",
+      "scope": {
+        "drift_types": [
+          "surface",
+          "runtime",
+          "structural",
+          "functional",
+          "content"
+        ],
+        "task_patterns": [
+          "route to settings",
+          "route to tags",
+          "route to bookmarks",
+          "navigation-only task",
+          "same-site route"
+        ]
+      },
+      "source_rule_id": "xvr24_0002",
+      "support": {
+        "evidence": "Most hard website revalidation failures were route-opening tasks that stayed on the old page after stale nav clicks.",
+        "support_count": 11
+      },
+      "title": "Use a direct local route fallback for navigation-only tasks after one failed nav click",
+      "trigger": {
+        "observed_symptoms": [
+          "The task asks to open settings, tags, or bookmarks and does not ask to edit or create data.",
+          "A visible nav click fails once or repeats without URL progress."
+        ],
+        "old_assumption": "The agent must find and click the drifted navigation link even when the desired same-site route is obvious."
+      },
+      "verification_check": [
+        "The URL path should match the requested destination.",
+        "The final answer should include the task-required words, such as settings opened or tags opened."
+      ]
+    },
+    {
+      "adaptation_strategy": [
+        "Before any noop, click, or goto, check whether the current URL path, query, heading, visible filter text, or redirected destination already satisfies the instruction.",
+        "For login-next tasks, if authentication has landed on the requested protected destination, answer immediately instead of reopening login or exploring.",
+        "For filtered bookmark tasks, if the URL contains the requested q= value or equivalent visible filter evidence, send the final answer with the required keywords.",
+        "For route tasks, if the current path or heading already shows the requested destination, stop with the final answer instead of replaying remembered controls."
+      ],
+      "forbidden_actions": [
+        "Do not click, goto, or noop after redirected arrival or URL/query evidence already proves completion.",
+        "Do not leave a satisfied filtered bookmark or destination page to retry a control-version action.",
+        "Do not postpone the final answer when the task only asks to open, land on, move to, or verify a state."
+      ],
+      "rule_id": "xvr_candidate_0003",
+      "scope": {
+        "drift_types": [
+          "surface",
+          "runtime",
+          "process",
+          "content",
+          "structural",
+          "functional",
+          "access"
+        ],
+        "task_patterns": [
+          "target page reached",
+          "filtered bookmarks",
+          "post-login redirect",
+          "route opened",
+          "prefilled form",
+          "benchmark completion"
+        ]
+      },
+      "source_rule_id": "xvr24_0003",
+      "support": {
+        "evidence": "Content 16017, runtime 16017, and functional 16017 reached /bookmarks?q=example and then repeated noop.",
+        "gap_ids": [
+          "target_reached_but_no_final_answer",
+          "login_next_lost"
+        ],
+        "source_rule_id": "xvr24_0003",
+        "support_count": 8,
+        "supporting_task_ids": [
+          "1601603",
+          "1600303",
+          "1600307"
+        ]
+      },
+      "title": "Finalize instead of acting when URL, query, heading, or redirected destination already proves completion",
+      "trigger": {
+        "observed_symptoms": [
+          "The current URL, query string, heading, visible filter state, or redirected destination already matches the task goal.",
+          "The agent is about to click, goto, or noop again despite already being on the requested page or filtered bookmark state."
+        ],
+        "old_assumption": "Even after the target state is visible, one more browser action is safer than giving the final answer."
+      },
+      "verification_check": [
+        "Once target evidence is present, the next step should be the final answer rather than another browser action.",
+        "The final answer should include the exact task-required keywords, including for filtered bookmark and post-login arrival tasks.",
+        "The trace should not contain repeated clicks, gotos, or noops after target evidence becomes visible."
+      ]
+    },
+    {
+      "adaptation_strategy": [
+        "Before submitting login, read and preserve the exact in-site next destination, including its path and query parameters.",
+        "After one login submit, treat arrival on the redirected protected page as authoritative; do not rewrite the destination to a different query, probe route, or generic example.",
+        "If the redirected page is a filtered bookmark destination or other protected target already satisfying the task, give the final answer immediately with the required keywords.",
+        "Only use a same-site route fallback after login if the original next destination is unavailable and the task goal is still unmet; prefer the exact preserved destination over any inferred replacement."
+      ],
+      "forbidden_actions": [
+        "Do not strip, replace, or generalize the next parameter after successful authentication.",
+        "Do not goto a new /login?next=... URL after already landing on the protected destination.",
+        "Do not swap a task-specific filtered bookmark query for an unrelated query or probe parameter."
+      ],
+      "rule_id": "xvr_candidate_0004",
+      "scope": {
+        "drift_types": [
+          "surface",
+          "runtime",
+          "process",
+          "content",
+          "access",
+          "functional"
+        ],
+        "task_patterns": [
+          "login redirect",
+          "next parameter",
+          "protected destination",
+          "filtered bookmark",
+          "prefilled form",
+          "post-login arrival"
+        ]
+      },
+      "source_rule_id": "xvr24_0004",
+      "support": {
+        "evidence": "Surface/runtime 16005 loops returned to login or generic prefill values even after reaching /bookmarks/new.",
+        "gap_ids": [
+          "login_next_lost"
+        ],
+        "source_rule_id": "xvr24_0004",
+        "support_count": 5,
+        "supporting_task_ids": [
+          "1600303",
+          "1600307"
+        ]
+      },
+      "title": "Preserve task-specific login next destinations and their query parameters across authentication",
+      "trigger": {
+        "observed_symptoms": [
+          "The task starts on /login?next=... and the encoded next value points to an in-site destination such as /bookmarks with a query string or another protected route.",
+          "After login submit, the browser lands on a protected page, but the agent is considering a goto back to /login, a rewritten next target, or a generic substitute route/query."
+        ],
+        "old_assumption": "After authentication, it is acceptable to reconstruct or replace the original next destination with another plausible localhost route."
+      },
+      "verification_check": [
+        "After login, the landed URL should match the preserved next path and retain the task-specific query parameters when present.",
+        "The trace should not return to /login or mutate the original next target after successful authentication.",
+        "If the preserved destination already satisfies the task, the next non-browser step should be the final answer."
+      ]
+    },
+    {
+      "adaptation_strategy": [
+        "Click a visible menu/nav/group opener first, then retry the now-visible destination once.",
+        "If the destination is still hidden after opening the group, switch to direct local route fallback instead of repeating the hidden link.",
+        "Use visible text or href for the retry, not the previous hidden bid."
+      ],
+      "confidence": 0.89,
+      "forbidden_actions": [
+        "Do not repeatedly click a hidden link inside a collapsed group.",
+        "Do not click a non-visible Active/Settings/Tags item just because it appears in pruned HTML.",
+        "Do not treat an invisible DOM link as a valid human action target."
+      ],
+      "required_observations": [
+        "Look for visible menu, navigation, drawer, collection, section, hamburger, or overflow controls.",
+        "Check whether the desired destination is hidden behind a visible group label.",
+        "Use the post-click accessibility tree, not the old bid list."
+      ],
+      "rule_id": "xvr_candidate_0005",
+      "scope": {
+        "drift_types": [
+          "structural",
+          "functional",
+          "surface",
+          "runtime"
+        ],
+        "task_patterns": [
+          "collapsed nav",
+          "hidden menu",
+          "drawer",
+          "navigation group",
+          "DOM-present hidden link"
+        ]
+      },
+      "source_rule_id": "xvr24_0005",
+      "support": {
+        "evidence": "Structural 16014/16015 and runtime/surface nav tasks repeatedly clicked hidden menu entries.",
+        "support_count": 7
+      },
+      "title": "Open collapsed navigation only through visible controls, then retry once",
+      "trigger": {
+        "observed_symptoms": [
+          "A link such as Active, Tags, Settings, or Bookmarks is present but Playwright reports it is not visible.",
+          "Navigation groups are reorganized or collapsed."
+        ],
+        "old_assumption": "If the desired link is present in hidden HTML, clicking its bid should work."
+      },
+      "verification_check": [
+        "A successful hidden-nav recovery should show opener click, visible target click or route fallback, and destination verification.",
+        "No hidden bid should be retried more than once."
+      ]
+    },
+    {
+      "adaptation_strategy": [
+        "If the candidate target is hidden input, csrf token, divider, or non-interactive list container, choose a nearby visible link/button instead.",
+        "If no valid visible target exists for the destination, use direct local route fallback for navigation-only tasks.",
+        "If the page already satisfies the task, use send_msg_to_user rather than clicking a questionable mark."
+      ],
+      "confidence": 0.88,
+      "forbidden_actions": [
+        "Do not click CSRF tokens or hidden inputs.",
+        "Do not click divider marks.",
+        "Do not click non-interactive containers when a child link/button or route fallback is available."
+      ],
+      "required_observations": [
+        "Use pruned_html and accessibility text to identify the tag type and role of the target.",
+        "Reject hidden inputs and layout separators as click targets.",
+        "Prefer links and buttons with semantic names."
+      ],
+      "rule_id": "xvr_candidate_0006",
+      "scope": {
+        "drift_types": [
+          "surface",
+          "runtime",
+          "content",
+          "structural",
+          "functional"
+        ],
+        "task_patterns": [
+          "hidden input",
+          "csrf",
+          "divider",
+          "list item",
+          "browsergym mark collision",
+          "bad target"
+        ]
+      },
+      "source_rule_id": "xvr24_0006",
+      "support": {
+        "evidence": "Content 16016 clicked a hidden csrf input; surface 16012 clicked a divider; runtime/surface clicked hidden li menu entries.",
+        "support_count": 4
+      },
+      "title": "Ignore non-interactive marks such as hidden inputs, CSRF tokens, dividers, and list containers",
+      "trigger": {
+        "observed_symptoms": [
+          "Playwright resolves the target to an input[type=hidden], csrfmiddlewaretoken, divider, or li container.",
+          "The element is not visible, enabled, or stable."
+        ],
+        "old_assumption": "Any visible bid-like mark suggested by the model is a valid target."
+      },
+      "verification_check": [
+        "The chosen target should be a human-clickable link, button, textbox, or direct same-site route.",
+        "The next state should move toward the task goal or finalize."
+      ]
+    },
+    {
+      "adaptation_strategy": [
+        "If the requested query is already applied in the URL or visible filter field, call send_msg_to_user with the required filtered/opened keywords.",
+        "If the query is missing, fill the visible search field once and press Enter, then verify the q parameter.",
+        "Do not noop repeatedly after /bookmarks?q=... is present."
+      ],
+      "confidence": 0.87,
+      "forbidden_actions": [
+        "Do not wait for additional invisible confirmation after the query is already active.",
+        "Do not clear a task-specific q parameter.",
+        "Do not change to a generic search query."
+      ],
+      "required_observations": [
+        "Read the current URL query string.",
+        "Inspect visible search/filter text and bookmark-list context.",
+        "Check the task-required final-answer keywords."
+      ],
+      "rule_id": "xvr_candidate_0007",
+      "scope": {
+        "drift_types": [
+          "content",
+          "runtime",
+          "functional",
+          "surface"
+        ],
+        "task_patterns": [
+          "filtered bookmarks",
+          "search query",
+          "q parameter",
+          "bookmark list filter"
+        ]
+      },
+      "source_rule_id": "xvr24_0007",
+      "support": {
+        "evidence": "Content/runtime/functional 16017 reached /bookmarks?q=example and then nooped.",
+        "support_count": 3
+      },
+      "title": "For filtered bookmark tasks, treat query-state arrival as completion evidence",
+      "trigger": {
+        "observed_symptoms": [
+          "The URL is /bookmarks?q=... or the visible search/filter field contains the requested query.",
+          "The agent repeatedly noops on the filtered bookmarks page."
+        ],
+        "old_assumption": "A filtered bookmarks task requires more browser actions after the URL query has already been applied."
+      },
+      "verification_check": [
+        "The URL or visible filter should contain the requested query.",
+        "The final answer should state that the filtered bookmarks page is open."
+      ]
+    },
+    {
+      "adaptation_strategy": [
+        "After one recovery action fails, do not try the same action again; switch to direct local route fallback for route tasks or send_msg_to_user for satisfied states.",
+        "If neither fallback nor finalization is valid, choose one different visible semantic target and then reassess.",
+        "Keep at least half the step budget for verification rather than consuming it in repeated retries."
+      ],
+      "confidence": 0.9,
+      "forbidden_actions": [
+        "Do not burn the remaining budget on identical clicks, gotos, waits, or noops.",
+        "Do not repeat login or generic prefill recovery after the target page has loaded.",
+        "Do not continue browser actions after benchmark completion is evident."
+      ],
+      "required_observations": [
+        "Track whether the last two actions changed URL, heading, form state, or visible target availability.",
+        "Decide whether the current state is already sufficient, requires a direct local route fallback, or needs one different visible target.",
+        "Respect the task verb: open/land/verify versus create/save/delete."
+      ],
+      "rule_id": "xvr_candidate_0008",
+      "scope": {
+        "drift_types": [
+          "surface",
+          "runtime",
+          "process",
+          "content",
+          "functional",
+          "structural",
+          "access"
+        ],
+        "task_patterns": [
+          "max steps",
+          "no progress",
+          "loop",
+          "stale action sequence",
+          "recovery budget"
+        ]
+      },
+      "source_rule_id": "xvr24_0008",
+      "support": {
+        "evidence": "All hard frontier failures in the V2.3 website revalidation consumed max steps through repeated clicks, gotos, or noops.",
+        "support_count": 14
+      },
+      "title": "Use a two-step stuck policy: one recovery action, then route fallback or final answer",
+      "trigger": {
+        "observed_symptoms": [
+          "Two consecutive actions leave the URL and visible state unchanged.",
+          "The trace repeats the same click, goto, wait, or noop pattern."
+        ],
+        "old_assumption": "Continuing to retry plausible actions is safer than switching strategies."
+      },
+      "verification_check": [
+        "A stuck trace should show changed strategy within two steps.",
+        "The final action should be a verified route, a valid visible target, or send_msg_to_user."
+      ]
+    }
+  ],
+  "schema_version": "webcoevo-xvr-candidate-rulebook-v1",
+  "version": "v2_4_1"
+}

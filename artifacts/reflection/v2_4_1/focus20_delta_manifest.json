@@ -1,0 +1,44 @@
+{
+  "bucket_counts": {
+    "diagnostic_frontier": 1,
+    "must_keep": 0,
+    "must_recover": 2,
+    "regression_rails": 8
+  },
+  "buckets": {
+    "diagnostic_frontier": [
+      1601603
+    ],
+    "must_keep": [],
+    "must_recover": [
+      1600303,
+      1600307
+    ],
+    "regression_rails": [
+      970402,
+      970404,
+      970405,
+      970406,
+      973001,
+      973002,
+      973004,
+      973007
+    ]
+  },
+  "max_per_bucket": 8,
+  "output_task_file": "artifacts/reflection/v2_4_1/focus20_delta_tasks.json",
+  "schema_version": "webcoevo-xvr-delta-slice-v1",
+  "selected_task_ids": [
+    1600303,
+    1600307,
+    970402,
+    970404,
+    970405,
+    970406,
+    973001,
+    973002,
+    973004,
+    973007,
+    1601603
+  ]
+}
