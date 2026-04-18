@@ -6,6 +6,14 @@ WebCoEvo 是一个自包含的 Linkding XVR 评测 runner，用来在 hardv3 dri
 
 英文文档见 [README.md](README.md)。
 
+## 课程项目
+
+WebCoEvo 是 **UMich EECS545 Winter 2026** 的 course project。
+
+**作者：** Chenming Ge、Chengyang Shi、Yifei Xu、Yuxiang Yang、Binglin Zhong。  
+**指导老师：** Honglak Lee。  
+**Mentor：** Violet Fu。
+
 ## 仓库包含什么
 
 - `linkding_xvr_minimal/`: Python runner、BrowserGym task wrapper、UI-TARS AgentLab adapter、prompt 注入、rule 选择、reset/login 处理、legacy eval/trace 导出。
@@ -77,6 +85,12 @@ export UITARS_MODEL=Qwen/Qwen3-VL-30B-A3B-Instruct
 - 共享 module 环境，例如 `python/3.11.5` 和 `singularity/4.x`
 
 如果你要跑正式 full matrix、要让作业排队、或者要把 runtime 放到更合适的存储目录，这条路线最稳。
+
+在当前 UMich 环境里，Slurm runner 会优先复用 `~/webAgentBenchmark/.venv/bin/python`。如果换机器或换环境，可以显式设置：
+
+```bash
+export PYTHON_BIN=/path/to/python
+```
 
 ## 本地 Docker 路线
 
@@ -206,6 +220,51 @@ runtime 目录默认是：
 ```
 
 如果 cluster quota 需要，可以用 `LINKDING_DRIFT_BASE_DIR` 覆盖。
+
+## Rule-Ablation / Transfer Matrix
+
+为了 EECS545 project 的 ablation 和 transfer 实验，仓库里新增了两个 profile-aware submitter：
+
+- `slurm/submit_control_rules_matrix.sh`: clean Linkding `1.45.0` baseline，对比 `no_rules` 和 `expel_only`，分别跑 Focus20 与 TaskBank36。
+- `slurm/submit_first_modified_rules_matrix.sh`: 历史 `websites/first_modified` drift profile，对比 `expel_only` 和 `ExpeL + v2_4`，分别跑 Focus20 与 TaskBank36。
+
+Smoke 例子：
+
+```bash
+RUN_STAMP="$(date +%Y%m%d_%H%M%S)_control_rules_smoke_qwen3vl_v1" \
+TASK_LIMIT=2 \
+SBATCH_TIME=00:30:00 \
+MAX_STEPS=12 \
+bash slurm/submit_control_rules_matrix.sh
+```
+
+```bash
+RUN_STAMP="$(date +%Y%m%d_%H%M%S)_first_modified_rules_smoke_qwen3vl_v1" \
+TASK_LIMIT=2 \
+SBATCH_TIME=00:30:00 \
+MAX_STEPS=12 \
+SHARD_NAMES_CSV=access \
+SHARD_VARIANTS_CSV=access \
+bash slurm/submit_first_modified_rules_matrix.sh
+```
+
+Full 例子：
+
+```bash
+RUN_STAMP="$(date +%Y%m%d_%H%M%S)_control_rules_full_qwen3vl_v1" \
+TASK_LIMIT=0 \
+SBATCH_TIME=02:00:00 \
+bash slurm/submit_control_rules_matrix.sh
+```
+
+```bash
+RUN_STAMP="$(date +%Y%m%d_%H%M%S)_first_modified_rules_full_qwen3vl_v1" \
+TASK_LIMIT=0 \
+SBATCH_TIME=04:00:00 \
+bash slurm/submit_first_modified_rules_matrix.sh
+```
+
+通用 runner 现在支持 `LINKDING_DRIFT_PROFILE=hardv3|first_modified|control`、`REQUIRE_XVR_RULES`、`REQUIRE_EXPEL_RULES`、`TASK_HOST_PROFILE`、`RUNTIME_VARIANTS` 和 `TASK_LIMIT`。
 
 ## 输出
 
