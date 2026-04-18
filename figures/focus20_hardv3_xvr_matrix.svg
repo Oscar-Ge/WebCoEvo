@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="620" viewBox="0 0 1320 620">
+<style>
+.title { font: 700 28px 'Helvetica Neue', Arial, sans-serif; fill: #111827; }
+.subtitle { font: 400 15px 'Helvetica Neue', Arial, sans-serif; fill: #4b5563; }
+.panel-title { font: 700 16px 'Helvetica Neue', Arial, sans-serif; fill: #111827; }
+.axis { font: 12px 'Helvetica Neue', Arial, sans-serif; fill: #374151; }
+.axis-muted { font: 11px 'Helvetica Neue', Arial, sans-serif; fill: #6b7280; }
+.legend { font: 13px 'Helvetica Neue', Arial, sans-serif; fill: #1f2937; }
+.value { font: 12px 'Helvetica Neue', Arial, sans-serif; fill: #111827; }
+</style>
+<rect width="100%%" height="100%%" fill="#ffffff"/>
+<text x="80" y="52" class="title">Focus20 Hardv3 XVR Matrix</text>
+<text x="80" y="78" class="subtitle">Expanded training-like evaluation tasks (n=68)</text>
+<text x="80" y="104" class="subtitle">Left: success rate by version drift. Right: benchmark-level overall success rate.</text>
+<rect x="80" y="119" width="14" height="14" rx="3" fill="#9aa0a6"/>
+<text x="102" y="130" class="legend">Non-reflection</text>
+<rect x="242" y="119" width="14" height="14" rx="3" fill="#2563eb"/>
+<text x="264" y="130" class="legend">v2.4</text>
+<rect x="324" y="119" width="14" height="14" rx="3" fill="#f59e0b"/>
+<text x="346" y="130" class="legend">v2.5</text>
+<rect x="406" y="119" width="14" height="14" rx="3" fill="#059669"/>
+<text x="428" y="130" class="legend">v2.6</text>
+<line x1="935" y1="150" x2="935" y2="560" stroke="#e5e7eb" stroke-width="2"/>
+<text x="80" y="150" class="panel-title">Version Drift Breakdown</text>
+<text x="970" y="150" class="panel-title">Overall</text>
+<line x1="80" y1="490" x2="900" y2="490" stroke="#111827" stroke-width="1.5"/>
+<line x1="80" y1="170" x2="80" y2="490" stroke="#111827" stroke-width="1.5"/>
+<line x1="80" y1="490" x2="900" y2="490" stroke="#e5e7eb" stroke-width="1"/>
+<text x="70" y="494" class="axis" text-anchor="end">0%</text>
+<line x1="80" y1="410" x2="900" y2="410" stroke="#e5e7eb" stroke-width="1"/>
+<text x="70" y="414" class="axis" text-anchor="end">25%</text>
+<line x1="80" y1="330" x2="900" y2="330" stroke="#e5e7eb" stroke-width="1"/>
+<text x="70" y="334" class="axis" text-anchor="end">50%</text>
+<line x1="80" y1="250" x2="900" y2="250" stroke="#e5e7eb" stroke-width="1"/>
+<text x="70" y="254" class="axis" text-anchor="end">75%</text>
+<line x1="80" y1="170" x2="900" y2="170" stroke="#e5e7eb" stroke-width="1"/>
+<text x="70" y="174" class="axis" text-anchor="end">100%</text>
+<line x1="970" y1="490" x2="1230" y2="490" stroke="#111827" stroke-width="1.5"/>
+<line x1="970" y1="170" x2="970" y2="490" stroke="#111827" stroke-width="1.5"/>
+<line x1="970" y1="490" x2="1230" y2="490" stroke="#e5e7eb" stroke-width="1"/>
+<text x="960" y="494" class="axis" text-anchor="end">0%</text>
+<line x1="970" y1="410" x2="1230" y2="410" stroke="#e5e7eb" stroke-width="1"/>
+<text x="960" y="414" class="axis" text-anchor="end">25%</text>
+<line x1="970" y1="330" x2="1230" y2="330" stroke="#e5e7eb" stroke-width="1"/>
+<text x="960" y="334" class="axis" text-anchor="end">50%</text>
+<line x1="970" y1="250" x2="1230" y2="250" stroke="#e5e7eb" stroke-width="1"/>
+<text x="960" y="254" class="axis" text-anchor="end">75%</text>
+<line x1="970" y1="170" x2="1230" y2="170" stroke="#e5e7eb" stroke-width="1"/>
+<text x="960" y="174" class="axis" text-anchor="end">100%</text>
+<text x="138" y="518" class="axis" text-anchor="middle">
+<tspan x="138" dy="0">Access</tspan>
+<tspan x="138" dy="15">n=13</tspan>
+</text>
+<rect x="93.6" y="490.0" width="18" height="0.0" rx="4" fill="#9aa0a6"/>
+<rect x="117.6" y="170.0" width="18" height="320.0" rx="4" fill="#2563eb"/>
+<rect x="141.6" y="170.0" width="18" height="320.0" rx="4" fill="#f59e0b"/>
+<rect x="165.6" y="170.0" width="18" height="320.0" rx="4" fill="#059669"/>
+<text x="255" y="518" class="axis" text-anchor="middle">
+<tspan x="255" dy="0">Surface</tspan>
+<tspan x="255" dy="15">n=13</tspan>
+</text>
+<rect x="210.7" y="465.4" width="18" height="24.6" rx="4" fill="#9aa0a6"/>
+<rect x="234.7" y="170.0" width="18" height="320.0" rx="4" fill="#2563eb"/>
+<rect x="258.7" y="170.0" width="18" height="320.0" rx="4" fill="#f59e0b"/>
+<rect x="282.7" y="170.0" width="18" height="320.0" rx="4" fill="#059669"/>
+<text x="372" y="518" class="axis" text-anchor="middle">
+<tspan x="372" dy="0">Content</tspan>
+<tspan x="372" dy="15">n=9</tspan>
+</text>
+<rect x="327.9" y="418.9" width="18" height="71.1" rx="4" fill="#9aa0a6"/>
+<rect x="351.9" y="241.1" width="18" height="248.9" rx="4" fill="#2563eb"/>
+<rect x="375.9" y="312.2" width="18" height="177.8" rx="4" fill="#f59e0b"/>
+<rect x="399.9" y="347.8" width="18" height="142.2" rx="4" fill="#059669"/>
+<text x="490" y="518" class="axis" text-anchor="middle">
+<tspan x="490" dy="0">Structural</tspan>
+<tspan x="490" dy="15">n=6</tspan>
+</text>
+<rect x="445.0" y="330.0" width="18" height="160.0" rx="4" fill="#9aa0a6"/>
+<rect x="469.0" y="170.0" width="18" height="320.0" rx="4" fill="#2563eb"/>
+<rect x="493.0" y="170.0" width="18" height="320.0" rx="4" fill="#f59e0b"/>
+<rect x="517.0" y="170.0" width="18" height="320.0" rx="4" fill="#059669"/>
+<text x="607" y="518" class="axis" text-anchor="middle">
+<tspan x="607" dy="0">Functional</tspan>
+<tspan x="607" dy="15">n=5</tspan>
+</text>
+<rect x="562.1" y="490.0" width="18" height="0.0" rx="4" fill="#9aa0a6"/>
+<rect x="586.1" y="234.0" width="18" height="256.0" rx="4" fill="#2563eb"/>
+<rect x="610.1" y="298.0" width="18" height="192.0" rx="4" fill="#f59e0b"/>
+<rect x="634.1" y="298.0" width="18" height="192.0" rx="4" fill="#059669"/>
+<text x="724" y="518" class="axis" text-anchor="middle">
+<tspan x="724" dy="0">Runtime</tspan>
+<tspan x="724" dy="15">n=16</tspan>
+</text>
+<rect x="679.3" y="450.0" width="18" height="40.0" rx="4" fill="#9aa0a6"/>
+<rect x="703.3" y="170.0" width="18" height="320.0" rx="4" fill="#2563eb"/>
+<rect x="727.3" y="190.0" width="18" height="300.0" rx="4" fill="#f59e0b"/>
+<rect x="751.3" y="170.0" width="18" height="320.0" rx="4" fill="#059669"/>
+<text x="841" y="518" class="axis" text-anchor="middle">
+<tspan x="841" dy="0">Process</tspan>
+<tspan x="841" dy="15">n=6</tspan>
+</text>
+<rect x="796.4" y="490.0" width="18" height="0.0" rx="4" fill="#9aa0a6"/>
+<rect x="820.4" y="170.0" width="18" height="320.0" rx="4" fill="#2563eb"/>
+<rect x="844.4" y="223.3" width="18" height="266.7" rx="4" fill="#f59e0b"/>
+<rect x="868.4" y="223.3" width="18" height="266.7" rx="4" fill="#059669"/>
+<rect x="1001.0" y="452.4" width="36" height="37.6" rx="5" fill="#9aa0a6"/>
+<text x="1019.0" y="444.4" class="value" text-anchor="middle">11.8%</text>
+<text x="1019" y="518" class="axis" text-anchor="middle">
+<tspan x="1019" dy="0">Non-</tspan>
+<tspan x="1019" dy="15">reflection</tspan>
+</text>
+<rect x="1055.0" y="184.1" width="36" height="305.9" rx="5" fill="#2563eb"/>
+<text x="1073.0" y="176.1" class="value" text-anchor="middle">95.6%</text>
+<text x="1073" y="518" class="axis" text-anchor="middle">
+<tspan x="1073" dy="0">v2.4</tspan>
+</text>
+<rect x="1109.0" y="207.6" width="36" height="282.4" rx="5" fill="#f59e0b"/>
+<text x="1127.0" y="199.6" class="value" text-anchor="middle">88.2%</text>
+<text x="1127" y="518" class="axis" text-anchor="middle">
+<tspan x="1127" dy="0">v2.5</tspan>
+</text>
+<rect x="1163.0" y="207.6" width="36" height="282.4" rx="5" fill="#059669"/>
+<text x="1181.0" y="199.6" class="value" text-anchor="middle">88.2%</text>
+<text x="1181" y="518" class="axis" text-anchor="middle">
+<tspan x="1181" dy="0">v2.6</tspan>
+</text>
+<text x="80" y="590" class="axis-muted">Note: rates are benchmark-local. Focus20 and TaskBank36 are reported separately rather than merged.</text>
+</svg>

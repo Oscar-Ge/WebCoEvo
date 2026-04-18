@@ -1,0 +1,564 @@
+{
+  "benchmarks": {
+    "focus20_hardv3": {
+      "expected_by_drift": {
+        "access": 13,
+        "content": 9,
+        "functional": 5,
+        "process": 6,
+        "runtime": 16,
+        "structural": 6,
+        "surface": 13
+      },
+      "expected_total": 68,
+      "label": "Focus20",
+      "note": "Expanded training-like evaluation tasks",
+      "settings": {
+        "expel_only": {
+          "by_drift": {
+            "access": {
+              "completed": 13,
+              "completion_rate": 1.0,
+              "expected": 13,
+              "rate": 0.0,
+              "successes": 0
+            },
+            "content": {
+              "completed": 9,
+              "completion_rate": 1.0,
+              "expected": 9,
+              "rate": 0.2222222222222222,
+              "successes": 2
+            },
+            "functional": {
+              "completed": 5,
+              "completion_rate": 1.0,
+              "expected": 5,
+              "rate": 0.0,
+              "successes": 0
+            },
+            "process": {
+              "completed": 6,
+              "completion_rate": 1.0,
+              "expected": 6,
+              "rate": 0.0,
+              "successes": 0
+            },
+            "runtime": {
+              "completed": 16,
+              "completion_rate": 1.0,
+              "expected": 16,
+              "rate": 0.125,
+              "successes": 2
+            },
+            "structural": {
+              "completed": 6,
+              "completion_rate": 1.0,
+              "expected": 6,
+              "rate": 0.5,
+              "successes": 3
+            },
+            "surface": {
+              "completed": 13,
+              "completion_rate": 1.0,
+              "expected": 13,
+              "rate": 0.07692307692307693,
+              "successes": 1
+            }
+          },
+          "completed": 68,
+          "completion_rate": 1.0,
+          "label": "Non-reflection",
+          "overall_rate": 0.11764705882352941,
+          "source_paths": [
+            "/home/gecm/.config/superpowers/worktrees/WebCoEvo/expel-only-debug-20260417/results/focus20_hardv3_expel_only_official_minimal_v1/shard_access/run_20260417_155120_expel_only_debug_v1/uitars_eval_20260417_193534.jsonl",
+            "/home/gecm/.config/superpowers/worktrees/WebCoEvo/expel-only-debug-20260417/results/focus20_hardv3_expel_only_official_minimal_v1/shard_content/run_20260417_155120_expel_only_debug_v1/uitars_eval_20260417_195158.jsonl",
+            "/home/gecm/.config/superpowers/worktrees/WebCoEvo/expel-only-debug-20260417/results/focus20_hardv3_expel_only_official_minimal_v1/shard_runtime_process/run_20260417_155120_expel_only_debug_v1/uitars_eval_20260417_203153.jsonl",
+            "/home/gecm/.config/superpowers/worktrees/WebCoEvo/expel-only-debug-20260417/results/focus20_hardv3_expel_only_official_minimal_v1/shard_structural_functional/run_20260417_155120_expel_only_debug_v1/uitars_eval_20260417_201310.jsonl",
+            "/home/gecm/.config/superpowers/worktrees/WebCoEvo/expel-only-debug-20260417/results/focus20_hardv3_expel_only_official_minimal_v1/shard_surface/run_20260417_155120_expel_only_debug_v1/uitars_eval_20260417_195048.jsonl"
+          ],
+          "successes": 8,
+          "unique_tasks": 68
+        },
+        "v2_4": {
+          "by_drift": {
+            "access": {
+              "completed": 13,
+              "completion_rate": 1.0,
+              "expected": 13,
+              "rate": 1.0,
+              "successes": 13
+            },
+            "content": {
+              "completed": 9,
+              "completion_rate": 1.0,
+              "expected": 9,
+              "rate": 0.7777777777777778,
+              "successes": 7
+            },
+            "functional": {
+              "completed": 5,
+              "completion_rate": 1.0,
+              "expected": 5,
+              "rate": 0.8,
+              "successes": 4
+            },
+            "process": {
+              "completed": 6,
+              "completion_rate": 1.0,
+              "expected": 6,
+              "rate": 1.0,
+              "successes": 6
+            },
+            "runtime": {
+              "completed": 16,
+              "completion_rate": 1.0,
+              "expected": 16,
+              "rate": 1.0,
+              "successes": 16
+            },
+            "structural": {
+              "completed": 6,
+              "completion_rate": 1.0,
+              "expected": 6,
+              "rate": 1.0,
+              "successes": 6
+            },
+            "surface": {
+              "completed": 13,
+              "completion_rate": 1.0,
+              "expected": 13,
+              "rate": 1.0,
+              "successes": 13
+            }
+          },
+          "completed": 68,
+          "completion_rate": 1.0,
+          "label": "v2.4",
+          "overall_rate": 0.9558823529411765,
+          "source_paths": [
+            "/home/gecm/WebCoEvo/results/focus20_hardv3_v2_4_expel_official_minimal_v1/shard_access/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_125912.jsonl",
+            "/home/gecm/WebCoEvo/results/focus20_hardv3_v2_4_expel_official_minimal_v1/shard_content/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_130713.jsonl",
+            "/home/gecm/WebCoEvo/results/focus20_hardv3_v2_4_expel_official_minimal_v1/shard_runtime_process/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_130938.jsonl",
+            "/home/gecm/WebCoEvo/results/focus20_hardv3_v2_4_expel_official_minimal_v1/shard_structural_functional/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_131628.jsonl",
+            "/home/gecm/WebCoEvo/results/focus20_hardv3_v2_4_expel_official_minimal_v1/shard_surface/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_125755.jsonl"
+          ],
+          "successes": 65,
+          "unique_tasks": 68
+        },
+        "v2_5": {
+          "by_drift": {
+            "access": {
+              "completed": 13,
+              "completion_rate": 1.0,
+              "expected": 13,
+              "rate": 1.0,
+              "successes": 13
+            },
+            "content": {
+              "completed": 9,
+              "completion_rate": 1.0,
+              "expected": 9,
+              "rate": 0.5555555555555556,
+              "successes": 5
+            },
+            "functional": {
+              "completed": 5,
+              "completion_rate": 1.0,
+              "expected": 5,
+              "rate": 0.6,
+              "successes": 3
+            },
+            "process": {
+              "completed": 6,
+              "completion_rate": 1.0,
+              "expected": 6,
+              "rate": 0.8333333333333334,
+              "successes": 5
+            },
+            "runtime": {
+              "completed": 16,
+              "completion_rate": 1.0,
+              "expected": 16,
+              "rate": 0.9375,
+              "successes": 15
+            },
+            "structural": {
+              "completed": 6,
+              "completion_rate": 1.0,
+              "expected": 6,
+              "rate": 1.0,
+              "successes": 6
+            },
+            "surface": {
+              "completed": 13,
+              "completion_rate": 1.0,
+              "expected": 13,
+              "rate": 1.0,
+              "successes": 13
+            }
+          },
+          "completed": 68,
+          "completion_rate": 1.0,
+          "label": "v2.5",
+          "overall_rate": 0.8823529411764706,
+          "source_paths": [
+            "/home/gecm/WebCoEvo/results/focus20_hardv3_v2_5_expel_official_minimal_v1/shard_access/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_131727.jsonl",
+            "/home/gecm/WebCoEvo/results/focus20_hardv3_v2_5_expel_official_minimal_v1/shard_content/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_132928.jsonl",
+            "/home/gecm/WebCoEvo/results/focus20_hardv3_v2_5_expel_official_minimal_v1/shard_runtime_process/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_133512.jsonl",
+            "/home/gecm/WebCoEvo/results/focus20_hardv3_v2_5_expel_official_minimal_v1/shard_structural_functional/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_133937.jsonl",
+            "/home/gecm/WebCoEvo/results/focus20_hardv3_v2_5_expel_official_minimal_v1/shard_surface/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_132300.jsonl"
+          ],
+          "successes": 60,
+          "unique_tasks": 68
+        },
+        "v2_6": {
+          "by_drift": {
+            "access": {
+              "completed": 13,
+              "completion_rate": 1.0,
+              "expected": 13,
+              "rate": 1.0,
+              "successes": 13
+            },
+            "content": {
+              "completed": 9,
+              "completion_rate": 1.0,
+              "expected": 9,
+              "rate": 0.4444444444444444,
+              "successes": 4
+            },
+            "functional": {
+              "completed": 5,
+              "completion_rate": 1.0,
+              "expected": 5,
+              "rate": 0.6,
+              "successes": 3
+            },
+            "process": {
+              "completed": 6,
+              "completion_rate": 1.0,
+              "expected": 6,
+              "rate": 0.8333333333333334,
+              "successes": 5
+            },
+            "runtime": {
+              "completed": 16,
+              "completion_rate": 1.0,
+              "expected": 16,
+              "rate": 1.0,
+              "successes": 16
+            },
+            "structural": {
+              "completed": 6,
+              "completion_rate": 1.0,
+              "expected": 6,
+              "rate": 1.0,
+              "successes": 6
+            },
+            "surface": {
+              "completed": 13,
+              "completion_rate": 1.0,
+              "expected": 13,
+              "rate": 1.0,
+              "successes": 13
+            }
+          },
+          "completed": 68,
+          "completion_rate": 1.0,
+          "label": "v2.6",
+          "overall_rate": 0.8823529411764706,
+          "source_paths": [
+            "/home/gecm/WebCoEvo/results/focus20_hardv3_v2_6_expel_official_minimal_v1/shard_access/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_134239.jsonl",
+            "/home/gecm/WebCoEvo/results/focus20_hardv3_v2_6_expel_official_minimal_v1/shard_content/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_135642.jsonl",
+            "/home/gecm/WebCoEvo/results/focus20_hardv3_v2_6_expel_official_minimal_v1/shard_runtime_process/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_135729.jsonl",
+            "/home/gecm/WebCoEvo/results/focus20_hardv3_v2_6_expel_official_minimal_v1/shard_structural_functional/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_140917.jsonl",
+            "/home/gecm/WebCoEvo/results/focus20_hardv3_v2_6_expel_official_minimal_v1/shard_surface/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_134601.jsonl"
+          ],
+          "successes": 60,
+          "unique_tasks": 68
+        }
+      }
+    },
+    "taskbank36_hardv3": {
+      "expected_by_drift": {
+        "access": 36,
+        "content": 14,
+        "functional": 13,
+        "process": 19,
+        "runtime": 36,
+        "structural": 13,
+        "surface": 36
+      },
+      "expected_total": 167,
+      "label": "TaskBank36",
+      "note": "Held-out test tasks",
+      "settings": {
+        "expel_only": {
+          "by_drift": {
+            "access": {
+              "completed": 36,
+              "completion_rate": 1.0,
+              "expected": 36,
+              "rate": 0.16666666666666666,
+              "successes": 6
+            },
+            "content": {
+              "completed": 14,
+              "completion_rate": 1.0,
+              "expected": 14,
+              "rate": 0.7857142857142857,
+              "successes": 11
+            },
+            "functional": {
+              "completed": 13,
+              "completion_rate": 1.0,
+              "expected": 13,
+              "rate": 0.23076923076923078,
+              "successes": 3
+            },
+            "process": {
+              "completed": 19,
+              "completion_rate": 1.0,
+              "expected": 19,
+              "rate": 0.15789473684210525,
+              "successes": 3
+            },
+            "runtime": {
+              "completed": 36,
+              "completion_rate": 1.0,
+              "expected": 36,
+              "rate": 0.5555555555555556,
+              "successes": 20
+            },
+            "structural": {
+              "completed": 13,
+              "completion_rate": 1.0,
+              "expected": 13,
+              "rate": 0.15384615384615385,
+              "successes": 2
+            },
+            "surface": {
+              "completed": 36,
+              "completion_rate": 1.0,
+              "expected": 36,
+              "rate": 0.5833333333333334,
+              "successes": 21
+            }
+          },
+          "completed": 167,
+          "completion_rate": 1.0,
+          "label": "Non-reflection",
+          "overall_rate": 0.39520958083832336,
+          "source_paths": [
+            "/home/gecm/.config/superpowers/worktrees/WebCoEvo/expel-only-debug-20260417/results/taskbank36_hardv3_expel_only_official_minimal_v1/shard_access/run_20260417_155120_expel_only_debug_v1/uitars_eval_20260417_203440.jsonl",
+            "/home/gecm/.config/superpowers/worktrees/WebCoEvo/expel-only-debug-20260417/results/taskbank36_hardv3_expel_only_official_minimal_v1/shard_content/run_20260417_155120_expel_only_debug_v1/uitars_eval_20260417_205109.jsonl",
+            "/home/gecm/.config/superpowers/worktrees/WebCoEvo/expel-only-debug-20260417/results/taskbank36_hardv3_expel_only_official_minimal_v1/shard_runtime_process/run_20260417_155120_expel_only_debug_v1/uitars_eval_20260417_213716.jsonl",
+            "/home/gecm/.config/superpowers/worktrees/WebCoEvo/expel-only-debug-20260417/results/taskbank36_hardv3_expel_only_official_minimal_v1/shard_structural_functional/run_20260417_155120_expel_only_debug_v1/uitars_eval_20260417_213738.jsonl",
+            "/home/gecm/.config/superpowers/worktrees/WebCoEvo/expel-only-debug-20260417/results/taskbank36_hardv3_expel_only_official_minimal_v1/shard_surface/run_20260417_155120_expel_only_debug_v1/uitars_eval_20260417_210044.jsonl"
+          ],
+          "successes": 66,
+          "unique_tasks": 167
+        },
+        "v2_4": {
+          "by_drift": {
+            "access": {
+              "completed": 36,
+              "completion_rate": 1.0,
+              "expected": 36,
+              "rate": 0.2222222222222222,
+              "successes": 8
+            },
+            "content": {
+              "completed": 14,
+              "completion_rate": 1.0,
+              "expected": 14,
+              "rate": 0.5,
+              "successes": 7
+            },
+            "functional": {
+              "completed": 13,
+              "completion_rate": 1.0,
+              "expected": 13,
+              "rate": 0.5384615384615384,
+              "successes": 7
+            },
+            "process": {
+              "completed": 19,
+              "completion_rate": 1.0,
+              "expected": 19,
+              "rate": 0.6842105263157895,
+              "successes": 13
+            },
+            "runtime": {
+              "completed": 36,
+              "completion_rate": 1.0,
+              "expected": 36,
+              "rate": 0.7777777777777778,
+              "successes": 28
+            },
+            "structural": {
+              "completed": 13,
+              "completion_rate": 1.0,
+              "expected": 13,
+              "rate": 0.46153846153846156,
+              "successes": 6
+            },
+            "surface": {
+              "completed": 36,
+              "completion_rate": 1.0,
+              "expected": 36,
+              "rate": 0.7777777777777778,
+              "successes": 28
+            }
+          },
+          "completed": 167,
+          "completion_rate": 1.0,
+          "label": "v2.4",
+          "overall_rate": 0.5808383233532934,
+          "source_paths": [
+            "/home/gecm/WebCoEvo/results/taskbank36_hardv3_v2_4_expel_official_minimal_v1/shard_access/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_141329.jsonl",
+            "/home/gecm/WebCoEvo/results/taskbank36_hardv3_v2_4_expel_official_minimal_v1/shard_content/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_144208.jsonl",
+            "/home/gecm/WebCoEvo/results/taskbank36_hardv3_v2_4_expel_official_minimal_v1/shard_runtime_process/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_154058.jsonl",
+            "/home/gecm/WebCoEvo/results/taskbank36_hardv3_v2_4_expel_official_minimal_v1/shard_structural_functional/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_152830.jsonl",
+            "/home/gecm/WebCoEvo/results/taskbank36_hardv3_v2_4_expel_official_minimal_v1/shard_surface/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_144509.jsonl"
+          ],
+          "successes": 97,
+          "unique_tasks": 167
+        },
+        "v2_5": {
+          "by_drift": {
+            "access": {
+              "completed": 36,
+              "completion_rate": 1.0,
+              "expected": 36,
+              "rate": 0.08333333333333333,
+              "successes": 3
+            },
+            "content": {
+              "completed": 14,
+              "completion_rate": 1.0,
+              "expected": 14,
+              "rate": 0.35714285714285715,
+              "successes": 5
+            },
+            "functional": {
+              "completed": 13,
+              "completion_rate": 1.0,
+              "expected": 13,
+              "rate": 0.23076923076923078,
+              "successes": 3
+            },
+            "process": {
+              "completed": 19,
+              "completion_rate": 1.0,
+              "expected": 19,
+              "rate": 0.2631578947368421,
+              "successes": 5
+            },
+            "runtime": {
+              "completed": 36,
+              "completion_rate": 1.0,
+              "expected": 36,
+              "rate": 0.6111111111111112,
+              "successes": 22
+            },
+            "structural": {
+              "completed": 13,
+              "completion_rate": 1.0,
+              "expected": 13,
+              "rate": 0.3076923076923077,
+              "successes": 4
+            },
+            "surface": {
+              "completed": 36,
+              "completion_rate": 1.0,
+              "expected": 36,
+              "rate": 0.5277777777777778,
+              "successes": 19
+            }
+          },
+          "completed": 167,
+          "completion_rate": 1.0,
+          "label": "v2.5",
+          "overall_rate": 0.3652694610778443,
+          "source_paths": [
+            "/home/gecm/WebCoEvo/results/taskbank36_hardv3_v2_5_expel_official_minimal_v1/shard_access/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_154109.jsonl",
+            "/home/gecm/WebCoEvo/results/taskbank36_hardv3_v2_5_expel_official_minimal_v1/shard_content/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_161202.jsonl",
+            "/home/gecm/WebCoEvo/results/taskbank36_hardv3_v2_5_expel_official_minimal_v1/shard_runtime_process/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_173536.jsonl",
+            "/home/gecm/WebCoEvo/results/taskbank36_hardv3_v2_5_expel_official_minimal_v1/shard_structural_functional/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_171937.jsonl",
+            "/home/gecm/WebCoEvo/results/taskbank36_hardv3_v2_5_expel_official_minimal_v1/shard_surface/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_162915.jsonl"
+          ],
+          "successes": 61,
+          "unique_tasks": 167
+        },
+        "v2_6": {
+          "by_drift": {
+            "access": {
+              "completed": 36,
+              "completion_rate": 1.0,
+              "expected": 36,
+              "rate": 0.3333333333333333,
+              "successes": 12
+            },
+            "content": {
+              "completed": 14,
+              "completion_rate": 1.0,
+              "expected": 14,
+              "rate": 0.42857142857142855,
+              "successes": 6
+            },
+            "functional": {
+              "completed": 13,
+              "completion_rate": 1.0,
+              "expected": 13,
+              "rate": 0.23076923076923078,
+              "successes": 3
+            },
+            "process": {
+              "completed": 19,
+              "completion_rate": 1.0,
+              "expected": 19,
+              "rate": 0.42105263157894735,
+              "successes": 8
+            },
+            "runtime": {
+              "completed": 36,
+              "completion_rate": 1.0,
+              "expected": 36,
+              "rate": 0.6666666666666666,
+              "successes": 24
+            },
+            "structural": {
+              "completed": 13,
+              "completion_rate": 1.0,
+              "expected": 13,
+              "rate": 0.3076923076923077,
+              "successes": 4
+            },
+            "surface": {
+              "completed": 36,
+              "completion_rate": 1.0,
+              "expected": 36,
+              "rate": 0.6944444444444444,
+              "successes": 25
+            }
+          },
+          "completed": 167,
+          "completion_rate": 1.0,
+          "label": "v2.6",
+          "overall_rate": 0.49101796407185627,
+          "source_paths": [
+            "/home/gecm/WebCoEvo/results/taskbank36_hardv3_v2_6_expel_official_minimal_v1/shard_access/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_174611.jsonl",
+            "/home/gecm/WebCoEvo/results/taskbank36_hardv3_v2_6_expel_official_minimal_v1/shard_content/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_181503.jsonl",
+            "/home/gecm/WebCoEvo/results/taskbank36_hardv3_v2_6_expel_official_minimal_v1/shard_runtime_process/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_192456.jsonl",
+            "/home/gecm/WebCoEvo/results/taskbank36_hardv3_v2_6_expel_official_minimal_v1/shard_structural_functional/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_190752.jsonl",
+            "/home/gecm/WebCoEvo/results/taskbank36_hardv3_v2_6_expel_official_minimal_v1/shard_surface/run_20260417_125123_webcoevo_3x2_focus20expel_v2/uitars_eval_20260417_181725.jsonl"
+          ],
+          "successes": 82,
+          "unique_tasks": 167
+        }
+      }
+    }
+  }
+}
