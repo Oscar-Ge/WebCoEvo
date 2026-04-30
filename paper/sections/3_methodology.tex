@@ -1,0 +1,60 @@
+\section{Methodology}
+
+\subsection{Adversarial Co-Evolution Loop}
+
+\webcoevo{} treats website generation and reflection-rule learning as a closed loop. At round \(k\), a web agent with a fixed base prompt and an optional cross-version rulebook is evaluated on a control website and on generated website variants that preserve the user goal. The resulting trajectories are converted into a capability profile:
+\[
+\begin{gathered}
+\texttt{can\_do},\ \texttt{borderline},\ \texttt{cannot\_do},\\
+\texttt{control\_unstable},\ \texttt{invalid}.
+\end{gathered}
+\]
+We also compute paired transitions between a reference run and a candidate run:
+\(\texttt{both\_success}\), \(\texttt{saved}\), \(\texttt{lost}\), and \(\texttt{both\_fail}\). The \texttt{saved} rows show which rules help; \texttt{lost} rows are no-regression counterexamples; and \texttt{both\_fail} rows define the next capability frontier.
+
+The loop has two update paths. The environment path generates a harder website when a slice is saturated by the current rulebook. The rule path mines behavior gaps when the website is valid and failures are concentrated in recoverable agent behavior. A rule update is accepted only when it remains compact, avoids task-id-specific overfitting, preserves successful behaviors, and passes coverage checks on the benchmark task schema.
+
+\subsection{Standalone WebCoEvo Runner}
+
+The upgraded experiments use a standalone \linkding{} runner rather than the older multi-harness research stack. The runner has four benchmark-facing stages. First, it loads training-task or held-out-validation JSON rows and normalizes each row into a stable schema with fields such as \texttt{task\_id}, \texttt{source\_task\_id}, \texttt{drift\_type}, \texttt{variant}, \texttt{family}, \texttt{version}, and \texttt{start\_url}. Second, it launches the requested website version, resets seed data, handles localhost login and redirect recovery, and compiles each row into a BrowserGym task. Third, it builds the agent prompt from separated blocks: the task observation and goal, an optional \expel{} task-experience block, and an optional reflection-rule adaptation block. Fourth, it exports eval and trace JSONL so earlier analysis tools can read the new runs.
+
+This separation prevents a common ambiguity in reflection-rule experiments. A rulebook file can exist on disk without actually being injected into the agent prompt. The WebCoEvo traces therefore record \texttt{injected\_rule\_ids} for the \expel{} layer and \texttt{cross\_version\_reflection\_rule\_ids} for the reflection-rule layer separately, along with the selected rulebook path, selection context, miss reasons, and reset-time errors. The website V3 headline runs are interpreted only through this trace-audited path.
+
+\subsection{Website Versions and Drift Taxonomy}
+
+All websites are derived from \linkding{} v1.45.0. \linkding{} V1.45.0 is the unmodified release. Website V2 is a moderately modified generated drift suite used to test whether R1 reflection rules transfer beyond the original site. Website V3 is the harder validation layer and contains seven drift labels:
+\[
+\begin{gathered}
+\{\texttt{access},\texttt{surface},\texttt{content},\texttt{runtime},\\
+\texttt{process},\texttt{structural},\texttt{functional}\}.
+\end{gathered}
+\]
+The labels are operational. \texttt{access} shifts authentication or redirect preservation. \texttt{surface} changes visual framing and salience. \texttt{content} changes labels, placeholders, or nearby copy while preserving the data model. \texttt{runtime} changes readiness timing. \texttt{process} changes visible checkpoints in a workflow. \texttt{structural} regroups navigation affordances or route entrypoints. \texttt{functional} changes exposed feature affordances or route equivalence while keeping the task evaluable from visible state. This completion-path view is grounded in prior work on semantic web evolution, GUI properties, dynamic Ajax state changes, workflow testing, and heterogeneous login flows~\citep{shao2021webevo,macchi2021imagebased,mesbah2012crawling,sanchez2011workflow,jonker2018shepherd}.
+
+Each generated website must pass design gates before it is used for rule mining: it should break one primary agent assumption, keep the semantic user goal unchanged, remain manually solvable, and preserve evaluator validity. Failures caused by reset, parser, port, or evaluator problems are labeled as infrastructure issues rather than rule-learning evidence.
+
+\subsection{Rulebooks and Reflection Updates}
+
+\expel{} rules are task-experience rules induced from failed-then-success episodes. They often contain concrete operational details such as known credentials, target pages, and completion cues. Reflection rules are intentionally compact and scoped to drift patterns rather than individual row ids.
+
+The main reflection-rule sets are successive rule-revision rounds obtained by iteratively reflecting on observed failures:
+\begin{itemize}
+\item \textbf{R1:} the strongest robust rule set in the upgraded results. It emphasizes login-next preservation, stale-bid recovery, direct route fallback, finalization when target evidence is already visible, collapsed-navigation recovery, and non-interactive element rejection.
+\item \textbf{R2:} a GPT-5.4-assisted update derived from R1 transition evidence. It edits two rules without adding or dropping rules, targeting login-next preservation and finalization when URL, query, heading, or redirected destination already proves completion.
+\item \textbf{R3:} a staged repair candidate that strengthens access and surface recovery but loses held-out robustness on website V3.
+\item \textbf{R4:} a selective merge candidate that improves over \expel{}-style rules on website V3 but does not dominate R1.
+\end{itemize}
+
+The R2 pipeline illustrates the WebCoEvo rule path. Training-task matched transitions from website V2 with R1 to website V3 with R1 contain 65 \texttt{both\_success}, 2 \texttt{lost}, 0 \texttt{saved}, and 1 \texttt{both\_fail} case. The candidate generation stage compresses these cases into constrained edit proposals, then deterministic verification checks the rulebook schema and task coverage. The resulting R2 candidate covers \(68/68\) training-task rows, but its evaluation shows why promotion cannot rely on plausibility alone: it ties R1 on the held-out validation tasks under website V3 yet is weaker than R1 on the training tasks under website V3.
+
+\subsection{Evaluation Slices and Metrics}
+
+We evaluate two task banks. The training split has 68 rows and is near the rule-mining distribution. The held-out validation split has 167 rows and covers unseen task families. For a slice \(S\), success rate is
+\[
+\sr(S)=\frac{1}{|S|}\sum_{x \in S}\mathbf{1}[\mathrm{success}(x)].
+\]
+We report per-drift rates, aggregate rates, and cross-version comparisons across website versions. The agent configuration is Qwen/Qwen3-VL-30B-A3B-Instruct with visual input enabled, \texttt{MAX\_STEPS}=30, and \texttt{MAX\_TOKENS}=300, using the \texttt{vl\_action\_reflection} mode through an OpenAI-compatible endpoint.
+
+\subsection{Claim Boundary}
+
+The upgraded method supports three claims. First, \expel{} task-experience rules are valuable on the original site but lose robustness under harder website drift. Second, compact reflection rules recover much of that lost performance and transfer to the held-out validation tasks. Third, rule iteration is not monotonic: R2 is evidence-aware and trace-audited, but R1 remains the strongest rule set on the training tasks under website V3. The method does not yet establish robustness beyond \linkding{} or prove that a single rulebook dominates every drift family.

@@ -1,0 +1,26 @@
+\section{Results}
+
+\input{figures/latex_includes.tex}
+
+\paragraph{Experimental setting.}
+We evaluate a fixed multimodal web agent on a self-hosted bookmark-management website under three conditions: no retrieved rules, \expel{}-style rules~\citep{zhao2023expel}, and \expel{}-style rules augmented with reflection rules. The evaluation uses 68 training tasks for diagnosing rule behavior and 167 held-out validation tasks for testing transfer to unseen task families. We report task success rate on \linkding{} V1.45.0, on a moderately modified website V2, and on a harder generated website suite V3 that changes access, visual presentation, content, timing, workflow, navigation structure, and feature affordances while preserving the user goal. For website V3, R1--R4 denote successive reflection-rule sets obtained through iterative reflection on observed failures and rule revision.
+
+\subsection{\expel{}-Style Rules Help, but Do Not Fully Transfer}
+
+On \linkding{} V1.45.0, \expel{}-style rules provide a strong training-task gain: success increases from \(13.2\%\) without rules to \(82.4\%\) with retrieved \expel{}-style rules. This confirms that reusable experience is a meaningful starting point rather than a weak baseline. The same rules, however, do not uniformly improve held-out behavior. On held-out validation tasks from \linkding{} V1.45.0, success changes from \(79.6\%\) without rules to \(74.3\%\) with \expel{}-style rules. This motivates separating training tasks from held-out validation tasks instead of reporting a single averaged score.
+
+\subsection{Reflection Rules Help Under Moderate Website Drift}
+
+We next test whether reflection rules add value when the website changes but the task goals remain the same. On website V2, adding reflection rules improves the training tasks from \(88.2\%\) to \(98.5\%\), and improves the held-out validation tasks from \(68.3\%\) to \(85.6\%\) (Table~\ref{tab:website_version_summary}). Since the model, tasks, website version, and \expel{}-style rules are held fixed, these gains isolate the benefit of rules that describe how to preserve intent across interface changes.
+
+\subsection{Website V3 Exposes the Robustness Gap}
+
+The harder generated website suite V3 creates the main robustness stress test. With \expel{}-style rules alone, success drops to \(11.8\%\) on the training tasks. The strongest reflection-rule set recovers performance to \(95.6\%\), while three alternative rule sets reach \(88.2\%\) (Table~\ref{tab:v3_reflection_overall}). This large gap shows that robustness under website drift is not obtained simply by adding more task-level guidance; the useful rules are those that explicitly describe how to recover from changed navigation paths, delayed readiness, changed labels, and shifted workflow cues.
+
+The held-out validation tasks remain substantially harder. \expel{}-style rules alone reach \(39.5\%\). The two strongest reflection-rule sets reach \(58.1\%\), while weaker variants reach \(49.1\%\) and \(36.5\%\). Thus, reflection rules improve transfer under harder drift, but the gains are uneven: a plausible rule update can improve one family of failures while regressing another.
+
+\subsection{Rule Updates Are Useful but Non-Monotonic}
+
+The detailed website V3 matrices in Appendix Tables~\ref{tab:training_v3_appendix} and~\ref{tab:heldout_v3_appendix} show that the best aggregate reflection-rule set is not simply the most recent edit. One evidence-based update improves several held-out drift categories, including authentication-related, visual, content, and timing changes, but loses ground on workflow and feature-affordance changes. The aggregate tie on the held-out validation tasks therefore hides a real tradeoff between different recovery behaviors.
+
+This pattern supports the main design choice in \webcoevo{}: rule generation, verification, and promotion should be separate stages. Matched trajectories can suggest useful edits, but an edit should not be promoted only because it is plausible or locally evidence-grounded. It must also preserve previously successful behaviors under the same website-drift distribution.

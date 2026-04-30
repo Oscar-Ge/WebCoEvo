@@ -1,0 +1,234 @@
+\begin{thebibliography}{27}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{ang Gao et~al.(2025)ang Gao, Geng, Hua, Hu, Juan, Liu, Liu, Qiu, Qi,
+  Wu, Wang, Xiao, Zhou, Zhang, Zhang, Xiang, Fang, Zhao, Liu, Ren, Qian, Wang,
+  Hu, Wang, Wu, Ji, and Wang}]{gao2025selfevolvingagents}
+Huan ang Gao, Jiayi Geng, Wenyue Hua, Mengkang Hu, Xinzhe Juan, Hongzhang Liu,
+  Shilong Liu, Jiahao Qiu, Xuan Qi, Yiran Wu, Hongru Wang, Han Xiao, Yuhang
+  Zhou, Shaokun Zhang, Jiayi Zhang, Jinyu Xiang, Yixiong Fang, Qiwen Zhao,
+  Dongrui Liu, and 8 others. 2025.
+\newblock \href {https://doi.org/10.48550/arXiv.2507.21046} {A survey of
+  self-evolving agents: On path to artificial super intelligence}.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Deng et~al.(2023)Deng, Gu, Zheng, Chen, Stevens, Wang, Sun, and
+  Su}]{deng2023mind2web}
+Xiang Deng, Yu~Gu, Boyuan Zheng, Shijie Chen, Samuel Stevens, Boshi Wang, Huan
+  Sun, and Yu~Su. 2023.
+\newblock \href {https://doi.org/10.48550/ARXIV.2306.06070} {Mind2web: Towards
+  a generalist agent for the web}.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Dennis et~al.(2020)Dennis, Jaques, Vinitsky, Bayen, Russell, Critch,
+  and Levine}]{dennis2020paired}
+Michael Dennis, Natasha Jaques, Eugene Vinitsky, Alexandre~M. Bayen, Stuart
+  Russell, Andrew Critch, and Sergey Levine. 2020.
+\newblock \href
+  {https://proceedings.neurips.cc/paper/2020/hash/985e9a46e10005356bbaf194249f6856-Abstract.html}
+  {Emergent complexity and zero-shot transfer via unsupervised environment
+  design}.
+\newblock In \emph{Advances in Neural Information Processing Systems 33}.
+
+\bibitem[{Garg et~al.(2025)Garg, VanWeelden, Caples, Draguns, Ravi, Putta,
+  Garg, Abraham, Lara, Lopez, Liu, Gundawar, Hebbar, Joo, Gu, London, de~Witt,
+  and Motwani}]{real2025}
+Divyansh Garg, Shaun VanWeelden, Diego Caples, Andis Draguns, Nikil Ravi,
+  Pranav Putta, Naman Garg, Tomas Abraham, Michael Lara, Federico Lopez, James
+  Liu, Atharva Gundawar, Prannay Hebbar, Youngchul Joo, Jindong Gu, Charles
+  London, Christian~Schroeder de~Witt, and Sumeet Motwani. 2025.
+\newblock \href {https://doi.org/10.48550/ARXIV.2504.11543} {Real: Benchmarking
+  autonomous agents on deterministic simulations of real websites}.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Guo et~al.(2025)Guo, Yang, Chen, Xiao, Wang, Juan, Qiu, Shen, and
+  Wang}]{genenv2025}
+Jiacheng Guo, Ling Yang, Peter Chen, Qixin Xiao, Yinjie Wang, Xinzhe Juan,
+  Jiahao Qiu, Ke~Shen, and Mengdi Wang. 2025.
+\newblock \href {https://doi.org/10.48550/arXiv.2512.19682} {Genenv:
+  Difficulty-aligned co-evolution between llm agents and environment
+  simulators}.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Gur et~al.(2021)Gur, Jaques, Miao, Choi, Tiwari, Lee, and
+  Faust}]{gur2021code}
+Izzeddin Gur, Natasha Jaques, Yingjie Miao, Jongwook Choi, Manoj Tiwari,
+  Honglak Lee, and Aleksandra Faust. 2021.
+\newblock \href
+  {https://proceedings.neurips.cc/paper/2021/hash/218344619d8fb95d504ccfa11804073f-Abstract.html}
+  {Environment generation for zero-shot compositional reinforcement learning}.
+\newblock In \emph{Advances in Neural Information Processing Systems 34}, pages
+  4157--4169.
+
+\bibitem[{Ishmam and Marino(2026)}]{timewarp2026}
+Md~Farhan Ishmam and Kenneth Marino. 2026.
+\newblock \href {https://doi.org/10.48550/ARXIV.2603.04949} {Timewarp:
+  Evaluating web agents by revisiting the past}.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Jiang et~al.(2021)Jiang, Dennis, Parker-Holder, Foerster,
+  Grefenstette, and Rockt{\"a}schel}]{jiang2021replayguided}
+Minqi Jiang, Michael Dennis, Jack Parker-Holder, Jakob~N. Foerster, Edward
+  Grefenstette, and Tim Rockt{\"a}schel. 2021.
+\newblock \href
+  {https://proceedings.neurips.cc/paper/2021/hash/0e915db6326b6fb6a3c56546980a8c93-Abstract.html}
+  {Replay-guided adversarial environment design}.
+\newblock In \emph{Advances in Neural Information Processing Systems 34}, pages
+  1884--1897.
+
+\bibitem[{Jonker et~al.(2018)Jonker, Kalkman, Krumnow, Sleegers, and
+  Verresen}]{jonker2018shepherd}
+Hugo Jonker, Jelmer Kalkman, Benjamin Krumnow, Marc Sleegers, and Alan
+  Verresen. 2018.
+\newblock \href {https://doi.org/10.48550/arXiv.1808.00840} {Shepherd: Enabling
+  automatic and large-scale login security studies}.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Koh et~al.(2024)Koh, Lo, Jang, Duvvur, Lim, Huang, Neubig, Zhou,
+  Salakhutdinov, and Fried}]{koh2024visualwebarena}
+Jing~Yu Koh, Robert Lo, Lawrence Jang, Vikram Duvvur, Ming~Chong Lim, Po-Yu
+  Huang, Graham Neubig, Shuyan Zhou, Russ Salakhutdinov, and Daniel Fried.
+  2024.
+\newblock \href {https://doi.org/10.18653/V1/2024.ACL-LONG.50} {Visualwebarena:
+  Evaluating multimodal agents on realistic visual web tasks}.
+\newblock In \emph{Proceedings of the 62nd Annual Meeting of the Association
+  for Computational Linguistics (Volume 1: Long Papers)}, pages 881--905.
+  Association for Computational Linguistics.
+
+\bibitem[{Liang et~al.(2025)Liang, Tao, Xia, Wang, Li, Wang, He, Yang, Shi,
+  Wang, Zhang, and Wang}]{liang2025sage}
+Xuechen Liang, Meiling Tao, Yinghui Xia, Jianhui Wang, Kun Li, Yijin Wang,
+  Yangfan He, Jingsong Yang, Tianyu Shi, Yuantao Wang, Miao Zhang, and Xueqian
+  Wang. 2025.
+\newblock \href {https://doi.org/10.1016/j.neucom.2025.130470} {Sage:
+  Self-evolving agents with reflective and memory-augmented abilities}.
+\newblock \emph{Neurocomputing}, 647:130470.
+
+\bibitem[{Macchi et~al.(2021)Macchi, Rosin, Mervi, and
+  Turchet}]{macchi2021imagebased}
+Federico Macchi, Pierpaolo Rosin, Juan~Marcos Mervi, and Luca Turchet. 2021.
+\newblock \href {https://doi.org/10.23919/FRUCT50888.2021.9347592} {Image-based
+  approaches for automating gui testing of interactive web-based applications}.
+\newblock In \emph{2021 28th Conference of Open Innovations Association
+  (FRUCT)}, pages 278--285. IEEE.
+
+\bibitem[{Mesbah et~al.(2012)Mesbah, van Deursen, and
+  Lenselink}]{mesbah2012crawling}
+Ali Mesbah, Arie van Deursen, and Stefan Lenselink. 2012.
+\newblock \href {https://doi.org/10.1145/2109205.2109208} {Crawling ajax-based
+  web applications through dynamic analysis of user interface state changes}.
+\newblock \emph{ACM Transactions on the Web}, 6(1):1--30.
+
+\bibitem[{Miyai et~al.(2025)Miyai, Zhao, Egashira, Sato, Sunada, Onohara,
+  Yamanishi, Toyooka, Nishina, Maeda, Aizawa, and Yamasaki}]{webchorearena2025}
+Atsuyuki Miyai, Zaiying Zhao, Kazuki Egashira, Atsuki Sato, Tatsumi Sunada,
+  Shota Onohara, Hiromasa Yamanishi, Mashiro Toyooka, Kunato Nishina, Ryoma
+  Maeda, Kiyoharu Aizawa, and Toshihiko Yamasaki. 2025.
+\newblock \href {https://doi.org/10.48550/ARXIV.2506.01952} {Webchorearena:
+  Evaluating web browsing agents on realistic tedious web tasks}.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Pan et~al.(2024)Pan, Kong, Zhou, Cui, Leng, Jiang, Liu, Shang, Zhou,
+  Wu, and Wu}]{yuan2024webcanvas}
+Yichen Pan, Dehan Kong, Sida Zhou, Cheng Cui, Yifei Leng, Bing Jiang, Hangyu
+  Liu, Yanyi Shang, Shuyan Zhou, Tongshuang Wu, and Zhengyang Wu. 2024.
+\newblock \href {https://doi.org/10.48550/ARXIV.2406.12373} {Webcanvas:
+  Benchmarking web agents in online environments}.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Qiu et~al.(2026)Qiu, Sun, Xia, Zheng, and Peng}]{ci4a2026}
+Zhi Qiu, Jiazheng Sun, Chenxiao Xia, Jun Zheng, and Xin Peng. 2026.
+\newblock \href {https://doi.org/10.48550/ARXIV.2601.14790} {Ci4a: Semantic
+  component interfaces for agents empowering web automation}.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Sanchez et~al.(2011)Sanchez, Jimenez, and
+  Villalobos}]{sanchez2011workflow}
+Mario~E. Sanchez, Camilo~H. Jimenez, and Jorge~A. Villalobos. 2011.
+\newblock \href {https://www.scielo.org.mx/pdf/cys/v14n4/v14n4a2.pdf} {Model
+  based testing for workflow enabled applications}.
+\newblock \emph{Computacion y Sistemas}, 14(4):335--350.
+
+\bibitem[{Shao et~al.(2021)Shao, Xu, Haque, Xu, Zhang, Yang, Ye, and
+  Xiao}]{shao2021webevo}
+Fei Shao, Rui Xu, Wasif~Arman Haque, Jingwei Xu, Ying Zhang, Wei Yang, Yanfang
+  Ye, and Xusheng Xiao. 2021.
+\newblock \href {https://doi.org/10.1145/3460319.3464800} {Webevo: taming web
+  application evolution via detecting semantic structure changes}.
+\newblock In \emph{Proceedings of the 30th ACM SIGSOFT International Symposium
+  on Software Testing and Analysis}, pages 16--28. ACM.
+
+\bibitem[{Shinn et~al.(2023)Shinn, Cassano, Berman, Gopinath, Narasimhan, and
+  Yao}]{shinn2023reflexion}
+Noah Shinn, Federico Cassano, Edward Berman, Ashwin Gopinath, Karthik
+  Narasimhan, and Shunyu Yao. 2023.
+\newblock \href {https://doi.org/10.48550/arXiv.2303.11366} {Reflexion:
+  Language agents with verbal reinforcement learning}.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Su et~al.(2025)Su, Sun, Yoon, Yin, Yu, and
+  Ar{\i}k}]{learnbyinteract2025}
+Hongjin Su, Ruoxi Sun, Jinsung Yoon, Pengcheng Yin, Tao Yu, and Sercan~{\"O}.
+  Ar{\i}k. 2025.
+\newblock \href
+  {https://proceedings.iclr.cc/paper_files/paper/2025/hash/dd745a0c4f91fe91866fe6788be9cc28-Abstract-Conference.html}
+  {Learn-by-interact: A data-centric framework for self-adaptive agents in
+  realistic environments}.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Wu et~al.(2025)Wu, Wang, Mei, Cai, Fu, Yang, Wen, Yang, Shen, Wang,
+  and Shi}]{wu2025evolver}
+Rong Wu, Xiaoman Wang, Jianbiao Mei, Pinlong Cai, Daocheng Fu, Cheng Yang,
+  Licheng Wen, Xuemeng Yang, Yufan Shen, Yuxin Wang, and Botian Shi. 2025.
+\newblock \href {https://doi.org/10.48550/arXiv.2510.16079} {Evolver:
+  Self-evolving llm agents through an experience-driven lifecycle}.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Xue et~al.(2025{\natexlab{a}})Xue, Qi, Shi, Song, Gou, Song, Sun, and
+  Su}]{xue2025illusion}
+Tianci Xue, Weijian Qi, Tianneng Shi, Chan~Hee Song, Boyu Gou, Dawn Song, Huan
+  Sun, and Yu~Su. 2025{\natexlab{a}}.
+\newblock \href {https://doi.org/10.48550/ARXIV.2504.01382} {An illusion of
+  progress? assessing the current state of web agents}.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Xue et~al.(2025{\natexlab{b}})Xue, Zhou, Zhang, Zhang, Li, Zhang,
+  Yin, Torr, Ouyang, and Bai}]{comas2025}
+Xiangyuan Xue, Yifan Zhou, Guibin Zhang, Zaibin Zhang, Yijiang Li, Chen Zhang,
+  Zhenfei Yin, Philip Torr, Wanli Ouyang, and Lei Bai. 2025{\natexlab{b}}.
+\newblock \href {https://doi.org/10.48550/arXiv.2510.08529} {Comas: Co-evolving
+  multi-agent systems via interaction rewards}.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Ye et~al.(2025)Ye, Shi, Shih, Yun, Roosta, and
+  Shu}]{realwebassist2025}
+Suyu Ye, Haojun Shi, Darren Shih, Hyokun Yun, Tanya Roosta, and Tianmin Shu.
+  2025.
+\newblock \href {https://doi.org/10.48550/arXiv.2504.10445} {Realwebassist: A
+  benchmark for long-horizon web assistance with real-world users}.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Yu et~al.(2026)Yu, Luo, and Chen}]{graphpilot2026}
+Mingxian Yu, Siqi Luo, and Xu~Chen. 2026.
+\newblock \href {https://doi.org/10.48550/ARXIV.2601.17418} {Graphpilot: Gui
+  task automation with one-step llm reasoning powered by knowledge graph}.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Zhao et~al.(2023)Zhao, Huang, Xu, Lin, Liu, and
+  Huang}]{zhao2023expel}
+Andrew Zhao, Daniel Huang, Quentin Xu, Matthieu Lin, Yong-Jin Liu, and Gao
+  Huang. 2023.
+\newblock \href {https://doi.org/10.48550/arXiv.2308.10144} {Expel: Llm agents
+  are experiential learners}.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Zhou et~al.(2023)Zhou, Xu, Zhu, Zhou, Lo, Sridhar, Cheng, Ou, Bisk,
+  Fried, Alon, and Neubig}]{zhou2023webarena}
+Shuyan Zhou, Frank~F. Xu, Hao Zhu, Xuhui Zhou, Robert Lo, Abishek Sridhar,
+  Xianyi Cheng, Tianyue Ou, Yonatan Bisk, Daniel Fried, Uri Alon, and Graham
+  Neubig. 2023.
+\newblock \href {https://doi.org/10.48550/ARXIV.2307.13854} {Webarena: A
+  realistic web environment for building autonomous agents}.
+\newblock \emph{arXiv preprint}.
+
+\end{thebibliography}

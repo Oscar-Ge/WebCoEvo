@@ -12,3 +12,11 @@ slurm/*.log
 *.sif
 linkding-drift-runtimes/
 linkding-baselines/
+
+# LaTeX build artifacts
+paper/*.aux
+paper/*.blg
+paper/*.out
+paper/*.fdb_latexmk
+paper/*.fls
+paper/*.synctex.gz

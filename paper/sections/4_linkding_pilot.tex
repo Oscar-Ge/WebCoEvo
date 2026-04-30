@@ -1,0 +1,28 @@
+\section{\linkding{} Experimental Setup}
+
+\subsection{Task Banks}
+
+The training split is the calibration anchor for WebCoEvo. It contains 68 rows over task families chosen because they expose failures in login redirects, filtered views, prefilled forms, and navigation under website drift. We treat it as training-like because the reflection-rule loop is diagnosed and edited near this distribution. The held-out validation split contains 167 rows over unseen task families. We report the two task banks separately because averaging them would mix a rule-mining slice with a transfer slice.
+
+\subsection{Website Suites}
+
+The upgraded evaluation uses three \linkding{} website suites.
+\begin{itemize}
+\item \textbf{\linkding{} V1.45.0:} the original unmodified \linkding{} release, used to measure the value of no rules versus \expel{} task-experience rules.
+\item \textbf{Website V2:} a moderately modified generated website suite, used to compare \expel{}-style prompting with R1 reflection rules.
+\item \textbf{Website V3:} the harder generated website suite, with seven release-grounded website overlays for \texttt{access}, \texttt{surface}, \texttt{content}, \texttt{runtime}, \texttt{process}, \texttt{structural}, and \texttt{functional} drift.
+\end{itemize}
+
+Website V2 is useful because it shows that R1 improves transfer before the harder generated website suite. Website V3 is useful because it exposes a sharper capability boundary: \expel{}-style prompting remains strong on earlier websites but drops sharply under this harder generated suite.
+
+\subsection{Agent and Prompt Conditions}
+
+All headline runs use Qwen/Qwen3-VL-30B-A3B-Instruct with visual input enabled, \texttt{vl\_action\_reflection} agent mode, \texttt{MAX\_STEPS}=30, and \texttt{MAX\_TOKENS}=300. The prompt can contain three separated sources of information: the current observation and goal, \expel{} task-experience rules, and reflection rules. The \linkding{} V1.45.0 matrix compares no rules with \expel{}-style rules. The website V2 matrix compares \expel{}-style rules with R1 reflection rules. The website V3 matrix compares \expel{}-style rules with R1--R4 reflection rules.
+
+\subsection{Rulebook Selection and Auditing}
+
+The website V3 comparison evaluates each reflection-rule set as a compact whole policy with coarse drift matching. It does not use source-task-id gating in the headline comparison. The runner records prompt injection explicitly: \texttt{injected\_rule\_ids} for \expel{} rules and \texttt{cross\_version\_reflection\_rule\_ids} for reflection rules. It also records rulebook paths, selection context, miss reasons, and reset-time errors. This lets the results be interpreted as rule-conditioned runs rather than as silent no-rule reruns.
+
+\subsection{Provenance}
+
+The upgraded data come from completed WebCoEvo reports generated on April 17-18, 2026 under \texttt{/home/gecm/WebCoEvo}. The key report files are the website V3 reflection-rule matrix report, the UMich Qwen3-VL rule-comparison report, the website-version line report, and the GPT-5.4 R2 reflection-hardening report. Appendix Table~\ref{tab:artifact_paths} lists the local artifacts used to update the paper.
