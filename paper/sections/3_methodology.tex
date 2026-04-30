@@ -40,12 +40,12 @@ Each generated website must pass design gates before it is used for rule mining:
 The main reflection-rule sets are successive rule-revision rounds obtained by iteratively reflecting on observed failures:
 \begin{itemize}
 \item \textbf{R1:} the strongest robust rule set in the upgraded results. It emphasizes login-next preservation, stale-bid recovery, direct route fallback, finalization when target evidence is already visible, collapsed-navigation recovery, and non-interactive element rejection.
-\item \textbf{R2:} a GPT-5.4-assisted update derived from R1 transition evidence. It edits two rules without adding or dropping rules, targeting login-next preservation and finalization when URL, query, heading, or redirected destination already proves completion.
-\item \textbf{R3:} a staged repair candidate that strengthens access and surface recovery but loses held-out robustness on website V3.
-\item \textbf{R4:} a selective merge candidate that improves over \expel{}-style rules on website V3 but does not dominate R1.
+\item \textbf{R4:} a GPT-5.4-assisted update derived from R1 transition evidence. It edits two rules without adding or dropping rules, targeting login-next preservation and finalization when URL, query, heading, or redirected destination already proves completion.
+\item \textbf{R2:} a staged repair candidate that strengthens access and surface recovery but loses held-out robustness on website V3.
+\item \textbf{R3:} a selective merge candidate that improves over \expel{}-style rules on website V3 but does not dominate R1.
 \end{itemize}
 
-The R2 pipeline illustrates the WebCoEvo rule path. Training-task matched transitions from website V2 with R1 to website V3 with R1 contain 65 \texttt{both\_success}, 2 \texttt{lost}, 0 \texttt{saved}, and 1 \texttt{both\_fail} case. The candidate generation stage compresses these cases into constrained edit proposals, then deterministic verification checks the rulebook schema and task coverage. The resulting R2 candidate covers \(68/68\) training-task rows, but its evaluation shows why promotion cannot rely on plausibility alone: it ties R1 on the held-out validation tasks under website V3 yet is weaker than R1 on the training tasks under website V3.
+The R4 pipeline illustrates the WebCoEvo rule path. Training-task matched transitions from website V2 with R1 to website V3 with R1 contain 65 \texttt{both\_success}, 2 \texttt{lost}, 0 \texttt{saved}, and 1 \texttt{both\_fail} case. The candidate generation stage compresses these cases into constrained edit proposals, then deterministic verification checks the rulebook schema and task coverage. The resulting R4 candidate covers \(68/68\) training-task rows, but its evaluation shows why promotion cannot rely on plausibility alone: it ties R1 on the held-out validation tasks under website V3 yet is weaker than R1 on the training tasks under website V3.
 
 \subsection{Evaluation Slices and Metrics}
 
@@ -57,4 +57,4 @@ We report per-drift rates, aggregate rates, and cross-version comparisons across
 
 \subsection{Claim Boundary}
 
-The upgraded method supports three claims. First, \expel{} task-experience rules are valuable on the original site but lose robustness under harder website drift. Second, compact reflection rules recover much of that lost performance and transfer to the held-out validation tasks. Third, rule iteration is not monotonic: R2 is evidence-aware and trace-audited, but R1 remains the strongest rule set on the training tasks under website V3. The method does not yet establish robustness beyond \linkding{} or prove that a single rulebook dominates every drift family.
+The upgraded method supports three claims. First, \expel{} task-experience rules are valuable on the original site but lose robustness under harder website drift. Second, compact reflection rules recover much of that lost performance and transfer to the held-out validation tasks. Third, rule iteration is not monotonic: R4 is evidence-aware and trace-audited, but R1 remains the strongest rule set on the training tasks under website V3. The method does not yet establish robustness beyond \linkding{} or prove that a single rulebook dominates every drift family.

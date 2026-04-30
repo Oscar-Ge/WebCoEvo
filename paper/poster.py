@@ -70,12 +70,12 @@ C_REFLECT  = "#2563EB"
 C_RV1 = "#1D4ED8"
 C_RV2 = "#60A5FA"
 C_RV3 = "#818CF8"
-C_RV4 = "#2563EB"
+C_RV4 = "#059669"
 
 DRIFT_ORDER  = ["access","content","functional","process","runtime","structural","surface"]
 DRIFT_LABELS = {d: d.capitalize() for d in DRIFT_ORDER}
-RULE_KEYS    = ["expel_only","v2_4","v2_5","v2_6","v2_4_1"]
-RULE_SHORT   = ["ExpeL","R1","R2","R3","R4"]
+RULE_KEYS    = ["expel_only","v2_4","v2_4_1","v2_5","v2_6"]
+RULE_SHORT   = ["ExpeL","R1","R4","R2","R3"]
 
 DPI = 600
 
@@ -176,20 +176,22 @@ def figure_a():
         ("training_task_sets_reflection_v3",              "Train."),
         ("heldout_validation_task_sets_reflection_v3",    "Valid."),
     ]
-    colors_v = [C_RV1, C_RV2, C_RV3, C_RV4]
-    v_labels = ["R1","R2","R3","R4"]
+    display_order = ["v2_4", "v2_4_1", "v2_5", "v2_6"]
+    color_by_key = {"v2_4": C_RV1, "v2_4_1": C_RV4, "v2_5": C_RV2, "v2_6": C_RV3}
+    v_labels = ["R1","R4","R2","R3"]
 
     group_x = np.array([0, 1.4])
     n_bars = 4
     bw2 = 0.24
 
     for gi, (pk, glabel) in enumerate(ref_panels):
-        series = poster["reflection_panels"][pk]["series"]
+        series_by_key = {item["key"]: item for item in poster["reflection_panels"][pk]["series"]}
+        series = [series_by_key[k] for k in display_order if k in series_by_key]
         for bi, item in enumerate(series):
             rate = item["rate"] * 100
             off = (bi - n_bars/2 + 0.5) * bw2
             bx = group_x[gi] + off
-            bar = ax_r.bar(bx, rate, bw2*0.88, color=colors_v[bi],
+            bar = ax_r.bar(bx, rate, bw2*0.88, color=color_by_key[item["key"]],
                            edgecolor="white", linewidth=0.8, zorder=3)
             if item["is_best"]:
                 bar[0].set_edgecolor("#0F172A")
@@ -211,8 +213,8 @@ def figure_a():
     ax_r.set_title("Reflection Rule Sets\non Website V3",
                     fontsize=18, fontweight="bold", pad=12, linespacing=1.25)
 
-    ref_handles = [mpatches.Patch(facecolor=c, edgecolor="white", label=l)
-                   for c, l in zip(colors_v, v_labels)]
+    ref_handles = [mpatches.Patch(facecolor=color_by_key[k], edgecolor="white", label=l)
+                   for k, l in zip(display_order, v_labels)]
     ax_r.legend(handles=ref_handles, loc="upper right", fontsize=13,
                 ncol=2, handlelength=1.2, handletextpad=0.3,
                 columnspacing=0.6, frameon=True, fancybox=True,

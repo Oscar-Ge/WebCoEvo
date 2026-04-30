@@ -17,7 +17,7 @@ We next test whether reflection rules add value when the website changes but the
 
 The harder generated website suite V3 creates the main robustness stress test. With \expel{}-style rules alone, success drops to \(11.8\%\) on the training tasks. The strongest reflection-rule set recovers performance to \(95.6\%\), while three alternative rule sets reach \(88.2\%\) (Table~\ref{tab:v3_reflection_overall}). Figure~\ref{fig:v3_drift_rule_profile} shows that the recovery is broad across drift families rather than coming from a single easy bucket. This large gap shows that robustness under website drift is not obtained simply by adding more task-level guidance; the useful rules are those that explicitly describe how to recover from changed navigation paths, delayed readiness, changed labels, and shifted workflow cues.
 
-The held-out validation tasks remain substantially harder. \expel{}-style rules alone reach \(39.5\%\). The two strongest reflection-rule sets reach \(58.1\%\), while weaker variants reach \(49.1\%\) and \(36.5\%\). Thus, reflection rules improve transfer under harder drift, but the gains are uneven: a plausible rule update can improve one family of failures while regressing another.
+The held-out validation tasks remain substantially harder. \expel{}-style rules alone reach \(39.5\%\). The two strongest reflection-rule sets, R1 and R4, reach \(58.1\%\), while weaker variants R3 and R2 reach \(49.1\%\) and \(36.5\%\). Thus, reflection rules improve transfer under harder drift, but the gains are uneven: a plausible rule update can improve one family of failures while regressing another.
 
 \subsection{Rule Updates Are Useful but Non-Monotonic}
 

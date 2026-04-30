@@ -14,7 +14,7 @@ Artifact & Role \\
 Website V3 matrix & The April 17 website V3 reflection-rule matrix report supplies the training-task and held-out validation comparison for R1--R4 and \expel{}-style baselines. \\
 Rule comparison & The April 18 UMich Qwen3-VL rule-comparison report supplies \linkding{} V1.45.0 and website V2 comparisons for no rules, \expel{}-style rules, and R1 reflection rules. \\
 Website trend & The April 18 website-version line report supplies the cross-website trend over \linkding{} V1.45.0, website V2, and website V3. \\
-R2 hardening & The April 18 GPT-5.4 hardening report supplies R1-to-R2 transition counts, edited rule summaries, and verification status. \\
+R4 hardening & The April 18 GPT-5.4 hardening report supplies R1-to-R4 transition counts, edited rule summaries, and verification status. \\
 Reflection rulebooks & The R1--R4 JSON rulebooks are the compact reflection policies evaluated in the website V3 matrix. \\
 \expel{} rulebook & The official V2 \expel{} JSON rulebook is the fixed task-experience layer used for \expel{}-conditioned runs. \\
 Run outputs & The WebCoEvo \texttt{results/} tree contains the eval and trace JSONL files consumed by the reports. \\
@@ -31,7 +31,7 @@ Run outputs & The WebCoEvo \texttt{results/} tree contains the eval and trace JS
 \small
 \begin{tabular}{lrrrrr}
 \toprule
-Bucket & \expel{}-style & R1 & R2 & R3 & R4 \\
+Bucket & \expel{}-style & R1 & R4 & R2 & R3 \\
 \midrule
 \texttt{access} & 0/13 & 13/13 & 13/13 & 13/13 & 13/13 \\
 \texttt{surface} & 1/13 & 13/13 & 12/13 & 13/13 & 13/13 \\
@@ -53,7 +53,7 @@ Bucket & \expel{}-style & R1 & R2 & R3 & R4 \\
 \small
 \begin{tabular}{lrrrrr}
 \toprule
-Bucket & \expel{}-style & R1 & R2 & R3 & R4 \\
+Bucket & \expel{}-style & R1 & R4 & R2 & R3 \\
 \midrule
 \texttt{access} & 6/36 & 8/36 & 10/36 & 3/36 & 12/36 \\
 \texttt{surface} & 21/36 & 28/36 & 30/36 & 19/36 & 25/36 \\
@@ -97,7 +97,7 @@ Shift & Completion-path node & Definition in this paper & Held constant \\
 \begin{figure*}[h]
 \centering
 \includegraphics[width=0.95\textwidth]{output/fig3_v3_drift_rule_profile.pdf}
-\caption{Per-drift website V3 success profiles for \expel{}-style rules and selected reflection-rule sets. R1 dominates the training tasks and ties the best held-out aggregate score, while R4 illustrates that a plausible later rule set can shift performance across drift families without improving the overall result.}
+\caption{Per-drift website V3 success profiles for \expel{}-style rules and selected reflection-rule sets. R1 dominates the training tasks and ties the best held-out aggregate score, while R3 illustrates that a plausible later rule set can shift performance across drift families without improving the overall result.}
 \label{fig:v3_drift_rule_profile}
 \end{figure*}
 
@@ -121,8 +121,8 @@ Shift & Completion-path node & Definition in this paper & Held constant \\
 \item Supported: \expel{} improves the training tasks on \linkding{} V1.45.0 from \(9/68\) to \(56/68\).
 \item Supported: R1 improves over \expel{}-style rules on website V2 for both the training tasks and held-out validation tasks.
 \item Supported: R1 is strongest on the training tasks under website V3 at \(65/68\).
-\item Supported: R1 and R2 tie on the held-out validation tasks under website V3 at \(97/167\).
+\item Supported: R1 and R4 tie on the held-out validation tasks under website V3 at \(97/167\).
 \item Not claimed: later rulebooks always improve over earlier rulebooks.
 \item Not claimed: \linkding{} single-site evidence establishes broad web-agent robustness.
-\item Intended next step: preserve R1's robust process/functional behavior while selectively importing R2's access/content/finalization gains.
+\item Intended next step: preserve R1's robust process/functional behavior while selectively importing R4's access/content/finalization gains.
 \end{itemize}

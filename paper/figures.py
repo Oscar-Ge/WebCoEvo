@@ -115,7 +115,9 @@ C_REFLECT    = "#2563EB"   # blue
 C_REFLECT_V1 = "#1D4ED8"   # deep blue
 C_REFLECT_V2 = "#60A5FA"   # sky blue
 C_REFLECT_V3 = "#818CF8"   # indigo
-C_REFLECT_V4 = "#2563EB"   # blue
+C_REFLECT_V4 = "#059669"   # green
+C_RADAR_R1   = "#1D4ED8"   # deep blue
+C_RADAR_R4   = "#059669"   # green, separated from R1 in radar plots
 C_ACCENT     = "#E76F51"   # coral
 
 DRIFT_COLORS = {
@@ -138,10 +140,10 @@ RULE_COLORS = {
 
 RULE_LABELS = {
     "expel_only": "ExpeL Only",
-    "v2_4":       "Reflect V1",
-    "v2_5":       "Reflect V2",
-    "v2_6":       "Reflect V3",
-    "v2_4_1":     "Reflect V4",
+    "v2_4":       "R1",
+    "v2_4_1":     "R4",
+    "v2_5":       "R2",
+    "v2_6":       "R3",
 }
 
 DRIFT_ORDER = ["access", "content", "functional", "process", "runtime", "structural", "surface"]
@@ -279,16 +281,25 @@ def figure2_reflection_iteration():
         ("heldout_validation_task_sets_reflection_v3", "Held-out Validation"),
     ]
 
-    colors = [C_REFLECT_V1, C_REFLECT_V2, C_REFLECT_V3, C_REFLECT_V4]
+    display_order = ["v2_4", "v2_4_1", "v2_5", "v2_6"]
+    display_colors = {
+        "v2_4": C_REFLECT_V1,
+        "v2_4_1": C_REFLECT_V4,
+        "v2_5": C_REFLECT_V2,
+        "v2_6": C_REFLECT_V3,
+    }
 
     for ax_idx, (panel_key, title) in enumerate(panels):
         ax = axes[ax_idx]
         panel = poster_data["reflection_panels"][panel_key]
-        series = panel["series"]
+        series_by_key = {s.get("key"): s for s in panel["series"]}
+        series = [series_by_key[k] for k in display_order if k in series_by_key]
 
-        labels = [s["label"].replace("Reflection Rules ", "V") for s in series]
+        display_names = {"v2_4": "R1", "v2_4_1": "R4", "v2_5": "R2", "v2_6": "R3"}
+        labels = [display_names.get(s.get("key"), s["label"]) for s in series]
         rates = [s["rate"] * 100 for s in series]
         is_best = [s["is_best"] for s in series]
+        colors = [display_colors[s.get("key")] for s in series]
 
         x = np.arange(len(labels))
         bars = ax.bar(x, rates, width=0.6, color=colors, edgecolor="white",
@@ -315,8 +326,11 @@ def figure2_reflection_iteration():
         if ax_idx == 0:
             ax.set_ylabel("Success Rate on Website V3", fontsize=12, fontweight="bold")
 
-        # Takeaway annotation
-        takeaway = panel["takeaway"]
+        # Override stale report wording after renaming rule sets by reflection time.
+        if panel_key == "training_task_sets_reflection_v3":
+            takeaway = "Not monotonic: R1 remains best"
+        else:
+            takeaway = "Not monotonic: R1 and R4 tie"
         ax.annotate(takeaway, xy=(0.5, -0.18), xycoords="axes fraction",
                     ha="center", fontsize=9, fontstyle="italic", color="#6B7280")
 
@@ -344,7 +358,7 @@ def figure3_radar_chart():
 
     rule_keys = ["expel_only", "v2_4", "v2_4_1"]
     rule_labels_short = {"expel_only": "ExpeL-style", "v2_4": "R1", "v2_4_1": "R4"}
-    rule_colors = {"expel_only": C_EXPEL, "v2_4": C_REFLECT_V1, "v2_4_1": C_REFLECT_V4}
+    rule_colors = {"expel_only": C_EXPEL, "v2_4": C_RADAR_R1, "v2_4_1": C_RADAR_R4}
     rule_markers = {"expel_only": "o", "v2_4": "s", "v2_4_1": "D"}
 
     for ax_idx, (bench_key, title) in enumerate(benchmarks):
@@ -397,10 +411,10 @@ def figure3_radar_chart():
 
 
 # ═══════════════════════════════════════════════════════════════════
-# FIGURE 4: Heatmap — Rule Version × Drift Type
+# FIGURE 4: Heatmap — Rule Set × Drift Type
 # ═══════════════════════════════════════════════════════════════════
 def figure4_heatmap():
-    print("\n📊 Figure 4: Heatmap — Rule Version × Drift Type")
+    print("\n📊 Figure 4: Heatmap — Rule Set × Drift Type")
 
     fig, axes = plt.subplots(1, 2, figsize=(16, 5.5))
     fig.subplots_adjust(wspace=0.25)
@@ -410,9 +424,9 @@ def figure4_heatmap():
         ("taskbank36_hardv3", "Held-out Validation (TaskBank36)"),
     ]
 
-    rule_keys = ["expel_only", "v2_4", "v2_5", "v2_6", "v2_4_1"]
-    rule_labels = ["ExpeL Only", "Reflect V1\n(v2.4)", "Reflect V2\n(v2.5)",
-                   "Reflect V3\n(v2.6)", "Reflect V4\n(v2.4.1)"]
+    rule_keys = ["expel_only", "v2_4", "v2_4_1", "v2_5", "v2_6"]
+    rule_labels = ["ExpeL Only", "R1\n(v2.4)", "R4\n(v2.4.1)",
+                   "R2\n(v2.5)", "R3\n(v2.6)"]
 
     for ax_idx, (bench_key, title) in enumerate(benchmarks):
         ax = axes[ax_idx]
@@ -457,7 +471,7 @@ def figure4_heatmap():
     cbar.set_label("Success Rate (%)", fontsize=10)
     cbar.ax.tick_params(labelsize=9)
 
-    fig.suptitle("Success Rate by Rule Version × Drift Type on Website V3",
+    fig.suptitle("Success Rate by Rule Set × Drift Type on Website V3",
                  fontsize=15, fontweight="bold", y=1.02, color="#111827")
 
     save_fig(fig, "fig4_heatmap_rule_drift")
@@ -479,7 +493,7 @@ def figure5_version_lines():
 
     series_styles = {
         "expel_only": {"color": C_EXPEL, "marker": "o", "label": "ExpeL Only", "ls": "-"},
-        "v2_4":       {"color": C_REFLECT, "marker": "s", "label": "Reflection V2.4", "ls": "-"},
+        "v2_4":       {"color": C_REFLECT, "marker": "s", "label": "R1 Reflection Rules", "ls": "-"},
     }
 
     for ax_idx, (bench_key, title) in enumerate(benchmarks):
@@ -595,7 +609,7 @@ def figure6_control_vs_firstmod():
             setting_labels = {
                 "no_rules": "No Rules",
                 "expel_only": "ExpeL Only",
-                "v2_4": "Reflect V2.4",
+                "v2_4": "R1 Reflection",
             }
 
             for i, sk in enumerate(setting_keys):

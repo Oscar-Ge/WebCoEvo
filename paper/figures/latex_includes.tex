@@ -35,7 +35,7 @@ V3 & -- & 66/167 & 97/167 \\
 \begin{figure*}[t]
 \centering
 \includegraphics[width=\textwidth]{output/poster_fig_a_hero.pdf}
-\caption{Headline robustness results across website versions. The left and middle panels compare no rules, \expel{}-style rules, and the strongest available reflection-rule condition on the training and held-out validation tasks. The right panel isolates the website V3 reflection-rule sets R1--R4, showing that later rule revisions are not monotonically better.}
+\caption{Headline robustness results across website versions. The left and middle panels compare no rules, \expel{}-style rules, and the strongest available reflection-rule condition on the training and held-out validation tasks. The right panel isolates the website V3 reflection-rule sets, showing that later rule revisions are not monotonically better.}
 \label{fig:website_version_overview}
 \end{figure*}
 
@@ -47,9 +47,9 @@ V3 & -- & 66/167 & 97/167 \\
 Rules & Training & Held-out \\
 \midrule
 R1 & 65/68 (95.6\%) & 97/167 (58.1\%) \\
-R2 & 60/68 (88.2\%) & 97/167 (58.1\%) \\
-R3 & 60/68 (88.2\%) & 61/167 (36.5\%) \\
-R4 & 60/68 (88.2\%) & 82/167 (49.1\%) \\
+R4 & 60/68 (88.2\%) & 97/167 (58.1\%) \\
+R2 & 60/68 (88.2\%) & 61/167 (36.5\%) \\
+R3 & 60/68 (88.2\%) & 82/167 (49.1\%) \\
 \bottomrule
 \end{tabular}
 \caption{Overall website V3 success for successive reflection-rule sets. R1--R4 are obtained through iterative reflection on observed failures and rule revision; detailed per-drift counts are deferred to Appendix Tables~\ref{tab:training_v3_appendix} and~\ref{tab:heldout_v3_appendix}.}
