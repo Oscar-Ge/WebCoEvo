@@ -281,7 +281,7 @@ def figure2_reflection_iteration():
         ("heldout_validation_task_sets_reflection_v3", "Held-out Validation"),
     ]
 
-    display_order = ["v2_4", "v2_4_1", "v2_5", "v2_6"]
+    display_order = ["v2_4", "v2_5", "v2_6", "v2_4_1"]
     display_colors = {
         "v2_4": C_REFLECT_V1,
         "v2_4_1": C_REFLECT_V4,
@@ -424,9 +424,9 @@ def figure4_heatmap():
         ("taskbank36_hardv3", "Held-out Validation (TaskBank36)"),
     ]
 
-    rule_keys = ["expel_only", "v2_4", "v2_4_1", "v2_5", "v2_6"]
-    rule_labels = ["ExpeL Only", "R1\n(v2.4)", "R4\n(v2.4.1)",
-                   "R2\n(v2.5)", "R3\n(v2.6)"]
+    rule_keys = ["expel_only", "v2_4", "v2_5", "v2_6", "v2_4_1"]
+    rule_labels = ["ExpeL Only", "R1\n(v2.4)", "R2\n(v2.5)",
+                   "R3\n(v2.6)", "R4\n(v2.4.1)"]
 
     for ax_idx, (bench_key, title) in enumerate(benchmarks):
         ax = axes[ax_idx]

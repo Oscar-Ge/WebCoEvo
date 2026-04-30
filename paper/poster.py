@@ -74,8 +74,8 @@ C_RV4 = "#059669"
 
 DRIFT_ORDER  = ["access","content","functional","process","runtime","structural","surface"]
 DRIFT_LABELS = {d: d.capitalize() for d in DRIFT_ORDER}
-RULE_KEYS    = ["expel_only","v2_4","v2_4_1","v2_5","v2_6"]
-RULE_SHORT   = ["ExpeL","R1","R4","R2","R3"]
+RULE_KEYS    = ["expel_only","v2_4","v2_5","v2_6","v2_4_1"]
+RULE_SHORT   = ["ExpeL","R1","R2","R3","R4"]
 
 DPI = 600
 
@@ -176,9 +176,9 @@ def figure_a():
         ("training_task_sets_reflection_v3",              "Train."),
         ("heldout_validation_task_sets_reflection_v3",    "Valid."),
     ]
-    display_order = ["v2_4", "v2_4_1", "v2_5", "v2_6"]
+    display_order = ["v2_4", "v2_5", "v2_6", "v2_4_1"]
     color_by_key = {"v2_4": C_RV1, "v2_4_1": C_RV4, "v2_5": C_RV2, "v2_6": C_RV3}
-    v_labels = ["R1","R4","R2","R3"]
+    v_labels = ["R1","R2","R3","R4"]
 
     group_x = np.array([0, 1.4])
     n_bars = 4
