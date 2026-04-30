@@ -148,15 +148,17 @@ DRIFT_ORDER = ["access", "content", "functional", "process", "runtime", "structu
 DRIFT_LABELS = {d: d.capitalize() for d in DRIFT_ORDER}
 
 
-def save_fig(fig, name):
+def save_fig(fig, name, aliases=None):
     """Save figure as both PNG and PDF."""
-    png_path = os.path.join(OUTPUT_DIR, f"{name}.png")
-    pdf_path = os.path.join(OUTPUT_DIR, f"{name}.pdf")
-    fig.savefig(png_path, dpi=300, facecolor="white", edgecolor="none")
-    fig.savefig(pdf_path, facecolor="white", edgecolor="none")
+    names = [name] + list(aliases or [])
+    for output_name in names:
+        png_path = os.path.join(OUTPUT_DIR, f"{output_name}.png")
+        pdf_path = os.path.join(OUTPUT_DIR, f"{output_name}.pdf")
+        fig.savefig(png_path, dpi=300, facecolor="white", edgecolor="none")
+        fig.savefig(pdf_path, facecolor="white", edgecolor="none")
+        print(f"  ✅ Saved {png_path}")
+        print(f"  ✅ Saved {pdf_path}")
     plt.close(fig)
-    print(f"  ✅ Saved {png_path}")
-    print(f"  ✅ Saved {pdf_path}")
 
 
 # ═══════════════════════════════════════════════════════════════════
@@ -333,15 +335,15 @@ def figure3_radar_chart():
 
     fig, axes = plt.subplots(1, 2, figsize=(14, 6),
                               subplot_kw=dict(polar=True))
-    fig.subplots_adjust(wspace=0.35)
+    fig.subplots_adjust(wspace=0.45, top=0.88, bottom=0.16)
 
     benchmarks = [
-        ("focus20_hardv3", "Training Tasks (Focus20)"),
-        ("taskbank36_hardv3", "Held-out Validation (TaskBank36)"),
+        ("focus20_hardv3", "Training Tasks"),
+        ("taskbank36_hardv3", "Held-out Validation"),
     ]
 
     rule_keys = ["expel_only", "v2_4", "v2_4_1"]
-    rule_labels_short = {"expel_only": "ExpeL", "v2_4": "Reflect V1", "v2_4_1": "Reflect V4"}
+    rule_labels_short = {"expel_only": "ExpeL-style", "v2_4": "R1", "v2_4_1": "R4"}
     rule_colors = {"expel_only": C_EXPEL, "v2_4": C_REFLECT_V1, "v2_4_1": C_REFLECT_V4}
     rule_markers = {"expel_only": "o", "v2_4": "s", "v2_4_1": "D"}
 
@@ -384,15 +386,14 @@ def figure3_radar_chart():
                     markeredgecolor="white", markeredgewidth=1)
             ax.fill(angles, values, color=rule_colors[rule_key], alpha=0.08)
 
-        ax.set_title(title, fontsize=12, fontweight="bold", pad=20, y=1.08)
-        ax.legend(loc="upper right", bbox_to_anchor=(1.3, 1.15),
-                  fontsize=9, frameon=True, fancybox=True,
-                  edgecolor="#E5E7EB", facecolor="white")
+        ax.set_title(title, fontsize=13, fontweight="bold", pad=18, y=1.08)
 
-    fig.suptitle("Per-Drift-Type Performance on Website V3 (Hardv3)",
-                 fontsize=15, fontweight="bold", y=1.02, color="#111827")
+    handles, labels = axes[0].get_legend_handles_labels()
+    fig.legend(handles, labels, loc="lower center", bbox_to_anchor=(0.5, 0.02),
+               ncol=3, fontsize=10, frameon=True, fancybox=True,
+               edgecolor="#E5E7EB", facecolor="white")
 
-    save_fig(fig, "fig3_radar_drift_performance")
+    save_fig(fig, "fig3_v3_drift_rule_profile", aliases=["fig3_radar_drift_performance"])
 
 
 # ═══════════════════════════════════════════════════════════════════

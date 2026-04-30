@@ -75,7 +75,7 @@ C_RV4 = "#2563EB"
 DRIFT_ORDER  = ["access","content","functional","process","runtime","structural","surface"]
 DRIFT_LABELS = {d: d.capitalize() for d in DRIFT_ORDER}
 RULE_KEYS    = ["expel_only","v2_4","v2_5","v2_6","v2_4_1"]
-RULE_SHORT   = ["ExpeL","Refl. V1","Refl. V2","Refl. V3","Refl. V4"]
+RULE_SHORT   = ["ExpeL","R1","R2","R3","R4"]
 
 DPI = 600
 
@@ -177,7 +177,7 @@ def figure_a():
         ("heldout_validation_task_sets_reflection_v3",    "Valid."),
     ]
     colors_v = [C_RV1, C_RV2, C_RV3, C_RV4]
-    v_labels = ["V1","V2","V3","V4"]
+    v_labels = ["R1","R2","R3","R4"]
 
     group_x = np.array([0, 1.4])
     n_bars = 4
@@ -208,7 +208,7 @@ def figure_a():
     ax_r.set_ylim(0, 112)
     ax_r.yaxis.set_major_formatter(mticker.PercentFormatter(decimals=0))
     ax_r.tick_params(axis="y", labelsize=14)
-    ax_r.set_title("Reflection Iterations\non Website V3",
+    ax_r.set_title("Reflection Rule Sets\non Website V3",
                     fontsize=18, fontweight="bold", pad=12, linespacing=1.25)
 
     ref_handles = [mpatches.Patch(facecolor=c, edgecolor="white", label=l)
@@ -227,9 +227,6 @@ def figure_a():
     fig.legend(handles=main_h, loc="upper center", ncol=3,
                fontsize=16, bbox_to_anchor=(0.42, 0.97), frameon=False,
                handlelength=2.0, handletextpad=0.5, columnspacing=2.5)
-
-    fig.suptitle("Rule Robustness Under Website Evolution",
-                 fontsize=24, fontweight="bold", y=1.03, color="#111827")
 
     save(fig, "poster_fig_a_hero")
 
