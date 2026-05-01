@@ -1,9 +1,25 @@
 \providecommand{\FloatBarrier}{\clearpage}
 
-\section{Case Studies in Reflection-Rule Degradation}
+\section{Trace-Level Case Studies for Reflection-Rule Degradation}
 \label{sec:case_studies}
 
-The three cases below trace the mechanisms described in Section~\ref{sec:failure_analysis} to specific rule substitutions and agent trajectories extracted from the evaluation JSONL logs.
+The main text analyzes reflection-rule degradation at the level of rule-learning mechanisms. This appendix keeps the concrete audit trail: rule substitutions, task families, trajectory behavior, and error modes extracted from the evaluation JSONL logs.
+
+\begin{table}[!htbp]
+\centering
+\caption{Case-study map for the failure mechanisms in Section~\ref{sec:failure_analysis}.}
+\label{tab:failure_case_map}
+\small
+\begin{tabular}{p{2.0cm}p{3.7cm}p{4.5cm}p{3.6cm}}
+\toprule
+Case & Local edit & Observed failure & Main-text mechanism \\
+\midrule
+A & Replaces a broad finalization rule with staged-checkpoint advice. & Held-out process tasks repeat form-submission cycles until \texttt{max\_steps\_no\_success}. & A locally valid procedural patch removes a transferable completion invariant. \\
+B & Tightens query-state completion into a prepared-versus-committed distinction. & Held-out functional tasks continue acting after the target filter state is reached. & Extra specificity creates hesitation when unseen variants do not expose the same intermediate state. \\
+C & Reflection rules are mined from narrow content variants. & Held-out content tasks fail despite correct navigation, while \expel{}-style rules remain stronger. & Narrow evidence can encode implicit surface-token anchors even when rules are phrased generally. \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \subsection{Case A: Finalization Rule Removal Causes Infinite Loop on Process Tasks}
 
