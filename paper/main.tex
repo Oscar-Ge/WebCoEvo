@@ -10,6 +10,11 @@
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{microtype}
+\usepackage{placeins}
+
+\ifx\pdfsuppresswarningpagegroup\undefined\else
+\pdfsuppresswarningpagegroup=1
+\fi
 
 \newcommand{\linkding}{\textsc{Linkding}}
 \newcommand{\expel}{\textsc{ExpeL}}
@@ -41,6 +46,7 @@
 
 \bibliography{references}
 \clearpage
+\onecolumn
 \appendix
 \input{sections/A_appendix.tex}
 

@@ -1,8 +1,10 @@
+\providecommand{\FloatBarrier}{\clearpage}
+
 \section{Artifact Notes}
 
 \subsection{Source Reports}
 
-\begin{table*}[h]
+\begin{table}[!htbp]
 \centering
 \caption{Local WebCoEvo artifacts used to upgrade the paper.}
 \label{tab:artifact_paths}
@@ -20,11 +22,13 @@ Reflection rulebooks & The R1--R4 JSON rulebooks are the compact reflection poli
 Run outputs & The WebCoEvo \texttt{results/} tree contains the eval and trace JSONL files consumed by the reports. \\
 \bottomrule
 \end{tabular}
-\end{table*}
+\end{table}
+
+\FloatBarrier
 
 \subsection{Full Website V3 Per-Drift Tables}
 
-\begin{table*}[h]
+\begin{table}[!htbp]
 \centering
 \caption{Training-task website V3 full benchmark.}
 \label{tab:training_v3_appendix}
@@ -44,9 +48,9 @@ Bucket & \expel{}-style & R1 & R2 & R3 & R4 \\
 \textbf{Overall} & \textbf{8/68 = 11.8\%} & \textbf{65/68 = 95.6\%} & \textbf{60/68 = 88.2\%} & \textbf{60/68 = 88.2\%} & \textbf{60/68 = 88.2\%} \\
 \bottomrule
 \end{tabular}
-\end{table*}
+\end{table}
 
-\begin{table*}[h]
+\begin{table}[!htbp]
 \centering
 \caption{Held-out validation website V3 full benchmark.}
 \label{tab:heldout_v3_appendix}
@@ -66,11 +70,14 @@ Bucket & \expel{}-style & R1 & R2 & R3 & R4 \\
 \textbf{Overall} & \textbf{66/167 = 39.5\%} & \textbf{97/167 = 58.1\%} & \textbf{61/167 = 36.5\%} & \textbf{82/167 = 49.1\%} & \textbf{97/167 = 58.1\%} \\
 \bottomrule
 \end{tabular}
-\end{table*}
+\end{table}
+
+\FloatBarrier
+\clearpage
 
 \subsection{Drift Taxonomy}
 
-\begin{table*}[h]
+\begin{table}[!htbp]
 \centering
 \caption{Operational definitions of the seven website shifts.}
 \label{tab:drift_taxonomy_roots}
@@ -90,30 +97,77 @@ Shift & Completion-path node & Definition in this paper & Held constant \\
 \bottomrule
 \end{tabular}
 }
-\end{table*}
+\end{table}
+
+\FloatBarrier
+\clearpage
 
 \subsection{Additional Result Figures}
 
-\begin{figure*}[h]
+\begin{figure}[!htbp]
 \centering
-\includegraphics[width=0.95\textwidth]{output/fig3_v3_drift_rule_profile.pdf}
-\caption{Per-drift website V3 success profiles for \expel{}-style rules and selected reflection-rule sets. R1 dominates the training tasks and ties the best held-out aggregate score, while R3 illustrates that a plausible later rule set can shift performance across drift families without improving the overall result.}
-\label{fig:v3_drift_rule_profile}
-\end{figure*}
+\includegraphics[width=0.95\textwidth]{output/fig1_main_poster_panel.pdf}
+\caption{Condensed result panel used for paper and poster summaries. The panel places the main website-version comparison beside the website V3 reflection-rule comparison, making the robustness gap and non-monotonic rule-update pattern visible in one view.}
+\label{fig:appendix_main_poster_panel}
+\end{figure}
 
-\begin{figure*}[h]
+\begin{figure}[!htbp]
 \centering
-\includegraphics[width=\textwidth]{output/fig4_heatmap_rule_drift.pdf}
-\caption{Full website V3 per-drift heatmap for \expel{}-style rules and all four reflection-rule sets R1--R4. This view complements the numeric tables by making drift-family regressions and improvements visually comparable across the training and held-out validation tasks.}
-\label{fig:v3_rule_drift_heatmap}
-\end{figure*}
+\includegraphics[width=\textwidth]{output/poster_fig_a_hero.pdf}
+\caption{Poster headline figure for aggregate robustness results across website versions. This wider rendering mirrors Figure~\ref{fig:website_version_overview} and is included here as a complete artifact view.}
+\label{fig:appendix_poster_hero}
+\end{figure}
 
-\begin{figure*}[h]
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.9\textwidth]{output/fig5_version_trajectory.pdf}
+\caption{Version-level success trajectory across \linkding{} V1.45.0, website V2, and website V3. The trajectory view emphasizes how \expel{}-style task experience and reflection rules respond differently as the website drift becomes harder.}
+\label{fig:appendix_version_trajectory}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.9\textwidth]{output/fig6_control_vs_firstmod.pdf}
+\caption{Control comparison between the unmodified \linkding{} V1.45.0 condition and the first modified website condition. This figure isolates the initial effect of website drift before the harder generated website V3 suite.}
+\label{fig:appendix_control_vs_firstmod}
+\end{figure}
+
+\begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.9\textwidth]{output/fig2_reflection_iteration.pdf}
 \caption{Aggregate website V3 performance for successive reflection-rule sets. The non-monotonic pattern supports the paper's claim that reflection-rule updates require verification before promotion.}
 \label{fig:v3_reflection_iteration}
-\end{figure*}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.9\textwidth]{output/fig3_radar_drift_performance.pdf}
+\caption{Radar summary of drift-family performance under the evaluated rule conditions. This shape-based view makes it easier to see whether a rule set improves robustness broadly or only along a few website-shift families.}
+\label{fig:appendix_radar_drift_performance}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{output/fig3_v3_drift_rule_profile.pdf}
+\caption{Per-drift website V3 success profiles for \expel{}-style rules and selected reflection-rule sets. R1 dominates the training tasks and ties the best held-out aggregate score, while R3 illustrates that a plausible later rule set can shift performance across drift families without improving the overall result.}
+\label{fig:v3_drift_rule_profile}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\textwidth]{output/fig4_heatmap_rule_drift.pdf}
+\caption{Full website V3 per-drift heatmap for \expel{}-style rules and all four reflection-rule sets R1--R4. This view complements the numeric tables by making drift-family regressions and improvements visually comparable across the training and held-out validation tasks.}
+\label{fig:v3_rule_drift_heatmap}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\textwidth]{output/poster_fig_b_heatmap.pdf}
+\caption{Poster-format website V3 heatmap. This rendering preserves the same R1--R4 ordering as the paper figures while using a wider layout for presentation material.}
+\label{fig:appendix_poster_heatmap}
+\end{figure}
+
+\FloatBarrier
 
 \subsection{Claim Boundary Checklist}
 
