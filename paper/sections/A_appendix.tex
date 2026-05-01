@@ -1,5 +1,44 @@
 \providecommand{\FloatBarrier}{\clearpage}
 
+\section{Case Studies in Reflection-Rule Degradation}
+\label{sec:case_studies}
+
+The three cases below trace the mechanisms described in Section~\ref{sec:failure_analysis} to specific rule substitutions and agent trajectories extracted from the evaluation JSONL logs.
+
+\subsection{Case A: Finalization Rule Removal Causes Infinite Loop on Process Tasks}
+
+\paragraph{Task and setting.}
+Task \texttt{TKB04\_EDIT\_TITLE\_AMBER} (task ID 1502505) is a \texttt{process}-drift held-out task that asks the agent to create a bookmark with a specific edited title on website V3. The V3 process drift introduces a staged checkpoint: the bookmark creation form is served under the URL \texttt{/bookmarks/new?hardv3\_release\_ready=1}, signaling that the form has passed an internal readiness gate before the agent may submit. Successful completion requires the agent to recognize that the post-submission landing at \texttt{/bookmarks} constitutes final state and report the created bookmark's title.
+
+\paragraph{R1 trajectory (success, 13 steps).}
+Under R1, the agent navigates to the form, fills the URL, tag, and title fields, and submits (steps 0--5). After the submission lands at \texttt{/bookmarks}, the agent makes one additional pass to refine the title field to its final form (steps 6--10), then issues \texttt{send\_msg\_to\_user(``TaskBank Amber 1450 Edited tb1450-amber'')} at step 11. The agent's decision to finalize is consistent with the injected R1 rule: \emph{``Finalize instead of noop when URL, query, or heading already proves the target state.''} The \texttt{/bookmarks} landing page with the bookmark visible serves as that proof.
+
+\paragraph{R2 trajectory (failure, 31 steps, \texttt{max\_steps\_no\_success}).}
+Under R2, the agent follows an identical initial sequence (steps 0--5), successfully submitting the form and landing at \texttt{/bookmarks}. However, instead of issuing a final answer, it immediately returns to \texttt{/bookmarks/new} and begins a second fill-click-submit cycle (steps 6--9). This pattern---navigate to form, fill URL, click submit, land at \texttt{/bookmarks}, navigate back---repeats verbatim for seven additional cycles before the step budget is exhausted at step 30. The agent never issues \texttt{send\_msg\_to\_user}.
+
+\paragraph{Root cause.}
+Inspecting the R2 rulebook reveals that the rule responsible for completion detection in R1 (\texttt{xvr24\_0003}, covering seven drift types) was replaced by \emph{``Treat staged review or apply pages as one-click checkpoints, not as noop states''} (\texttt{xvr25\_0003}). This substitution addresses a genuine training failure---agents looping on staged review pages---but it describes \emph{how} to handle a checkpoint, not \emph{when} the overall task is complete. Without a general finalization principle, the agent cannot distinguish the successful \texttt{/bookmarks} landing from an intermediate state, and the ``hard stop on repeated noop or goto'' rule in R2 (\texttt{xvr25\_0008}) does not trigger because each cycle involves distinct fill and click actions rather than identical noops. The same failure pattern appears across all thirteen process-drift held-out task instances that R1 previously handled, accounting for the full \(8/19\) gap in held-out process success between R1 (\(13/19\)) and R2 (\(5/19\)).
+
+\subsection{Case B: Completion-Signal Tightening Causes Hesitation on Functional Tasks}
+
+\paragraph{Task family and rule comparison.}
+Functional-drift tasks on the held-out set include several families requiring the agent to navigate to a filtered bookmark view and confirm the filter state. R1 provides \emph{``For filtered bookmark tasks, treat query-state arrival as completion evidence''} (\texttt{xvr24\_0007}, covering \texttt{content}, \texttt{runtime}, \texttt{functional}, and \texttt{surface} drift). Under this rule, reaching the URL \texttt{/bookmarks?q=\textrm{\textit{<tag>}}} is sufficient for the agent to issue a final answer.
+
+The R2 iteration observed training cases in which the agent prematurely finalized on a \emph{prepared} filter state---a view where the query string was pre-populated but the filter results were not yet committed---and proposed a corrective rule: \emph{``For filtered bookmark tasks, distinguish prepared lookup states from committed filter results''} (\texttt{xvr25\_0007}). This rule is locally sound for the training failure it targets, but it introduces a two-state distinction that held-out task variants do not expose: in the held-out functional tasks, the filtered URL already represents the committed result, so the additional evidence the agent is now instructed to seek does not appear. The agent therefore continues interacting after the target state is already reached, exhausting its step budget. Held-out functional success drops from \(7/13=53.8\%\) under R1 to \(3/13=23.1\%\) under R2. R4 explicitly restores the R1 completion phrasing, recovering to \(4/13=30.8\%\), though not to R1 levels, as other rule differences retain some residual hesitation.
+
+\subsection{Case C: Content-Token Specificity Explains Persistent ExpeL Advantage}
+
+\paragraph{Observation.}
+The \texttt{content}-drift bucket is the only drift family where \expel{}-style rules (\(11/14=78.6\%\)) outperform every reflection-augmented version across all four iterations: R1 (\(7/14=50.0\%\)), R2 (\(5/14=35.7\%\)), R3 (\(6/14=42.9\%\)), and R4 (\(10/14=71.4\%\)).
+
+\paragraph{Failure pattern.}
+Content drift changes labels, placeholders, and surrounding wording while preserving the underlying data model and task structure. The failing held-out task families (primarily \texttt{TKB05\_EDIT\_TAGS\_QUERY} and \texttt{TKB10\_NOSCHEME\_POLICY} variants) exhibit content changes that do not appear in any training-task trajectory. Inspection of the eval records for R1 content failures shows that all seven failing tasks share the same error (\texttt{max\_steps\_no\_success}) despite the agent receiving seven reflection rules, including the finalization and stuck-policy rules that resolve other drift families. The agent correctly navigates to the relevant form but cannot reconcile the modified label or placeholder text with its expectations, resulting in repeated interaction cycles that never reach the evaluator's acceptance criterion.
+
+\paragraph{Why ExpeL generalizes better.}
+\expel{}-style rules were distilled from trajectories spanning many task families and website states, giving them implicit tolerance for surface-token variation. Reflection rules, generated from a small set of failure traces on specific training-content variants, encode expectations about the exact label strings or placeholder wording present in those traces. For held-out content variants that use different surface tokens while preserving task structure, these implicit expectations act as interference: the agent's behavior is constrained by assumptions that do not hold. This case illustrates a general limit of evidence-grounded reflection: the quality of the abstraction is bounded by the diversity of the evidence, and narrow evidence produces narrow rules even when the rule's stated scope appears broad.
+
+\FloatBarrier
+
 \section{Artifact Notes}
 
 \subsection{Source Reports}
